@@ -2,12 +2,13 @@ import { Request, Response, NextFunction } from "express";
 
 //Archivo que arranca el servidor 
 require("dotenv").config();
-const express = require('express');
 
-const morgan = require('morgan');
+import express from 'express'
+import morgan from 'morgan'
 //morgan permite ver las peticiones en consola
+import { dbConn } from './db'
 
-const cors = require('cors');
+import cors from 'cors'
 //cors permite comunicar el servidor y el frontend 
 
 const app = express();
@@ -30,7 +31,9 @@ app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () =>
-{ // puerto 3001
+app.listen(PORT, () => { // puerto 3001
     console.log('Server listening on port 3001'); // eslint-disable-line no-console
 });
+
+//Conectamos a la base de datos
+dbConn();
