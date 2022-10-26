@@ -1,50 +1,56 @@
 
+import { Request, Response, NextFunction } from "express";
+
 
 //Archivo que arranca el servidor 
+
 require("dotenv").config();
 
 
-const express = require('express');
-//import express from 'express';
-
-const morgan = require('morgan');
+import express from 'express'
+import morgan from 'morgan'
 //morgan permite ver las peticiones en consola
+import { dbConn } from './db'
 
-const cors = require('cors');
-import filterActivos  from './routes/routeFilterActivos';
+
+import cors from 'cors'
+
 //cors permite comunicar el servidor y el frontend 
+import cors from "cors";
+const app: any = express();
 
-import getActivos from './routes/routeGetActivos'
 
+app.use(express.json()) 
+app.use(morgan('dev')) 
 
-const app = express();
-
-app.use(express.json())
-app.use(morgan('dev'))
 app.use(cors())
+
+
+app.use("/",router)  
+
+// add exchange history routes
+const exchangeRoutes = require('./routes/exchangeHistory.ts');
+app.use('/exchange', exchangeRoutes)
+
 // Error catching endware.
 
-app.use('/', getActivos)
-app.use('/', filterActivos)
+app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
 
-
-
-
-app.use((error:any, _req:any, res:any, _next:any) => {
     console.log(error)
     const name = error.name
     const message = error.message;
     // console.error(error);
-    res.status(400).send(name + message);
-});
+    return res.send(name + message);
+});  
 
-app.get('/ping', (_req:any, res:any)=>{
-    console.log('somone piged here');
-    res.send('hola')
-})
+
+
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () =>
-{ // puerto 3001
+app.listen(PORT, () => { // puerto 3001
     console.log('Server listening on port 3001'); // eslint-disable-line no-console
 });
+
+//Conectamos a la base de datos
+dbConn();
+
