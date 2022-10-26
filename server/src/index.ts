@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from "express";
+
 //Archivo que arranca el servidor 
 require("dotenv").config();
 const express = require('express');
@@ -13,8 +15,13 @@ const app = express();
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
+
+// add exchange history routes
+const exchangeRoutes = require('./routes/exchangeHistory.ts');
+app.use('/exchange', exchangeRoutes)
+
 // Error catching endware.
-app.use((error, req, res, next) => {
+app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
     console.log(error)
     const name = error.name
     const message = error.message;
