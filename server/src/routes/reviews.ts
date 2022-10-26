@@ -1,12 +1,10 @@
 import { Router} from "express"
-import {getUsers, postUsers, deleteUsers, putUsers } from "../controllers/users"
-import validateCreateUsers from "../utils/validator"
+import {getReviews,postReview,deleteRewiew} from "../controllers/reviews"
 
 const router : any=Router()
 
-router.get("/",getUsers)
-router.post("/",validateCreateUsers,postUsers)
-router.delete("/:id",deleteUsers) 
-router.put("/:id",validateCreateUsers,putUsers) 
+router.get("/review",getReviews)
+router.post("/review",postReview)
+router.delete("/:id",deleteRewiew) 
 
 export default router
