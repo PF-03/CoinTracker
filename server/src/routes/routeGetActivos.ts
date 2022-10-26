@@ -7,7 +7,7 @@ router.get('/activos', async (_req, res)=> {
 
     const activos = await getActivos();
     console.log(activos)
-    res.json(activos);
+    res.send(activos);
 })
 
 export default router;

@@ -11,10 +11,10 @@ const morgan = require('morgan');
 //morgan permite ver las peticiones en consola
 
 const cors = require('cors');
-
-
+import filterActivos  from './routes/routeFilterActivos';
 //cors permite comunicar el servidor y el frontend 
 
+import getActivos from './routes/routeGetActivos'
 
 
 const app = express();
@@ -23,8 +23,10 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
 // Error catching endware.
-import router from './routes/routeGetActivos';
-app.use('/', router)
+
+app.use('/', getActivos)
+app.use('/', filterActivos)
+
 
 
 
@@ -36,7 +38,10 @@ app.use((error:any, _req:any, res:any, _next:any) => {
     res.status(400).send(name + message);
 });
 
-
+app.get('/ping', (_req:any, res:any)=>{
+    console.log('somone piged here');
+    res.send('hola')
+})
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () =>
