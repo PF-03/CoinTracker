@@ -9,7 +9,7 @@ check("username")
 .exists()
 .notEmpty()
 .isLength({min:3, max:99}),
-check("email")
+check("mail")
 .exists()
 .notEmpty()
 .isEmail(),
