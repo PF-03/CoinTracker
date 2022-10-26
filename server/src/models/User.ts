@@ -1,6 +1,6 @@
 //MODELO DOCTOR
 //Utilizando los esquemas creamos los modelos
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
 //Libreria para encriptar la password
 const bcrypt = require('bcryptjs')
@@ -14,7 +14,7 @@ const userSchema = new Schema({
     password: {
         type: String,
     },
-    mail: {
+    email: {
         type: String,
         unique: true,
     },
@@ -24,16 +24,20 @@ const userSchema = new Schema({
     lastname: {
         type: String
     },
-    type: [{
-        ref: "Role",
-        type: Schema.Types.ObjectId
-    }],
+    type: {
+        type:["admin","user"],
+        default:"user"
+    },
     //CLOUDINARY
     // image: {
     //     type: String
     // },
     token: {
         type: String
+    },
+    activos:{
+        type:Boolean,
+        default:true
     }
 },
     {
@@ -54,4 +58,4 @@ userSchema.statics.comparePassword = async (password, receivedPassword) => {
 
 const userModel = model("User", userSchema);
 
-module.exports = userModel;
+export default userModel;

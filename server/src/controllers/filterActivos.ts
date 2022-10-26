@@ -3,6 +3,7 @@ import { getActivos } from "./getActivos"
 
 
 
+
 export const filterActivos = async (filter:any): Promise<any> => {
     const activos = await getActivos();
 
