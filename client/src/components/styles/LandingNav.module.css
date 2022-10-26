@@ -25,7 +25,7 @@ a:hover {
 
 .title {
   font-family: "Oswald";
-  font-size: 250%;
+  font-size: 5.57vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +37,7 @@ a:hover {
 
 .title:hover {
   text-decoration: none;
-  font-size: 255%;
+  font-size: 5.6vh;
 }
 
 ul {
@@ -51,6 +51,7 @@ a {
   font-family: "Inter";
   margin: 10px;
   color: white;
+
 }
 .button {
   display: flex;
@@ -69,5 +70,5 @@ button {
 button:hover {
   height: 3.3rem;
   width: 79%;
-  font-size: 105%;
+  font-size: 105;
 }

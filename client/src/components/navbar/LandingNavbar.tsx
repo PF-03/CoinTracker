@@ -5,18 +5,16 @@ function LandingNavbar() {
   return (
     <div className={style.background}>
       <div className={style.title}>
-        <a href="#home">CoinTracker</a>
+        <Link to="#home">CoinTracker</Link>
       </div>
       <ul>
-        {/* el href se refiere a clases asi que los componenetes donde esten los datos de one page deben tener los nombre de clase como esos o combiar lo de acá */}
-        <a href="#About">About Us</a>
-        <a href="#ReviewLanding">Reviews</a>
-        <a href="#ContactUs">Contact Us</a>
+        <Link to="#About">About Us</Link>
+        <Link to="#ReviewLanding">Reviews</Link>
+        <Link to="#ContactUs">Contact Us</Link>
       </ul>
       <div className={style.button}>
         <button>Register</button>
       </div>
-      {/* <Link to="/register">register</Link> */}
     </div>
   );
 }
