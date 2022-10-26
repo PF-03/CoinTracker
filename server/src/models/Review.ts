@@ -1,5 +1,5 @@
 //MODELO PARA REVIEWS DE LA PAGINA
-
+import { Schema,model } from "mongoose";
 //Mongo da una id predeterminadamente, no es necesario declarar
 const reviewSchema = new Schema({
     user: {
@@ -19,4 +19,4 @@ const reviewSchema = new Schema({
 
 const reviewModel = model("Review", reviewSchema);
 
-module.exports = reviewModel;
+export default reviewModel;

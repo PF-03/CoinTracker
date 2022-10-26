@@ -1,18 +1,15 @@
 
-
-import express from 'express';
-import  getActivos  from "../routes/routeGetActivos";
-import filterActivos  from '../routes/routeFilterActivos';
 import { Router } from "express"
-import router from "./users"
+import user from "./middleware/users";
+import activos from "./middleware/activs"
+import exchange from "./middleware/exchangeHistory";
 
+const routers : any=Router()
 
-const router = express.Router();
+// add exchange history routes
 
-router.use('/activos', getActivos);
-router.use('/:filter', filterActivos);
-router.use("/users",router)
+routers.use('/exchange', exchange)
+routers.use("/users",user)
+routers.use("/activos",activos)
 
-export default router;
-
-
+export default routers

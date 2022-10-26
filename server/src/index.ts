@@ -1,5 +1,6 @@
 
 import { Request, Response, NextFunction } from "express";
+import routers from "./routes/index"
 
 
 //Archivo que arranca el servidor 
@@ -13,8 +14,6 @@ import morgan from 'morgan'
 import { dbConn } from './db'
 
 
-import cors from 'cors'
-
 //cors permite comunicar el servidor y el frontend 
 import cors from "cors";
 const app: any = express();
@@ -26,11 +25,9 @@ app.use(morgan('dev'))
 app.use(cors())
 
 
-app.use("/",router)  
+app.use("/",routers)  
 
-// add exchange history routes
-const exchangeRoutes = require('./routes/exchangeHistory.ts');
-app.use('/exchange', exchangeRoutes)
+
 
 // Error catching endware.
 
@@ -48,7 +45,7 @@ app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => { // puerto 3001
-    console.log('Server listening on port 3001'); // eslint-disable-line no-console
+    console.log('Server listening on port',PORT); // eslint-disable-line no-console
 });
 
 //Conectamos a la base de datos

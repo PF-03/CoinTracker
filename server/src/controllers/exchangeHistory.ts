@@ -12,7 +12,7 @@ const deleteExchangeHistory = ((_req: Request, res: Response, _next: NextFunctio
     res.send('route delete works!')
 })
 
-module.exports = {
+export {
     getExchangeHistory,
     postExchangeHistory,
     deleteExchangeHistory
