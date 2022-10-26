@@ -2,7 +2,7 @@
 import "dotenv/config"
 import express, {Request, Response} from "express";
  import router from "./routes/index"; 
- import db from "./config/mongo"
+
 
 
 
@@ -29,7 +29,7 @@ app.use("/",router)
     // console.error(error);
     return res.send(name + message);
 });  
- db().then(()=>console.log("conexion readyS"))
+
 const PORT =  3002
 app.listen(PORT, () =>
 { // puerto 3001

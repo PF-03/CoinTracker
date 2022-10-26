@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import user from "../models/index"
+import user from "../models/User"
 import handleError from "../utils/handleError"
 
 const getUsers:any=async(req:Request, res:Response)=>{
