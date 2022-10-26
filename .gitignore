@@ -106,5 +106,5 @@ dist
 # package-lock.json
 package-lock.json
 
-src/models/
-src/config/
+/server/src/models/
+/server/src/config/
