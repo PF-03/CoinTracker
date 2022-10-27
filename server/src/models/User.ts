@@ -1,6 +1,10 @@
 //MODELO DOCTOR
 //Utilizando los esquemas creamos los modelos
+<<<<<<< HEAD
 const { Schema, model } = require('mongoose');
+=======
+import { Schema, model } from "mongoose";
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
 
 //Libreria para encriptar la password
 const bcrypt = require('bcryptjs');
@@ -28,17 +32,25 @@ const userSchema = new Schema(
     lastname: {
       type: String,
     },
+<<<<<<< HEAD
     type: [
       {
         ref: 'Role',
         type: Schema.Types.ObjectId,
       },
     ],
+=======
+    type: {
+        type:["admin","user"],
+        default:"user"
+    },
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
     //CLOUDINARY
     // image: {
     //     type: String
     // },
     token: {
+<<<<<<< HEAD
       type: String,
     },
   },
@@ -47,6 +59,19 @@ const userSchema = new Schema(
     versionKey: false,
   }
 );
+=======
+        type: String
+    },
+    activos:{
+        type:Boolean,
+        default:true
+    }
+},
+    {
+        timestamps: true,
+        versionKey: false,
+    });
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
 
 //Metodos del modelo
 userSchema.statics.encryptPassword = async (password: any) => {
@@ -64,4 +89,4 @@ userSchema.statics.comparePassword = async (
 
 const userModel = model('User', userSchema);
 
-module.exports = userModel;
+export default userModel;

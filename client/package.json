@@ -9,15 +9,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@reduxjs/toolkit": "^1.8.6",
+    "@vanilla-extract/css": "^1.9.1",
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
     "axios": "^1.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.4",
-    "react-router-dom": "^6.4.2"
+    "react-router-dom": "^6.4.2",
+    "styled-components": "^5.3.6",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.1",
+    "swiper": "^8.4.4"
+
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^2.1.0",
     "typescript": "^4.6.4",
     "vite": "^3.1.0"

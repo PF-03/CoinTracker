@@ -1,16 +1,24 @@
-import express from 'express';
-import getActivos from '../routes/routeGetActivos';
-import filterActivos from '../routes/routeFilterActivos';
-import users from './users';
+import { Router } from 'express';
+import user from './middleware/users';
+import activos from './middleware/activs';
+import review from './middleware/reviews';
+import exchange from './middleware/exchangeHistory';
+import news from './middleware/news';
+import walletRouter from './wallet';
 import localAuth from './localAuth';
 import googleAuth from './googleAuth';
 
-const router = express.Router();
+const routers: any = Router();
 
-router.use('/localauth', localAuth);
-router.use('/googleauth', googleAuth);
-router.use('/activos', getActivos);
-router.use('/:filter', filterActivos);
-router.use('/users', users);
+// add exchange history routes
 
-export default router;
+routers.use('/exchange', exchange);
+routers.use('/users', user);
+routers.use('/activos', activos);
+routers.use('/review', review);
+routers.use('/wallet', walletRouter);
+routers.use('/news', news);
+routers.use('/localauth', localAuth);
+routers.use('/googleauth', googleAuth);
+
+export default routers;

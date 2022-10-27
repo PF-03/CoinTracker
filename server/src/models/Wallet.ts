@@ -1,5 +1,5 @@
 //MODELO PARA BILLETEREA 
-
+import { Schema, model } from "mongoose";
 //Mongo da una id predeterminadamente, no es necesario declarar
 const walletSchema = new Schema({
     crypto: {
@@ -11,6 +11,10 @@ const walletSchema = new Schema({
     user: {
         type: String,
     },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    }
 },
     {
         timestamps: true,
@@ -19,4 +23,4 @@ const walletSchema = new Schema({
 
 const walletModel = model("Wallet", walletSchema);
 
-module.exports = walletModel;
+export default walletModel;

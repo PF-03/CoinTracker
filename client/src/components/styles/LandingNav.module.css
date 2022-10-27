@@ -7,24 +7,41 @@
   src: url(./fuentes/Inter-Bold.otf);
 }
 .background {
-  background: rgba(36, 36, 36, 0.2);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   display: grid;
   grid-template-columns: 20% 65% 15%;
   align-items: center;
+  position: fixed;
+  z-index: 10;
+  top: 1.5rem;
+  width: 90%;
+  left: 5%;
+}
+/*
+.navButtons *:hover :after {
+  animación
+}
+*/
+.navButtons {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  gap: 2rem;
+
 }
 
-a:hover {
+.navButtons * {
+  color: white;
   text-decoration: none;
-  font-size: 105%;
+  position: relative;
 }
 
+<<<<<<< HEAD
 .title {
   font-family: 'Oswald';
+=======
+.title * {
+  font-family: "Oswald";
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
   font-size: 5.57vh;
   display: flex;
   justify-content: center;
@@ -33,6 +50,7 @@ a:hover {
   width: 100%;
   height: 100%;
   text-decoration: none;
+  color: white;
 }
 
 .title:hover {
@@ -40,6 +58,7 @@ a:hover {
   font-size: 5.6vh;
 }
 
+<<<<<<< HEAD
 ul {
   display: flex;
   justify-content: baseline;
@@ -52,12 +71,15 @@ a {
   margin: 10px;
   color: white;
 }
+=======
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+<<<<<<< HEAD
 .button button {
   background: linear-gradient(270deg, #7745c8, #b588ff);
   border-radius: 30px;
@@ -72,3 +94,5 @@ a {
   width: 79%;
   font-size: 105;
 }
+=======
+>>>>>>> 03ae5284f3d5eb13509f421edcbd951b1b03c879

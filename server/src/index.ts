@@ -4,13 +4,12 @@ require('./auth/localAuth');
 import { Request, Response, NextFunction } from 'express';
 import express from 'express';
 import morgan from 'morgan';
-import router from './routes/index';
+import routers from './routes/index';
 import { dbConn } from './db';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
 const user = require('./models/User');
-const exchangeRoutes = require('./routes/exchangeHistory.ts');
 const app: any = express();
 
 //Middlewares
@@ -43,11 +42,9 @@ passport.deserializeUser((id: string, done) => {
 });
 
 // add exchange history routes
-app.use('/exchange', exchangeRoutes);
-app.use('/', router);
+app.use('/', routers);
 
 // Error catching endware.
-
 app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.log(error);
   const name = error.name;
