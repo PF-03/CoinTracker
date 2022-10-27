@@ -7,6 +7,8 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 import Home from "./components/home/home"
 
+import FormRegister from './components/FormRegister/FormRegister'
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -22,6 +24,8 @@ function App() {
 
           <Route path="/nav" element={<LandingNavbar />} />
           <Route path="/home" element={<Home/>}/>
+
+          <Route path="register" element={<FormRegister/>}/>
 
         </Route>
       </Routes>
