@@ -15,9 +15,9 @@ function Activos(){
 
     const [currentPage, setCurrentPage] = useState(1); //--> porque empieza en pag 1 siempre
     const [activosPorPage, setActivosPorPage] = useState(9);
-    const indexLastActivo = currentPage * activosPorPage;
-    const indexFirstActivo = indexLastActivo - activosPorPage;
-    const currentActivos  = allactivos.slice(indexFirstActivo, indexLastActivo);
+    //const indexLastActivo = currentPage * activosPorPage;
+    //const indexFirstActivo = indexLastActivo - activosPorPage;
+    const currentActivos  = allactivos //.slice(indexFirstActivo, indexLastActivo);
     const [orden, setOrden] = useState('');
 
     const paginado = (pageNumber:any)=>{
