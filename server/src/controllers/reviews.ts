@@ -5,10 +5,10 @@ import review from "../models/Review"
 
 const getReviews:any = async(req:Request, res:Response)=>{
     try{
-        const {sort, filter}= req.body;
+        /* const {sort, filter}= req.body; */
         const AllReviews:Object= await review.find();
-        if(filter)
-        if(sort)
+        /* if(filter)
+        if(sort) */
         res.status(202).json(AllReviews);
     }
     catch(err){
@@ -29,8 +29,8 @@ const postReview:any = async(req:Request, res:Response)=>{
 
 const deleteRewiew:any = async(req:Request, res:Response)=>{
     try{
-        const id= req.params;
-        const deletedReview = await review.findByIdAndRemove(id)
+        const {id}= req.params;
+        const deletedReview = await review.findByIdAndRemove({"_id":id})
         res.status(202).json(deletedReview)
     }
     catch(err){

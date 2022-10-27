@@ -2,7 +2,7 @@
 import { Router } from "express"
 import user from "./middleware/users";
 import activos from "./middleware/activs"
-import review from './reviews';
+import review from './middleware/reviews';
 import exchange from "./middleware/exchangeHistory";
 
 const routers : any=Router()

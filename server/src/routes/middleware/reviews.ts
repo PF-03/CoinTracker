@@ -1,5 +1,5 @@
 import { Router} from "express"
-import {getReviews,postReview,deleteRewiew} from "../controllers/reviews"
+import {getReviews,postReview,deleteRewiew} from "../../controllers/reviews"
 
 const review : any=Router()
 
