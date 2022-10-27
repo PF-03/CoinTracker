@@ -6,16 +6,16 @@ const mongoose = require('mongoose')
 export async function dbConn() {
     const DB_URI = process.env.DB_URI;
     const connectionString = DB_URI;
-    
+
     // conexion a mongodb
     mongoose.connect(connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-    //devuelve promesa
-    .then(() => {
-        console.log('Database connected to ATLAS')
-    }).catch((err:Error) => {
-        console.error('Connection Error: ',err)
-    })
+        //devuelve promesa
+        .then(() => {
+            console.log('Database connected to ATLAS')
+        }).catch((err: Error) => {
+            console.error('Connection Error: ', err)
+        })
 };

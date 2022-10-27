@@ -1,13 +1,13 @@
 import { Router } from 'express';
-
-const exchange = Router();
-
 import {
     getExchangeHistory,
     postExchangeHistory,
     updateExchangeHistory,
     deleteExchangeHistory
 } from '../../controllers/exchangeHistory'
+
+const exchange = Router();
+
 
 exchange.get('/', getExchangeHistory)
 
