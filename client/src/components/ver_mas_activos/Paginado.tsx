@@ -10,7 +10,7 @@ function Paginado (activosPorPage:any, allactivos:any,paginado:any){
     }
     //console.log(pageNumbers)
     return (
-        <div>PAGINADO
+        <div>
          <nav className="nav">
                 {pageNumbers?.map((e:any) =>(
                 
