@@ -1,19 +1,24 @@
+
 import React from 'react';
 
 function Paginado (activosPorPage:any, allactivos:any,paginado:any){
 
-    const pageNumbers:Array<any> =[];
+    const pageNumbers=[];
     for(let i = 1; i <=Math.ceil(allactivos/activosPorPage); i++){
         pageNumbers.push(i);
+        console.log(i)
     }
+    //console.log(pageNumbers)
     return (
-        <div>HOLA
-        
-             {pageNumbers.map(number =>(
-                <p>
-                 <button onClick={()=> paginado(number)}  >{number}</button>
-                </p>
-             ))}
+        <div>PAGINADO
+         <nav className="nav">
+                {pageNumbers?.map((e:any) =>(
+                
+                    <button onClick={()=> paginado(e)} className="paginado" key={e}>{e}</button>
+           
+                ))}
+            </nav>
+
         </div>
 
  
