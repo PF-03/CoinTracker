@@ -3,6 +3,7 @@ import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/home"
+import LandignPage from "./views/landingPage/landingPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/">
-          <Route path="/nav" element={<LandingNavbar />} />
-          <Route path="/home" element={<Home/>}/>
+        <Route path="/" element={<LandignPage />}>
+          {/* <Route path="/nav" element={<LandingNavbar />} />
+          <Route path="/home" element={<Home/>}/> */}
         </Route>
       </Routes>
     </div>
