@@ -5,7 +5,8 @@ const mongoose = require('mongoose')
 
 export async function dbConn() {
     const DB_URI = process.env.DB_URI;
-    const connectionString = DB_URI
+    const connectionString = DB_URI;
+    
     // conexion a mongodb
     mongoose.connect(connectionString, {
         useNewUrlParser: true,
