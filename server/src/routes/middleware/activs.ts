@@ -4,7 +4,7 @@ import { getActivos } from '../../controllers/getActivos';
 
 const activos = express.Router();
 
-
+ 
 activos.get('/', async (_req, res)=> {
     const activos = await getActivos();
     console.log(activos)
