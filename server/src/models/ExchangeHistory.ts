@@ -36,4 +36,4 @@ const exchangeHistorySchema = new Schema({
 
 const ExchangeHistoryModel = model("ExchangeHistory", exchangeHistorySchema);
 
-module.exports = ExchangeHistoryModel;
+export default ExchangeHistoryModel;

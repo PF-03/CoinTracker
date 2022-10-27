@@ -11,6 +11,10 @@ const walletSchema = new Schema({
     user: {
         type: String,
     },
+    isDeleted: {
+        type: Boolean,
+        default: false
+    }
 },
     {
         timestamps: true,
