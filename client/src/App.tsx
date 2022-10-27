@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 import Home from "./components/home/home"
+import LandingPage from "./views/landingPage/landingPage";
 
 import FormRegister from './components/FormRegister/FormRegister'
 
@@ -16,13 +17,11 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/">
 
-          <Route path="" element={<LandingNavbar />} />
-          <Route path="home" element={<span>hola</span>} />
+          <Route path="/" element={<LandingPage />} />
+          
           <Route path="wallet" element={<SearchBar/>}/>
 
-          <Route path="/nav" element={<LandingNavbar />} />
           <Route path="/home" element={<Home/>}/>
 
           <Route path="register" element={<FormRegister/>}/>
