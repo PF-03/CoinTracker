@@ -5,6 +5,8 @@ import { getNameActivos } from "../../redux/actions/index";
 
 
 
+
+
 function SearchBar(){
     const dispatch = useDispatch<any>();  
     
@@ -31,7 +33,6 @@ function SearchBar(){
        type="text"
        placeholder='search active...'
        onChange={(e:any)=> HandleInputChange(e)}
-       
        />
        <button 
        type="submit"
