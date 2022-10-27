@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
-import  user  from "../models/User"
+import user from "../models/User"
 import handleError from "../utils/handleError"
+
 
 const getUsers:any=async(req:Request, res:Response)=>{
 try{
@@ -20,17 +21,16 @@ catch(e){
     handleError(res,"ERROR_GET_USERS")
 }}
 
-
-const postUsers:any=async(req:Request, res:Response)=>{
-    try{
-   
-        const body:object=req.body
-       const userCreate=new user(body)
-       await userCreate.save()
-        res.status(202).json({userCreate})
+const postUsers: any = async (req: Request, res: Response) => {
+    try {
+        const body: object = req.body
+        const userCreate = new user(body)
+        await userCreate.save()
+        res.status(202).json({ userCreate })
     }
-    catch(e){
+    catch (e) {
         console.log(e)
+
         handleError(res,"ERROR_POST_USERS")
     }}
 

@@ -1,13 +1,13 @@
 import userModel from "./User";
-import roleModel from "./Role"
 import walletModel from "./Wallet"
 import reviewModel from "./Review"
+import exchangeHistoryModel from "./ExchangeHistory"
 
-const models:Object={
-    user:userModel,
-    role:roleModel,
-    wallet:walletModel,
-    review:reviewModel
+const models: Object = {
+    user: userModel,
+    wallet: walletModel,
+    review: reviewModel,
+    exchangeHistory: exchangeHistoryModel,
 }
 
 export default models
