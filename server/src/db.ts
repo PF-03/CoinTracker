@@ -15,7 +15,7 @@ export async function dbConn() {
     //devuelve promesa
     .then(() => {
         console.log('Database connected to ATLAS')
-    }).catch((err: Error) => {
-        console.error('Connection Error: ', err)
+    }).catch((err:Error) => {
+        console.error('Connection Error: ',err)
     })
 };

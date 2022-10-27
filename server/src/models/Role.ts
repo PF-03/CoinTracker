@@ -1,4 +1,5 @@
 //MODELO PARA ROLES
+import { Schema, model } from "mongoose";
 
 const roleSchema = new Schema({
     name: {
@@ -12,4 +13,4 @@ const roleSchema = new Schema({
 
 const roleModel = model("Role", roleSchema);
 
-module.exports = roleModel;
+export default roleModel;

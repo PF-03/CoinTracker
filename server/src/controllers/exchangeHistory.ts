@@ -100,7 +100,7 @@ const deleteExchangeHistory = ((req: Request, res: Response, next: NextFunction)
     })
 })
 
-module.exports = {
+export {
     getExchangeHistory,
     postExchangeHistory,
     updateExchangeHistory,
