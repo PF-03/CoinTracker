@@ -5,4 +5,5 @@ const news:any=Router()
 
 news.get("/",getNews)
 
+
 export default news
