@@ -7,14 +7,15 @@ try{
     const {id}=req.params
     if(!id){
         const userAll:Object= await user.find({activos:true})
-        res.status(202).json(userAll)
+        return res.status(202).json(userAll)
     }
     else{
-        const userId:Object=await user.find({_id:id})
-        res.status(202).json(userId)
-    }
-    
-}
+        const userId:Object=await user.find({activos:true, _id:id})
+        if(Object.keys(userId).length>0){
+            return res.status(202).json(userId)
+        }
+        handleError(res,"ERROR_GET_USERS_ID")
+    }}
 catch(e){
     handleError(res,"ERROR_GET_USERS")
 }}
@@ -38,21 +39,22 @@ const postUsers:any=async(req:Request, res:Response)=>{
             const { id } =req.params;
             await user.updateOne({_id:id},{activos:false}) 
             res.status(202).json("DELETE_EXIT")
-          
-        }
+           }
         catch(e){
             handleError(res,"ERROR_DELETE_USERS")
-        } 
-
-    }  
+        }}  
     
     const putUsers:any=async(req:Request, res:Response)=>{
         try{
             const { id } =req.params;
             const body=req.body
+            const userId:Object=await user.find({activos:true, _id:id})
+            if(Object.keys(userId).length>0){
             await user.updateOne({_id:id},body)
-            res.status(202).json("UPDATE_EXIT")
-          }
+            return res.status(202).json("UPDATE_EXIT")
+        }
+        handleError(res,"ERROR_UPDATE_USERS_ID")
+        }
         catch(e){
             handleError(res,"ERROR_UPDATE_USERS")
         }}
