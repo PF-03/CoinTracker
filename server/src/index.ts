@@ -1,29 +1,53 @@
+
+import { Request, Response, NextFunction } from "express";
+import routers from "./routes/index"
+
+
 //Archivo que arranca el servidor 
+
 require("dotenv").config();
-const express = require('express');
 
-const morgan = require('morgan');
+
+import express from 'express'
+import morgan from 'morgan'
 //morgan permite ver las peticiones en consola
+import { dbConn } from './db'
 
-const cors = require('cors');
+
 //cors permite comunicar el servidor y el frontend 
+import cors from "cors";
+const app: any = express();
 
-const app = express();
 
-app.use(express.json())
-app.use(morgan('dev'))
+app.use(express.json()) 
+app.use(morgan('dev')) 
+
 app.use(cors())
+
+
+app.use("/",routers)  
+
+
+
 // Error catching endware.
-app.use((error, req, res, next) => {
+
+app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
+
     console.log(error)
     const name = error.name
     const message = error.message;
     // console.error(error);
-    res.status(400).send(name + message);
-});
+    return res.send(name + message);
+});  
+
+
+
 
 const PORT = process.env.PORT || 3001
-app.listen(PORT, () =>
-{ // puerto 3001
-    console.log('Server listening on port 3001'); // eslint-disable-line no-console
+app.listen(PORT, () => { // puerto 3001
+    console.log('Server listening on port',PORT); // eslint-disable-line no-console
 });
+
+//Conectamos a la base de datos
+dbConn();
+
