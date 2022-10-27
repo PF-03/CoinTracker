@@ -15,7 +15,7 @@ export const getActivos = async (): Promise<any> => {
                 return {
                         id: e.id,
                         symbol: e.symbol,
-                        name: e.name,
+                        name: e.name.toString(),
                         image: e.image,
                         current_price: e.current_price,
                         market_cap: e.market_cap,
