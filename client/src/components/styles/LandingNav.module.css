@@ -1,9 +1,9 @@
 @font-face {
-  font-family: "Oswald";
+  font-family: 'Oswald';
   src: url(./fuentes/oswald.bold.ttf);
 }
 @font-face {
-  font-family: "Inter";
+  font-family: 'Inter';
   src: url(./fuentes/Inter-Bold.otf);
 }
 .background {
@@ -24,7 +24,7 @@ a:hover {
 }
 
 .title {
-  font-family: "Oswald";
+  font-family: 'Oswald';
   font-size: 5.57vh;
   display: flex;
   justify-content: center;
@@ -48,10 +48,9 @@ ul {
 
 a {
   text-decoration: none;
-  font-family: "Inter";
+  font-family: 'Inter';
   margin: 10px;
   color: white;
-
 }
 .button {
   display: flex;
@@ -59,15 +58,16 @@ a {
   justify-content: center;
 }
 
-button {
+.button button {
   background: linear-gradient(270deg, #7745c8, #b588ff);
   border-radius: 30px;
   height: 3rem;
   width: 75%;
   font-size: 100%;
+  cursor: pointer;
 }
 
-button:hover {
+.button button:hover {
   height: 3.3rem;
   width: 79%;
   font-size: 105;

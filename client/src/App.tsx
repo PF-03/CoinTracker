@@ -1,19 +1,17 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-import LandingNavbar from "./components/navbar/LandingNavbar";
-import { Routes, Route } from "react-router-dom";
+import './App.css';
+import SharedLayout from './components/SharedLayout';
+import { Login } from './components/login/Login';
+import { Routes, Route } from 'react-router-dom';
+import { DemoWelcome } from './components/demoComponent/DemoWelcome';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
-        <Route path="/">
-          <Route path="" element={<LandingNavbar />} />
-          <Route path="home" element={<span>hola</span>} />
+        <Route path='/' element={<SharedLayout />}>
+          <Route path='' element={<DemoWelcome />} />
         </Route>
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );

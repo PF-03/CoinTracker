@@ -3,16 +3,15 @@ import { Router } from 'express';
 const router = Router();
 
 const {
-    getExchangeHistory,
-    postExchangeHistory,
-    deleteExchangeHistory
-} = require('../controllers/exchangeHistory.ts')
+  getExchangeHistory,
+  postExchangeHistory,
+  deleteExchangeHistory,
+} = require('../controllers/exchangeHistory.ts');
 
-router.get('/', getExchangeHistory)
+router.get('/', getExchangeHistory);
 
-router.post('/', postExchangeHistory)
+router.post('/', postExchangeHistory);
 
-router.delete('/', deleteExchangeHistory)
-
+router.delete('/', deleteExchangeHistory);
 
 module.exports = router;
