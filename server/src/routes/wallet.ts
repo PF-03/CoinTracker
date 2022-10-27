@@ -7,7 +7,7 @@ walletRouter.get('/:user', walletController.getWallet)
 
 walletRouter.delete('/:user', walletController.deleteWallet)
 
-wallet.put("/:id", walletController.putWallet)
+walletRouter.put("/:id", walletController.putWallet)
 
 export default walletRouter;
 

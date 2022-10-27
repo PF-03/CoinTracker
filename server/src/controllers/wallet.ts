@@ -33,7 +33,7 @@ const walletController = {
         const { id } = req.params
         const { crypto, quantity } = req.body
 
-        await wallet.findByIdAndUpdate(id, {
+        await walletModel.findByIdAndUpdate(id, {
             crypto: crypto,
             quantity: quantity,
         }, { new: true }) // este ultimo parámetro hace que nos devuelva la wallet actualizada
