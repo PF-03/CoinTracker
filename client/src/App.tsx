@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
+import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,8 +12,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/">
+          {/* ejemplos de como usar en react router dom, se deb cambiar lo que esta dentro del element */}
           <Route path="" element={<LandingNavbar />} />
-          <Route path="home" element={<span>hola</span>} />
+          <Route path=":params" element={<Sidebar />} />
         </Route>
       </Routes>
     </div>
