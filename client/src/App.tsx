@@ -7,6 +7,8 @@ import SearchBar from "./components/SearchBar/SearchBar";
 
 import Home from "./components/home/home"
 
+import Activos from "./components/ver_mas_activos/ver_mas_activos";
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,7 +20,7 @@ function App() {
 
           <Route path="" element={<LandingNavbar />} />
           <Route path="home" element={<span>hola</span>} />
-          <Route path="wallet" element={<SearchBar/>}/>
+          <Route path="wallet" element={<Activos/>}/>
 
           <Route path="/nav" element={<LandingNavbar />} />
           <Route path="/home" element={<Home/>}/>
