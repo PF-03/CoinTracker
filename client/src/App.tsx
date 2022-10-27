@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 import Home from "./components/home/home"
+import LandignPage from "./views/landingPage/landingPage";
 
 
 function App() {
@@ -14,16 +15,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/">
 
-          <Route path="" element={<LandingNavbar />} />
-          <Route path="home" element={<span>hola</span>} />
+          <Route path="/" element={<LandingPage />} />
+          
           <Route path="wallet" element={<SearchBar/>}/>
 
-          <Route path="/nav" element={<LandingNavbar />} />
           <Route path="/home" element={<Home/>}/>
-
-        </Route>
       </Routes>
     </div>
   );
