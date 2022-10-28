@@ -1,7 +1,11 @@
+
+
+import './App.css';
+import { Login } from './components/login/Login';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from "react";
-import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
-import { Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar/Sidebar";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Home from "./components/home/home"
 import LandingPage from "./views/landingPage/landingPage";
@@ -12,8 +16,9 @@ import FormRegister from './components/FormRegister/FormRegister'
 function App() {
 
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
+
 
           <Route path="/" element={<LandingPage />} />
           
@@ -23,6 +28,7 @@ function App() {
 
           <Route path="register" element={<FormRegister/>}/>
 
+          <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );
