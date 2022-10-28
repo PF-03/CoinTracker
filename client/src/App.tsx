@@ -1,8 +1,13 @@
+
+
+import './App.css';
+import { Login } from './components/login/Login';
+import { Routes, Route } from 'react-router-dom';
 import { useState } from "react";
-import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
+
 
 import SearchBar from "./components/SearchBar/SearchBar";
 
@@ -14,10 +19,8 @@ import FormRegister from './components/FormRegister/FormRegister'
 
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
 
 
@@ -29,6 +32,7 @@ function App() {
 
           <Route path="register" element={<FormRegister/>}/>
 
+          <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );
