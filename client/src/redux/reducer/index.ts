@@ -1,7 +1,7 @@
 
 const initialState= {
     activos : [],
-    allactivos: [],
+    allActivos: [],
     newsAll:[],
 }
 
@@ -12,7 +12,7 @@ function rootReducer (state = initialState , action:any){
             return{
                 ...state,
                 activos:action.payload,
-                allactivos: action.payload
+                allActivos: action.payload
             }
         case 'GET_NAME_ACTIVOS':
             return{

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Button from "../styles/button";
-import style from "../styles/LandingNav.module.css";
+import style from "./LandingNav.module.css";
 import s from '../styles/styles.module.css'
 
 function LandingNavbar() {

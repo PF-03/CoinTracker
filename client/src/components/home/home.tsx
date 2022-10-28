@@ -1,7 +1,8 @@
-import React, {useEffect,useState} from "react"
+import {useState} from "react"
 import Carousel from "../carousel-activs/carousel"
 import CarouselNews from "../crousel-news/carousel"
-import "./home.css"
+import Bubble from "../styles/bubbles"
+import style from "./home.module.css"
 
 export default function Home(){
     const [seeMore, setSeeMore]=useState(false)
@@ -9,11 +10,15 @@ export default function Home(){
         setSeeMore(true)
     }
     return (
-        <div className="home">
+        <div className={style.home}>
+            <Bubble color='blue-dark' top='-40%'/>
+            <h4 className={style.title}>Most Relevants Coins</h4>
             <Carousel 
             handleSeeMore={handleSeeMore}
             />
-            {seeMore==false &&  <CarouselNews/>}
+
+            <h4 className={style.title}>Most relevant News</h4>
+            {!seeMore &&  <CarouselNews/>}
        
 
         </div>

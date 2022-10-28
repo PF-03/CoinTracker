@@ -1,11 +1,4 @@
-@font-face {
-  font-family: "Oswald";
-  src: url(./fuentes/oswald.bold.ttf);
-}
-@font-face {
-  font-family: "Inter";
-  src: url(./fuentes/Inter-Regular.ttf);
-}
+
 .background {
   display: grid;
   grid-template-columns: 20% 65% 15%;
@@ -42,6 +35,7 @@
 }
 
 .navButtons * {
+  font-weight: 600;
   color: white;
   text-decoration: none;
   position: relative;

@@ -2,18 +2,14 @@ import { useState } from "react";
 import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
 import { Routes, Route } from "react-router-dom";
-
 import SearchBar from "./components/SearchBar/SearchBar";
-
 import Home from "./components/home/home"
 import LandingPage from "./views/landingPage/landingPage";
-
 import FormRegister from './components/FormRegister/FormRegister'
 
 
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <div className="App">
