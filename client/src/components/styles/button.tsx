@@ -5,6 +5,7 @@ type Props = {
 }
 
 const Button = styled.button<Props>` 
+    color: white!important;
     cursor: pointer;
     min-width: 160px;
     padding: 8px 3rem;
