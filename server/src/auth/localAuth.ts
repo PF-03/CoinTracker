@@ -27,11 +27,13 @@ passport.use(
         if (dbUser) {
           return done(null, false);
         } else {
-          const { username, email, password } = req.body;
+          const { username, name, lastname } = req.body;
           const newUser = await user.create({
             username,
-            mail: email,
+            mail: mail,
             password: await user.encryptPassword(password),
+            name,
+            lastname,
           });
           return done(null, newUser);
         }
