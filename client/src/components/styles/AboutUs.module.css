@@ -1,0 +1,36 @@
+.mainContainer{
+    align-content: space-around;
+    padding: 20px;
+    max-width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
+}
+.developerContainer{
+    width: 150px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(63, 63, 63, 0.54);
+}
+.developerContainer h4{
+    margin: 1px;
+}
+.developerImage{
+    border-radius: 40px;
+    width: 100px;
+    height: 100px;
+}
+.socialNet{
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+}
+.socialNet img{
+    width: 30px;
+}
