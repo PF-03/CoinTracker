@@ -12,6 +12,8 @@ import LandingPage from "./views/landingPage/landingPage";
 import FormRegister from './components/FormRegister/FormRegister'
 
 
+import Activos from "./components/ver_mas_activos/ver_mas_activos";
+
 
 function App() {
 
@@ -20,9 +22,15 @@ function App() {
       <Routes>
 
 
+          <Route path="" element={<LandingNavbar />} />
+          <Route path="home" element={<span>hola</span>} />
+          <Route path="wallet" element={<Activos/>}/>
+
+
           <Route path="/" element={<LandingPage />} />
           
-          <Route path="wallet" element={<SearchBar/>}/>
+          
+
 
           <Route path="/home" element={<Home/>}/>
 
