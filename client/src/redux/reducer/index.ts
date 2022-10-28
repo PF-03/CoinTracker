@@ -1,17 +1,23 @@
-const stateInicial:Object={
-    actAll:[],
-    newsAll:[],
+const initialState= {
+    activos : [],
+    allactivos: [],
+    newsAll:[]
 }
 
-export default function rootReducer(state=stateInicial,action:any){
+function rootReducer (state = initialState , action:any){
     switch(action.type){
-        case "GET_ACTIVS":
-
-            return {
+        case 'GET_ACTIVOS':
+            return{
                 ...state,
-                actAll:action.payload
+                activos:action.payload,
+                allactivos: action.payload
             }
+        case 'GET_NAME_ACTIVOS':
+            return{
+                ...state,
+                activos: action.payload
 
+            }
             case "GET_NEWS":
 
                 return {
@@ -19,7 +25,12 @@ export default function rootReducer(state=stateInicial,action:any){
                     newsAll:action.payload
                 }
         default:
-            return state 
+            return state;
+    }
+}
 
-}
-}
+
+export default rootReducer
+
+
+

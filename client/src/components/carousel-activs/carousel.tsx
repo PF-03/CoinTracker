@@ -17,7 +17,7 @@ type PrivateProps={
 export default function Carousel({handleSeeMore}:PrivateProps) {
 
   const dispatch:any=useDispatch()
-  const activos=useSelector((state:any)=>state.actAll)
+  const activos=useSelector((state:any)=>state.allactivos)
   useEffect(()=>{
     dispatch(getActivos())
   },[dispatch])
