@@ -12,11 +12,11 @@ export function getActivos(){
     }
 }
 
-export function getNameActivos(name:any){
+export function getNameActivos(name:any,minimo:any,maximo:any){
     
     return async function(dispatch:any){
         try{
-            var json = await axios('http://localhost:3001/activos?name='+name);
+            var json = await axios('http://localhost:3001/activos?name='+name+'&minimo='+minimo+'&maximo='+maximo);
             console.log(json.data)
             return dispatch({
                 
@@ -39,5 +39,6 @@ export function getNews(){
             })})}
 
 }
+
 
 

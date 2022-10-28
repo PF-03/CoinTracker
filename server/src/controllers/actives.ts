@@ -52,3 +52,15 @@ export const filterActivos = async (filter: any): Promise<any> => {
 
 
 }
+export const getActivosMayoresA = async (numeroMinimo:any, activos:any): Promise<any> =>{
+   
+    const mayoresAminimo= activos.filter((e:any)=> e.current_price>numeroMinimo);
+    //console.log(mayoresAminimo)
+    return mayoresAminimo;
+}
+export const getMenoresA = async (numeroMaximo:any, activos:any): Promise<any> =>{
+   
+    const menoresAmaximo = activos.filter((e:any)=> e.current_price<numeroMaximo);
+    //console.log(menoresAmaximo)
+    return menoresAmaximo;
+}

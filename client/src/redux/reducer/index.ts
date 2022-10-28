@@ -20,12 +20,14 @@ function rootReducer (state = initialState , action:any){
                 activos: action.payload
 
             }
+
              case "GET_NEWS":
 
                 return {
                     ...state,
                     newsAll:action.payload
                 }
+
         default:
             return state;
     }
