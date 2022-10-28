@@ -1,7 +1,6 @@
 import './App.css';
 import { Login } from './components/login/Login';
 import { Routes, Route } from 'react-router-dom';
-import LandingNavbar from './components/navbar/LandingNavbar';
 import Home from './components/home/home';
 import LandingPage from './views/landingPage/landingPage';
 import FormRegister from './components/FormRegister/FormRegister';
