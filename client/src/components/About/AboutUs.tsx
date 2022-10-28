@@ -33,7 +33,7 @@ const AboutUs = () => {
       name: "Camilo Sarmiento",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        { logo: LinkedIn, link: "https://www.linkedin.com/in/camilo-sarmiento-051a80244" },
         { logo: GitHub, link: "https://github.com/Camilo-845" },
       ],
     },
@@ -93,7 +93,10 @@ const AboutUs = () => {
               src={el.profileImage}
               alt={`${el.name} Image`}
             />
-            <h4>{el.name}</h4>
+            <div className={styles.textContainer}>
+            <h3>{el.name}</h3>
+            <h6>Fullstack Developer</h6>
+            </div>
             <div className={styles.socialNet}>
               {el.SocialNetworks.map((sn: any) => {
                 return (
