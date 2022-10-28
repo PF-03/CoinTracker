@@ -41,7 +41,10 @@ function FormRegister(){
     }
 
     function handleChange(e: any) {
-        const { name, value } = e.target;
+        type InputField = 'name' | 'lastname' | 'username' | 'mail' | 'password'
+
+        const { value } = e.target;
+        const name: InputField = e.target.name;
         let errors = inputs.errors;
 
         switch(name) {
@@ -63,7 +66,7 @@ function FormRegister(){
                 break;
         }
 
-        // inputs[name] = value
+        inputs[name] = value
         setInputs({
             ...inputs,
             [name]: value,
@@ -73,7 +76,12 @@ function FormRegister(){
         validateForm(inputs.errors)
     }
 
-    return <form>
+    function submitForm(e: any) {
+        e.preventDefault()
+        console.log(inputs)
+    }
+
+    return <form onSubmit={submitForm}>
         <label htmlFor="name">Nombre: </label>
         <input name='name' id='name' onChange={handleChange} placeholder="Juan"/>
         {!inputs.errors.name ? null : <p>{inputs.errors.name}</p>}
