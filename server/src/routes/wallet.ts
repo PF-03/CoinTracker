@@ -1,8 +1,13 @@
-import { Router } from "express"
-import { putWallet } from "../controllers/wallet"
+import express from 'express';
+import walletController from '../controllers/wallet';
 
-const wallet: any = Router()
+const walletRouter = express.Router()
 
-wallet.put("/:id", putWallet)
+walletRouter.get('/:user', walletController.getWallet)
 
-export default wallet
+walletRouter.delete('/:user', walletController.deleteWallet)
+
+walletRouter.put("/:id", walletController.putWallet)
+
+export default walletRouter;
+
