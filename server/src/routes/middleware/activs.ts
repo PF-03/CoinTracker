@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { filterActivos, getActivos } from "../../controllers/actives"
+import { filterActivos, getActivos, getActivosMayoresA, getMenoresA} from "../../controllers/actives"
 
 const activos = Router();
 
@@ -8,20 +8,34 @@ const activos = Router();
 activos.get('/', async (req, res)=> {
 
     const {name} = req.query;
+    const {maximo} = req.query;
+    const {minimo} = req.query;
+    let activos_ = await getActivos();
 
 
-    const activos_ = await getActivos();
-
-    if(!name){
-        res.send(activos_)
-    }else{
+    if(name){
         let foundName = activos_.filter((e:any)=>e.name.toLowerCase().includes(name.toString().toLowerCase()));
         foundName.length?
-        res.send(foundName):
-        res.json({message:'Activo not found'})
+        activos_=foundName:
+        //res.json({message:'active not found'})
+        console.log('error')
+
     }
+    if(maximo){
+    
+        const menoresAmaximo= await getMenoresA(maximo,activos_);
+        activos_=menoresAmaximo;
+      
+    }
+    if(minimo){
+        const mayoresAminimo= await getActivosMayoresA(minimo,activos_);
+        activos_=mayoresAminimo;
+    }
+
+    res.send(activos_);
     //console.log(activos_)
-    //res.send(activos_);
+    
+   
 
 })
 
@@ -32,5 +46,7 @@ activos.get('/:filter', async (req, res) => {
 
 
 })
+
+
 
 export default activos;

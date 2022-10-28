@@ -19,6 +19,7 @@ function rootReducer (state = initialState , action:any){
                 activos: action.payload
 
             }
+        
         default:
             return state;
     }

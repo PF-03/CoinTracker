@@ -2,9 +2,10 @@ import React from 'react';
 import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivos } from "../../redux/actions/index";
-import Paginado from './Paginado';
+
 
 import SearchBar from '../SearchBar/SearchBar';
+
 
 
 function Activos(){
@@ -20,9 +21,7 @@ function Activos(){
     const currentActivos  = allactivos //.slice(indexFirstActivo, indexLastActivo);
     const [orden, setOrden] = useState('');
 
-    const paginado = (pageNumber:any)=>{
-        setCurrentPage(pageNumber)
-    }
+    
 
     useEffect (()=>{
         dispatch(getActivos())
@@ -31,13 +30,10 @@ function Activos(){
     return(
         <div>
             
-            <Paginado
-            activosPorPage={activosPorPage}
-            allactivos={allactivos.length}
-            paginado={paginado}
-            />
+           
             
             <SearchBar/>
+
             <div>
                 {
                     currentActivos.length>0?
@@ -47,7 +43,7 @@ function Activos(){
                             <p>{e.name}</p>
                             <img src={e.image} alt=''/>
                             <p>${e.current_price}</p>
-                            <p>${e.market_cap}</p>
+                            <p>{e.market_cap}</p>
                         </div>
                         )
                     }):
