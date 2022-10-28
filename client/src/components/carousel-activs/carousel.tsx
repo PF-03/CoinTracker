@@ -2,7 +2,7 @@ import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector,useDispatch } from 'react-redux/es/exports';
 import {useEffect} from "react"
-import { getActivs } from '../../redux/actions';
+import { getActivos } from '../../redux/actions';
 // Import Swiper styles import 'swiper/css'; 
 import 'swiper/css/navigation';
 import 'swiper/css/pagination'; 
@@ -19,10 +19,9 @@ export default function Carousel({handleSeeMore}:PrivateProps) {
   const dispatch:any=useDispatch()
   const activos=useSelector((state:any)=>state.actAll)
   useEffect(()=>{
-    dispatch(getActivs())
+    dispatch(getActivos())
   },[dispatch])
   const activosSlice=activos.slice(0, 6);
-
     return (
       <div >
          <p className='News'>Most relevant Coins</p>

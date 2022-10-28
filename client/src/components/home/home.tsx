@@ -5,8 +5,6 @@ import "./home.css"
 
 export default function Home(){
     const [seeMore, setSeeMore]=useState(false)
-
-
     const handleSeeMore: any=(e:any)=>{
         setSeeMore(true)
     }

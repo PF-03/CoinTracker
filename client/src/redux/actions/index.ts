@@ -1,4 +1,4 @@
-export function getActivs(){
+export function getActivos(){
     return function(dispatch:any){
         return fetch("http://localhost:3001/activos")
         .then(res=>res.json())

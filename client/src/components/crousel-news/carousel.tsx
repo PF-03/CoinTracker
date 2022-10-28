@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 /* import 'swiper/css/scrollbar'; */
 import "./carousel.css"
-import image from "../../img/vermas.png"
+
 
 export default function CarouselNews() {
   const dispatch:any=useDispatch()
@@ -36,7 +36,6 @@ export default function CarouselNews() {
       onSlideChange={() => console.log('slide change')}
     >
     
-       
      {
       newssSlice && newssSlice.map((el:any)=>{
         return(
