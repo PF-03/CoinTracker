@@ -11,10 +11,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<LandignPage />}>
-          {/* <Route path="/nav" element={<LandingNavbar />} />
-          <Route path="/home" element={<Home/>}/> */}
-        </Route>
+        <Route path="/" element={<LandignPage />} />
       </Routes>
     </div>
   );
