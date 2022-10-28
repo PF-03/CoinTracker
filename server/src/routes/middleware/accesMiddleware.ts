@@ -1,17 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import userModel from "../../models/User";
 
-interface user {
-  username: string;
-  pasword: string;
-  mail: string;
-  name: string;
-  lastname: string;
-  type: "admin" | "user";
-  token: string;
-  activos: boolean;
-}
-
+// para los middlewares se debe recibir un valor especifico por body, en este caso use el username pero se puede modificar para cualquier otro valor.
 async function isUser(req: Request, res: Response, next: NextFunction) {
   try {
     const { _id, username, password, mail, type, activos } = req.body;
