@@ -1,4 +1,5 @@
 import { useState} from "react";
+import axios from 'axios';
 
 function FormRegister(){
     const [inputs, setInputs] = useState({
@@ -76,9 +77,22 @@ function FormRegister(){
         validateForm(inputs.errors)
     }
 
-    function submitForm(e: any) {
+    async function submitForm(e: any) {
         e.preventDefault()
         console.log(inputs)
+        try {
+            let userCreated = await axios.post('http://localhost:3001/users', {
+                username: inputs.username,
+                password: inputs.password,
+                mail: inputs.mail,
+                name: inputs.name,
+                lastname: inputs.lastname
+            })
+            alert('Genial, tu cuenta se creo con éxito.')
+            window.location.href = `/`;
+        } catch(error) {
+            alert(`Ups, algo salio mal intenta de nuevo.\n${error}`)
+        }
     }
 
     return <form onSubmit={submitForm}>
