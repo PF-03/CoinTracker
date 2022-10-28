@@ -24,7 +24,7 @@ const AboutUs = () => {
       name: "Fernando Campos",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        { logo: LinkedIn, link: "https://www.linkedin.com/in/ferchoeth/" },
         { logo: GitHub, link: "https://github.com/ferchoeth" },
       ],
     },

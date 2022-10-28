@@ -4,7 +4,7 @@
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
-    background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
+    background: transparent;/* Background del contenedor principal, pendiente por cambiar segun sea el caso */
 }
 .developerContainer{
     width: 250px;
