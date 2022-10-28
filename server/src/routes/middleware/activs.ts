@@ -5,7 +5,6 @@ const activos = Router();
 
 activos.get('/', async (_req, res) => {
     const activos = await getActivos();
-    console.log(activos)
     res.send(activos);
 })
 

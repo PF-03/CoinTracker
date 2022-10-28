@@ -1,0 +1,96 @@
+
+.contenedor{
+    padding-top:0px;
+    width: 100%;
+}
+/* .swiperr{
+    margin-left: 550px;
+} */
+
+
+.ey{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px ;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.ey .text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+  width: 100%;
+ /*  height: 100%;
+  */
+}
+.titulo{
+  font-size: 22px;
+}
+.img{
+  padding-top: 30px;
+  border-radius: 500px;
+   height: 30%;
+   width: 40%;
+}
+.swiper{
+  width: 53rem;
+}
+.swiper-slide{
+  display: flex;
+  justify-content: center;
+/*   width: 200px !important;  */
+}
+.price{
+  font-size: 15px;
+  display: flex;
+  padding-left: 17px;
+}
+.price1{
+  font-size: 15px;
+  display: flex;
+  padding-left: 22px;
+}
+.ey .text .mas .botom:hover{
+  cursor: pointer;
+}
+.seeMore{
+  font-size: 40px;
+
+}
+.mas{
+display: flex;
+width: 100%;
+height: 40px;
+justify-content: end;
+align-items: flex-end;
+
+}
+.botom{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  font-size: 24px;
+  border-radius: 25px;
+  margin-right: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.swiper-button-next::after, .swiper-button-prev::after{
+  font-size: 50px !important;
+  color: purple;
+}
+

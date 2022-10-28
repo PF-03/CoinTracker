@@ -1,5 +1,6 @@
 import { Response, Request } from "express";
-import  user  from "../models/User"
+ import  user  from "../models/User" 
+
 import handleError from "../utils/handleError"
 
 const getUsers:any=async(req:Request, res:Response)=>{
@@ -52,6 +53,7 @@ const postUsers:any=async(req:Request, res:Response)=>{
             if(Object.keys(userId).length>0){
             await user.updateOne({_id:id},body)
             return res.status(202).json("UPDATE_EXIT")
+
         }
         handleError(res,"ERROR_UPDATE_USERS_ID")
         }
