@@ -6,7 +6,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useState } from "react";
 import LandingNavbar from "./components/navbar/LandingNavbar";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { Routes, Route } from "react-router-dom";
 
 
 import SearchBar from "./components/SearchBar/SearchBar";
