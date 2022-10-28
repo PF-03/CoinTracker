@@ -1,13 +1,19 @@
-import { Router } from "express"
-import { getUsers, postUsers, deleteUsers, putUsers } from "../../controllers/users"
-import validateCreateUsers from "../../utils/validator"
+import { Router } from "express";
+import {
+  getUsers,
+  postUsers,
+  deleteUsers,
+  putUsers,
+} from "../../controllers/users";
+import validateCreateUsers from "../../utils/validator";
+import acces from "./accesMiddleware";
 
-const user: any = Router()
+const user: any = Router();
 
-user.get("/", getUsers)
-user.get("/:id", getUsers)
-user.post("/", validateCreateUsers, postUsers)
-user.delete("/:id", deleteUsers)
-user.put("/:id", validateCreateUsers, putUsers)
+user.get("/", acces.isAdmin, getUsers);
+user.get("/:id", acces.isAdmin, getUsers);
+user.post("/", validateCreateUsers, postUsers);
+user.delete("/:id", acces.isAdmin, deleteUsers);
+user.put("/:id", validateCreateUsers, putUsers);
 
-export default user
+export default user;

@@ -1,13 +1,15 @@
-import express from 'express';
-import walletController from '../controllers/wallet';
+import express from "express";
+import walletController from "../controllers/wallet";
+import acces from "./middleware/accesMiddleware";
 
-const walletRouter = express.Router()
+const walletRouter = express.Router();
 
-walletRouter.get('/:user', walletController.getWallet)
+walletRouter.use(acces.isUser);
 
-walletRouter.delete('/:user', walletController.deleteWallet)
+walletRouter.get("/:user", walletController.getWallet);
 
-walletRouter.put("/:id", walletController.putWallet)
+walletRouter.delete("/:user", walletController.deleteWallet);
+
+walletRouter.put("/:id", walletController.putWallet);
 
 export default walletRouter;
-
