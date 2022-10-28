@@ -12,10 +12,6 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path='' element={<LandingNavbar />} />
-        
-        <Route path='wallet' element={<Activos />} />
-
         <Route path='/' element={<LandingPage />} />
 
         <Route path='/home' element={<Home />} />
