@@ -1,12 +1,19 @@
 body {
 
+
   width: 100%;
   min-height: 100vh;
   margin: 0;
 }
 .App{
 
+
   width: 100%;
   min-height: 100vh;
 
+}
+
+h1 {
+  font-size: 64px;
+  margin: 2rem 0;
 }

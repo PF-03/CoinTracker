@@ -31,6 +31,7 @@ export function getNameActivos(name:any){
     }
 }
 
+
 export function getNews(){
     return function(dispatch:any){
         return fetch("http://localhost:3001/news")
@@ -42,3 +43,6 @@ export function getNews(){
             })})}
 
 }
+
+
+
