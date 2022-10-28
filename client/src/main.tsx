@@ -5,6 +5,11 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
+import dotenv from 'dotenv';
+import axios from 'axios';
+
+dotenv.config()
+axios.defaults.baseURL = process.env.REACT_APP_SERVER || 'http://localhost:3001'
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   
