@@ -11,6 +11,7 @@ import LandingPage from "./views/landingPage/landingPage";
 import FormRegister from './components/FormRegister/FormRegister'
 
 
+
 function App() {
   const [count, setCount] = useState(0);
 
