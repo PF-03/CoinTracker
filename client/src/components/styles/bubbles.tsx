@@ -11,6 +11,7 @@ type Props = {
 
 
  const Bubble = styled.div<Props>`
+    z-index: -1;
     position: absolute;
     border-radius: 100%;
     width: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315' : props.size === 'small' ? '162px' : '676px'};

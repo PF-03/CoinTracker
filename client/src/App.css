@@ -1,11 +1,9 @@
 body {
-  background-color: #1E1E1E;
   width: 100%;
   min-height: 100vh;
   margin: 0;
 }
 .App{
-  background-color: #1E1E1E;
   width: 100%;
   min-height: 100vh;
 
@@ -13,4 +11,5 @@ body {
 
 h1 {
   font-size: 64px;
+  margin: 2rem 0;
 }
