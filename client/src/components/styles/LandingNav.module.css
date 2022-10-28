@@ -16,11 +16,23 @@
   width: 90%;
   left: 5%;
 }
-/*
-.navButtons *:hover :after {
-  animación
+
+.navButtons a:after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);;
+  left: 0;
+  bottom: -6px;
+  border-radius: 2px;
+  transition: .3s ease;
 }
-*/
+
+.navButtons a:hover:after{
+  width: 100%;
+}
+
 .navButtons {
   display: flex;
   justify-content: baseline;
