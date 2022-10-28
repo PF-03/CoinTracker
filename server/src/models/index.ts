@@ -9,7 +9,7 @@ const models: Object = {
     wallet: walletModel,
     review: reviewModel,
     exchangeHistory: exchangeHistoryModel,
-    new:newstModel,
+    new:newstModel
 }
 
-export default {models}
+export default models

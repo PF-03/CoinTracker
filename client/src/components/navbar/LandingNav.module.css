@@ -35,6 +35,7 @@
 }
 
 .navButtons * {
+  font-weight: 600;
   color: white;
   text-decoration: none;
   position: relative;
@@ -58,36 +59,9 @@
   font-size: 5.6vh;
 }
 
-ul {
-  display: flex;
-  justify-content: baseline;
-  align-items: center;
-}
-
-a {
-  text-decoration: none;
-  font-family: 'Inter';
-  margin: 10px;
-  color: white;
-}
-
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.button button {
-  background: linear-gradient(270deg, #7745c8, #b588ff);
-  border-radius: 30px;
-  height: 3rem;
-  width: 75%;
-  font-size: 100%;
-  cursor: pointer;
-}
-
-.button button:hover {
-  height: 3.3rem;
-  width: 79%;
-  font-size: 105;
-}

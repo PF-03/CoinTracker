@@ -1,0 +1,66 @@
+.card {
+    padding: 1rem 2rem;
+    min-height: 300px;
+    max-width: 200px;
+    position: relative;
+}
+
+.CardText {
+    margin-top: 20px;
+    width: 100%;
+
+}
+
+.CardText :first-child {
+    font-size: 16px;
+}
+
+.price {
+    font-size: 14px;
+    font-weight: 200;
+}
+
+
+.titulo {
+    font-size: 22px;
+    text-align: center;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.img img {
+    width: 40%;
+}
+
+.newsImg {
+    width: 40%;
+    height: auto;
+}
+
+.buttonContainer {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    justify-content: end;
+    align-items: flex-end;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+.button {
+    cursor: pointer;
+    border-radius: 100%!important;
+    width: 2.4rem;
+    height: 2.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

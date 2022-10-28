@@ -3,7 +3,7 @@ import { filterActivos, getActivos } from "../../controllers/actives"
 
 const activos = Router();
 
- 
+
 
 activos.get('/', async (req, res)=> {
 
@@ -22,6 +22,7 @@ activos.get('/', async (req, res)=> {
     }
     //console.log(activos_)
     //res.send(activos_);
+
 
 })
 

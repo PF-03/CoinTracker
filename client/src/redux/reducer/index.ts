@@ -1,7 +1,8 @@
 
 const initialState= {
     activos : [],
-    allactivos: []
+    allActivos: [],
+    newsAll:[],
 }
 
 
@@ -11,7 +12,7 @@ function rootReducer (state = initialState , action:any){
             return{
                 ...state,
                 activos:action.payload,
-                allactivos: action.payload
+                allActivos: action.payload
             }
         case 'GET_NAME_ACTIVOS':
             return{
@@ -19,6 +20,12 @@ function rootReducer (state = initialState , action:any){
                 activos: action.payload
 
             }
+             case "GET_NEWS":
+
+                return {
+                    ...state,
+                    newsAll:action.payload
+                }
         default:
             return state;
     }
@@ -30,3 +37,4 @@ function rootReducer (state = initialState , action:any){
 
 
 export default rootReducer;
+

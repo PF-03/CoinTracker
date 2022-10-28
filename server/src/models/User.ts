@@ -68,4 +68,5 @@ userSchema.statics.comparePassword = async (
 
 const userModel = model('User', userSchema);
 
-export default userModel;
+
+ export default userModel; 
