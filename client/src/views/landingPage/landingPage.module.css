@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 6rem;
+}
+
+.aboutUs {
+    height: 100vh;
+}

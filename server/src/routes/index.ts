@@ -1,20 +1,24 @@
-import { Router } from "express"
-import user from "./middleware/users";
-import activos from "./middleware/activs"
+import { Router } from 'express';
+import user from './middleware/users';
+import activos from './middleware/activs';
 import review from './middleware/reviews';
-import exchange from "./middleware/exchangeHistory";
-import walletRouter from "./wallet";
+import exchange from './middleware/exchangeHistory';
+import news from './middleware/news';
+import walletRouter from './wallet';
+import localAuth from './localAuth';
+import googleAuth from './googleAuth';
 
-const routers: any = Router()
+const routers: any = Router();
 
 // add exchange history routes
 
-routers.use('/exchange', exchange)
+routers.use('/exchange', exchange);
+routers.use('/users', user);
+routers.use('/activos', activos);
+routers.use('/review', review);
+routers.use('/wallet', walletRouter);
+routers.use('/news', news);
+routers.use('/localauth', localAuth);
+routers.use('/googleauth', googleAuth);
 
-routers.use("/users",user)
-routers.use("/activos",activos)
-routers.use("/review",review)
-routers.use('/wallet', walletRouter)
-
-
-export default routers
+export default routers;

@@ -1,5 +1,3 @@
-import { Action } from '@remix-run/router';
-import { useDispatch } from "react-redux";
 import axios from 'axios';
 
 
@@ -30,7 +28,17 @@ export function getNameActivos(name:any,minimo:any,maximo:any){
         }
     }
 }
+export function getNews(){
+    return function(dispatch:any){
+        return fetch("http://localhost:3001/news")
+        .then(res=>res.json())
+        .then(res=>{
+            dispatch({
+                type:"GET_NEWS",
+                payload:res[0].new
+            })})}
 
+}
 
 
 

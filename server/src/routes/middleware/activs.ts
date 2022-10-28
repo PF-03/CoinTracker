@@ -3,7 +3,7 @@ import { filterActivos, getActivos, getActivosMayoresA, getMenoresA} from "../..
 
 const activos = Router();
 
- 
+
 
 activos.get('/', async (req, res)=> {
 
@@ -36,6 +36,7 @@ activos.get('/', async (req, res)=> {
     //console.log(activos_)
     
    
+
 
 })
 
