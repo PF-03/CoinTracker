@@ -79,7 +79,6 @@ function FormRegister(){
 
     async function submitForm(e: any) {
         e.preventDefault()
-        console.log(inputs)
         try {
             let userCreated = await axios.post('http://localhost:3001/users', {
                 username: inputs.username,
