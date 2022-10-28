@@ -56,7 +56,7 @@ const AboutUs = () => {
       ],
     },
     {
-      profileImage: "",
+      profileImage: "https://www.linkedin.com/in/j-manuel-garcia-m/",
       name: "Juancarlos Garcia",
       info: "",
       SocialNetworks: [
