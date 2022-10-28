@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import LandingNavbar from "./components/navbar/LandingNavbar";
+import Sidebar from "./components/Sidebar/Sidebar";
 import { Routes, Route } from "react-router-dom";
 
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+
 
           <Route path="/" element={<LandingPage />} />
           
