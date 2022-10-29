@@ -30,7 +30,7 @@ function Activos(){
 
     return(
         <div>
-            
+             
            
             <SearchBar/>
             <div className={css.maincontainer}>
