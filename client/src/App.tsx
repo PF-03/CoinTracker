@@ -6,7 +6,7 @@ import Home from "./components/home/home";
 import DetailsActivs from "./components/details-activs/detailsActivs";
 
 function App() {
-  const [count, setCount] = useState(0);
+
 
   return (
     <div className="App">
