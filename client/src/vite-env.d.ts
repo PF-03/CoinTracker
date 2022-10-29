@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 type coinInfo = {
-    _id: number
+    id: string
     name: string
     image: string
     current_price: number
