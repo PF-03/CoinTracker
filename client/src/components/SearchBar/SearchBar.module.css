@@ -10,47 +10,70 @@
 .container {
     display: flex;
     justify-content:center;
-    padding: 0.5rem 0;
-    
-
-}
-
-.contenedorTabla{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    
-}
-
-table{
+    padding:2px;
    
-    margin-top:1%;
-    margin-left: 26%;
-    margin-right: 26%;
-    width: 50%;
-    border-spacing:1rem;
+}
+.containerSearch{
+    display: flex;
+    justify-content:center;
+    padding:50px;
+}
+
+.maincontainer{
+   margin: 35px auto;
+   width: 600px; 
+ 
+   
+}
+.maincontainer:before {
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    filter: blur(10px);
+    background: inherit;
+}
+table{
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border:  rgba(209, 213, 219, 0.3);
+    border-radius: 12px;
     
 }
+
+th , td {
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.trespe:hover{
+    background-color: #5e548e;
+    color: aliceblue;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+
 .buttonSearch{
-  width: 100px;
-  height: 37px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  background: rgba(255, 255, 255, .3);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(209, 213, 219, 0.3)
+    width: 100px;
+    height: 37px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: rgba(255, 255, 255, .3);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3)
 }
 .buttonFilter{
     width: 100px;
-  height: 37px;
-  border-radius: 12px;
-  background: #5e548e;
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(209, 213, 219, 0.3);
-  cursor: pointer;
-  margin-bottom: 1px;
+    height: 37px;
+    border-radius: 12px;
+    background: #5e548e;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1.5px solid rgba(209, 213, 219, 0.3);
+    cursor: pointer;
+    margin-bottom: 1px;
   
 }
 

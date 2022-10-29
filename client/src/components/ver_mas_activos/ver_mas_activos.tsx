@@ -3,7 +3,7 @@ import React from 'react';
 import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivos } from "../../redux/actions/index";
-
+import css from '../SearchBar/SearchBar.module.css'
 
 import SearchBar from '../SearchBar/SearchBar';
 
@@ -32,35 +32,42 @@ function Activos(){
         <div>
             
            
-           
             <SearchBar/>
-            <div className='contenedorTabla'>
-                <table className='table'>
+            <div className={css.maincontainer}>
+                <table >
                     <tbody>
-                   
-                {
-                    currentActivos.length>0?
-                    currentActivos.map((e:any)=>{
-                       
-                        return(
-                            
+                        
                             <tr>
-                                <td>
-                                <img src={e.image} alt='' width='30px' height='30px'/>
-                                </td>
-                                <td>
-                                    {e.name}
-                                </td>
-                                <td>${e.current_price}</td>
-                                <td>{e.market_cap}</td>
+                                <td>Symbol</td>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Market Capitalization</td>
                             </tr>
+                       
+
+                        {
+                            currentActivos.length>0?
+                            currentActivos.map((e:any)=>{
+                       
+                                 return(
+                            
+                                     <tr className={css.trespe}>
+                                        <td>
+                                             <img src={e.image} alt='' width='30px' height='30px'/>
+                                         </td>
+                                         <td>
+                                             {e.name}
+                                        </td>
+                                        <td>${e.current_price}</td>
+                                        <td>{e.market_cap} USD$</td>
+                                     </tr>
                            
                         
-                        )
-                    }):
+                                )
+                             }):
                     
-                    <img src="https://cdn.iconscout.com/icon/free/png-256/404-page-not-found-456876.png"></img>
-                }
+                             <img src="https://cdn.iconscout.com/icon/free/png-256/404-page-not-found-456876.png"></img>
+                        }
                 </tbody>
                 </table>
             </div>

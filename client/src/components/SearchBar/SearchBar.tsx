@@ -40,11 +40,11 @@ function SearchBar(){
 
     return(
         <div>
-            <div className={styles.container}>
+            <div className={styles.containerSearch}>
        <input
        className={styles.inputSearch}
        type="text"
-       placeholder='search active...'
+       placeholder='Search active...'
        onChange={(e:any)=> HandleInputChange(e)}
        id='button'
        />
@@ -55,25 +55,25 @@ function SearchBar(){
             </button>
        </div>
        </div>
-       <div className={styles.container}>
-            <button className={styles.buttonFilter} type="submit" onClick={(e:any)=> HandleSumbit(e)}>
-                Filter By Price
-            </button>
-       </div>
+       
        <div className={styles.container}>
        <input
        className={styles.inputPrecios}
        type="number"
-       placeholder="since.."
+       placeholder="Since.."
        id='minimo'
        />
        <input
        className={styles.inputPrecios}
        type="number"
-       placeholder="untill..."
+       placeholder="Untill..."
        id='maximo'
        />
-      
+       </div>
+       <div className={styles.container}>
+            <button className={styles.buttonFilter} type="submit" onClick={(e:any)=> HandleSumbit(e)}>
+                Filter By Price
+            </button>
        </div>
        </div>
        
