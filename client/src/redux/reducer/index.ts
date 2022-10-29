@@ -1,8 +1,9 @@
-
 const initialState= {
     activos : [],
-    allActivos: [],
-    newsAll:[],
+    allactivos: [],
+    allNews:[],
+    detailsActivos:{},
+    detailsNews:{}
 }
 
 
@@ -12,7 +13,7 @@ function rootReducer (state = initialState , action:any){
             return{
                 ...state,
                 activos:action.payload,
-                allActivos: action.payload
+                allactivos: action.payload
             }
         case 'GET_NAME_ACTIVOS':
             return{
@@ -20,14 +21,22 @@ function rootReducer (state = initialState , action:any){
                 activos: action.payload
 
             }
-
-             case "GET_NEWS":
-
-                return {
-                    ...state,
-                    newsAll:action.payload
-                }
-
+        case "GET_DETAILS_ACTIVOS":{
+            
+            let filter=state.allactivos.filter((el:any)=>el.id.toString()===action.payload)
+            console.log(filter)
+            return {
+                ...state,
+                detailsActivos:filter[0]
+            }
+        }
+        case "GET_DETAILS_NEWS":{
+            let filterNews=state.allNews.filter((el:any)=>el.id===action.payload)
+            return {
+                ...state,
+                detailsNews:filterNews
+            }
+        }
         default:
             return state;
     }
@@ -39,4 +48,3 @@ function rootReducer (state = initialState , action:any){
 
 
 export default rootReducer;
-

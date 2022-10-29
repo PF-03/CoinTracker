@@ -1,0 +1,110 @@
+.contenedor{
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px 80px;
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+ .coin{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 100px;
+} 
+.box_one{
+    display: flex;
+    flex-direction: column;
+    max-height: 300px;
+    line-height: 20px;
+}
+.price{
+    display: flex;
+    min-width: 150px;
+    justify-content: space-between;
+    padding-left: 100px;
+}
+
+.name{
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 20rem;
+}
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img{
+    width: 2rem;
+    height: 2rem;
+}
+.cBotones{
+    max-width: 20rem;
+    padding-left: 10px;
+   
+}
+.botones{
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    color: rgb(0, 0, 0);
+  
+ 
+}
+.conInfo{
+    display: flex;
+    padding-left: 100px;
+   
+}
+.botones div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+}
+.lowhigh{
+    display: flex;
+    justify-content: space-between;
+    width: 20rem;
+    font-size: 12px;
+}
+.info{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 200px;
+    padding: 20px 50px 20px 50px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.boxInfo div{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    width: 25rem;
+    font-size: 15px;
+    
+} 
+

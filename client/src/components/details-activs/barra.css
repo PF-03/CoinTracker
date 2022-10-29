@@ -1,0 +1,53 @@
+.barra , .barra::after{
+    position: relative;
+    width: 20rem;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden; 
+}
+.barra::after{
+    content: "";
+    position: absolute;
+    left: -20rem;
+    background-color: rgb(22, 230, 230);
+    transition: color 0.1s, background-color 0.2s ease-in-out;
+}
+
+
+.barra_10::after{
+    transform: translateX(10%);
+} 
+.barra_20::after{
+    transform: translateX(20%);
+} 
+.barra_30::after{
+    transform: translateX(30%);
+} 
+.barra_40::after{
+    transform: translateX(40%);
+} 
+.barra_50::after{
+    transform: translateX(50%);
+} 
+.barra_60::after{
+    transform: translateX(60%);
+} 
+.barra_70::after{
+    transform: translateX(70%);
+} 
+.barra_80::after{
+    transform: translateX(80%);
+} 
+.barra_81::after{
+    transform: translateX(81%);
+} 
+.barra_83::after{
+    transform: translateX(83%);
+} 
+.barra_90::after{
+    transform: translateX(90%);
+} 
+.barra_100::after{
+    transform: translateX(100%);
+} 
