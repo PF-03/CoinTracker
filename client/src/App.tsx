@@ -18,6 +18,8 @@ function App() {
         <Route path='register' element={<FormRegister />} />
 
         <Route path='/login' element={<Login />} />
+
+        <Route path='/wallet' element={<Activos />} />
       </Routes>
     </div>
   );
