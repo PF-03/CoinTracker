@@ -9,7 +9,6 @@ import { dbConn } from './db';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
-const user = require('./models/User');
 const app: any = express();
 
 //Middlewares
@@ -30,16 +29,6 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-
-passport.serializeUser((user: any, done) => {
-  return done(null, user._id);
-});
-
-passport.deserializeUser((id: string, done) => {
-  user.findById(id, (err: Error, doc: any) => {
-    return done(null, doc);
-  });
-});
 
 // add exchange history routes
 app.use('/', routers);

@@ -10,3 +10,8 @@
 .aboutUs {
     height: 100vh;
 }
+
+.card {
+    position: absolute;
+    right: 15%;
+}

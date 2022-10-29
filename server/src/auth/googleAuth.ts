@@ -11,6 +11,7 @@ passport.use(
       callbackURL: '/googleauth/google/callback',
     },
     function (accessToken: any, refreshToken: any, profile: any, cb: any) {
+      console.log(profile);
       user.findOne({ googleId: profile.id }, async (err: Error, doc: any) => {
         if (err) {
           return cb(err, null);
@@ -19,8 +20,10 @@ passport.use(
         if (!doc) {
           const newUser = new user({
             googleId: profile.id,
-            username: profile.name.givenName,
-            mail: `${profile.name.givenName}@gmail.com`,
+            username: profile.name.givenName + profile.name.familyName,
+            mail: profile.emails[0].value,
+            name: profile.name.givenName,
+            lastname: profile.name.familyName,
           });
           await newUser.save();
           cb(null, newUser);

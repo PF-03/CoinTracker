@@ -1,3 +1,4 @@
+import Card from '../../components/card/card';
 import LandingNavbar from '../../components/navbar/LandingNavbar';
 import Bubble from '../../components/styles/bubbles';
 import Button from '../../components/styles/button';
@@ -14,6 +15,9 @@ function LandignPage() {
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. A, hic.</p>
                 <div>
                     <Button gradient>Botón</Button>
+                </div>
+                <div className={s.card}>
+                    <Card name='Bitcoin' _id={1} current_price={20.58} image='https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/1024px-Bitcoin.svg.png'/>
                 </div>
             </main>
             <section className={s.aboutUs}>

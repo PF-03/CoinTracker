@@ -1,5 +1,7 @@
 import { useState} from "react";
 import axios from 'axios';
+import './FormRegister.css';
+import Button from "../styles/button";
 
 function FormRegister(){
     const [inputs, setInputs] = useState({
@@ -10,16 +12,31 @@ function FormRegister(){
         lastname: '',
         disabled: true,
         errors: {
-            username: 'Necesitas un nombre usuario',
-            password: 'Crea una contraseña para estar seguro',
-            mail: 'Inserta un email valido',
+            username: '',
+            password: '',
+            passwordConfirm: '',
+            mail: '',
             name: '',
             lastname: ''
         }
     })
 
     function validateForm(errors: Object) {
-        let submitBtn = document.getElementById("submit-btn");
+        let usernameInput = document.getElementById("username");
+        let mailInput = document.getElementById("mail");
+        let passwordInput = document.getElementById("password");
+        let username = usernameInput.getAttribute("value")
+        let mail = mailInput.getAttribute("value")
+        let password = passwordInput.getAttribute("value")
+        
+        if(!username ||  !mail || !password) {
+            setInputs({
+                ...inputs,
+                disabled: true
+            })
+            return;
+        }
+        
         let valid = true;
         Object.values(errors).forEach((val) => {
             if(val.length > 0) {
@@ -31,18 +48,18 @@ function FormRegister(){
             ...inputs,
             disabled: false
           })
-          submitBtn?.classList.add("submit-btn-active")
+        //   submitBtn?.classList.add("submit-btn-active")
         } else {
           setInputs({
             ...inputs,
             disabled: true
           })
-          submitBtn?.classList.remove("submit-btn-active")
+        //   submitBtn?.classList.remove("submit-btn-active")
         }
     }
 
     function handleChange(e: any) {
-        type InputField = 'name' | 'lastname' | 'username' | 'mail' | 'password'
+        type InputField = 'name' | 'lastname' | 'username' | 'mail' | 'password' | 'passwordConfirm'
 
         const { value } = e.target;
         const name: InputField = e.target.name;
@@ -62,6 +79,10 @@ function FormRegister(){
                 break;
             case 'password':
                 errors.password = value.length < 8 ? 'Usa minimo 8 caracteres' : '';
+                errors.passwordConfirm = value === inputs.password ? '' : 'Las contraseñas no son iguales';
+                break;
+            case 'passwordConfirm':
+                errors.passwordConfirm = value === inputs.password ? '' : 'Las contraseñas no son iguales';
                 break;
             default:
                 break;
@@ -74,7 +95,9 @@ function FormRegister(){
             errors
         })
 
-        validateForm(inputs.errors)
+        if(name !== 'name' && name !== 'lastname') {
+            validateForm(inputs.errors)
+        }
     }
 
     async function submitForm(e: any) {
@@ -94,29 +117,44 @@ function FormRegister(){
         }
     }
 
-    return <form onSubmit={submitForm}>
-        <label htmlFor="name">Nombre: </label>
-        <input name='name' id='name' onChange={handleChange} placeholder="Juan"/>
-        {!inputs.errors.name ? null : <p>{inputs.errors.name}</p>}
+    return <div className="signUpContainer">
+        <h2>Crea tu cuenta:</h2>
 
-        <label htmlFor="lastname">Apellido: </label>
-        <input name='lastname' id='lastname' onChange={handleChange} placeholder="Perez"/>
-        {!inputs.errors.lastname ? null : <p>{inputs.errors.lastname}</p>}
+        <button className="googleSignUp">Registrate con Google</button>
 
-        <label htmlFor="username">Usuario: </label>
-        <input name='username' id='username' onChange={handleChange} placeholder="Perez"/>
-        {!inputs.errors.username ? null : <p>{inputs.errors.username}</p>}
+        <p className="orText">O</p>
 
-        <label htmlFor="mail">Email: </label>
-        <input name='mail' id='mail' onChange={handleChange} placeholder="Perez"/>
-        {!inputs.errors.mail ? null : <p>{inputs.errors.mail}</p>}
+        <form onSubmit={submitForm} className="signUpForm">
+            <label className="registerFormLabel" htmlFor="name">Nombre: </label>
+            <input className="registerFormInput" name='name' id='name' onChange={handleChange} placeholder="Juan"/>
+            {!inputs.errors.name ? null : <p className="inputError">{inputs.errors.name}</p>}
 
-        <label htmlFor="password">Contraseña: </label>
-        <input name='password' id='password' onChange={handleChange} placeholder="Perez"/>
-        {!inputs.errors.password ? null : <p>{inputs.errors.password}</p>}
+            <label className="registerFormLabel" htmlFor="lastname">Apellido: </label>
+            <input className="registerFormInput" name='lastname' id='lastname' onChange={handleChange} placeholder="Perez"/>
+            {!inputs.errors.lastname ? null : <p className="inputError">{inputs.errors.lastname}</p>}
 
-        <input id='submit-btn' type="submit" value='Crear' disabled={inputs.disabled}/>
-    </form>
+            <label className="registerFormLabel" htmlFor="username">Usuario:</label>
+            <input required className="registerFormInput" name='username' id='username' onChange={handleChange} placeholder="Perez" value={inputs.username}/>
+            {!inputs.errors.username ? null : <p className="inputError">{inputs.errors.username}</p>}
+
+            <label className="registerFormLabel" htmlFor="mail">Email: </label>
+            <input required className="registerFormInput" name='mail' id='mail' onChange={handleChange} placeholder="juanito@gmail.com" value={inputs.mail}/>
+            {!inputs.errors.mail ? null : <p className="inputError">{inputs.errors.mail}</p>}
+
+            <label className="registerFormLabel" htmlFor="password">Contraseña: </label>
+            <input required className="registerFormInput" type="password" name='password' id='password' onChange={handleChange} placeholder="" value={inputs.password}/>
+            {!inputs.errors.password ? null : <p className="inputError">{inputs.errors.password}</p>}
+
+            <label className="registerFormLabel" htmlFor="passwordConfirm">Confirma contraseña: </label>
+            <input className="registerFormInput" type="password" name='passwordConfirm' id='passwordConfirm' onChange={handleChange} placeholder=""/>
+            {!inputs.errors.passwordConfirm ? null : <p className="inputError">{inputs.errors.passwordConfirm}</p>}
+
+            {/* <input className='submit-btn' id='submit-btn' type="submit" value='Crear cuenta' disabled={inputs.disabled}/> */}
+            <Button gradient={inputs.disabled ? false : true} className='submit-btn' id='submit-btn' type="submit" disabled={inputs.disabled}>Crear cuenta</Button>
+        </form>
+
+        <p className="loginText">¿Ya tienes una cuenta? <a href="">Haz login</a></p>
+    </div>
 }
 
 export default FormRegister;
