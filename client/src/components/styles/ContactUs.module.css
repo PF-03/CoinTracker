@@ -12,11 +12,6 @@
     flex-wrap: wrap;
     border: 1px solid rgba(255, 255, 255, 0.633);
 }
-.ContactusContainer{
-    background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
-    height: 1000px;
-    padding: 50px 0px;
-}
 .mainContainer img{
     width: 100%;
     max-width: 400px;

@@ -27,7 +27,10 @@ function rootReducer (state = initialState , action:any){
                     ...state,
                     newsAll:action.payload
                 }
-
+        case "POST_MAIL":
+            return{
+                ...state
+            }
         default:
             return state;
     }

@@ -39,6 +39,25 @@ export function getNews(){
             })})}
 
 }
+export function postMail(data:any){
+    return function(dispatch:any){
+        return fetch("http://localhost:3001/mail/",
+    {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res=>res.json())
+    .then(res=>{
+        dispatch({
+            type:"POST_MAIL",
+            payload:res
+        })})}
+
+}
 
 
 

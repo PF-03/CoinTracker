@@ -2,7 +2,10 @@ import React from "react";
 import styles from "../styles/ContactUs.module.css";
 import Button from "../styles/button";
 import Telefono from "../../assets/telefono.png";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../redux/actions";
 const ContactUs = () => {
+  const dispatch:any = useDispatch()
   const [state, setState] = React.useState({
     name: "",
     email: "",
@@ -16,10 +19,10 @@ const ContactUs = () => {
   };
   const HandleSubmit = (e) => {
     e.preventDefault();
+    dispatch(actions.postMail(state))
     console.log("submit ", state);
   };
   return (
-    <div className={styles.ContactusContainer}>
       <div className={styles.mainContainer}>
         <img src={Telefono} alt="" />
         <div className={styles.formContainer}>
@@ -60,7 +63,6 @@ const ContactUs = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
