@@ -7,6 +7,7 @@ import news from './middleware/news';
 import walletRouter from './wallet';
 import localAuth from './localAuth';
 import googleAuth from './googleAuth';
+import mailHandler from './middleware/mailHandler';
 
 const routers: any = Router();
 
@@ -20,5 +21,6 @@ routers.use('/wallet', walletRouter);
 routers.use('/news', news);
 routers.use('/localauth', localAuth);
 routers.use('/googleauth', googleAuth);
+routers.use('/mail',mailHandler);
 
 export default routers;
