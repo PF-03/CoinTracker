@@ -42,12 +42,14 @@
 
 .title {
   display: flex;
+  color: white;
   justify-content: center;
+  text-decoration: none;
 }
 
 .options {
   display: grid;
-  font-size: 160%;
+  font-size: 130%;
   color: white;
 }
 
@@ -67,9 +69,11 @@
   display: flex;
   justify-content: left;
   align-items: center;
+  color: white;
   width: 100%;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 .icon {
@@ -81,8 +85,7 @@
 .footer {
   grid-row: 4;
   display: grid;
-  font-size: 160%;
+  font-size: 130%;
   color: white;
-  font-size: 160%;
   margin-bottom: 6%;
 }

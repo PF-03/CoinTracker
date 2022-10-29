@@ -1,8 +1,14 @@
-.home{
-    overflow: hidden;
-    padding: 0 4rem;
+.home {
+  overflow: hidden;
+  padding: 0 4rem;
+  width: 70%;
 }
 
 .title {
-    margin-top: 4rem;
+  margin-top: 4rem;
+}
+
+.view {
+  display: flex;
+  justify-content: space-between;
 }

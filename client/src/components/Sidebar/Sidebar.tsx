@@ -8,8 +8,12 @@ import iconPor from "../../assets/iconPortfolio.png";
 import iconSetting from "../../assets/iconSettings.png";
 import iconSwap from "../../assets/iconSwap.png";
 import iconUser from "../../assets/iconUser.png";
+import { useSelector } from "react-redux";
+import { Store } from "redux";
 
 function Sidebar() {
+  const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
+
   return (
     <div className={style.sidebar}>
       <span className={style.head}>
@@ -19,13 +23,14 @@ function Sidebar() {
           className={style.logo}
         />
         <Link className={style.title} to="/home">
+          {" "}
           CoinTracker
         </Link>
       </span>
       <span className={style.options}>
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconUser} alt="user" />
-          <span>{"  username"}</span>
+          <span>{user.username}</span>
         </Link>
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconHome} alt="home" />
@@ -45,7 +50,7 @@ function Sidebar() {
         </Link>
         <Link to="/calculator" className={style.data}>
           <img className={style.icon} src={iconCal} alt="home" />
-          <span>Calculetor</span>
+          <span>Calculator</span>
         </Link>
       </span>
       <span className={style.footer}>
