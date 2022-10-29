@@ -2,6 +2,8 @@ import React from 'react';
 import { useState} from "react";
 import { useDispatch } from "react-redux";
 import { getNameActivos } from "../../redux/actions/index";
+import Button from '../styles/button'
+import styles from './SearchBar.module.css'
 
 
 
@@ -38,35 +40,41 @@ function SearchBar(){
 
     return(
         <div>
+            <div className={styles.containerSearch}>
        <input
+       className={styles.inputSearch}
        type="text"
-       placeholder='search active...'
+       placeholder='Search active...'
        onChange={(e:any)=> HandleInputChange(e)}
        id='button'
        />
 
        <div>
-            <button type="submit" onClick={(e:any)=> HandleSumbit(e)}>
+            <button className={styles.buttonSearch} onClick={(e:any)=> HandleSumbit(e)}>
                 Search
             </button>
        </div>
-
+       </div>
+       
+       <div className={styles.container}>
        <input
+       className={styles.inputPrecios}
        type="number"
-       placeholder="since.."
+       placeholder="Since.."
        id='minimo'
        />
        <input
+       className={styles.inputPrecios}
        type="number"
-       placeholder="untill"
+       placeholder="Untill..."
        id='maximo'
        />
-       <div>
-            <button type="submit" onClick={(e:any)=> HandleSumbit(e)}>
-                Filter By
+       </div>
+       <div className={styles.container}>
+            <button className={styles.buttonFilter} type="submit" onClick={(e:any)=> HandleSumbit(e)}>
+                Filter By Price
             </button>
        </div>
-      
        </div>
        
 
