@@ -1,0 +1,96 @@
+.mainContainer{
+    margin: 20px;
+    display: flex;
+    max-width: 850px;
+    min-width: 350px;
+    background-color: #dbdbdb90;
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    justify-content: space-around;
+    border-radius: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.633);
+}
+.ContactusContainer{
+    background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg");
+    height: 1000px;
+    padding: 50px 0px;
+}
+.mainContainer img{
+    width: 100%;
+    max-width: 400px;
+    filter:opacity(80%);
+}
+.formContainer{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+.formContainer form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.formContainer form input{
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 250px;
+    margin: 3px;
+    border:none;
+    background-color: #EBEEF1;
+}
+.formContainer form textarea{
+    background-color: #EBEEF1;
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 250px;
+    height: 100px;
+    resize: none;
+    margin: 3px;
+    border:none;
+}
+.formContainer form h6{
+    font-size:medium;
+    color: #3F3E3E;
+    margin: 5px 0px;
+}
+.formContainer h3{
+    margin-bottom: 30px;
+    align-self: flex-start;
+    color: #3F3E3E;
+}
+.formContainer Button{
+    width: 95%;
+    margin-top: 10px;
+    transition: transform .2s;
+}
+.formContainer Button:hover{
+    transform: scale(1.1);
+}
+.AditionalButtonsContainer button{
+    border: transparent;
+    border-radius: 50px;
+    margin: 3px;
+    width: 40px;
+    height: 40px;
+    transition: transform .2s;
+}
+.AditionalButtonsContainer button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.github{
+    background-image: url("../../assets/github.png");
+    background-size: 100%; 
+}
+.twitter{
+    background-image: url("../../assets/twitter.png");
+    background-size: 100%; 
+}
+.linkedin{
+    background-image: url("../../assets/linkedin.png");
+    background-size: 100%; 
+}
