@@ -3,7 +3,7 @@ import user from '../models/User';
 import handleError from '../utils/handleError';
 
 
-const getUsers: any = async (req: Request, res: Response) => {
+const getUsers: Function = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     if (!id) {
@@ -21,7 +21,7 @@ const getUsers: any = async (req: Request, res: Response) => {
   }
 };
 
-const postUsers: any = async (req: Request, res: Response) => {
+const postUsers: Function = async (req: Request, res: Response) => {
   try {
     const body: object = req.body;
     const userCreate = new user(body);
@@ -33,17 +33,7 @@ const postUsers: any = async (req: Request, res: Response) => {
   }
 };
 
-const deleteUsers: any = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    await user.updateOne({ _id: id }, { activos: false });
-    res.status(202).json('DELETE_EXIT');
-  } catch (e) {
-    handleError(res, 'ERROR_DELETE_USERS');
-  }
-};
-
-  const deleteUsers:any=async(req:Request, res:Response)=>{
+const deleteUsers:Function = async(req:Request, res:Response)=>{
      try{
             const { id } =req.params;
             await user.updateOne({_id:id},{activos:false}) 
@@ -53,7 +43,7 @@ const deleteUsers: any = async (req: Request, res: Response) => {
             handleError(res,"ERROR_DELETE_USERS")
         }}  
     
-    const putUsers:any=async(req:Request, res:Response)=>{
+const putUsers:Function=async(req:Request, res:Response)=>{
         try{
             const { id } =req.params;
             const body=req.body

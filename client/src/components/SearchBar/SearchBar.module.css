@@ -1,0 +1,56 @@
+.inputSearch {
+    padding: 8px 2rem;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+.inputPrecios {
+    padding: 8px 2rem;
+    border-radius: 1rem ;
+}
+
+.container {
+    display: flex;
+    justify-content:center;
+    padding: 0.5rem 0;
+    
+
+}
+
+.contenedorTabla{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+table{
+   
+    margin-top:1%;
+    margin-left: 26%;
+    margin-right: 26%;
+    width: 50%;
+    border-spacing:1rem;
+    
+}
+.buttonSearch{
+  width: 100px;
+  height: 37px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background: rgba(255, 255, 255, .3);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1.5px solid rgba(209, 213, 219, 0.3)
+}
+.buttonFilter{
+    width: 100px;
+  height: 37px;
+  border-radius: 12px;
+  background: #5e548e;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  border: 1.5px solid rgba(209, 213, 219, 0.3);
+  cursor: pointer;
+  margin-bottom: 1px;
+  
+}
+
