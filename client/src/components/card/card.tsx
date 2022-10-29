@@ -11,7 +11,7 @@ export default function Card({name, _id, image, current_price}: coinInfo) {
                 <h6 className={style.titulo}>{name}</h6>
 
                 <div className={style.CardText}>
-                    <p>Price</p>
+                    <p className={style.priceTitle}><b>Price</b></p>
                     <p className={style.price}>{current_price === 1 ? current_price + ",00" : current_price} USD$</p>
                     <div className={style.buttonContainer}>
                         <button className={`${s.card} ${style.button}`}>

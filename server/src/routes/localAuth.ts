@@ -1,48 +1,38 @@
 export {};
 const express = require('express');
 const passport = require('passport');
-const user = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
-router.post('/register', async (req: any, res: any) => {
-  try {
-    const newUser = await user.create({
-      ...req.body,
-      password: await user.encryptPassword(req.body.password),
-    });
-
-    res.json({
-      message: 'Signup succesful',
-      user: newUser,
-    });
-  } catch (e: any) {
-    res.json({ message: e.message });
+const isAuthenticated = (req: any, res: any, next: any) => {
+  if (req.isAuthenticated()) {
+    console.log(req.isAuthenticated());
+    return next();
   }
-});
+  res.redirect('http://localhost:5173/register');
+};
 
 router.post(
   '/signup',
-  passport.authenticate('signup', { session: false }),
-  async (req: any, res: any) => {
-    res.json({
-      message: 'Signup succesful',
-      user: req.user,
-    });
-  }
+  passport.authenticate('signup', {
+    successRedirect: 'http://localhost:5173',
+    failureRedirect: 'http://localhost:5173/register',
+    passReqToCallback: true,
+  })
 );
 
 router.post('/login', async (req: any, res: any, next: any) => {
   passport.authenticate('login', async (err: any, user: any, _info: any) => {
+    console.log(user);
     try {
       if (err || !user) {
         const error = new Error('Error');
         return next(error);
       }
-      req.login(user, { session: false }, async (err: any) => {
+      req.login(user, { session: true }, async (err: any) => {
         if (err) return next(err);
-        const body = { _id: user._id, email: user.email };
+        const body = { _id: user._id, email: user.mail };
         const token = jwt.sign({ user: body }, 'top_secret');
         return res.json({ token });
       });
@@ -54,7 +44,8 @@ router.post('/login', async (req: any, res: any, next: any) => {
 
 router.get(
   '/profile',
-  passport.authenticate('jwt', { session: false }),
+  isAuthenticated,
+  passport.authenticate('jwt', { session: true }),
   (req: any, res: any) => {
     res.json({
       user: req.user,
@@ -62,5 +53,14 @@ router.get(
     });
   }
 );
+
+router.get('/logout', (req: any, res: any, next: any) => {
+  req.logout((err: Error) => {
+    if (err) {
+      return next(err);
+    }
+    res.send('done');
+  });
+});
 
 export default router;

@@ -11,17 +11,21 @@
 
 }
 
-.CardText :first-child {
-    font-size: 16px;
+.priceTitle {
+    font-size: 18px;
+    margin-bottom: 0;
 }
 
 .price {
+    padding-left: 8px;
     font-size: 14px;
     font-weight: 200;
+    margin-top: 8px;
 }
 
 
 .titulo {
+    margin-bottom: 0;
     font-size: 22px;
     text-align: center;
 }

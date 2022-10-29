@@ -1,0 +1,80 @@
+.signUpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.googleSignUp {
+    background-color: rgb(55, 85, 211);
+    border: none;
+    border-radius: 30px;
+    height: 2.2rem;
+    width: 200px;
+    font-size: 100%;
+    cursor: pointer;
+    color: #EFEFEF;
+    margin: 20px 0 0 0;
+}
+
+.orText {
+    opacity: 90%;
+    font-size: 0.8rem;
+    margin: 12px 0 0 0;
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 300px;
+}
+
+.signUpForm .submit-btn {
+    /* background: linear-gradient(270deg, #7745c8, #b588ff); */
+    border-radius: 30px;
+    /* border: 1px solid #b588ff; */
+    height: 2.6rem;
+    width: 70%;
+    max-width: 200px;
+    font-size: 100%;
+    /* cursor: not-allowed; */
+    margin: 40px auto 0 auto;
+    color: #EFEFEF;
+}
+
+/* .submit-btn-active {
+    cursor: pointer;
+    opacity: 100%;
+} */
+
+.registerFormLabel {
+    margin-top: 12px;
+}
+
+.registerFormInput {
+    margin: 0;
+    padding: 8px;
+    background-color: #3F3E3E;
+    border-radius: 4px;
+    border: 0.6px solid #DBDBDB;
+    color: #EFEFEF;
+}
+
+.inputError {
+    font-size: 0.6rem;
+    margin: 0;
+    padding: 0;
+    color: #FF3838;
+}
+
+.loginText {
+    font-size: 0.7rem;
+}
+
+.loginText a {
+    margin: 0;
+}
+
+.loginText a:hover {
+    color: #7745c8;
+}

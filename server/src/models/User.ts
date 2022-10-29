@@ -31,8 +31,8 @@ const userSchema = new Schema(
     },
 
     type: {
-        type:["admin","user"],
-        default:"user"
+      type: ['admin', 'user'],
+      default: 'user',
     },
 
     //CLOUDINARY
@@ -40,17 +40,18 @@ const userSchema = new Schema(
     //     type: String
     // },
     token: {
-        type: String
+      type: String,
     },
-    activos:{
-        type:Boolean,
-        default:true
-    }
-},
-    {
-        timestamps: true,
-        versionKey: false,
-    });
+    activos: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
 
 //Metodos del modelo
 userSchema.statics.encryptPassword = async (password: any) => {
@@ -68,5 +69,4 @@ userSchema.statics.comparePassword = async (
 
 const userModel = model('User', userSchema);
 
-
- export default userModel; 
+module.exports = userModel;
