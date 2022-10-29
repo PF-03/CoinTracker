@@ -1,21 +1,23 @@
-import { useState } from "react";
-import "./App.css";
-import LandingNavbar from "./components/navbar/LandingNavbar";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/home/home";
-import DetailsActivs from "./components/details-activs/detailsActivs";
+import './App.css';
+import { Login } from './components/login/Login';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/home/home';
+import LandingPage from './views/landingPage/landingPage';
+import FormRegister from './components/FormRegister/FormRegister';
+
+import Activos from './components/ver_mas_activos/ver_mas_activos';
 
 function App() {
-
-
   return (
-    <div className="App">
+    <div className='App'>
       <Routes>
-        <Route path="/">
-          <Route path="/nav" element={<LandingNavbar />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/crypto/:nameActi" element={<DetailsActivs />} />
-        </Route>
+        <Route path='/' element={<LandingPage />} />
+
+        <Route path='/home' element={<Home />} />
+
+        <Route path='register' element={<FormRegister />} />
+
+        <Route path='/login' element={<Login />} />
       </Routes>
     </div>
   );
