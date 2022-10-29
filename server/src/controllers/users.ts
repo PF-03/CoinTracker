@@ -2,7 +2,9 @@ import { Response, Request } from 'express';
 const user = require('../models/User');
 import handleError from '../utils/handleError';
 
+
 const getUsers: any = async (req: Request, res: Response) => {
+
   try {
     const { id } = req.params;
     if (!id) {
@@ -20,7 +22,7 @@ const getUsers: any = async (req: Request, res: Response) => {
   }
 };
 
-const postUsers: any = async (req: Request, res: Response) => {
+const postUsers: Function = async (req: Request, res: Response) => {
   try {
     const body: object = req.body;
     const userCreate = new user(body);
@@ -31,6 +33,7 @@ const postUsers: any = async (req: Request, res: Response) => {
     handleError(res, 'ERROR_POST_USERS');
   }
 };
+
 
 const deleteUsers: any = async (req: Request, res: Response) => {
   try {
@@ -57,3 +60,4 @@ const putUsers: any = async (req: Request, res: Response) => {
   }
 };
 export { getUsers, postUsers, deleteUsers, putUsers };
+
