@@ -3,6 +3,11 @@ import styles from "../styles/AboutUs.module.css";
 import ProfileCamiloSar from "../../assets/profile-CamiloSar.png";
 import profileAlejandroVillegas from "../../assets/profileAlejandroVillegas.jpg";
 import profileJahleel from "../../assets/profileJahleel.jpeg";
+import profileMilagrosVet from "../../assets/profileMilagrosVet.jpeg";
+import profileFernando from "../../assets/profileFernando.jpeg";
+import profileGuglielmo from "../../assets/profileGuglielmo.jpeg";
+import profileAlexandra from "../../assets/profileAlexandra.jpeg";
+import profileManuelGarcia from "../../assets/profileManuelGarcia.jpeg";
 import LinkedIn from "../../assets/linkedin.png";
 import GitHub from "../../assets/github.png";
 const AboutUs = () => {
@@ -20,7 +25,7 @@ const AboutUs = () => {
       ],
     },
     {
-      profileImage: "",
+      profileImage: profileFernando,
       name: "Fernando Campos",
       info: "",
       SocialNetworks: [
@@ -33,7 +38,10 @@ const AboutUs = () => {
       name: "Camilo Sarmiento",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "https://www.linkedin.com/in/camilo-sarmiento-051a80244" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/camilo-sarmiento-051a80244",
+        },
         { logo: GitHub, link: "https://github.com/Camilo-845" },
       ],
     },
@@ -42,43 +50,58 @@ const AboutUs = () => {
       name: "Jahleel Solano",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "https://www.linkedin.com/in/jahleel-solano-101834206/" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/jahleel-solano-101834206/",
+        },
         { logo: GitHub, link: "https://github.com/Jahleels" },
       ],
     },
     {
-      profileImage: "",
+      profileImage: profileAlexandra,
       name: "Alexandra Araujo",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/alexandra-carolina-araujo-sangronis-4568a8154/",
+        },
         { logo: GitHub, link: "https://github.com/AleSangronis" },
       ],
     },
     {
-      profileImage: "https://www.linkedin.com/in/j-manuel-garcia-m/",
+      profileImage: profileManuelGarcia,
       name: "Juancarlos Garcia",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/j-manuel-garcia-m/",
+        },
         { logo: GitHub, link: "https://github.com/ManuGarMon22" },
       ],
     },
     {
-      profileImage: "",
+      profileImage: profileMilagrosVet,
       name: "Milagros Vetcher",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/milagros-vetcher-369b01123/",
+        },
         { logo: GitHub, link: "https://github.com/milivetcher" },
       ],
     },
     {
-      profileImage: "",
-      name: "Gugliermo Caliendo",
+      profileImage: profileGuglielmo,
+      name: "Guglielmo Caliendo",
       info: "",
       SocialNetworks: [
-        { logo: LinkedIn, link: "" },
+        {
+          logo: LinkedIn,
+          link: "https://www.linkedin.com/in/guglielmocaliendosilva/",
+        },
         { logo: GitHub, link: "https://github.com/guglielmoCaliendo" },
       ],
     },
@@ -94,8 +117,8 @@ const AboutUs = () => {
               alt={`${el.name} Image`}
             />
             <div className={styles.textContainer}>
-            <h3>{el.name}</h3>
-            <h6>Fullstack Developer</h6>
+              <h3>{el.name}</h3>
+              <h6>Fullstack Developer</h6>
             </div>
             <div className={styles.socialNet}>
               {el.SocialNetworks.map((sn: any) => {
