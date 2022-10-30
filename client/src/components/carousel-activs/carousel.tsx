@@ -30,12 +30,9 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
           <Swiper
             // install Swiper modules
             modules={[Navigation, /* Scrollbar */ A11y]}
-            spaceBetween={36}
             slidesPerView={3.5}
             navigation
             scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
           >
             {activosSlice &&
               activosSlice.map((el: coinInfo) => (

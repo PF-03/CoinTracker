@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetailsActivos, getActivos } from "../../redux/actions";
+import { getDetailsActivos } from "../../redux/actions";
 import { GrFavorite } from "react-icons/gr";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import Sidebar from "../Sidebar/Sidebar";

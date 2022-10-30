@@ -1,4 +1,5 @@
-import style from "../styles/Sidebar.module.css";
+import style from "./Sidebar.module.css";
+import card from '../styles/styles.module.css'
 import { Link } from "react-router-dom";
 import iconHome from "../../assets/iconHome.png";
 import iconCal from "../../assets/iconCal.png";
@@ -15,8 +16,8 @@ function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
 
   return (
-    <div className={style.sidebar}>
-      <span className={style.head}>
+    <div className={`${style.sidebar} ${card.card}`}>
+      <div className={style.head}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ethereum_logo_translucent.svg/640px-Ethereum_logo_translucent.svg.png"
           alt="logo"
@@ -26,8 +27,8 @@ function Sidebar() {
           {" "}
           CoinTracker
         </Link>
-      </span>
-      <span className={style.options}>
+      </div>
+      <div className={style.options}>
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconUser} alt="user" />
           <span>{/* {user.username} */} Alicia</span>
@@ -52,8 +53,8 @@ function Sidebar() {
           <img className={style.icon} src={iconCal} alt="home" />
           <span>Calculator</span>
         </Link>
-      </span>
-      <span className={style.footer}>
+      </div>
+      <div className={style.footer}>
         <Link to="" className={style.data}>
           <img className={style.icon} src={iconSetting} alt="home" />
           <span>Settings</span>
@@ -62,7 +63,7 @@ function Sidebar() {
           <img className={style.icon} src={iconLogOut} alt="home" />
           <span>Logout</span>
         </Link>
-      </span>
+      </div>
     </div>
   );
 }

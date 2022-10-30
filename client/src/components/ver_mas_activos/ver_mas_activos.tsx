@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivos } from "../../redux/actions/index";
 import css from "../SearchBar/SearchBar.module.css";
+import card from '../styles/styles.module.css'
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+import Bubble from "../styles/bubbles";
 
 function Activos() {
   const dispatch = useDispatch<any>();
@@ -24,27 +26,29 @@ function Activos() {
   }, [dispatch]);
   const navigate = useNavigate();
   return (
-    <div>
+    <div style={{position: 'relative'}}>
       <SearchBar />
-      <div className={css.maincontainer}>
+      <Bubble size="small" left='-3rem' top='20%' />
+      <div className={`${css.tableContainer} ${card.card}`}>
         <table>
           <tbody>
-            <tr>
-              <td>Symbol</td>
-              <td>Name</td>
-              <td>Price</td>
-              <td>Market Capitalization</td>
+            <tr className={css.tHeaders}>
+              <th><div>
+                Name
+              </div></th>
+              <th>Price</th>
+              <th>Market Capitalization</th>
             </tr>
 
             {currentActivos.length > 0 ? (
               currentActivos.map((e: any) => {
                 return (
                   <tr className={css.trespe}>
-                    <td>
-                      <img src={e.image} alt="" width="30px" height="30px" />
-                    </td>
                     <td onClick={() => navigate(`/crypto/${e.id}`)}>
-                      {e.name}
+                        <div className={css.name}>
+                          <img src={e.image} alt="" width="30px" height="30px" />
+                          <span>{e.name}</span>
+                        </div>
                     </td>
                     <td>${e.current_price}</td>
                     <td>{e.market_cap} USD$</td>
@@ -57,6 +61,7 @@ function Activos() {
           </tbody>
         </table>
       </div>
+      <Bubble color="blue-light" size="large" bottom='-50%' right='-20%'/>
     </div>
   );
 }

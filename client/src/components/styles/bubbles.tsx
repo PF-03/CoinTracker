@@ -1,12 +1,12 @@
-import styled from 'styled-components'
+    import styled from 'styled-components'
 
 type Props = {
-    size?: string
+    size?: 'large' | 'medium' | 'small'
     left?: string | number
     right?: string | number
     top?: string | number
     bottom?: string | number
-    color?: string
+    color?: 'purple' | 'blue-light' | 'blue-dark' | 'red'
 }
 
 

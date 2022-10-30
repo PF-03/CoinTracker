@@ -1,82 +1,98 @@
 .inputSearch {
     padding: 8px 2rem;
     border-radius: 1rem 0rem 0rem 1rem;
+    border: none;
 }
+
 .inputPrecios {
     padding: 8px 2rem;
-    border-radius: 1rem ;
+    border-radius: 1rem;
+    border: none;
 }
 
 .container {
     display: flex;
-    justify-content:center;
-    padding:2px;
-   
-}
-.containerSearch{
-    display: flex;
-    justify-content:center;
-    padding:50px;
-    
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 2;
+
 }
 
-.maincontainer{
-    margin: 35px auto;
-    width: 600px; 
-    border-radius: 16px;
+.containerSearch {
+    display: flex;
+    justify-content: center;
 }
+
 .maincontainer:before {
     box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
     filter: blur(10px);
     background: inherit;
 }
-table{
+
+table {
     width: 100%;
-    text-align: left;
-    border-collapse: collapse;
-    background: rgba(219, 219, 219, 0.11);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.5px);
-    -webkit-backdrop-filter: blur(5.5px);
-    border: 1px solid rgba(219, 219, 219, 0.12);
 }
 
-th , td {
-    
-    padding: 15px;
+td,
+th {
+    padding: 1rem 2rem;
 }
 
-.trespe:hover{
-    background-color: #5e548e;
-    color: aliceblue;
+th {
+    text-align: start;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.name span {
+    font-weight: 600;
+}
+
+.trespe {
     cursor: pointer;
-    border-radius: 12px;
+    transition: .2s ease-out;
+}
+
+.trespe:hover {
+    background-color: #5e548e75;
 }
 
 
-.buttonSearch{
-    width: 100px;
-    height: 37px;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border-collapse: collapse;
-    background: rgba(219, 219, 219, 0.11);
-    backdrop-filter: blur(5.5px);
-    -webkit-backdrop-filter: blur(5.5px);
-   
-}
-.buttonFilter{
-    width: 100px;
-    height: 37px;
-    border-radius: 12px;
-    background: #5e548e;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    border: 1.5px solid rgba(209, 213, 219, 0.3);
-    cursor: pointer;
-    margin-bottom: 1px;
-  
-}
+.buttonSearch {
+
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 
 
+}
+
+.tableContainer {
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin-bottom: 5rem;
+}
+
+.tableContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.589);
+    border-radius: 6px;
+}
+
+.tHeaders {
+    position: sticky;
+    top: 0;
+}
+
+.tHeaders th {
+    background: rgba(71, 71, 71, 0.556);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+}

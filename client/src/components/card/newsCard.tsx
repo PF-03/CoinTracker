@@ -2,9 +2,10 @@ import s from '../styles/styles.module.css'
 import styled from 'styled-components'
 
 const ThisCard  = styled.div<Props>`
-display: flex;
+    display: flex;
     height: 16rem;
     width: 26rem;
+    align-items: center;
 
     & div {
         height: 100%;
@@ -30,7 +31,7 @@ export default function NewsCard({_id, image, name, title}: newsCard) {
 
     return(
         <ThisCard img={image} key={_id} className={s.card}>
-                <div></div>
+                <div>{/*This is a image*/}</div>
                 <h6>{title}</h6>
         </ThisCard>
     )
