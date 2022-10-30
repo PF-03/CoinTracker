@@ -5,7 +5,8 @@
   backdrop-filter: blur(5.5px);
   -webkit-backdrop-filter: blur(5.5px);
   border: 1px solid rgba(219, 219, 219, 0.12);
-  min-height: 330px;
+  height: 320px;
+  width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;

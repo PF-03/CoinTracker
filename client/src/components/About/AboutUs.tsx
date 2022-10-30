@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/AboutUs.module.css";
+import styles from "./AboutUs.module.css";
 import ProfileCamiloSar from "../../assets/profile-CamiloSar.png";
 import profileAlejandroVillegas from "../../assets/profileAlejandroVillegas.jpg";
 import profileJahleel from "../../assets/profileJahleel.jpeg";
@@ -117,8 +117,8 @@ const AboutUs = () => {
               alt={`${el.name} Image`}
             />
             <div className={styles.textContainer}>
-              <h3>{el.name}</h3>
-              <h6>Fullstack Developer</h6>
+              <h6>{el.name}</h6>
+              <span>Fullstack Developer</span>
             </div>
             <div className={styles.socialNet}>
               {el.SocialNetworks.map((sn: any) => {

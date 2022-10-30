@@ -30,7 +30,7 @@ export default function DetailsActivs() {
   console.log(porcentaje);
 
   return (
-    <div>
+    <div style={{display : 'flex'}}>
       <Sidebar />
       <div className={s.contenedor}>
         {!details || details?.id !== nameActi.toString() ? (
@@ -50,11 +50,9 @@ export default function DetailsActivs() {
                 <div className={s.cBotones}>
                   <div className={s.botones}>
                     <div>
-                      {" "}
                       <GrFavorite />
                     </div>
                     <div>
-                      {" "}
                       <HiOutlineBellAlert />
                     </div>
                   </div>

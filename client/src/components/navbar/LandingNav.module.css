@@ -1,13 +1,20 @@
 
 .background {
-  display: grid;
-  grid-template-columns: 20% 65% 2%;
-  align-items: center;
   position: fixed;
   z-index: 10;
   top: 1.5rem;
-  width: 90%;
-  left: 5%;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+.background div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.background div > div{
+  padding: 0 2rem;
+  display: flex;
 }
 
 .navButtons a:after {
