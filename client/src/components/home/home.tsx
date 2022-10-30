@@ -4,12 +4,23 @@ import CarouselNews from "../crousel-news/carousel";
 import Bubble from "../styles/bubbles";
 import style from "./home.module.css";
 import Sidebar from "../Sidebar/Sidebar";
+import VerMas from "../ver_mas_activos/ver_mas_activos";
+import { seeMore } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../styles/button";
 
 export default function Home() {
-  const [seeMore, setSeeMore] = useState(false);
-  const handleSeeMore: any = (e: any) => {
+  /*   const [seeMore, setSeeMore] = useState(false); */
+  /*   const handleSeeMore: any = (e: any) => {
     setSeeMore(true);
+  }; */
+  const dispatch = useDispatch();
+  const infoSeeMore = useSelector((state: any) => state.seeMore);
+  console.log(infoSeeMore);
+  const handleSeeMore: any = () => {
+    dispatch(seeMore());
   };
+  const h4 = infoSeeMore;
   return (
     <div className={style.view}>
       <div>
@@ -20,9 +31,14 @@ export default function Home() {
         <div>
           <h4 className={style.title}>Most Relevants Coins</h4>
           <Carousel handleSeeMore={handleSeeMore} />
-
-          <h4 className={style.title}>Most relevant News</h4>
-          {!seeMore && <CarouselNews />}
+          {h4 === false && <h4 className={style.title}>Most relevant News</h4>}
+          {infoSeeMore === false && <CarouselNews />}
+          {h4 === true && (
+            <div className={style.seeLess} onClick={() => handleSeeMore()}>
+              <Button gradient>See Less</Button>{" "}
+            </div>
+          )}
+          {infoSeeMore === true && <VerMas />}
         </div>
       </div>
     </div>

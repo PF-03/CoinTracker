@@ -31,6 +31,17 @@ export function getNameActivos(name:any){
     }
 }
 
+export function getNews(){
+    return function(dispatch){
+        fetch("http://localhost:3001/news")
+        .then(res=>res.json())
+        .then(res=>{
+            dispatch({
+                type:"GET_NEWS",
+                payload:res
+            })
+        })}}
+
 export function getDetailsActivos(id:any){
     
     return {
@@ -45,4 +56,9 @@ export function getDetailsNews(id:string){
         payload:id
     }
 
+}
+export function seeMore(){
+    return {
+        type:"GET_SEEMORE"
+    }
 }

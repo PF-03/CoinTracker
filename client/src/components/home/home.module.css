@@ -12,3 +12,8 @@
   display: flex;
   justify-content: space-between;
 }
+.seeLess{
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
+}
