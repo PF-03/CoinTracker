@@ -23,20 +23,15 @@ passport.use(
     },
     async (req: any, mail: any, password: any, done: any) => {
       try {
-        const dbUser = await user.findOne({ mail });
-        if (dbUser) {
-          return done(null, false);
-        } else {
-          const { username, name, lastname } = req.body;
-          const newUser = await user.create({
-            username,
-            mail: mail,
-            password: await user.encryptPassword(password),
-            name,
-            lastname,
-          });
-          return done(null, newUser);
-        }
+        const { username, name, lastname } = req.body;
+        const newUser = await user.create({
+          username,
+          mail: mail,
+          password: await user.encryptPassword(password),
+          name,
+          lastname,
+        });
+        return done(null, newUser);
       } catch (e) {
         done(e);
       }
@@ -62,7 +57,6 @@ passport.use(
         if (!validate) {
           return done(null, false, { message: 'wrong password' });
         }
-        console.log(dbUser);
         return done(null, dbUser, { message: 'successfull' });
       } catch (e) {
         done(e);
