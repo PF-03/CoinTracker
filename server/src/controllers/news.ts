@@ -33,6 +33,7 @@ try{
         const dateAll=await News.find({})
         return res.json(dateAll)
         }
+       
         return res.json(getModel)
 }catch(e){
     handleError(res, "ERROR_GET_NEWS")
