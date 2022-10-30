@@ -14,8 +14,8 @@ type Props = {
     z-index: -1;
     position: absolute;
     border-radius: 100%;
-    width: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315' : props.size === 'small' ? '162px' : '676px'};
-    height: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315' : props.size === 'small' ? '162px' : '676px'};
+    width: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315px' : props.size === 'small' ? '162px' : '676px'};
+    height: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315px' : props.size === 'small' ? '162px' : '676px'};
     left: ${ props => props.left ?? 'auto'};
     top: ${ props => props.top ?? 'auto'};
     right: ${ props => props.right ?? 'auto'};

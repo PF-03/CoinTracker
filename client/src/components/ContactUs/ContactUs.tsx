@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/ContactUs.module.css";
+import styles from "./ContactUs.module.css";
 import Button from "../styles/button";
 import Telefono from "../../assets/telefono.png";
 import { useDispatch, useSelector } from "react-redux";

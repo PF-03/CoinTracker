@@ -17,23 +17,26 @@ function LandingNavbar() {
   // };
 
   return (
-    <div className={`${style.background} ${s.card}`}>
-      <div className={style.title}>
-        <Link to="#home">CoinTracker</Link>
-      </div>
-      <ul className={style.navButtons}>
-        <Link to="#About">About Us</Link>
-        <Link to="#ReviewLanding">Reviews</Link>
-        <Link to="#ContactUs">Contact Us</Link>
-      </ul>
-      {console.log("se actualizo")}
-      <div className={style.button}>
-        <a href="register">
-        <Button>Register</Button>
-        </a>
-        <a href="login">
-          <Button gradient>Login</Button>
-        </a>
+    <div className={style.background}>
+      <div className={s.card}>
+        <div>
+          <div className={style.title}>
+            <a href="#home">CoinTracker</a>
+          </div>
+          <ul className={style.navButtons}>
+            <a href="#About">About Us</a>
+            <a href="#ReviewLanding">Reviews</a>
+            <a href="#ContactUs">Contact Us</a>
+          </ul>
+        </div>
+        <div className={style.button}>
+          <Link to="register">
+            <Button>Register</Button>
+          </Link>
+          <Link to="login">
+            <Button gradient>Login</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );
