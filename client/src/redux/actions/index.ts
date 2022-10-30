@@ -1,5 +1,3 @@
-import { Action } from '@remix-run/router';
-import { useDispatch } from "react-redux";
 import axios from 'axios';
 
 

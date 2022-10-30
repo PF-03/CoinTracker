@@ -24,6 +24,11 @@ function rootReducer (state = initialState , action:any){
                 activos: action.payload
 
             }
+
+        case "POST_MAIL":
+            return{
+                ...state
+            }
         case "GET_DETAILS_ACTIVOS":{
             
             let filter=state.allactivos.filter((el:any)=>el.id.toString()===action.payload)
