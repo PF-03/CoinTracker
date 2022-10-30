@@ -10,7 +10,7 @@
     content: "";
     position: absolute;
     left: -20rem;
-    background-color: rgb(22, 230, 230);
+    background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
     transition: color 0.1s, background-color 0.2s ease-in-out;
 }
 
@@ -21,6 +21,9 @@
 .barra_20::after{
     transform: translateX(20%);
 } 
+.barra_25::after{
+    transform: translateX(25%);
+} 
 .barra_30::after{
     transform: translateX(30%);
 } 
@@ -30,11 +33,23 @@
 .barra_50::after{
     transform: translateX(50%);
 } 
+.barra_51::after{
+    transform: translateX(51%);
+} 
+.barra_56::after{
+    transform: translateX(56%);
+}
+.barra_58::after{
+    transform: translateX(58%);
+}
 .barra_60::after{
     transform: translateX(60%);
 } 
 .barra_70::after{
     transform: translateX(70%);
+} 
+.barra_79::after{
+    transform: translateX(79%);
 } 
 .barra_80::after{
     transform: translateX(80%);
