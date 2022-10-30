@@ -30,7 +30,7 @@ function Sidebar() {
       <span className={style.options}>
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconUser} alt="user" />
-          <span>{user.username}</span>
+          <span>{/* {user.username} */} Alicia</span>
         </Link>
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconHome} alt="home" />
