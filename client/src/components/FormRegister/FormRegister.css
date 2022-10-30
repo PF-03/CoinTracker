@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+.signUpContainer h2 {
+    margin-bottom: 1rem;
+}
+
 .googleSignUp {
     background-color: rgb(55, 85, 211);
     border: none;
@@ -49,14 +53,15 @@
 
 .registerFormLabel {
     margin-top: 12px;
+    margin-bottom: 4px;
 }
 
 .registerFormInput {
     margin: 0;
-    padding: 8px;
+    padding: .7rem 2rem;
     background-color: #3F3E3E;
-    border-radius: 4px;
-    border: 0.6px solid #DBDBDB;
+    border-radius: 2rem;
+    border: none;
     color: #EFEFEF;
 }
 

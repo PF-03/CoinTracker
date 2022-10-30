@@ -30,6 +30,7 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
           <Swiper
             // install Swiper modules
             modules={[Navigation, /* Scrollbar */ A11y]}
+            slidesOffsetAfter={50}
             slidesPerView={3.5}
             navigation
             scrollbar={{ draggable: true }}

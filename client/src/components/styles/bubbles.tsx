@@ -8,31 +8,16 @@ type Props = {
   bottom?: string | number;
   color?: 'purple' | 'blue-light' | 'blue-dark' | 'red';
 };
-
-const Bubble = styled.div<Props>`
-  z-index: -1;
-  position: absolute;
-  border-radius: 100%;
-  width: ${(props) =>
-    props.size === 'large'
-      ? '560px'
-      : props.size === 'medium'
-      ? '315px'
-      : props.size === 'small'
-      ? '162px'
-      : '676px'};
-  height: ${(props) =>
-    props.size === 'large'
-      ? '560px'
-      : props.size === 'medium'
-      ? '315px'
-      : props.size === 'small'
-      ? '162px'
-      : '676px'};
-  left: ${(props) => props.left ?? 'auto'};
-  top: ${(props) => props.top ?? 'auto'};
-  right: ${(props) => props.right ?? 'auto'};
-  bottom: ${(props) => props.bottom ?? 'auto'};
+ const Bubble = styled.div<Props>`
+    z-index: -1;
+    position: absolute;
+    border-radius: 100%;
+    width: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315px' : props.size === 'small' ? '162px' : '676px'};
+    height: ${ props => props.size === 'large' ? '560px' : props.size === 'medium' ? '315px' : props.size === 'small' ? '162px' : '676px'};
+    left: ${ props => props.left ?? 'auto'};
+    top: ${ props => props.top ?? 'auto'};
+    right: ${ props => props.right ?? 'auto'};
+    bottom: ${ props => props.bottom ?? 'auto'};
 
   background: ${(props) =>
     props.color === 'red'
