@@ -32,6 +32,7 @@ export function getNameActivos(name: any, minimo: any, maximo: any) {
   };
 }
 
+
 export function getNews() {
   return function (dispatch) {
     fetch('http://localhost:3001/news')
@@ -77,8 +78,22 @@ export function setUser(user: any) {
   };
 }
 
-export function postMail() {
-  return {
-    type: 'POST_MAIL'
-  }
+export function postMail(data:any){
+  return function(dispatch:any){
+      return fetch("http://localhost:3001/mail/",
+  {
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(data)
+  })
+  .then(res=>res.json())
+  .then(res=>{
+      dispatch({
+          type:"POST_MAIL",
+          payload:res
+      })})}
+
 }
