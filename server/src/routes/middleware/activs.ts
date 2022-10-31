@@ -21,7 +21,7 @@ activos.get('/', async (req, res)=> {
             //res.json({message:'active not found'})
             console.log('error')
 
-    
+        }
     if(maximo){
     
         const menoresAmaximo= await getMenoresA(maximo,activos_);
