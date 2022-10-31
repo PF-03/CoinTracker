@@ -14,12 +14,12 @@ activos.get('/', async (req, res)=> {
 
 
     if(name){
-        if(activos_.length<0){
+       
             let foundName = activos_?.filter((e:any)=>e.name.toLowerCase().includes(name.toString().toLowerCase()));
             foundName.length?
             activos_=foundName:
             //res.json({message:'active not found'})
-            console.log('error')}
+            console.log('error')
 
     }
     if(maximo){
