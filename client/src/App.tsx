@@ -5,6 +5,7 @@ import Home from "./components/home/home";
 import LandingPage from "./views/landingPage/landingPage";
 import FormRegister from "./components/FormRegister/FormRegister";
 import DetailsActivs from "./components/details-activs/detailsActivs";
+import Review from "./components/Review/Review"
 
 import Activos from "./components/ver_mas_activos/ver_mas_activos";
 
@@ -15,6 +16,8 @@ function App() {
         <Route path="/" element={<LandingPage />} />
 
         <Route path="/home" element={<Home />} />
+
+        <Route path="/review" element={<Review />} />
 
         <Route path="/crypto/:nameActi" element={<DetailsActivs />} />
 

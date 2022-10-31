@@ -1,0 +1,71 @@
+.reviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reviewContainer h2 {
+    margin-bottom: 1rem;
+}
+
+.orText {
+    opacity: 90%;
+    font-size: 0.8rem;
+    margin: 12px 0 0 0;
+}
+
+.reviewForm {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 300px;
+}
+
+.reviewForm .submit-btn {
+    /* background: linear-gradient(270deg, #7745c8, #b588ff); */
+    border-radius: 30px;
+    /* border: 1px solid #b588ff; */
+    height: 2.6rem;
+    width: 70%;
+    max-width: 200px;
+    font-size: 100%;
+    /* cursor: not-allowed; */
+    margin: 40px auto 0 auto;
+    color: #EFEFEF;
+}
+
+/* .submit-btn-active {
+    cursor: pointer;
+    opacity: 100%;
+} */
+
+.reviewFormLabel {
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.reviewFormInput {
+    margin: 0;
+    padding: .7rem 2rem;
+    background-color: #3F3E3E;
+    border-radius: 2rem;
+    border: none;
+    color: #EFEFEF;
+}
+
+.reviewFormSelect {
+    margin: 0;
+    padding: .7rem 2rem;
+    background-color: #3F3E3E;
+    border-radius: 2rem;
+    border: none;
+    color: #EFEFEF;
+}
+
+.inputError {
+    font-size: 0.6rem;
+    margin: 0;
+    padding: 0;
+    color: #FF3838;
+}
+
