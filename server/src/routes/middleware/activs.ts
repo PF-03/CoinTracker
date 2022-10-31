@@ -19,7 +19,8 @@ activos.get('/', async (req, res)=> {
             foundName.length?
             activos_=foundName:
             //res.json({message:'active not found'})
-            console.log('error')}
+            console.log('error')
+        }
 
     
     if(maximo){
