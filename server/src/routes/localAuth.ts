@@ -9,7 +9,8 @@ router.post(
   '/signup',
   passport.authenticate('signup'),
   (req: any, res: any) => {
-    res.send(req.user);
+    const token =jwt.sign({user:req.user}, "top_secret");
+   return res.json({token});
   }
 );
 
