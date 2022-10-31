@@ -17,6 +17,7 @@ type PrivateProps = {
 export default function Carousel({ handleSeeMore }: PrivateProps) {
   const dispatch: any = useDispatch();
   const activos = useSelector((state: any) => state.allactivos);
+  const see = useSelector((state: any) => state.seeMore);
   const activosSlice = activos.slice(0, 6);
 
   useEffect(() => {
@@ -35,8 +36,9 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
             navigation
             scrollbar={{ draggable: true }}
           >
-            {activosSlice &&
-              activosSlice.map((el: coinInfo) => (
+            {activosSlice.length > 0 &&
+              activosSlice !== "error" &&
+              activosSlice?.map((el: coinInfo) => (
                 <SwiperSlide key={el.name}>
                   <Card
                     id={el.id}
@@ -48,7 +50,7 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
               ))}
             <SwiperSlide>
               <div className={style.seeMore} onClick={() => handleSeeMore()}>
-                <h4>Ver mas</h4>
+                <h4>{see === false ? "Ver mas" : "Ver menos"}</h4>
               </div>
             </SwiperSlide>
           </Swiper>

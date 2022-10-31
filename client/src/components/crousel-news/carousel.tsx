@@ -15,7 +15,7 @@ export default function CarouselNews() {
   const dispatch: any = useDispatch();
   const newss = useSelector((state: any) => state.newsAll);
   let key1: number = 9903;
-  const newssSlice = newss.slice(0, 10);
+  const newssSlice = newss?.slice(0, 10);
 
   useEffect(() => {
     dispatch(getNews());
@@ -35,7 +35,8 @@ export default function CarouselNews() {
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log("slide change")}
           >
-            {newssSlice &&
+            {newssSlice.length > 0 &&
+              newssSlice !== "error" &&
               newssSlice.map((el: any) => (
                 <SwiperSlide key={key1++}>
                   <NewsCard
