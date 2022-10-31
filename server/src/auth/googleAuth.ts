@@ -10,25 +10,26 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/googleauth/google/callback',
     },
-    function (accessToken: any, refreshToken: any, profile: any, cb: any) {
-      user.findOne({ googleId: profile.id }, async (err: Error, doc: any) => {
-        if (err) {
-          return cb(err, null);
-        }
+    async function (
+      accessToken: any,
+      refreshToken: any,
+      profile: any,
+      cb: any
+    ) {
+      const dbUser = await user.findOne({ googleId: profile.id });
 
-        if (!doc) {
-          const newUser = new user({
-            googleId: profile.id,
-            username: profile.name.givenName + profile.name.familyName,
-            mail: profile.emails[0].value,
-            name: profile.name.givenName,
-            lastname: profile.name.familyName,
-          });
-          await newUser.save();
-          cb(null, newUser);
-        }
-        cb(null, doc);
-      });
+      if (dbUser) {
+        return cb(null, dbUser);
+      } else {
+        const newUser = await user.create({
+          googleId: profile.id,
+          username: profile.name.givenName + profile.name.familyName,
+          mail: profile.emails[0].value,
+          name: profile.name.givenName,
+          lastname: profile.name.familyName,
+        });
+        cb(null, newUser);
+      }
     }
   )
 );
