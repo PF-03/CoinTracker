@@ -9,6 +9,7 @@ import { dbConn } from './db';
 import cors from 'cors';
 import session from 'express-session';
 import passport from 'passport';
+import cookieParser from 'cookie-parser';
 const app: any = express();
 
 //Middlewares
@@ -27,6 +28,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(cookieParser('secreto'));
 app.use(passport.initialize());
 app.use(passport.session());
 

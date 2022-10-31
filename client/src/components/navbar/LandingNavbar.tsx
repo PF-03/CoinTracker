@@ -1,20 +1,10 @@
-import { Link } from "react-router-dom";
-import Button from "../styles/button";
-import style from "./LandingNav.module.css";
-import s from "../styles/styles.module.css";
+import Button from '../styles/button';
+import style from './LandingNav.module.css';
+import s from '../styles/styles.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function LandingNavbar() {
-  // const userData = useContext(myContext);
-
-  // const logout = () => {
-  //   axios
-  //     .get('http://localhost:3001/googleauth/logout', { withCredentials: true })
-  //     .then((res: AxiosResponse) => {
-  //       if (res.data === 'done') {
-  //         window.location.href = '/';
-  //       }
-  //     });
-  // };
+  const navigate = useNavigate();
 
   return (
     <div className={style.background}>
@@ -30,12 +20,8 @@ function LandingNavbar() {
           </ul>
         </div>
         <div className={style.button}>
-          <Link to="register">
-            <Button>Register</Button>
-          </Link>
-          <Link to="login">
-            <Button gradient>Login</Button>
-          </Link>
+            <Button onClick={() => {navigate('/register')}}>Register</Button>
+            <Button gradient onClick={() => {navigate('/login')}}>Login</Button>
         </div>
       </div>
     </div>

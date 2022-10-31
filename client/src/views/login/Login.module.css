@@ -1,0 +1,101 @@
+.layout {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(219, 219, 219, 0.11);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
+  /* border: 1px solid rgba(219, 219, 219, 0.12); */
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  /* border: 1px solid rgba(219, 219, 219, 0.12); */
+  border-radius: 0 16px 16px 0;
+  min-width: 350px;
+  align-items: center;
+  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
+}
+
+.login-container-input {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.options-remember {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.options {
+  font-size: 12px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
+}
+
+.button-container button {
+  margin-top: 30px;
+}
+
+.button-container p {
+  text-align: center;
+}
+
+.title-container {
+  margin-right: 50px;
+  align-self: flex-end;
+}
+
+h1.title {
+  font-family: 'Oswald';
+}
+
+.login-button {
+  font-size: 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(45, 40, 40, 0.43);
+  background-color: rgba(12, 9, 9, 0.265);
+  cursor: pointer;
+  height: 45px;
+}
+
+.google-button {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.login-input {
+  padding: .7rem 2rem;
+  border: none;
+  border-radius: 2rem;
+  margin: 8px 0;
+}

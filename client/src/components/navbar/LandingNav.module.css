@@ -12,7 +12,7 @@
   justify-content: space-between;
 }
 
-.background div > div{
+.background div>div {
   padding: 0 2rem;
   display: flex;
 }
@@ -22,14 +22,15 @@
   position: absolute;
   width: 0%;
   height: 4px;
-  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);;
+  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
+  ;
   left: 0;
   bottom: -6px;
   border-radius: 2px;
   transition: .3s ease;
 }
 
-.navButtons a:hover:after{
+.navButtons a:hover:after {
   width: 100%;
 }
 
@@ -72,4 +73,3 @@
   justify-content: center;
   gap: 1rem;
 }
-

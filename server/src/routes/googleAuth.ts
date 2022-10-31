@@ -15,21 +15,12 @@ router.get(
     failureRedirect: 'http://localhost:5173/login',
   }),
   function (req: any, res: any) {
-    res.redirect('http://localhost:5173');
+    res.redirect('http://localhost:5173/home');
   }
 );
 
 router.get('/getuser', (req: any, res: any) => {
   res.send(req.user);
-});
-
-router.get('/logout', (req: any, res: any, next: any) => {
-  req.logout((err: Error) => {
-    if (err) {
-      return next(err);
-    }
-    res.send('done');
-  });
 });
 
 export default router;

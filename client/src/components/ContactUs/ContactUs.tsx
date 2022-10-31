@@ -3,7 +3,7 @@ import styles from "./ContactUs.module.css";
 import Button from "../styles/button";
 import Telefono from "../../assets/telefono.png";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "../../redux/actions";
+import { postMail } from "../../redux/actions";
 const ContactUs = () => {
   const dispatch:any = useDispatch()
   const [state, setState] = React.useState({
@@ -19,7 +19,7 @@ const ContactUs = () => {
   };
   const HandleSubmit = (e) => {
     e.preventDefault();
-    dispatch(actions.postMail(state))
+    dispatch(postMail())
     console.log("submit ", state);
   };
   return (
