@@ -11,7 +11,7 @@ const postMail: any = async (req: Request, res: Response) => {
     var  {name,email,message}=req.body
     if(!name)name="Anonumus name";
     if(!message)message="No message"
-    if(!email)res.status(404).send("Email is not provided")
+    if(!email)return res.status(404).json({error:"Email is not provided"})
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,

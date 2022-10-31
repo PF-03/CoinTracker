@@ -17,7 +17,7 @@ passport.use(
   'signup',
   new localStrategy(
     {
-      usernameField: 'email',
+      usernameField: 'mail',
       passwordField: 'password',
       passReqToCallback: true,
     },
