@@ -19,8 +19,7 @@ const ContactUs = () => {
   };
   const HandleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postMail())
-    console.log("submit ", state);
+    dispatch(postMail(state))
   };
   return (
       <div className={styles.mainContainer}>
