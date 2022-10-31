@@ -7,8 +7,33 @@ import { HiOutlineBellAlert } from "react-icons/hi2";
 import Sidebar from "../Sidebar/Sidebar";
 import s from "./detailsActivs.module.css";
 import Button from "../styles/button";
-import "./barra.css";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import Bubble from "../styles/bubbles";
+
+type barraProps = {
+  porcentaje: number
+}
+
+const Barra = styled.div<barraProps>`
+    position: relative;
+    width: 20rem;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden; 
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: ${ props => props.porcentaje}%;
+      height: 8px;
+      border-radius: 10px;
+      overflow: hidden; 
+      background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
+      transition: color 0.1s, background-color 0.2s ease-in-out;
+    }
+`
 
 export default function DetailsActivs() {
   let use = useParams();
@@ -26,12 +51,13 @@ export default function DetailsActivs() {
 
   let precio = details?.current_price - details?.low_24h;
 
-  let porcentaje: Number = Math.ceil((precio * 100) / difPrecios);
+  let porcentaje: number = Math.ceil((precio * 100) / difPrecios);
   console.log(porcentaje);
 
   return (
     <div style={{display : 'flex'}}>
       <Sidebar />
+      <Bubble size="medium" right='10%' bottom={0} />
       <div className={s.contenedor}>
         {!details || details?.id !== nameActi.toString() ? (
           <h3>Cargando</h3>
@@ -59,7 +85,7 @@ export default function DetailsActivs() {
                 </div>
               </div>
               <div>
-                <div className={`barra barra_${porcentaje}`}></div>
+                <Barra porcentaje={porcentaje} />
                 <div className={s.lowhigh}>
                   <span>{details.low_24h} US$</span>
                   <span>{details.high_24h} US$</span>
