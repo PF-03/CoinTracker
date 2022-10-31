@@ -1,42 +1,28 @@
-import { Link } from "react-router-dom";
-import Button from "../styles/button";
-import style from "./LandingNav.module.css";
-import s from "../styles/styles.module.css";
+import { Link } from 'react-router-dom';
+import Button from '../styles/button';
+import style from './LandingNav.module.css';
+import s from '../styles/styles.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function LandingNavbar() {
-  // const userData = useContext(myContext);
-
-  // const logout = () => {
-  //   axios
-  //     .get('http://localhost:3001/googleauth/logout', { withCredentials: true })
-  //     .then((res: AxiosResponse) => {
-  //       if (res.data === 'done') {
-  //         window.location.href = '/';
-  //       }
-  //     });
-  // };
+  const navigate = useNavigate();
 
   return (
-    <div className={style.background}>
-      <div className={s.card}>
-        <div>
-          <div className={style.title}>
-            <a href="#home">CoinTracker</a>
-          </div>
-          <ul className={style.navButtons}>
-            <a href="#About">About Us</a>
-            <a href="#ReviewLanding">Reviews</a>
-            <a href="#ContactUs">Contact Us</a>
-          </ul>
-        </div>
-        <div className={style.button}>
-          <Link to="register">
-            <Button>Register</Button>
-          </Link>
-          <Link to="login">
-            <Button gradient>Login</Button>
-          </Link>
-        </div>
+    <div className={`${style.background} ${s.card}`}>
+      <div className={style.title}>
+        <Link to='#home'>CoinTracker</Link>
+      </div>
+      <ul className={style.navButtons}>
+        <Link to='#About'>About Us</Link>
+        <Link to='#ReviewLanding'>Reviews</Link>
+        <Link to='#ContactUs'>Contact Us</Link>
+      </ul>
+      {console.log('se actualizo')}
+      <div className={style.button}>
+        <Button onClick={() => navigate('/register')}>Register</Button>
+        <Button gradient onClick={() => navigate('/login')}>
+          Login
+        </Button>
       </div>
     </div>
   );
