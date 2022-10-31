@@ -1,6 +1,7 @@
 .contenedor{
     padding-left: 4rem;
     padding-top: 4rem;
+    overflow: hidden;
 }
 .box{
     display: flex;
