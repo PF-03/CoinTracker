@@ -78,8 +78,10 @@
 
 .loginText a {
     margin: 0;
+    color: #C6B0E8;
+    text-decoration: none;
 }
 
 .loginText a:hover {
-    color: #7745c8;
+    color: #B090DF;
 }

@@ -5,6 +5,7 @@ import Button from "../styles/button";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 function FormRegister() {
   const [inputs, setInputs] = useState({
@@ -130,10 +131,19 @@ function FormRegister() {
           console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
-      alert("Genial, tu cuenta se creo con éxito.");
+      Swal.fire({
+        icon: 'success',
+        title: 'Your account was created!',
+        confirmButtonText: "Let's go!"
+      })
       navigate("/home");
     } catch (error) {
-      alert(`Ups, algo salio mal intenta de nuevo.\n${error}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops, something went wrong',
+        text: `${error}`,
+        confirmButtonText: 'Try again'
+      })
     }
   }
   const google = () => {
@@ -142,17 +152,17 @@ function FormRegister() {
 
   return (
     <div className="signUpContainer">
-      <h2>Crea tu cuenta:</h2>
+      <h2>Create your account:</h2>
 
       <button className="googleSignUp" onClick={google}>
-        Registrate con Google
+        Register with Google
       </button>
 
-      <p className="orText">O</p>
+      <p className="orText">Or</p>
 
       <form onSubmit={submitForm} className="signUpForm">
         <label className="registerFormLabel" htmlFor="name">
-          Nombre:{" "}
+          Name:{" "}
         </label>
         <input
           className="registerFormInput"
@@ -166,7 +176,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="lastname">
-          Apellido:{" "}
+          Lastname:{" "}
         </label>
         <input
           className="registerFormInput"
@@ -180,7 +190,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="username">
-          Usuario:
+          Username:
         </label>
         <input
           required
@@ -212,7 +222,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="password">
-          Contraseña:{" "}
+          Password:{" "}
         </label>
         <input
           required
@@ -229,7 +239,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="passwordConfirm">
-          Confirma contraseña:{" "}
+          Confirm password:{" "}
         </label>
         <input
           className="registerFormInput"
@@ -251,12 +261,12 @@ function FormRegister() {
           type="submit"
           disabled={inputs.disabled}
         >
-          Crear cuenta
+          Create
         </Button>
       </form>
 
       <p className="loginText">
-        ¿Ya tienes una cuenta? <a href="">Haz login</a>
+        Already have an account? <a href="">Login</a>
       </p>
     </div>
   );
