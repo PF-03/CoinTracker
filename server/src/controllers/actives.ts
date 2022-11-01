@@ -47,7 +47,7 @@ else if(!horaModel){
                 symbol: e.symbol,
                 name: e.name,
                 image: e.image,
-                current_price: e.current_price,
+                current_price: parseInt(e.current_price),
                 market_cap: e.market_cap,
                 high_24h: e.high_24h,
                 low_24h: e.low_24h,
