@@ -8,6 +8,7 @@ import DetailsActivs from "./components/details-activs/detailsActivs";
 import Review from "./components/Review/Review"
 
 import Activos from "./components/ver_mas_activos/ver_mas_activos";
+import Calculadora from "./components/Calculadora/calculadora";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/wallet" element={<Activos />} />
+
+        <Route path="/calculadora" element={<Calculadora/>}/>
       </Routes>
     </div>
   );
