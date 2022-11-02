@@ -1,5 +1,7 @@
 import axios from 'axios';
-import activos from "../models/activos"
+import activos from "../models/activos";
+//import numberFormat from '../../../client/src/utils/numberFormat.js';
+
 
 export const getActivos = async (): Promise<any> => {
     const date=new Date()

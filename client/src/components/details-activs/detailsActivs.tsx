@@ -10,6 +10,7 @@ import Button from "../styles/button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Bubble from "../styles/bubbles";
+import numberFormat from '../../utils/numberFormat.js';
 
 type barraProps = {
   porcentaje: number;
@@ -101,7 +102,7 @@ export default function DetailsActivs() {
               </div>
             </div>
             <div className={s.price}>
-              <h3>Price {details.current_price} US$</h3>
+              <h3>Price {numberFormat(details.current_price,'standard')} </h3>
             </div>
             <div className={s.conInfo}>
               <div className={s.info}>
@@ -111,7 +112,7 @@ export default function DetailsActivs() {
                       <strong>Capitalizacion del mercado</strong>
                     </p>
                     <p>
-                      {details.current_price * details.circulating_supply} US$
+                      {numberFormat(details.current_price * details.circulating_supply,'standard')} 
                     </p>
                   </div>
                   <div>
@@ -119,13 +120,13 @@ export default function DetailsActivs() {
                       {" "}
                       <strong>Volumen de comercio</strong>
                     </p>
-                    <p>{details.total_volume} US$</p>
+                    <p>{numberFormat(details.total_volume,'standard')} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Valoracion tras la dilucion total </strong>
                     </p>
-                    <p>{details.current_price * details.max_supply}</p>
+                    <p>{numberFormat(details.current_price * details.max_supply,'standard')}</p>
                   </div>
                 </div>
 
@@ -134,19 +135,19 @@ export default function DetailsActivs() {
                     <p className={s.p}>
                       <strong>Cantidad circulante</strong>
                     </p>
-                    <p>{details.circulating_supply} US$</p>
+                    <p>{numberFormat(details.circulating_supply,'standard')} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Cantidad total</strong>
                     </p>
-                    <p>{details.total_supply} US$</p>
+                    <p>{numberFormat(details.total_supply, 'standard')} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Catidad max.</strong>
                     </p>
-                    <p>{details.max_supply} US$</p>
+                    <p>{numberFormat(details.max_supply,'standard')} </p>
                   </div>
                 </div>
               </div>
