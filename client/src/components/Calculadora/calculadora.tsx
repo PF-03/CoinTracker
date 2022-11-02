@@ -19,23 +19,30 @@ function Calculadora(){
     function HandleInputs(){
         const input_select = document.getElementById('select') as HTMLInputElement | null;
         const input_cantidad = document.getElementById('kantidad') as HTMLInputElement | null;
-        const matilde = document.getElementById('matilde') as HTMLDivElement | null;
-        matilde.innerHTML='';
+        const renderizado = document.getElementById('renderizado') as HTMLElement | null;
+        renderizado.innerHTML='';
 
         currentActivos?
         currentActivos.map((e:any)=>{
               let result = calcular(e, input_select, input_cantidad);
-              let child=document.createElement('div')
+              let child=document.createElement('tr')
               child.id=e.id
               child.innerHTML=
                 `
-                  <div key=${e.id}>
-                  <img src=${e.image} alt="" width="30px" height="30px" />
-                  <h1 >${e.name}</h1>
-                  <h2>${result}</h2>
-                  </div>
+                              
+                                <td>
+                                  <img src=${e.image} alt="" width="30px" height="30px" />
+                                </td>
+                                <td>
+                                  ${e.name}
+                                </td>
+                                <td>
+                                  ${result}
+                                </td>
+                           
+                            
                   `
-                matilde.appendChild(child )
+                renderizado.appendChild(child )
           }):
           console.log('error')
         
@@ -48,11 +55,11 @@ function Calculadora(){
         //const input_cantidad = document.getElementById('kantidad') as HTMLInputElement | null;
         const moneda = currentActivos.find((e:any)=> e.name === input_select.value);
         let cantidad = input_cantidad.value? input_cantidad.value:1
-        console.log(input_cantidad.value)
+        //console.log(input_cantidad.value)
         const usd_total = moneda?.current_price * parseInt(cantidad);
-        console.log(usd_total)
+        //console.log(usd_total)
         const result = usd_total/monedamap.current_price;
-        console.log(result)
+        //console.log(result)
         return result;
     }
    
@@ -60,6 +67,7 @@ function Calculadora(){
     return(
         
         <div>
+          <h1>Calculator</h1>
             <div className={css.selectYcantidad}>
             <select id='select' onChange={()=>HandleInputs()} >
                 
@@ -76,9 +84,9 @@ function Calculadora(){
           <input type="number" id='kantidad' placeholder='1' onChange={()=>HandleInputs()}
           min='0'/>
           </div>
-          <div>
-          
-         <div id='matilde'>
+          <div className={css.containerTableCalc}>     
+          <table className={css.tableCalc}>
+         <tbody id='renderizado'>
             {
                 
                 currentActivos?
@@ -88,20 +96,27 @@ function Calculadora(){
                         let result = calcular(e, input_select, input_cantidad);
 
                         return(
-                          <div key={e.id}>
-                            <img src={e.image} alt="" width="30px" height="30px" />
-                          <h1 >{e.name}</h1>
-                          <h2>{result}</h2>
-                          </div>
-                          
+                            <tr key={e.id}>
+                                <td>
+                                  <img src={e.image} alt="" width="30px" height="30px" />
+                                </td>
+                                <td>
+                                  {e.name}
+                                </td>
+                                <td>
+                                  {result}
+                                </td>
+                            </tr>
                           )
           
                   }):
                   console.log('error')
             }
 
+         </tbody>
+         </table>
          </div>
-          </div>
+         
         </div>
     )
 }
