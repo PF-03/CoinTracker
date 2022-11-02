@@ -5,6 +5,9 @@ import Button from "../styles/button";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import eyeOpen from '../../assets/eye-opened.png'
+import eyeClosed from '../../assets/eye-closed.png'
 
 function FormRegister() {
   const [inputs, setInputs] = useState({
@@ -23,6 +26,8 @@ function FormRegister() {
       lastname: "",
     },
   });
+
+  const [eyeState, setEyeState] = useState(false);
 
   function validateForm(errors: Object) {
     let usernameInput = document.getElementById("username");
@@ -130,29 +135,73 @@ function FormRegister() {
           console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
-      alert("Genial, tu cuenta se creo con éxito.");
+      Swal.fire({
+        icon: 'success',
+        title: 'Your account was created!',
+        confirmButtonText: "Let's go!"
+      })
       navigate("/home");
     } catch (error) {
-      alert(`Ups, algo salio mal intenta de nuevo.\n${error}`);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops, something went wrong',
+        text: `${error}`,
+        confirmButtonText: 'Try again'
+      })
     }
   }
   const google = () => {
     window.open("http://localhost:3001/googleauth/google", "_self");
   };
 
+  function passwordEye(e) {
+    e.preventDefault()
+    const id = e.target.id;
+    let eye;
+    let passwordInput;
+    switch(id) {
+        case 'passwordEye':
+            eye = document.getElementById(id);
+            passwordInput = document.getElementById('password');
+            setEyeState(!eyeState);
+            if(eyeState) {
+                eye.src = eyeOpen;
+                passwordInput.setAttribute("type", "password");
+            } else {
+                eye.src = eyeClosed;
+                passwordInput.setAttribute("type", "text");
+            }
+            break;
+        case 'confirmPasswordEye':
+            eye = document.getElementById(id);
+            passwordInput = document.getElementById('passwordConfirm');
+            setEyeState(!eyeState);
+            if(eyeState) {
+                eye.src = eyeOpen;
+                passwordInput.setAttribute("type", "password");
+            } else {
+                eye.src = eyeClosed;
+                passwordInput.setAttribute("type", "text");
+            }
+            break;
+        default:
+            break;
+    }
+  }
+
   return (
     <div className="signUpContainer">
-      <h2>Crea tu cuenta:</h2>
+      <h2>Create your account:</h2>
 
       <button className="googleSignUp" onClick={google}>
-        Registrate con Google
+        Register with Google
       </button>
 
-      <p className="orText">O</p>
+      <p className="orText">Or</p>
 
       <form onSubmit={submitForm} className="signUpForm">
         <label className="registerFormLabel" htmlFor="name">
-          Nombre:{" "}
+          Name:{" "}
         </label>
         <input
           className="registerFormInput"
@@ -166,7 +215,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="lastname">
-          Apellido:{" "}
+          Lastname:{" "}
         </label>
         <input
           className="registerFormInput"
@@ -180,7 +229,7 @@ function FormRegister() {
         )}
 
         <label className="registerFormLabel" htmlFor="username">
-          Usuario:
+          Username:
         </label>
         <input
           required
@@ -211,9 +260,12 @@ function FormRegister() {
           <p className="inputError">{inputs.errors.mail}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="password">
-          Contraseña:{" "}
-        </label>
+        <div className="password-label-eye">
+            <label className="registerFormLabel" htmlFor="password">
+            Password:{" "}
+            </label>
+            <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon"/>
+        </div>
         <input
           required
           className="registerFormInput"
@@ -228,9 +280,12 @@ function FormRegister() {
           <p className="inputError">{inputs.errors.password}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="passwordConfirm">
-          Confirma contraseña:{" "}
-        </label>
+        <div className="password-label-eye">
+            <label className="registerFormLabel" htmlFor="passwordConfirm">
+            Confirm password:{" "}
+            </label>
+            <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon"/>
+        </div>
         <input
           className="registerFormInput"
           type="password"
@@ -251,12 +306,12 @@ function FormRegister() {
           type="submit"
           disabled={inputs.disabled}
         >
-          Crear cuenta
+          Create
         </Button>
       </form>
 
       <p className="loginText">
-        ¿Ya tienes una cuenta? <a href="">Haz login</a>
+        Already have an account? <a href="">Login</a>
       </p>
     </div>
   );

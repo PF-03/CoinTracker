@@ -99,3 +99,19 @@ h1.title {
   border-radius: 2rem;
   margin: 8px 0;
 }
+
+.password-label-eye {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.password-label-eye > img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #EFEFEF;
+    border-radius: 12px;
+    padding: 2px;
+    cursor: pointer;
+}
