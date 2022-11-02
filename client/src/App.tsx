@@ -6,6 +6,7 @@ import LandingPage from "./views/landingPage/landingPage";
 import FormRegister from "./components/FormRegister/FormRegister";
 import DetailsActivs from "./components/details-activs/detailsActivs";
 import Review from "./components/Review/Review"
+import Portfolio from "./components/Portfolio/Portfolio"
 
 import Activos from "./components/ver_mas_activos/ver_mas_activos";
 import Calculadora from "./components/Calculadora/calculadora";
@@ -29,6 +30,8 @@ function App() {
         <Route path="/wallet" element={<Activos />} />
 
         <Route path="/calculadora" element={<Calculadora/>}/>
+
+        <Route path="/portfolio" element={<Portfolio/>}/>
       </Routes>
     </div>
   );

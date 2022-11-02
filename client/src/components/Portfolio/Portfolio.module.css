@@ -1,0 +1,81 @@
+.mainContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.dataContainer {
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.mainContainer Sidebar {
+  background-color: beige;
+}
+.valueContainer {
+  display: flex;
+  flex-direction: column;
+  background: #4e4ecb;
+  background: -webkit-linear-gradient(297deg, #4e4ecb 0%, #bc48ff 100%);
+  background: linear-gradient(297deg, #4e4ecb 0%, #bc48ff 100%);
+  border: 1px solid rgba(255, 255, 255, 0.307);
+ /*  background-color: #7645c7; */
+  padding: 15px;
+  border-radius: 15px;
+  align-items: flex-start;
+  width: 25%;
+  min-width: 200px;
+  margin-right: 30px;
+}
+.valueContainer h2 {
+  margin: 5px;
+}
+.valueContainer h5 {
+  padding: 0px;
+  margin: 0px;
+}
+.redH5 {
+  align-self: center;
+  color: #ff3838;
+}
+.greenH5 {
+  align-self: center;
+  color: #00ce6a;
+}
+.portfolioContainer {
+  padding: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.portfolioContainer h5 {
+  margin: 10px;
+}
+.chartContainer {
+  padding: 20px;
+  width: 70%;
+  background-color: #3f3e3e7d;
+  border: 1px solid rgba(255, 255, 255, 0.269);
+  border-radius: 10px;
+  min-width: 500px;
+}
+.assetsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 15px;
+  width: 100%;
+  height: 10%;
+  border: 1px solid #c6b1e03c;
+  background-color: #3b1d5f6f;
+  backdrop-filter: blur(8px);
+}
+@media (max-width: 1105px) {
+  .valueContainer {
+    max-width: 500px;
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 10px;
+  }
+}

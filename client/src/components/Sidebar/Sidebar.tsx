@@ -81,7 +81,7 @@ function Sidebar() {
           <img className={style.icon} src={iconHome} alt="home" />
           <span>Home</span>
         </Link>
-        <Link to="/porfolio" className={style.data}>
+        <Link to="/portfolio" className={style.data}>
           <img className={style.icon} src={iconPor} alt="home" />
           <span>Portfolio Tracker</span>
         </Link>
