@@ -8,6 +8,7 @@ import card from '../styles/styles.module.css'
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import Bubble from "../styles/bubbles";
+import numberFormat from "../../utils/numberFormat.js";
 
 function Activos() {
   const dispatch = useDispatch<any>();
@@ -42,8 +43,9 @@ function Activos() {
 
             {currentActivos.length > 0 ? (
               currentActivos.map((e: any) => {
+                const market_cap_legible=(numberFormat(e.market_cap,'standard'))
                 return (
-                  <tr className={css.trespe}>
+                  <tr className={css.trespe} key={e.id}>
                     <td onClick={() => navigate(`/crypto/${e.id}`)}>
                         <div className={css.name}>
                           <img src={e.image} alt="" width="30px" height="30px" />
@@ -51,7 +53,7 @@ function Activos() {
                         </div>
                     </td>
                     <td>${e.current_price}</td>
-                    <td>{e.market_cap} USD$</td>
+                    <td>{market_cap_legible} USD$</td>
                   </tr>
                 );
               })
