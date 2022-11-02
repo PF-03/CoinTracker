@@ -65,17 +65,65 @@
   justify-content: center;
   border-radius: 10px;
   margin: 15px;
-  width: 100%;
-  height: 10%;
+  width: 95%;
   border: 1px solid #c6b1e03c;
   background-color: #3b1d5f6f;
   backdrop-filter: blur(8px);
+  padding: 20px;
 }
-@media (max-width: 1105px) {
+.assetsNavbarContainer{
+  display: flex; 
+  justify-content: space-between;
+}
+.assetsNavbarContainer div button{
+  backdrop-filter: blur(8px);
+  color: white;
+  background-color: rgba(255, 255, 255, 0.104);
+  border:1px solid rgba(255, 255, 255, 0.294);
+  border-radius: 15px;
+  margin-left: 5px;
+  padding: 10px 30px;
+  font-size: larger;
+}
+.assetsNavbarContainer div button:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.38);
+}
+.assetsNavbarContainer input{
+  color: white;
+  width: 250px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.104);
+  border:1px solid rgba(255, 255, 255, 0.294);
+  background-image:url('../../assets/buscar.png');
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-left: 10px;
+  padding-right: 30px;
+}
+.assetsTableContainer{
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 15px;
+  width: 100%;
+  border: 1px solid #c6b1e03c;
+  background-color: #e8e2ef1d;
+  backdrop-filter: blur(8px);
+  padding: 20px;
+}
+
+@media (max-width: 1124px) {
   .valueContainer {
     max-width: 500px;
     width: 100%;
     margin-right: 0px;
     margin-bottom: 10px;
+  }
+  .assetsNavbarContainer input{
+    width: 200px;
+  }
+  .assetsNavbarContainer div button{
+    padding: 10px 5px;
   }
 }

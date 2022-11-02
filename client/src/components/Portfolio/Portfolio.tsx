@@ -36,7 +36,16 @@ const Portfolio = () => {
           </div>
         </div>
         <div className={styles.assetsContainer}>
-            
+          <div className={styles.assetsNavbarContainer}>
+            <div>
+                <button>My Assets</button>
+                <button>All Assets</button>
+            </div>
+            <input type="text" />
+          </div>
+          <div className={styles.assetsTableContainer}>
+
+          </div>
         </div>
       </div>
     </div>
