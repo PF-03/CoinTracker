@@ -3,12 +3,13 @@ const user = require('../models/User');
 import handleError from '../utils/handleError';
 const cloudinary= require("cloudinary").v2
 const fs=require("fs-extra")
+const {API_KEYCLOUDINARY, APISECRET_CLOUDINARY, CLOUDINARY_NAME}=process.env
 
 
 cloudinary.config({ 
-  cloud_name: 'dmjz2ounq', 
-  api_key: '319118671456157', 
-  api_secret: 'w6MYQ6wEyGBrkONTJNcw0WKUtxA' 
+  cloud_name: CLOUDINARY_NAME, 
+  api_key: API_KEYCLOUDINARY, 
+  api_secret: APISECRET_CLOUDINARY 
 });
 
 const getUsers: any = async (req: Request, res: Response) => {
