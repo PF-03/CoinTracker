@@ -8,6 +8,7 @@ import walletRouter from './wallet';
 import localAuth from './localAuth';
 import googleAuth from './googleAuth';
 import mailHandler from './middleware/mailHandler';
+import donationsRoutes from './middleware/donation';
 
 const routers: any = Router();
 
@@ -31,5 +32,6 @@ routers.use('/news', news);
 routers.use('/localauth', localAuth);
 routers.use('/googleauth', googleAuth);
 routers.use('/mail', mailHandler);
+routers.use('/donate', donationsRoutes);
 
 export default routers;
