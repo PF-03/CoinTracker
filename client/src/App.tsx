@@ -1,13 +1,14 @@
 import "./App.css";
-// import Login from "./views/login/Login";
 import { Routes, Route } from "react-router-dom";
+// import Login from "./views/login/Login";
 // import Home from "./components/home/home";
 // import LandingPage from "./views/landingPage/landingPage";
 // import FormRegister from "./components/FormRegister/FormRegister";
 // import DetailsActivs from "./components/details-activs/detailsActivs";
 // import Review from "./components/Review/Review";
-
 // import Activos from "./components/ver_mas_activos/ver_mas_activos";
+import Profile from "./components/Profile/profile";
+import Verifiqued from "./components/verifiqued/verifiqued";
 import Calculadora from "./components/Calculadora/calculadora";
 import AuthGuard from "./guard/auth.guard";
 import { PrivateRoutes, PublicRouts } from "./rutas/rutas";
@@ -31,6 +32,8 @@ const Activos = lazy(
 );
 
 
+
+
 function App() {
   return (
     <div className="App">
@@ -47,12 +50,18 @@ function App() {
           <Route path={PublicRouts.LOGIN} element={<Login />} />
           {/* agregar aqui las rutas privadas para usuarios */}
           <Route element={<AuthGuard />}>
+            
             <Route path={PrivateRoutes.HOME} element={<Home />} />
 
             <Route path={PrivateRoutes.WALLET} element={<Activos />} />
 
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
-            <Route path={PrivateRoutes.CALCULATOR}  element={<Calculadora/>} />
+            
+            <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
+            
+            <Route path="/profile" element={<Profile />} />
+
+            <Route path="/verifiqued/:token" element={<Verifiqued />} />
 
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 

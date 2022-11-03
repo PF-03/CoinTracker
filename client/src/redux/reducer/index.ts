@@ -9,9 +9,11 @@ const initialState = {
   detailsActivos: {},
   detailsNews: {},
   seeMore: false,
+
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
+  userID: {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : "",
@@ -31,7 +33,14 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         userToken: action.payload,
       };
-    case "GET_ACTIVOS":
+
+      case "GET_USERID":
+        return{
+          ...state,
+          userID:action.payload
+
+        }
+    case 'GET_ACTIVOS':
       return {
         ...state,
         activos: action.payload,

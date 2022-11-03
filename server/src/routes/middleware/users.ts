@@ -8,6 +8,6 @@ user.get("/", getUsers)
 user.get("/:id", getUsers)
 user.post("/", validateCreateUsers, postUsers)
 user.delete("/:id", deleteUsers)
-user.put("/:id", validateCreateUsers, putUsers)
+user.put("/:id", putUsers)
 
 export default user

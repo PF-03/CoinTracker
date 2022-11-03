@@ -34,18 +34,24 @@ const userSchema = new Schema(
       type: ['admin', 'user'],
       default: 'user',
     },
-
-    //CLOUDINARY
-    // image: {
-    //     type: String
-    // },
-    token: {
-      type: String,
-    },
+   image: {
+      imageURL:{
+        type: String,
+      },
+      public_id:{
+        type: String,
+      },
+      type:Object,
+      default:false
+   },
     activos: {
       type: Boolean,
       default: true,
     },
+    status:{
+      type:String,
+      default:"UNVERIFIED"
+    }
   },
   {
     timestamps: true,
