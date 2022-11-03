@@ -23,7 +23,7 @@ function rootReducer(state = initialState, action: any) {
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
-        user: action.payload,
+        user: {  ...action.payload },
       };
     case "SET_USER_TOKEN":
       LS.persistLocalStore(LS.TokenKey, action.payload);

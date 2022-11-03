@@ -56,6 +56,7 @@ function App() {
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
+              <Route path="/admin" element={<h1>estamos en admin</h1>} />
             </Route>
           </Route>
 
