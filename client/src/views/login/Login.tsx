@@ -6,6 +6,8 @@ import { setUserToken } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import Bubble from '../../components/styles/bubbles';
 import googleButton from '../../assets/googleBtn.png';
+import eyeOpen from '../../assets/eye-opened.png'
+import eyeClosed from '../../assets/eye-closed.png'
 
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -19,6 +21,8 @@ const Login: React.FC = (): JSX.Element => {
     email: '',
     password: '',
   });
+
+  const [eyeState, setEyeState] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -44,6 +48,21 @@ const Login: React.FC = (): JSX.Element => {
       alert('someting goes wrong');
     }
   };
+
+    function passwordEye(e) {
+        e.preventDefault()
+        const id = e.target.id;
+        const eye: any = document.getElementById(id);
+        const passwordInput = document.getElementById('password');
+        setEyeState(!eyeState);
+        if(eyeState) {
+            eye.src = eyeOpen;
+            passwordInput.setAttribute("type", "password");
+        } else {
+            eye.src = eyeClosed;
+            passwordInput.setAttribute("type", "text");
+        }
+    }
 
   return (
     <div className={style.layout}>
@@ -73,7 +92,10 @@ const Login: React.FC = (): JSX.Element => {
           </div>
 
           <div className={style['login-container-input']}>
-            <label htmlFor='password'>Password</label>
+            <div className={style['password-label-eye']}>
+                <label htmlFor='password'>Password</label>
+                <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon"/>
+            </div>
             <input
               onChange={(e) => handleChange(e)}
               id='password'

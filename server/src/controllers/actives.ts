@@ -1,5 +1,7 @@
 import axios from 'axios';
-import activos from "../models/activos"
+import activos from "../models/activos";
+//import numberFormat from '../../../client/src/utils/numberFormat.js';
+
 
 export const getActivos = async (): Promise<any> => {
     const date=new Date()
@@ -47,7 +49,7 @@ else if(!horaModel){
                 symbol: e.symbol,
                 name: e.name,
                 image: e.image,
-                current_price: e.current_price,
+                current_price: parseInt(e.current_price),
                 market_cap: e.market_cap,
                 high_24h: e.high_24h,
                 low_24h: e.low_24h,

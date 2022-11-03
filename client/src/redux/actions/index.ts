@@ -21,7 +21,7 @@ export function getNameActivos(name: any, minimo: any, maximo: any) {
           '&maximo=' +
           maximo
       );
-      console.log(json.data);
+      //console.log(json.data);
       return dispatch({
         type: 'GET_NAME_ACTIVOS',
         payload: json.data,
