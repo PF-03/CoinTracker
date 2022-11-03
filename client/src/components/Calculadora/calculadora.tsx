@@ -3,6 +3,7 @@ import { useState, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivos} from "../../redux/actions/index";
 import css from '../Calculadora/calculadora.module.css';
+import numberFormat from '../../utils/numberFormat';
 
 
 
@@ -17,13 +18,14 @@ function Calculadora(){
     const currentActivos = pop;
 
     function HandleInputs(){
-        const input_select = document.getElementById('select') as HTMLInputElement | null;
+        const input_select = document.getElementById('select') as HTMLInputElement |null;
         const input_cantidad = document.getElementById('kantidad') as HTMLInputElement | null;
         const renderizado = document.getElementById('renderizado') as HTMLElement | null;
         renderizado.innerHTML='';
-
+        
         currentActivos?
         currentActivos.map((e:any)=>{
+              
               let result = calcular(e, input_select, input_cantidad);
               let child=document.createElement('tr')
               child.id=e.id
@@ -53,12 +55,15 @@ function Calculadora(){
     function calcular(monedamap:any, input_select:any, input_cantidad:any){
         //const input_select = document.getElementById('select') as HTMLInputElement | null;
         //const input_cantidad = document.getElementById('kantidad') as HTMLInputElement | null;
+        
+        //console.log(input_select.value)
         const moneda = currentActivos.find((e:any)=> e.name === input_select.value);
         let cantidad = input_cantidad.value? input_cantidad.value:1
         //console.log(input_cantidad.value)
         const usd_total = moneda?.current_price * parseInt(cantidad);
         //console.log(usd_total)
-        const result = usd_total/monedamap.current_price;
+        const resulta = usd_total/monedamap.current_price;
+        const result = numberFormat(resulta,'standard', 'decimal')
         //console.log(result)
         return result;
     }
@@ -67,10 +72,10 @@ function Calculadora(){
     return(
         
         <div>
-          <h1>Calculator</h1>
+          <h1 className={css.h1Calc}>Calculator</h1>
             <div className={css.selectYcantidad}>
-            <select id='select' onChange={()=>HandleInputs()} >
-                
+            <select id='select'onChange={()=>HandleInputs()} >
+              
           {
             currentActivos?
             currentActivos.map((e:any)=> {
@@ -91,23 +96,27 @@ function Calculadora(){
                 
                 currentActivos?
                 currentActivos.map((e:any)=>{
-                        const input_select = document.getElementById('select') as HTMLInputElement | null;
+                        const input_select = document.getElementById('select') as HTMLInputElement | null;;
                         const input_cantidad = document.getElementById('kantidad') as HTMLInputElement | null;
-                        let result = calcular(e, input_select, input_cantidad);
+                        //console.log(input_select.value)
+                        if(input_select!==null){
+                          let result = calcular(e, input_select, input_cantidad);
 
-                        return(
-                            <tr key={e.id}>
-                                <td>
-                                  <img src={e.image} alt="" width="30px" height="30px" />
-                                </td>
-                                <td>
-                                  {e.name}
-                                </td>
-                                <td>
-                                  {result}
-                                </td>
-                            </tr>
-                          )
+                          return(
+                              <tr key={e.id}>
+                                  <td>
+                                    <img src={e.image} alt="" width="30px" height="30px" />
+                                  </td>
+                                  <td>
+                                    {e.name}
+                                  </td>
+                                  <td>
+                                    {result}
+                                  </td>
+                              </tr>
+                            )
+                        }
+                        
           
                   }):
                   console.log('error')

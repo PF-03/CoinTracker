@@ -30,6 +30,7 @@ const Activos = lazy(
   () => import("./components/ver_mas_activos/ver_mas_activos")
 );
 
+
 function App() {
   return (
     <div className="App">
@@ -51,17 +52,16 @@ function App() {
             <Route path={PrivateRoutes.WALLET} element={<Activos />} />
 
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
-            <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
+            <Route path={PrivateRoutes.CALCULATOR}  element={<Calculadora/>} />
 
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
             </Route>
           </Route>
-
-          <Route path="*" element={<h3>404 Page Not Found</h3>} />
         </RoutesWithNotFound>
       </Suspense>
+
     </div>
   );
 }
