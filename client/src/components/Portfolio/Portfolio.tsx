@@ -1,8 +1,38 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {getActivsHistoryValue,setCurrentAssetView} from '../../redux/actions';
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
 import Sidebar from "../Sidebar/Sidebar";
+import AssetsList from "./AssetsList/AssetsList";
 const Portfolio = () => {
+
+  const dispatch = useDispatch<any>();
+  const [state, setState] = React.useState({
+    coinId:"",
+    vs_currency:"",
+    coinAmount:"",
+  });
+  React.useEffect(() => {
+      dispatch(getActivsHistoryValue({coinId: "bitcoin",vs_currency: "usd",coinAmount:1}));
+  }, [dispatch])
+
+  const ChartData = useSelector((state:any) => state.historyDataActivo);
+  const curretPage= useSelector((state:any)=>state.currentAssetView)
+  const myAssets = useSelector((state: any) => state.myAssets);
+
+  const HandleButtonClick=(e:any)=>{
+    dispatch(setCurrentAssetView(e.target.name))
+  }
+  const HandleTrClick=(id)=>{
+    if(curretPage==="myAssets"){
+      var data= myAssets.filter(el=>{
+        return(id===el.id)
+      })[0]
+      dispatch(getActivsHistoryValue({coinId: data.id,vs_currency: "usd",coinAmount:1}))
+      document.documentElement.scrollTop = 0;  
+    }
+  }
   return (
     <div className={styles.mainContainer}>
       <div>
@@ -21,14 +51,14 @@ const Portfolio = () => {
           <div className={styles.chartContainer}>
             <AreaChart
               data={{
-                labels: ["1", "2", "3", "4", "5", "6", "7", "8"],
+                labels: ChartData["labels"]?ChartData["labels"]:[],
                 datasets: [
                   {
                     fill: true,
-                    label: "Name",
-                    data: [1, 2, 4, 6, 3, 1, 7, 0],
-                    borderColor: "#00CE6A",
-                    backgroundColor: "#00ce6a7b",
+                    label: state.coinId,
+                    data: ChartData["datasets"]?ChartData["datasets"]:[],
+                    borderColor: (ChartData["datasets"]===undefined||ChartData["datasets"][0]<ChartData["datasets"].slice(-1)[0])?"#00CE6A":"#FA2020",
+                    backgroundColor: (ChartData["datasets"]===undefined||ChartData["datasets"][0]<ChartData["datasets"].slice(-1)[0])?"#00ce6a7b":"#c719197f",
                   },
                 ],
               }}
@@ -38,14 +68,12 @@ const Portfolio = () => {
         <div className={styles.assetsContainer}>
           <div className={styles.assetsNavbarContainer}>
             <div>
-                <button>My Assets</button>
-                <button>All Assets</button>
+                <button className={curretPage=="allAssets"?styles.UnselectedButton:styles.SelectedButton} onClick={(e)=>HandleButtonClick(e)} name="myAssets">My Assets</button>
+                <button className={curretPage=="myAssets"?styles.UnselectedButton:styles.SelectedButton} onClick={(e)=>HandleButtonClick(e)} name="allAssets">All Assets</button>
             </div>
             <input type="text" />
           </div>
-          <div className={styles.assetsTableContainer}>
-
-          </div>
+              <AssetsList HandleTrClick={HandleTrClick}></AssetsList>
         </div>
       </div>
     </div>

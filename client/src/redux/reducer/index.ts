@@ -4,10 +4,13 @@ const initialState = {
   newsAll: [],
   allNews: [],
   detailsActivos: {},
+  historyDataActivo:{},
   detailsNews: {},
   seeMore: false,
   user: {},
   userToken: '',
+  myAssets:[],
+  currentAssetView:"myAssets",
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -69,6 +72,24 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         seeMore: !state.seeMore,
       };
+    }
+    case "GET_ACTIV_HISTORY_VALUE":{
+      return {
+        ...state,
+        historyDataActivo: action.payload,
+      }
+    }
+    case "SET_CURRENT_ASSET_VIEW":{
+      return {
+        ...state,
+        currentAssetView:action.payload,
+      }
+    }
+    case "SET_MY_ASSETS":{
+      return {
+        ...state,
+        myAssets:[...state.myAssets,action.payload]
+      }
     }
     default:
       return state;

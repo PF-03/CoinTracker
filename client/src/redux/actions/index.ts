@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { json } from 'body-parser';
 
 export function getActivos() {
   return async function (dispatch: any) {
@@ -96,4 +97,33 @@ export function postMail(data:any){
           payload:res
       })})}
 
+}
+
+export function getActivsHistoryValue(data:any){
+  return function(dispatch:any){
+    fetch(`http://localhost:3001/activos/historyValue` +
+    `?coinId=${data.coinId?data.coinId:"bitcoin"}` +
+    `&vs_currency=${data.vs_currency?data.vs_currency:"usd"}`+
+    `&coinAmount=${data.coinAmount?data.coinAmount:3}`
+    )
+    .then(data=>data.json())
+    .then(res=>{
+      dispatch({
+        type:"GET_ACTIV_HISTORY_VALUE",
+        payload:res
+      })
+    })
+  }
+}
+export function setCurrentAssetView(name){
+  return {
+    type:"SET_CURRENT_ASSET_VIEW",
+    payload:name
+  }
+}
+export function setMyAssets(data){
+  return {
+    type:"SET_MY_ASSETS",
+    payload:data
+  }
 }

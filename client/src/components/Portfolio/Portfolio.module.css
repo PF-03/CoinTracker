@@ -75,7 +75,7 @@
   display: flex; 
   justify-content: space-between;
 }
-.assetsNavbarContainer div button{
+.UnselectedButton{
   backdrop-filter: blur(8px);
   color: white;
   background-color: rgba(255, 255, 255, 0.104);
@@ -85,7 +85,23 @@
   padding: 10px 30px;
   font-size: larger;
 }
-.assetsNavbarContainer div button:hover{
+.UnselectedButton:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.38);
+}
+.SelectedButton{
+  backdrop-filter: blur(8px);
+  color: white;
+  background: #4e4ecb;
+  background: -webkit-linear-gradient(297deg, #4e4ecb 0%, #bc48ff 100%);
+  background: linear-gradient(297deg, #4e4ecb 0%, #bc48ff 100%);
+  border:1px solid rgba(255, 255, 255, 0.294);
+  border-radius: 15px;
+  margin-left: 5px;
+  padding: 10px 30px;
+  font-size: larger;
+}
+.SelectedButton:hover{
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.38);
 }
@@ -101,17 +117,7 @@
   padding-left: 10px;
   padding-right: 30px;
 }
-.assetsTableContainer{
-  display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  margin-top: 15px;
-  width: 100%;
-  border: 1px solid #c6b1e03c;
-  background-color: #e8e2ef1d;
-  backdrop-filter: blur(8px);
-  padding: 20px;
-}
+
 
 @media (max-width: 1124px) {
   .valueContainer {

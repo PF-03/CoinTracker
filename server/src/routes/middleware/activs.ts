@@ -5,15 +5,13 @@ const activos = Router();
 
 activos.get("/historyValue",async(req,res)=>{
     try{
-        console.log("se entro a la ruta history")
-        const {coinId,vs_currency,coinAmount}=req.body; // vs_currency = la moneda a la qu ese quiere cambiar ej: "usd" o "usd, eur"
+        const {coinId,coinAmount,vs_currency}=req.query; // vs_currency = la moneda a la qu ese quiere cambiar ej: "usd" o "usd, eur"
                                                         //coinAmount = la cantidad de monedas que tiene el usuario
         const data= await getActivHistoryPrice(coinId,coinAmount,vs_currency)
         res.status(202).json(data)
     }
     catch(err:any){
-        console.log("error: ",err)
-        res.status(404).json({Error:new Error(err)})
+        res.status(404).json({Error:{err}})
     }
 })
 

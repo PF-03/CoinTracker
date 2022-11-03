@@ -149,26 +149,28 @@ export const getMenoresA = async (numeroMaximo:any, activos:any): Promise<any> =
 }
 
 export const getActivHistoryPrice=async(coinId:any,coinAmount:any,vs_currency:any="usd")=>{
-    console.log("se entro a la funcion")
-    var from ="2022-10-30T18:48:04.618+00:00"; // Por el momento es un valor definido manualmente, pero realmente
+    var from:any ="2022-10-29T18:48:04.618+00:00"; // Por el momento es un valor definido manualmente, pero realmente
                                               // deberia hacer una peticion al la base de datos para que
                                              // traiga la fecha en que se genero la relación entre el usuario
                                             // y el activo
 
-    from = String(Math.floor(new Date(from).getTime() / 1000))// valor de la fecha en formato UNIX Timestamp
-    var to=String(Math.floor(new Date(Date.now()).getTime() / 1000)) // valor de la fecha en formato UNIX Timestamp
-    console.log("de: ",from," hasta: ",to);
-    const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart/range?vs_currency=${vs_currency}&from=${from}&to=${to}&interval=daily`)
+    from = Math.floor(new Date(from).getTime())// valor de la fecha en formato UNIX Timestamp
+    var to=Math.floor(new Date(Date.now()).getTime()) // valor de la fecha en formato UNIX Timestamp
+    var dias = Math.floor((to-from)/(1000*60*60*24));
+    const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${dias}&interval=daily`)
     .then((val:any)=>{
-        var newArr= val.data["prices"].map((el:any)=>{
-            return [new Date(el[0]).toLocaleDateString("default"),
-                    el[1]*coinAmount];
+        var newArr:any={
+            labels:[],
+            datasets:[],
+        };
+        val.data["prices"].map((el:any)=>{
+            newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
+            newArr["datasets"].push(el[1]*coinAmount)
         })  
         return newArr
     })
     .catch((error:any)=>{
         throw new Error(error)
     })
-    console.log("data: ",data)
     return data;
 }
