@@ -9,6 +9,7 @@ import Review from "./components/Review/Review";
 import Profile from "./components/Profile/profile";
 import Activos from "./components/ver_mas_activos/ver_mas_activos";
 import Verifiqued from "./components/verifiqued/verifiqued";
+import Calculadora from "./components/Calculadora/calculadora";
 function App() {
   return (
     <div className="App">
@@ -30,6 +31,8 @@ function App() {
         <Route path="/profile" element={<Profile />} />
 
         <Route path="/verifiqued/:token" element={<Verifiqued />} />
+
+        <Route path="/calculator" element={<Calculadora />} />
       </Routes>
     </div>
   );
