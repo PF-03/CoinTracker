@@ -13,20 +13,19 @@ import { useSelector } from "react-redux";
 
 // codigo guglielmo
 ////////////////////////////////////////////////////////
-import { setUser } from "../../redux/actions";
+import { setUser, getUserId } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 //////////////////////////////////////////////////////////
 function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
-  console.log(user);
   //codigo guglielmo
   ////////////////////////////////////////////////////////////
-
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const token = useSelector((store: any) => store.userToken);
-  console.log(token);
+
+  const userr = useSelector((state: any) => state.userID);
 
   const logout = () => {
     axios
@@ -35,6 +34,9 @@ function Sidebar() {
       })
       .then((res: any) => console.log(res.data));
     dispatch(setUser({}));
+  };
+  const userId = () => {
+    dispatch(getUserId(user._id));
   };
 
   useEffect(() => {
@@ -73,10 +75,20 @@ function Sidebar() {
         </Link>
       </div>
       <div className={style.options}>
-        <Link to="/home" className={style.data}>
-          <img className={style.icon} src={iconUser} alt="user" />
-          <span>{user.name || "Default"}</span>
-        </Link>
+        {Object.keys(user).length !== 0 && (
+          <Link to="/profile" className={style.data} onClick={userId}>
+            <img
+              className={style.icon}
+              src={user.image === false ? iconUser : user.image.imageURL}
+              alt="user"
+            />
+            <span>
+              {userr[0]?.username
+                ? userr[0].username
+                : user.username || "Default"}
+            </span>
+          </Link>
+        )}
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconHome} alt="home" />
           <span>Home</span>
@@ -103,10 +115,17 @@ function Sidebar() {
           <img className={style.icon} src={iconSetting} alt="home" />
           <span>Settings</span>
         </Link>
-        <Link to="/" onClick={() => logout()} className={style.data}>
-          <img className={style.icon} src={iconLogOut} alt="home" />
-          <span>Logout</span>
-        </Link>
+        {Object.keys(user).length !== 0 ? (
+          <Link to="/" onClick={() => logout()} className={style.data}>
+            <img className={style.icon} src={iconLogOut} alt="home" />
+            <span>Logout</span>
+          </Link>
+        ) : (
+          <Link to="/login" className={style.data}>
+            <img className={style.icon} src={iconLogOut} alt="home" />
+            <span>Login</span>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -127,7 +127,6 @@ function FormRegister() {
           lastname: inputs.lastname,
         })
         .then((res) => {
-          console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
       alert("Genial, tu cuenta se creo con éxito.");

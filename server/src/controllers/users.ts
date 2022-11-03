@@ -1,7 +1,15 @@
 import { Response, Request } from 'express';
 const user = require('../models/User');
 import handleError from '../utils/handleError';
+const cloudinary= require("cloudinary").v2
+const fs=require("fs-extra")
 
+
+cloudinary.config({ 
+  cloud_name: 'dmjz2ounq', 
+  api_key: '319118671456157', 
+  api_secret: 'w6MYQ6wEyGBrkONTJNcw0WKUtxA' 
+});
 
 const getUsers: any = async (req: Request, res: Response) => {
 
@@ -47,15 +55,31 @@ const deleteUsers: any = async (req: Request, res: Response) => {
 
 const putUsers: any = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const body = req.body;
-    const userId: Object = await user.find({ activos: true, _id: id });
-    if (Object.keys(userId).length > 0) {
-      await user.updateOne({ _id: id }, body);
+    const { id } = req.params
+    const {username, name, mail, lastname} = req.body;
+    const userId: Object = await user.find({ activos: true, _id: id });  
+    console.log(username, name, mail, lastname)
+   if (Object.keys(userId).length > 0) { 
+     if(req.file){
+      const resultClou=await cloudinary.uploader.upload(req.file.path)
+      await user.updateOne({ _id: id }, {
+        username, mail, lastname, name,
+        image:{
+        imageURL:resultClou.url,
+        public_id:resultClou.public_id
+       }}); 
+      await fs.unlink(req.file.path) 
       return res.status(202).json('UPDATE_EXIT');
     }
-    handleError(res, 'ERROR_UPDATE_USERS_ID');
+    await user.updateOne({ _id: id }, {
+      username, mail, lastname, name,
+    })
+    return res.status(202).json('UPDATE_EXIT');
+  }
+    handleError(res, 'ERROR_UPDATE_USERS_ID');   
+
   } catch (e) {
+    console.log(e)
     handleError(res, 'ERROR_UPDATE_USERS');
   }
 };

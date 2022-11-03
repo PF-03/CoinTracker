@@ -15,7 +15,7 @@ export default function Home() {
   }; */
   const dispatch = useDispatch();
   const infoSeeMore = useSelector((state: any) => state.seeMore);
-  console.log(infoSeeMore);
+
   const handleSeeMore: any = () => {
     dispatch(seeMore());
   };

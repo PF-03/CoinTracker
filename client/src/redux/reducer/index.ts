@@ -7,6 +7,7 @@ const initialState = {
   detailsNews: {},
   seeMore: false,
   user: {},
+  userID: {},
   userToken: '',
 };
 
@@ -22,6 +23,13 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         userToken: action.payload,
       };
+
+      case "GET_USERID":
+        return{
+          ...state,
+          userID:action.payload
+
+        }
     case 'GET_ACTIVOS':
       return {
         ...state,

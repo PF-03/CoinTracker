@@ -2,15 +2,16 @@ export {};
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const user=require("../models/User")
 
 const router = express.Router();
 
 router.post(
   '/signup',
   passport.authenticate('signup'),
-  (req: any, res: any) => {
-    const token =jwt.sign({user:req.user}, "top_secret");
-   return res.json({token});
+  async(req: any, res: any) => {
+  const token =await jwt.sign({user:req.user}, "top_secret");
+  return res.json({token});
   }
 );
 
@@ -18,8 +19,13 @@ router.post('/login', passport.authenticate('login'), (req: any, res: any) => {
   req.login(req.user, { session: true }, () => {
     const body = {
       _id: req.user._id,
-      email: req.user.mail,
+      username:req.user.username,
+      mail: req.user.mail,
       name: req.user.name,
+      lasname:req.user.lasname,
+      image:req.user.image,
+      status:req.user.status,
+      token:req.user.token
     };
     const token = jwt.sign({ user: body }, 'top_secret');
     return res.json({ token });
