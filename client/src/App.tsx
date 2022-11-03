@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import AuthGuard from "./guard/auth.guard";
-import { PrivateRoutes, PublicRouts } from "./rutas/rutas";
+import { PrivateAdminRoutes, PrivateRoutes, PublicRouts } from "./rutas/rutas";
 import { AdminGuard } from "./guard/admin.guard";
 import RoutesWithNotFound from "./utils/RoutesWithNotFound";
 import { Suspense, lazy } from "react";
@@ -48,14 +48,17 @@ function App() {
 
             <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
 
-            <Route path="/profile" element={<Profile />} />
+            <Route path={PrivateRoutes.USER} element={<Profile />} />
 
-            <Route path="/verifiqued/:token" element={<Verifiqued />} />
+            <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-              <Route path="/admin" element={<h1>estamos en admin</h1>} />
+              <Route
+                path={PrivateAdminRoutes.ADMIN}
+                element={<h1>estamos en admin</h1>}
+              />
             </Route>
           </Route>
         </RoutesWithNotFound>

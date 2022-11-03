@@ -10,8 +10,14 @@ export const PrivateRoutes = {
   NEWS: "/news",
   SWAP: "/swap",
   WALLET: "/wallet",
-  USER: "/settings",
+  USER: "/profile",
   REVIEW: "/review",
   CRYPTO: "/crypto/:nameActi",
   CALCULATOR: "/calculator",
+  VERIFIQUED: '"/verifiqued/:token"'
+  
+};
+
+export const PrivateAdminRoutes = {
+  ADMIN: "/admin",
 };
