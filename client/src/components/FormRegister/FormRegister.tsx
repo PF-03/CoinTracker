@@ -132,7 +132,6 @@ function FormRegister() {
           lastname: inputs.lastname,
         })
         .then((res) => {
-          console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
       Swal.fire({
