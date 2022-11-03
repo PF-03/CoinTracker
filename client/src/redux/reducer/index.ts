@@ -8,6 +8,8 @@ const initialState = {
   seeMore: false,
   user: {},
   userToken: '',
+  admins: [],
+  reviews: [],
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -70,6 +72,17 @@ function rootReducer(state = initialState, action: any) {
         seeMore: !state.seeMore,
       };
     }
+    case "GET_ADMINS": {
+      return {
+        ...state,
+        admins: action.payload
+      }
+    }
+    case "GET_REVIEWS":
+      return {
+        ...state,
+        messages: action.payload
+      }
     default:
       return state;
   }

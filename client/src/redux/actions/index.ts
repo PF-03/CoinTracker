@@ -97,3 +97,25 @@ export function postMail(data:any){
       })})}
 
 }
+
+export function getAdmins(){ //Obtener los admins registrados
+  return async function(dispatch)
+  {
+      let json = await axios.get("/users/admins");
+      return dispatch({
+          type: "GET_ADMINS",
+          payload: json.data
+      })
+  }
+};
+
+export function getReviews(){ //Obtener lo mensajes de feedback
+  return async function (dispatch)
+  {
+      let json = await axios.get("/review"); // http://localhost:3001/review
+      return dispatch({
+          type: "GET_REVIEWS",
+          payload: json.data
+      })
+  }
+};
