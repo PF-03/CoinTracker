@@ -1,19 +1,14 @@
 import "./App.css";
-// import Login from "./views/login/Login";
 import { Routes, Route } from "react-router-dom";
-// import Home from "./components/home/home";
-// import LandingPage from "./views/landingPage/landingPage";
-// import FormRegister from "./components/FormRegister/FormRegister";
-// import DetailsActivs from "./components/details-activs/detailsActivs";
-// import Review from "./components/Review/Review";
 
-// import Activos from "./components/ver_mas_activos/ver_mas_activos";
-import Calculadora from "./components/Calculadora/calculadora";
 import AuthGuard from "./guard/auth.guard";
 import { PrivateRoutes, PublicRouts } from "./rutas/rutas";
 import { AdminGuard } from "./guard/admin.guard";
 import RoutesWithNotFound from "./utils/RoutesWithNotFound";
 import { Suspense, lazy } from "react";
+import Verifiqued from "./components/verifiqued/verifiqued";
+import Profile from "./components/Profile/profile";
+import Calculadora from "./components/Calculadora/calculadora";
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -44,14 +39,19 @@ function App() {
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
+
+          <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
           {/* agregar aqui las rutas privadas para usuarios */}
           <Route element={<AuthGuard />}>
             <Route path={PrivateRoutes.HOME} element={<Home />} />
 
             <Route path={PrivateRoutes.WALLET} element={<Activos />} />
 
-            <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
             <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
+
+            <Route path="/profile" element={<Profile />} />
+
+            <Route path="/verifiqued/:token" element={<Verifiqued />} />
 
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 
@@ -59,8 +59,6 @@ function App() {
               <Route path="/admin" element={<h1>estamos en admin</h1>} />
             </Route>
           </Route>
-
-          <Route path="*" element={<h3>404 Page Not Found</h3>} />
         </RoutesWithNotFound>
       </Suspense>
     </div>

@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 /*  import 'swiper/css/scrollbar';  */
 import style from "./carousel.module.css";
 import Card from "../card/card";
+import numberFormat from '../../utils/numberFormat.js';
 
 type PrivateProps = {
   handleSeeMore: Function;
@@ -44,7 +45,7 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
                     id={el.id}
                     name={el.name}
                     image={el.image}
-                    current_price={el.current_price}
+                    current_price={numberFormat(el.current_price, 'standard','decimal')}
                   />
                 </SwiperSlide>
               ))}

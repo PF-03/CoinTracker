@@ -9,9 +9,11 @@ const initialState = {
   detailsActivos: {},
   detailsNews: {},
   seeMore: false,
+
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
+  userID: {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : "",
@@ -23,13 +25,19 @@ function rootReducer(state = initialState, action: any) {
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
-        user: {  ...action.payload },
+        user: { ...action.payload },
       };
     case "SET_USER_TOKEN":
       LS.persistLocalStore(LS.TokenKey, action.payload);
       return {
         ...state,
         userToken: action.payload,
+      };
+
+    case "GET_USERID":
+      return {
+        ...state,
+        userID: action.payload,
       };
     case "GET_ACTIVOS":
       return {
@@ -80,9 +88,9 @@ function rootReducer(state = initialState, action: any) {
       };
     }
     case "RESET": {
+      state = initialState;
       LS.clearLocalStore(LS.UserKey);
       LS.clearLocalStore(LS.TokenKey);
-      state = initialState;
     }
     default:
       return state;
