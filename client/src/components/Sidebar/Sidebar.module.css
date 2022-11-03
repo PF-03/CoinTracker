@@ -2,7 +2,7 @@
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   display: grid;
-  grid-template-rows: 12% 50% 15% 20%;
+  grid-template-rows: 12% 55% 20% 10%;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -55,7 +55,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .data span {

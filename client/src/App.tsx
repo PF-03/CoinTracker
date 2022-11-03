@@ -1,49 +1,86 @@
 import "./App.css";
-import Login from "./views/login/Login";
 import { Routes, Route } from "react-router-dom";
-import Home from "./views/home/home";
-import LandingPage from "./views/landingPage/landingPage";
-import FormRegister from "./views/FormRegister/FormRegister";
-import DetailsActivs from "./components/details-activs/detailsActivs";
-import Review from "./components/Review/Review";
-import Profile from "./components/Profile/profile";
-import Activos from "./components/ver_mas_activos/ver_mas_activos";
-
+import AuthGuard from "./guard/auth.guard";
+import { PrivateAdminRoutes, PrivateRoutes, PublicRouts } from "./rutas/rutas";
+import { AdminGuard } from "./guard/admin.guard";
+import RoutesWithNotFound from "./utils/RoutesWithNotFound";
+import { Suspense, lazy } from "react";
 import Verifiqued from "./components/verifiqued/verifiqued";
+import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
+
+const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
+const Login = lazy(() => import("./views/login/Login"));
+const Review = lazy(() => import("./components/Review/Review"));
+const Home = lazy(() => import("./views/home/home"));
+// const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
+const FormRegister = lazy(
+  () => import("./views/FormRegister/FormRegister")
+);
+const DetailsActivs = lazy(
+  () => import("./components/details-activs/detailsActivs")
+);
+const Activos = lazy(
+  () => import("./components/ver_mas_activos/ver_mas_activos")
+);
+
+const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
+const Login = lazy(() => import("./views/login/Login"));
+const Review = lazy(() => import("./components/Review/Review"));
+const Home = lazy(() => import("./views/home/home"));
+// const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
+const FormRegister = lazy(
+  () => import("./views/FormRegister/FormRegister")
+);
+const DetailsActivs = lazy(
+  () => import("./components/details-activs/detailsActivs")
+);
+const Activos = lazy(
+  () => import("./components/ver_mas_activos/ver_mas_activos")
+);
 
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
+      <Suspense fallback={<>Cargando...</>}>
+        {" "}
+        {/* al cargar un componente, crearlo aqui y */}
+        <RoutesWithNotFound>
+          <Route path="/" element={<LandingPage />} />
 
-        <Route path="/" element={<SharedLayout />} >
-          /*
-          Agregar aquí su ruta cuando terminen de probar
-          RECUERDEN NO USAR EL COMPONENTE "SideBar" EN SUS RUTAS, YA ESTÁ IMPLEMENTADAS
-          */
-          <Route path="/home" element={<Home />} />
+          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
-          <Route path="/crypto/:nameActi" element={<DetailsActivs />} />
+          <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
-          <Route path="/calculator" element={<Calculadora />} />
+          <Route path={PublicRouts.LOGIN} element={<Login />} />
 
-          <Route path="/profile" element={<Profile />} />
+          <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
+          {/* agregar aqui las rutas privadas para usuarios */}
+          <Route element={<AuthGuard />}>
+            <Route element={<SharedLayout />}>
+              <Route path={PrivateRoutes.HOME} element={<Home />} />
 
-        </Route>
+              <Route path={PrivateRoutes.WALLET} element={<Activos />} />
 
+              <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
 
-        <Route path="/review" element={<Review />} />
+              <Route path={PrivateRoutes.USER} element={<Profile />} />
 
-        <Route path="register" element={<FormRegister />} />
+              <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
-        <Route path="/login" element={<Login />} />
-
-        <Route path="/verifiqued/:token" element={<Verifiqued />} />
-
-      </Routes>
+              <Route element={<AdminGuard />}>
+                {/* colocar aqui las pestañas para los admins. 
+            Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
+                <Route
+                  path={PrivateAdminRoutes.ADMIN}
+                  element={<h1>estamos en admin</h1>}
+                />
+              </Route>
+            </Route>
+          </Route>
+        </RoutesWithNotFound>
+      </Suspense>
     </div>
   );
 }
