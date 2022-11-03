@@ -10,20 +10,6 @@ import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 
-const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
-const Login = lazy(() => import("./views/login/Login"));
-const Review = lazy(() => import("./components/Review/Review"));
-const Home = lazy(() => import("./views/home/home"));
-// const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
-const FormRegister = lazy(
-  () => import("./views/FormRegister/FormRegister")
-);
-const DetailsActivs = lazy(
-  () => import("./components/details-activs/detailsActivs")
-);
-const Activos = lazy(
-  () => import("./components/ver_mas_activos/ver_mas_activos")
-);
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
