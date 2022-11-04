@@ -2,86 +2,23 @@ import axios from 'axios';
 import activos from "../models/activos";
 //import numberFormat from '../../../client/src/utils/numberFormat.js';
 
+
 export const getActivos = async (): Promise<any> => {
-    const date=new Date()
-    const horas:any=date.toLocaleTimeString()
-    const fecha=date.toDateString()
-    const getAct=await activos.find({})
-    const horaSplit=horas.split(":")
     
-if(getAct.length!==0 && getAct[0].fecha===fecha){
-    const horaModel:any=getAct[0].hora
-    const horaSplitModel=horaModel.split(":")
-
-    //console.log(horaSplitModel[1])
-
-    if(horaModel || parseInt(horaSplitModel[1])<parseInt(horaSplit[1]) ){
-        if(parseInt(horaSplitModel[0])<=parseInt(horaSplit[0])
-           && parseInt(horaSplitModel[1])<parseInt(horaSplit[1]) && parseInt(horaSplitModel[1])>=0 && parseInt(horaSplitModel[1])<56 ){
-            const cincoMin=parseInt(horaSplitModel[1])+5;
-            await activos.updateOne(
-                {hora:`${horaSplitModel[0]}:${horaSplitModel[1]}`}
-                ,
-                {hora:`${horaSplitModel[0]}:${cincoMin}`})
-        }
-        else if(parseInt(horaSplitModel[1])>55){
-        const hora=parseInt(horaSplitModel[0])+1
-        await activos.updateOne(
-            {hora:`${horaSplitModel[0]}:${horaSplitModel[1]}`}
-            ,
-            {hora:`${hora}:00`})
-    }
     const datos=await activos.find({})
-    
+
     return datos[0].activos
-        }
-        
-else if(!horaModel){
-    try {
-        let rank:number=1;
-        const url = await axios(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
-        //console.log(url)
-        //console.log(JSON.stringify(infoActivos))
-        //const activos = JSON.parse(infoActivos)
-        const infoActivos = await url.data.map((e: any) => {
-            return {
-                rank:rank++,
-                id: e.id,
-                symbol: e.symbol,
-                name: e.name,
-                image: e.image,
-                current_price: e.current_price,
-                market_cap: e.market_cap,
-                high_24h: e.high_24h,
-                low_24h: e.low_24h,
-                total_volume:e.total_volume,
-                total_supply:e.total_supply,
-                max_supply:e.max_supply,
-                circulating_supply:e.circulating_supply
-            }
-        })
-        
-        const create={
-            hora:`${horaSplit[0]}:${horaSplit[1]}`,
-            activos:infoActivos
-        }
-       const creacion:any= await activos.create(create)
-       return creacion[0].activos
-
-       
-    } catch (e) { return 'error' } 
-
 
 }
-} 
 
+export const ActualizarApi = async(): Promise<any>=>{
+    try{
     let rank:number=1;
     const url = await axios(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
     //console.log(url)
     //console.log(JSON.stringify(infoActivos))
     //const activos = JSON.parse(infoActivos)
     const infoActivos = await url.data.map((e: any) => {
-        
         return {
             rank:rank++,
             id: e.id,
@@ -98,18 +35,25 @@ else if(!horaModel){
             circulating_supply:e.circulating_supply
         }
     })
-    
+    const date=new Date();
+    const horas:any=date.toLocaleTimeString();
+    const horaSplit=horas.split(":")
+    const  fecha=date.toDateString();
+
     const create={
         hora:`${horaSplit[0]}:${horaSplit[1]}`,
         fecha:fecha,
         activos:infoActivos
     }
-   const borrar:any=await activos.deleteMany({})
-   const creacion:any= await activos.create(create)
-   console.log(creacion)
-   return creacion.activos
-
+    const creacion = await activos.create(create)
+    console.log(creacion,'actualizada')
+    }catch(e){
+        console.log(e)
+    }
 }
+
+
+
 
 
 export const getActivosMayoresA = async (numeroMinimo:any, activos:any): Promise<any> =>{
