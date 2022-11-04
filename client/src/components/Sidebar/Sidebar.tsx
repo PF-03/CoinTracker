@@ -9,6 +9,7 @@ import iconPor from "../../assets/iconPortfolio.png";
 import iconSetting from "../../assets/iconSettings.png";
 import iconSwap from "../../assets/iconSwap.png";
 import iconUser from "../../assets/iconUser.png";
+import iconDonation from "../../assets/donateIcon1.png";
 import { useSelector } from "react-redux";
 
 // codigo guglielmo
@@ -114,6 +115,10 @@ function Sidebar() {
         <Link to={PrivateRoutes.CALCULATOR} className={style.data}>
           <img className={style.icon} src={iconCal} alt="calculator" />
           <span>Calculator</span>
+        </Link>
+        <Link to={PrivateRoutes.DONATE} className={style.data}>
+          <img className={style.icon} src={iconDonation} alt="calculator" />
+          <span>Donate</span>
         </Link>
       </div>
       <div className={style.footer}>
