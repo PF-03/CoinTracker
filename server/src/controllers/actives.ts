@@ -1,8 +1,6 @@
 import axios from 'axios';
 import activos from "../models/activos";
 //import numberFormat from '../../../client/src/utils/numberFormat.js';
-declare var horaSplit: any;
-declare var fecha: any;
 
 export const getActivos = async (): Promise<any> => {
     const date=new Date()
