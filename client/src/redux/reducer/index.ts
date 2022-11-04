@@ -9,8 +9,6 @@ const initialState = {
   detailsActivos: {},
   detailsNews: {},
   seeMore: false,
-  user: {},
-  userToken: '',
   cotizaciones:[],
 
 
