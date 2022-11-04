@@ -16,6 +16,7 @@ export const PrivateRoutes = {
   CRYPTO: "/crypto/:nameActi",
   CALCULATOR: "/calculator",
   VERIFIQUED: '"/verifiqued/:token"',
+  DONATE: "/donate"
 };
 
 export const PrivateAdminRoutes = {

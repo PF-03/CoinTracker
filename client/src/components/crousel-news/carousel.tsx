@@ -31,9 +31,7 @@ export default function CarouselNews() {
             spaceBetween={46}
             slidesPerView={2.2}
             navigation
-            /* scrollbar={{ draggable: true }} */
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log("slide change")}
+            scrollbar={{ draggable: true }}
           >
             {newssSlice.length > 0 &&
               newssSlice !== "error" &&

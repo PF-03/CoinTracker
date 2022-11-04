@@ -11,7 +11,8 @@ body {
   min-height: 100vh;
   margin: 0;
 }
-.App{
+
+.App {
 
   width: 100%;
   min-height: 100vh;
@@ -46,9 +47,4 @@ h6 {
 @font-face {
   font-family: "Oswald";
   src: url(./components/styles/fuentes/oswald.bold.ttf);
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url(./components/styles/fuentes/);
 }

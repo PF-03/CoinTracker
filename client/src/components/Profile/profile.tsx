@@ -82,8 +82,7 @@ export default function Profile() {
   const verifiqued = async () => {
     try {
       await axios.post(
-        `http://localhost:3001/mail/verificar/${
-          user.googleId ? user.googleId : token
+        `http://localhost:3001/mail/verificar/${user.googleId ? user.googleId : token
         }`,
         body
       );
@@ -97,9 +96,6 @@ export default function Profile() {
   };
   return (
     <div className={profile.containerr}>
-      <div>
-        <Sidebar />
-      </div>
       <Bubble size="medium" color="blue-dark" top="20%" left="30vh" />
       <Bubble color="purple" top="-40%" right="-20vh" />
       {user.status !== "UNVERIFIED" ? (
@@ -121,8 +117,8 @@ export default function Profile() {
                     {userId[0]
                       ? userId[0].name
                       : user.name
-                      ? user.name
-                      : "None"}{" "}
+                        ? user.name
+                        : "None"}{" "}
                   </label>
                 </div>
               </div>
@@ -133,8 +129,8 @@ export default function Profile() {
                     {userId[0]
                       ? userId[0].lastname
                       : user.lastname
-                      ? user.lastname
-                      : "None"}{" "}
+                        ? user.lastname
+                        : "None"}{" "}
                   </label>
                 </div>
               </div>
@@ -145,8 +141,8 @@ export default function Profile() {
                     {userId[0]
                       ? userId[0].username
                       : user.username
-                      ? user.username
-                      : "None"}{" "}
+                        ? user.username
+                        : "None"}{" "}
                   </label>
                 </div>
               </div>
@@ -157,8 +153,8 @@ export default function Profile() {
                     {userId[0]
                       ? userId[0].mail
                       : user.mail
-                      ? user.mail
-                      : "None"}{" "}
+                        ? user.mail
+                        : "None"}{" "}
                   </label>
                 </div>
               </div>
@@ -172,8 +168,8 @@ export default function Profile() {
                     userId[0]
                       ? userId[0].image.imageURL
                       : user.image
-                      ? user.image.imageURL
-                      : "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
+                        ? user.image.imageURL
+                        : "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
                   }
                   alt="profile"
                 />
@@ -241,8 +237,8 @@ export default function Profile() {
                       previewSource
                         ? previewSource
                         : userId[0]?.image
-                        ? userId[0].image
-                        : user.image.imageURL ||
+                          ? userId[0].image
+                          : user.image.imageURL ||
                           "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png"
                     }
                     alt="profile"

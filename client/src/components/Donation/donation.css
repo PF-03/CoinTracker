@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.donation-comp-container {
+    padding: 40px;
+}
+
+.donation-amount-container {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.donation-amount-container > label {
+    font-size: 1.2rem;
+}
+
+.donation-amount-container > input {
+    font-size: 1.8rem;
+    margin-top: 8px;
+    display: inline-block;
+    width: 200px;
+    background: none;
+    color: #EFEFEF;
+    outline: none;
+    border-radius: 8px;
+    border: 0.4px solid;
+    padding-left: 8px;
+}
+
+.card-info-container {
+    display: flex;
+}
+
+.card-info-form {
+    margin: 40px 20px;
+}
+
+.card-info-form > label {
+    display: block;
+    font-size: 0.6rem;
+    font-weight: bold;
+}
+
+.card-info-form > .donate-card-element {
+    margin: 4px 0 16px 0;
+    display: block;
+    width: 300px;
+    height: 28px;
+    padding: 6px 0 6px 4px;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.donate-btn {
+    margin: 16px 70px;
+}
+
+.card-img-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    position: relative;
+}
+
+.card-front-img {
+    width: 300px;
+    height: 160px;
+}
+
+.card-back-img {
+    width: 300px;
+    height: 160px;
+    margin-left: 60px;
+    margin-top: 40px;
+}
+
+.card-front-container {
+    position: relative;
+}
+
+.card-back-container {
+    position: relative;
+}
+
+#cardNumberSpan {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+#credit-card-brand {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+}
+
+#cardExpDateSpan {
+    position: absolute;
+    bottom: 12px;
+    left: 240px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+#circleFullDetailSpan {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#circleBorderDetailSpan {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 22px;
+    left: 54px;
+    border: 0.8px solid white;
+    border-radius: 50%;
+}
+
+#cardCvcSpan {
+    position: absolute;
+    top: 108px;
+    left: 290px;
+    font-weight: bold;
+    font-size: 1rem;
+}
