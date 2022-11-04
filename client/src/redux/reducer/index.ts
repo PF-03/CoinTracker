@@ -9,6 +9,10 @@ const initialState = {
   detailsActivos: {},
   detailsNews: {},
   seeMore: false,
+  user: {},
+  userToken: '',
+  cotizaciones:[]
+
 
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
@@ -17,6 +21,7 @@ const initialState = {
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : "",
+
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -87,10 +92,18 @@ function rootReducer(state = initialState, action: any) {
         seeMore: !state.seeMore,
       };
     }
+
+    case 'GET_COTIZACIONES':{
+      return{
+        ...state,
+        cotizaciones:action.payload
+      }
+
     case "RESET": {
       state = initialState;
       LS.clearLocalStore(LS.UserKey);
       LS.clearLocalStore(LS.TokenKey);
+
     }
     default:
       return state;

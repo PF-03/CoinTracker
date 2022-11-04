@@ -11,6 +11,7 @@ import mailHandler from "./middleware/mailHandler";
 import verifiqued from "./middleware/verifiquedUser";
 import validate from "./validate";
 
+
 const routers: any = Router();
 
 // add exchange history routes
@@ -35,5 +36,6 @@ routers.use("/googleauth", googleAuth);
 routers.use("/mail", mailHandler);
 routers.use("/verifiqued", verifiqued);
 routers.use("/validate", validate);
+
 
 export default routers;
