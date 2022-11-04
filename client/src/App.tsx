@@ -11,15 +11,12 @@ import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 
-
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
 const Review = lazy(() => import("./components/Review/Review"));
 const Home = lazy(() => import("./views/home/home"));
 // const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
-const FormRegister = lazy(
-  () => import("./views/FormRegister/FormRegister")
-);
+const FormRegister = lazy(() => import("./views/FormRegister/FormRegister"));
 const DetailsActivs = lazy(
   () => import("./components/details-activs/detailsActivs")
 );
@@ -52,10 +49,12 @@ function App() {
 
               <Route path={PrivateRoutes.WALLET} element={<Activos />} />
 
-              <Route path={PrivateRoutes.CALCULATOR} element={<Calculadora />} />
+              <Route
+                path={PrivateRoutes.CALCULATOR}
+                element={<Calculadora />}
+              />
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
-
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />

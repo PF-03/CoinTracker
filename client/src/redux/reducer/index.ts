@@ -15,7 +15,10 @@ const initialState = {
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
-  userID: {},
+
+  userID: localStorage.getItem(LS.UserIdKey)
+  ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
+  : {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : "",
@@ -28,7 +31,7 @@ function rootReducer(state = initialState, action: any) {
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
-        user: { ...action.payload },
+        user:action.payload,
       };
     case "SET_USER_TOKEN":
       LS.persistLocalStore(LS.TokenKey, action.payload);
@@ -38,6 +41,7 @@ function rootReducer(state = initialState, action: any) {
       };
 
     case "GET_USERID":
+      LS.persistLocalStore(LS.UserIdKey, action.payload);
       return {
         ...state,
         userID: action.payload,
@@ -100,7 +104,7 @@ function rootReducer(state = initialState, action: any) {
     case "RESET": {
       localStorage.clear();
       state = initialState;
-      return state;
+
     }
     default:
       return state;

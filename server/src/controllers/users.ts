@@ -1,4 +1,5 @@
 import { Response, Request } from 'express';
+import { use } from 'passport';
 const user = require('../models/User');
 import handleError from '../utils/handleError';
 const cloudinary= require("cloudinary").v2
@@ -84,5 +85,28 @@ const putUsers: any = async (req: Request, res: Response) => {
     handleError(res, 'ERROR_UPDATE_USERS');
   }
 };
-export { getUsers, postUsers, deleteUsers, putUsers };
+
+const putPassword:any=async(req:Request, res: Response)=>{
+try{
+  const {id}=req.params
+  const {passwordActual, passwordNueva}=req.body 
+  const usuario= await user.find({_id:id})
+  if(Object.keys(usuario).length > 0){
+  const validate = await user.comparePassword(passwordActual, usuario[0].password);
+  if(validate){
+    await user.updateOne({_id:id},{
+      password:await user.encryptPassword(passwordNueva),
+    })
+    return res.send("EXIT")
+  }
+  handleError(res, "PASSWORD INVALID")
+}  
+handleError(res, "MAIL INVALID")
+}
+catch(e){
+  handleError(res, "ERROR_UPDATE_PASSWORD")
+}
+
+}
+export { getUsers, postUsers, deleteUsers, putUsers, putPassword };
 

@@ -41,10 +41,6 @@ function Sidebar() {
     nav(PublicRouts.LANDING);
   };
 
-  const userId = () => {
-    dispatch(getUserId(user._id));
-  };
-
   useEffect(() => {
     const asyncUseEffect = async () => {
       if (token) {
@@ -83,7 +79,7 @@ function Sidebar() {
       </div>
       <div className={style.options}>
         {Object.keys(user).length !== 0 && (
-          <Link to="/profile" className={style.data} onClick={userId}>
+          <Link to="/profile" className={style.data}>
             <img
               className={style.icon}
               src={user.image ? user.image.imageURL : iconUser}
