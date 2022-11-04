@@ -11,7 +11,7 @@ const initialState = {
   seeMore: false,
   user: {},
   userToken: '',
-  cotizaciones:[]
+  cotizaciones:[],
 
 
   user: localStorage.getItem(LS.UserKey)
@@ -93,7 +93,7 @@ function rootReducer(state = initialState, action: any) {
       };
     }
 
-    case 'GET_COTIZACIONES':{
+    case 'GET_COTIZACIONES':
       return{
         ...state,
         cotizaciones:action.payload
