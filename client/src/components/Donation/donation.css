@@ -31,6 +31,10 @@
     padding-left: 8px;
 }
 
+#donation-amount::-webkit-outer-spin-button, #donation-amount::-webkit-inner-spin-button {
+    appearance: none;
+}
+
 .card-info-container {
     display: flex;
 }
