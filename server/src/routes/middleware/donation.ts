@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import {
-    postDonation
+    postDonation,
+    getDonation
 } from '../../controllers/donation'
 
 const donationsRoutes = Router();
 
 
-// donationsRoutes.get('/', getExchangeHistory)
+donationsRoutes.get('/', getDonation)
 
 donationsRoutes.post('/', postDonation)
 
