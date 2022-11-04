@@ -12,6 +12,7 @@ import passport from 'passport';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import path from 'path';
+import { ActualizarApi } from './controllers/actives';
 
 const app: any = express();
 
@@ -61,10 +62,14 @@ app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   // console.error(error);
   return res.send(name + message);
 });
+function repetir(){
+  let identificadorIntervaloDeTiempo = setInterval(ActualizarApi, 90000);
+}
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   // puerto 3001
+  repetir();
   console.log('Server listening on port 3001'); // eslint-disable-line no-console
 });
 
