@@ -8,6 +8,7 @@ const initialState = {
   seeMore: false,
   user: {},
   userToken: '',
+  cotizaciones:[]
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -69,6 +70,12 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         seeMore: !state.seeMore,
       };
+    }
+    case 'GET_COTIZACIONES':{
+      return{
+        ...state,
+        cotizaciones:action.payload
+      }
     }
     default:
       return state;
