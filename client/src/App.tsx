@@ -9,6 +9,7 @@ import Verifiqued from "./components/verifiqued/verifiqued";
 import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
+import Donation from "./components/Donation/donation";
 
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
@@ -54,6 +55,8 @@ function App() {
               <Route path={PrivateRoutes.USER} element={<Profile />} />
 
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+
+              <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
               <Route element={<AdminGuard />}>
                 {/* colocar aqui las pestañas para los admins. 
