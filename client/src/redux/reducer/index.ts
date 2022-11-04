@@ -10,6 +10,10 @@ const initialState = {
   userToken: '',
   admins: [],
   reviews: [],
+  users: [],
+  usersCopy: [],
+  userDetail: [],
+  userPut: '',
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -81,7 +85,32 @@ function rootReducer(state = initialState, action: any) {
     case "GET_REVIEWS":
       return {
         ...state,
-        messages: action.payload
+        reviews: action.payload
+      }
+
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+        usersCopy: action.payload
+      }
+
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        userDetail: action.payload
+      }
+
+    case "PUT_USER_PROFILE_ADMIN":
+      return {
+        ...state,
+        userPut: action.payload
+      }
+    case "DELETE_USER":
+      return {
+        ...state,
+        users: state.users.filter((pat) => pat._id !== action.payload),
+        usersCopy: state.usersCopy.filter((pat) => pat._id !== action.payload)
       }
     default:
       return state;

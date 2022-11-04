@@ -18,12 +18,12 @@ export default function SideBar() {
 
       <div className={st.sidebarWrapper}>
         <div className={st.sidebarMenu}>
-          <h3 className={st.sidebarTitle}>Dashboard</h3>
+          <h3 className={st.sidebarTitle}>Admin Dashboard</h3>
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
-              <Link to='/adminView' className={st.link}>
+              <Link to='/admin' className={st.link}>
                 <HomeIcon className={st.sidebarIcon} />
-                HomeIcon
+                Home
               </Link>
             </li>
             <li className={st.sidebarListItem}>
@@ -47,9 +47,9 @@ export default function SideBar() {
               </a>
             </li>
             <li className={st.sidebarListItem}>
-              <Link to='/adminView/helpusmail' className={st.link}>
+              <Link to='/admin/helpusmail' className={st.link}>
                 <MoveToInboxIcon className={st.sidebarIcon} />
-                Help us to improve
+                Feedback
               </Link>
             </li>
             {/* <li className={st.sidebarListItem}>
@@ -63,33 +63,27 @@ export default function SideBar() {
           <h3 className={st.sidebarTitle}>Users</h3>
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
-              <Link to='/adminView/admins' className={st.link}>
+              <Link to='/admin/admins' className={st.link}>
                 <AdminPanelSettings className={st.sidebarIcon} />
                 Admins
               </Link>
             </li>
             <li className={st.sidebarListItem}>
-              <Link to='/adminView/doctors' className={st.link}>
-                <PersonOutlineIcon className={st.sidebarIcon} />
-                Doctors
-              </Link>
-            </li>
-            <li className={st.sidebarListItem}>
-              <Link to='/adminView/users' className={st.link}>
+              <Link to='/admin/users' className={st.link}>
                 <Groups2Icon className={st.sidebarIcon} />
-                Patiens
+                Clients
               </Link>
             </li>
           </ul>
         </div>
 
         <div className={st.sidebarMenu}>
-          <h3 className={st.sidebarTitle}>Merberships</h3>
+          <h3 className={st.sidebarTitle}>Donations</h3>
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
-              <Link to='/adminView/memberships' className={st.link}>
+              <Link to='/admin/donations' className={st.link}>
                 <StorageIcon className={st.sidebarIcon} />
-                Memberships
+                Donations
               </Link>
             </li>
             {/* <li className={st.sidebarListItem}>

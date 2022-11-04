@@ -31,7 +31,7 @@ function App() {
 
         <Route path="/calculator" element={<Calculadora/>} />
 
-        <Route path="/admin" element={<AdminView/>} />
+        <Route path="/admin/*" element={<AdminView/>} />
       </Routes>
     </div>
   );
