@@ -5,7 +5,7 @@ const walletRouter = express.Router()
 
 walletRouter.get('/:user', walletController.getWallet)
 
-walletRouter.delete('/:user', walletController.deleteWallet)
+walletRouter.delete('/:id', walletController.deleteWallet)
 
 walletRouter.put("/:id", walletController.putWallet)
 
