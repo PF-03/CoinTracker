@@ -58,9 +58,13 @@ function Donation() {
                 card: elements.getElement(CardNumberElement)
             });
             const { id } = paymentMethod;
+            const user = JSON.parse(localStorage.getItem('CoinTrackerUser'));
+            const { username, mail } = user
             const res: any = await axios.post('http://localhost:3001/donate', {
                 amount: donationAmount,
-                id,
+                paymentMethodId: id,
+                username,
+                mail,
             })
             // console.log(res.data);
             Swal.fire({

@@ -15,7 +15,7 @@ export const PrivateRoutes = {
   REVIEW: "/review",
   CRYPTO: "/crypto/:nameActi",
   CALCULATOR: "/calculator",
-  VERIFIQUED: "/verifiqued/:token"
+  VERIFIQUED: "/verifiqued/:token",
   DONATE: "/donate"
 
 };
