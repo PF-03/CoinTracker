@@ -64,6 +64,19 @@ export function getNews() {
   };
 }
 
+export function getUserId(id){
+  return function(dispatch){
+    fetch("http://localhost:3001/users/"+id)
+    .then((res) => res.json())
+    .then((res) => {
+      dispatch({
+        type: 'GET_USERID',
+        payload: res,
+      });
+    });
+};
+}
+
 export function getDetailsActivos(id: any) {
   return {
     type: 'GET_DETAILS_ACTIVOS',

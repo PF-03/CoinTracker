@@ -4,6 +4,9 @@ const activosSchema = new Schema({
     hora: {
         type: String,
     },
+    fecha:{
+        type: String,
+    },
     activos: {
         type: Array,
     }  
