@@ -35,15 +35,17 @@ function App() {
         {/* al cargar un componente, crearlo aqui y */}
         <RoutesWithNotFound>
           <Route path="/" element={<LandingPage />} />
+            <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
-          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
+            <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
-          <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
+            <Route path={PublicRouts.LOG} element={<Login />} />
 
-          <Route path={PublicRouts.LOGIN} element={<Login />} />
+            <Route path={PublicRouts.LOGIN} element={<Login />} />
 
-          <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
+            <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
           {/* agregar aqui las rutas privadas para usuarios */}
+
           <Route element={<AuthGuard />}>
             <Route element={<SharedLayout />}>
               <Route path={PrivateRoutes.HOME} element={<Home />} />

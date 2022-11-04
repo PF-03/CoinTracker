@@ -2,6 +2,7 @@ export const PublicRouts = {
   LANDING: "/",
   REGISTER: "/register",
   LOGIN: "/login",
+  LOG: "/login/:id",
 };
 
 export const PrivateRoutes = {
