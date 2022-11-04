@@ -148,22 +148,34 @@ export const getMenoresA = async (numeroMaximo:any, activos:any): Promise<any> =
     return menoresAmaximo;
 }
 
-export const getActivHistoryPrice=async(coinId:any,coinAmount:any,vs_currency:any="usd")=>{
-    var from:any ="2022-10-29T18:48:04.618+00:00"; // Por el momento es un valor definido manualmente, pero realmente
+export const getActivHistoryPrice=async(coinId:any,userId:any,coinAmount:any,vs_currency:any="usd")=>{
+    console.log(coinAmount)
+    var from:any ="2022-10-20T18:48:04.618+00:00"; // Por el momento es un valor definido manualmente, pero realmente
                                               // deberia hacer una peticion al la base de datos para que
                                              // traiga la fecha en que se genero la relación entre el usuario
                                             // y el activo
-
+    //peticion wallet (user Id, coin Id )
+    const historyValue = [
+        {
+            date:12/123/123,
+            quanty:0,
+        },
+        {
+            date:12/123/123,
+            quanty:2,
+        },
+    ]
     from = Math.floor(new Date(from).getTime())// valor de la fecha en formato UNIX Timestamp
     var to=Math.floor(new Date(Date.now()).getTime()) // valor de la fecha en formato UNIX Timestamp
-    var dias = Math.floor((to-from)/(1000*60*60*24));
+    var dias = Math.round((to-from)/(1000*60*60*24));
     const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${dias}&interval=daily`)
-    .then((val:any)=>{
+    .then((value:any)=>{
         var newArr:any={
             labels:[],
             datasets:[],
+            days:dias
         };
-        val.data["prices"].map((el:any)=>{
+        value.data["prices"].map((el:any)=>{
             newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
             newArr["datasets"].push(el[1]*coinAmount)
         })  

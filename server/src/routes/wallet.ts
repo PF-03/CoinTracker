@@ -9,5 +9,7 @@ walletRouter.delete('/:user', walletController.deleteWallet)
 
 walletRouter.put("/:id", walletController.putWallet)
 
+walletRouter.post("/", walletController.postWallet)
+
 export default walletRouter;
 

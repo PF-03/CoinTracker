@@ -33,7 +33,7 @@ const AssetsList = ({HandleTrClick}) => {
             return (
               <tr
                 onClick={()=>HandleTrClick(el.id)}
-                key={el.id}
+                key={el.rank}
                 className={`${styles.trespe} ${
                   curretPage == "myAssets" ? styles.trespeClick : ""
                 }`}

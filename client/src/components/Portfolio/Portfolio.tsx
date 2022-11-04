@@ -14,9 +14,9 @@ const Portfolio = () => {
     coinAmount:"",
   });
   React.useEffect(() => {
-      dispatch(getActivsHistoryValue({coinId: "bitcoin",vs_currency: "usd",coinAmount:1}));
+      dispatch(getActivsHistoryValue({coinId: "bitcoin",vs_currency: "usd",coinAmount:0 }));
   }, [dispatch])
-
+  
   const ChartData = useSelector((state:any) => state.historyDataActivo);
   const curretPage= useSelector((state:any)=>state.currentAssetView)
   const myAssets = useSelector((state: any) => state.myAssets);
@@ -30,7 +30,7 @@ const Portfolio = () => {
         return(id===el.id)
       })[0]
       dispatch(getActivsHistoryValue({coinId: data.id,vs_currency: "usd",coinAmount:1}))
-      document.documentElement.scrollTop = 0;  
+      document.documentElement.scrollTop = 0;
     }
   }
   return (
