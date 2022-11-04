@@ -2,6 +2,7 @@ export const PublicRouts = {
   LANDING: "/",
   REGISTER: "/register",
   LOGIN: "/login",
+  LOG: "/login/:id",
 };
 
 export const PrivateRoutes = {
@@ -14,8 +15,7 @@ export const PrivateRoutes = {
   REVIEW: "/review",
   CRYPTO: "/crypto/:nameActi",
   CALCULATOR: "/calculator",
-  VERIFIQUED: '"/verifiqued/:token"'
-  
+  VERIFIQUED: '"/verifiqued/:token"',
 };
 
 export const PrivateAdminRoutes = {

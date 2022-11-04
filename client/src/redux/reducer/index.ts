@@ -88,9 +88,9 @@ function rootReducer(state = initialState, action: any) {
       };
     }
     case "RESET": {
+      localStorage.clear();
       state = initialState;
-      LS.clearLocalStore(LS.UserKey);
-      LS.clearLocalStore(LS.TokenKey);
+      return state;
     }
     default:
       return state;
