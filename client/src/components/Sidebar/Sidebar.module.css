@@ -1,17 +1,12 @@
-@font-face {
-  font-family: "Oswald";
-  src: url(./fuentes/oswald.bold.ttf);
-}
-
 .sidebar {
-  border-top-left-radius: 0!important;
-  border-bottom-left-radius: 0!important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
   display: grid;
-  grid-template-rows: 12% 50% 15% 20%;
+  grid-template-rows: 12% 55% 20% 10%;
   position: sticky;
   top: 0;
   height: 100vh;
-  width: 40vh;
+  width: 20vw;
 }
 
 .head {
@@ -45,11 +40,9 @@
 
 .data:hover {
   text-decoration: none;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.4)
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.4));
   box-shadow: 0 4px 30px rgba(100, 100, 100, 0.3);
 }
 
@@ -62,7 +55,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-  transition: .3s ease-out;
+  transition: 0.3s ease-out;
 }
 
 .data span {
@@ -81,4 +74,4 @@
   grid-row: 4;
   display: grid;
   color: white;
-  }
+}

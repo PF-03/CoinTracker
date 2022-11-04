@@ -5,16 +5,14 @@ import activos from "../models/activos";
 
 export const getActivos = async (): Promise<any> => {
     const date=new Date()
-    const horas=date.toLocaleTimeString()
-   
+    const horas:any=date.toLocaleTimeString()
+    const fecha=date.toDateString()
     const getAct=await activos.find({})
     const horaSplit=horas.split(":")
-   
-   
-if(getAct){
+    
+if(getAct.length!==0 && getAct[0].fecha===fecha){
     const horaModel:any=getAct[0].hora
     const horaSplitModel=horaModel.split(":")
-    console.log(horaSplitModel[1])
     if(horaModel || parseInt(horaSplitModel[1])<parseInt(horaSplit[1]) ){
         if(parseInt(horaSplitModel[0])<=parseInt(horaSplit[0])
            && parseInt(horaSplitModel[1])<parseInt(horaSplit[1]) && parseInt(horaSplitModel[1])>=0 && parseInt(horaSplitModel[1])<56 ){
@@ -72,8 +70,7 @@ else if(!horaModel){
 
 
 }
-}
-
+} 
     let rank:number=1;
     const url = await axios(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false`);
     //console.log(url)
@@ -99,10 +96,13 @@ else if(!horaModel){
     
     const create={
         hora:`${horaSplit[0]}:${horaSplit[1]}`,
+        fecha:fecha,
         activos:infoActivos
     }
+   const borrar:any=await activos.deleteMany({})
    const creacion:any= await activos.create(create)
-   return creacion[0].hora
+   console.log(creacion)
+   return creacion.activos
 
 }
 
