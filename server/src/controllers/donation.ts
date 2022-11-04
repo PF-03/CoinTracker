@@ -33,6 +33,7 @@ const postDonation = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
+// necesita el username por body
 const getDonation = (req: Request, res: Response, next: NextFunction) => {
     DonationModel.find({ username: req.body.username})
     .then((result: Object[]) => {
