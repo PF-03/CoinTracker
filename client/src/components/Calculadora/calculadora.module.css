@@ -1,6 +1,7 @@
 .selectYcantidad{
     justify-content: center;
     display: flex;
+    
 }
 .containerTableCalc {
     display: flex;

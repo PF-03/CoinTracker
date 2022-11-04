@@ -97,3 +97,13 @@ th {
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
 }
+
+.selectDivisas{
+    margin-top: 10%;
+    margin-bottom: 0;
+    margin-left: 85%;
+    padding: 1%;
+    border-radius: 1rem 1rem 1rem 1rem;
+    border: none;
+    
+}

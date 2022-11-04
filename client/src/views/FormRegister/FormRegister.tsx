@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import "./FormRegister.css";
-import Button from "../styles/button";
+import Button from "../../components/styles/button";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
@@ -132,7 +132,6 @@ function FormRegister() {
           lastname: inputs.lastname,
         })
         .then((res) => {
-          console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
       Swal.fire({

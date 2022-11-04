@@ -5,14 +5,14 @@ import { Response, Request } from "express";
 
 
 const validateCreateUsers:any=[
-check("username")
+/*  check("username")
 .exists()
 .notEmpty()
 .isLength({min:3, max:99}),
 check("mail")
 .exists()
 .notEmpty()
-.isEmail(),
+.isEmail(),  */ 
 (req:Request,res:Response,next:any)=>{
     return validateResults(req,res,next)
 }
