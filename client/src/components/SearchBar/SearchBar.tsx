@@ -15,23 +15,23 @@ function SearchBar() {
 
     //const[name, setName] = useState("");
     //const[minimo, setMinimo]= useState("");
-    
+
 
     useEffect(() => {
         dispatch(getCotizaciones());
     }, [dispatch]);
 
     const pop: any = useSelector<any>((state) => state.cotizaciones);
-    const cotizaciones= pop;
-    const keys= Object.keys(cotizaciones)
-   
+    const cotizaciones = pop;
+    const keys = Object.keys(cotizaciones)
+
 
     function HandleInputChange(e: any) {
         e.preventDefault();
         //setName(e.target.value)
         const input = document.getElementById('minimo') as HTMLInputElement | null;
         const input_maximo = document.getElementById('maximo') as HTMLInputElement | null;
-        const input_select= document.getElementById('selectCotizacion') as HTMLInputElement|null;
+        const input_select = document.getElementById('selectCotizacion') as HTMLInputElement | null;
         dispatch(getNameActivos(e.target.value, input?.value, input_maximo?.value, input_select?.value)) //para que busque mientras escribe
         //setName(e.target.value)
         //console.log(e.target.value)
@@ -42,7 +42,7 @@ function SearchBar() {
         const input = document.getElementById('minimo') as HTMLInputElement | null;
         const inputbutton = document.getElementById('button') as HTMLInputElement | null;
         const input_maximo = document.getElementById('maximo') as HTMLInputElement | null;
-        const input_select= document.getElementById('selectCotizacion') as HTMLInputElement|null;
+        const input_select = document.getElementById('selectCotizacion') as HTMLInputElement | null;
         dispatch(getNameActivos(inputbutton?.value, input?.value, input_maximo?.value, input_select?.value))
         //console.log(getNameActivos(name))
     }
@@ -53,21 +53,6 @@ function SearchBar() {
 
     return (
         <div>
-            
-            <select id='selectCotizacion' onChange={(e:any)=> HandleSumbit(e)} className={styles.selectDivisas}>
-            <option>USD</option>
-             {
-                keys.length>0?
-                keys.map((e:any)=>{
-                    return(
-                        <option>{e}</option>
-                    )
-                }):
-                <option>API ERROR</option>
-             }
-             
-                
-            </select>
             <div className={styles.containerSearch}>
                 <input
                     className={styles.inputSearch}
@@ -81,6 +66,22 @@ function SearchBar() {
                     <Button className={styles.buttonSearch} onClick={(e: any) => HandleSumbit(e)}>
                         Search
                     </Button>
+                </div>
+                <div>
+                    <select id='selectCotizacion' onChange={(e: any) => HandleSumbit(e)} className={styles.selectDivisas}>
+                        <option>USD</option>
+                        {
+                            keys.length > 0 ?
+                                keys.map((e: any) => {
+                                    return (
+                                        <option>{e}</option>
+                                    )
+                                }) :
+                                <option>API ERROR</option>
+                        }
+
+
+                    </select>
                 </div>
             </div>
 

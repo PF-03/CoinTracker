@@ -5,6 +5,7 @@ import { useState } from "react";
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import './donation.css';
+import s from '../styles/styles.module.css'
 import cardFrontImg from '../../assets/credit-card-front.png'
 import cardBackImg from '../../assets/credit-card-back.png'
 import creditCard from '../../assets/credit-card.png'
@@ -15,8 +16,8 @@ function Donation() {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
-    const [ donationAmount, setDonationAmount ] = useState(0);
-    const [ cardInfo, setCardInfo ] = useState({
+    const [donationAmount, setDonationAmount] = useState(0);
+    const [cardInfo, setCardInfo] = useState({
         number: '****',
         expiration: 'MM/AA',
         cvc: 'CVC',
@@ -28,26 +29,26 @@ function Donation() {
     }
 
     async function handleCardInfoChange(e: any) {
-            let cardIcon;
-            if(e.complete) {
-                cardIcon = document.getElementById('credit-card-brand');
-                if(e.brand === 'visa') {
-                    cardIcon.src = visaIcon;
-                }
-                if(e.brand === 'mastercard') {
-                    cardIcon.src = mastercardIcon;
-                }
-                const result = await stripe.createToken(elements.getElement(CardNumberElement))
-                if(result.token) {
-                    let exp_month = result.token.card.exp_month
-                    let exp_year = String(result.token.card.exp_year).slice(-2)
-                    setCardInfo({
-                        ...cardInfo,
-                        number: result.token.card.last4,
-                        expiration: `${exp_month}/${exp_year}`
-                    })
-                }
+        let cardIcon;
+        if (e.complete) {
+            cardIcon = document.getElementById('credit-card-brand');
+            if (e.brand === 'visa') {
+                cardIcon.src = visaIcon;
             }
+            if (e.brand === 'mastercard') {
+                cardIcon.src = mastercardIcon;
+            }
+            const result = await stripe.createToken(elements.getElement(CardNumberElement))
+            if (result.token) {
+                let exp_month = result.token.card.exp_month
+                let exp_year = String(result.token.card.exp_year).slice(-2)
+                setCardInfo({
+                    ...cardInfo,
+                    number: result.token.card.last4,
+                    expiration: `${exp_month}/${exp_year}`
+                })
+            }
+        }
     }
 
     async function submitDonation(e) {
@@ -74,7 +75,7 @@ function Donation() {
                 confirmButtonText: "Close"
             })
             navigate("/home");
-        } catch(error) {
+        } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops, something went wrong',
@@ -89,20 +90,20 @@ function Donation() {
             <h3>You're almost there.</h3>
             <div className='donation-amount-container'>
                 <label htmlFor='donation-amount'>How much do you want to donate?</label>
-                <input id='donation-amount' type="number" onChange={handleDonationChange} placeholder='$10'/>
+                <input id='donation-amount' type="number" onChange={handleDonationChange} placeholder='$10' />
             </div>
 
             <div className='card-info-container'>
-                <form className='card-info-form' onSubmit={submitDonation}>
+                <form className={`card-info-form ${s.card}`} onSubmit={submitDonation}>
                     {/* <CardElement className='donate-card-element'/> */}
                     <label htmlFor="donate-card-element">CARD NUMBER</label>
-                    <CardNumberElement onChange={handleCardInfoChange} id='donate-card-number' className='donate-card-element'/>
+                    <CardNumberElement onChange={handleCardInfoChange} id='donate-card-number' className='donate-card-element' />
 
                     <label htmlFor='donate-card-element'>EXP. DATE (MM/YY)</label>
-                    <CardExpiryElement onChange={handleCardInfoChange} id='donate-card-exp-date' className='donate-card-element'/>
+                    <CardExpiryElement onChange={handleCardInfoChange} id='donate-card-exp-date' className='donate-card-element' />
 
                     <label htmlFor='donate-card-element'>CVC</label>
-                    <CardCvcElement onChange={handleCardInfoChange} id='donate-card-cvc' className='donate-card-element'/>
+                    <CardCvcElement onChange={handleCardInfoChange} id='donate-card-cvc' className='donate-card-element' />
 
                     <Button disabled={donationAmount > 0 ? false : true} className='donate-btn' gradient={donationAmount > 0 ? true : false} >Donate</Button>
                 </form>
