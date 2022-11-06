@@ -1,5 +1,7 @@
 import axios from 'axios';
 import activos from "../models/activos"
+import walletModel from "../models/Wallet";
+
 
 export const getActivos = async (): Promise<any> => {
     const date=new Date()
@@ -148,41 +150,50 @@ export const getMenoresA = async (numeroMaximo:any, activos:any): Promise<any> =
     return menoresAmaximo;
 }
 
-export const getActivHistoryPrice=async(coinId:any,userId:any,coinAmount:any,vs_currency:any="usd")=>{
-    console.log(coinAmount)
-    var from:any ="2022-10-20T18:48:04.618+00:00"; // Por el momento es un valor definido manualmente, pero realmente
-                                              // deberia hacer una peticion al la base de datos para que
-                                             // traiga la fecha en que se genero la relación entre el usuario
-                                            // y el activo
-    //peticion wallet (user Id, coin Id )
-    const historyValue = [
-        {
-            date:12/123/123,
-            quanty:0,
-        },
-        {
-            date:12/123/123,
-            quanty:2,
-        },
-    ]
-    from = Math.floor(new Date(from).getTime())// valor de la fecha en formato UNIX Timestamp
-    var to=Math.floor(new Date(Date.now()).getTime()) // valor de la fecha en formato UNIX Timestamp
-    var dias = Math.round((to-from)/(1000*60*60*24));
-    const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${dias}&interval=daily`)
+export const getActivHistoryPrice=async(coinId:any,userId:any,vs_currency:any="usd")=>{
+    var walletData:any;
+    var days=30;
+    if(!coinId)return {error:"Falta el parametro coinId"}
+    if(userId){
+        walletData= await walletModel.find({crypto:coinId,user:userId})
+        if(walletData.length===0)return{error: "Wallet Data not finded"}
+        walletData=walletData[0].history
+        var to=new Date(Date.now()).getTime()
+        var from:number = new Date(walletData[0].date).getTime()
+        days= Math.ceil((to-from)/(1000*60*60*24))
+    }
+    const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${days}&interval=daily`)
     .then((value:any)=>{
         var newArr:any={
             labels:[],
             datasets:[],
-            days:dias
+            days:days+1,
+            belongsWallet:userId?true:false
         };
         value.data["prices"].map((el:any)=>{
-            newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
-            newArr["datasets"].push(el[1]*coinAmount)
-        })  
+            if(userId){
+                var dayIndex =walletData/* .reverse() */.findIndex((walletEl:any)=>{
+                    var CurrentwalletDate= new Date(walletEl.date)
+                    return (CurrentwalletDate.getTime()>(el[0]-(12*60*60*1000))&&CurrentwalletDate.getTime()<el[0]+(12*60*60*1000))
+                })
+                if(dayIndex===-1){
+                    dayIndex= walletData.reverse().findIndex((walletEl:any)=>{
+                        var CurrentwalletDate= new Date(walletEl.date)
+                        return (CurrentwalletDate.getTime()<(el[0]))
+                    })
+                }
+                newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
+                newArr["datasets"].push(walletData[dayIndex]["quantity"]*el[1])
+            }
+            else{
+                newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
+                newArr["datasets"].push(el[1])
+            }})
         return newArr
     })
     .catch((error:any)=>{
-        throw new Error(error)
+        console.log(error)
+        return {error:error.message}
     })
     return data;
 }
