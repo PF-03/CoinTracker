@@ -64,8 +64,7 @@ export default function DetailsActivs() {
   console.log(porcentaje);
 
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
+    <>
       <Bubble size="medium" right="10%" bottom={0} />
       <div className={s.contenedor}>
         {!details || details?.id !== nameActi.toString() ? (
@@ -102,7 +101,7 @@ export default function DetailsActivs() {
               </div>
             </div>
             <div className={s.price}>
-              <h3>Price {numberFormat(details.current_price,'standard')} </h3>
+              <h3>Price {numberFormat(details.current_price, 'standard')} </h3>
             </div>
             <div className={s.conInfo}>
               <div className={s.info}>
@@ -112,7 +111,7 @@ export default function DetailsActivs() {
                       <strong>Capitalizacion del mercado</strong>
                     </p>
                     <p>
-                      {numberFormat(details.current_price * details.circulating_supply,'standard')} 
+                      {numberFormat(details.current_price * details.circulating_supply, 'standard')}
                     </p>
                   </div>
                   <div>
@@ -120,13 +119,13 @@ export default function DetailsActivs() {
                       {" "}
                       <strong>Volumen de comercio</strong>
                     </p>
-                    <p>{numberFormat(details.total_volume,'standard')} </p>
+                    <p>{numberFormat(details.total_volume, 'standard')} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Valoracion tras la dilucion total </strong>
                     </p>
-                    <p>{numberFormat(details.current_price * details.max_supply,'standard')}</p>
+                    <p>{numberFormat(details.current_price * details.max_supply, 'standard')}</p>
                   </div>
                 </div>
 
@@ -135,7 +134,7 @@ export default function DetailsActivs() {
                     <p className={s.p}>
                       <strong>Cantidad circulante</strong>
                     </p>
-                    <p>{numberFormat(details.circulating_supply,'standard')} </p>
+                    <p>{numberFormat(details.circulating_supply, 'standard')} </p>
                   </div>
                   <div>
                     <p className={s.p}>
@@ -147,7 +146,7 @@ export default function DetailsActivs() {
                     <p className={s.p}>
                       <strong>Catidad max.</strong>
                     </p>
-                    <p>{numberFormat(details.max_supply,'standard')} </p>
+                    <p>{numberFormat(details.max_supply, 'standard')} </p>
                   </div>
                 </div>
               </div>
@@ -160,6 +159,6 @@ export default function DetailsActivs() {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }

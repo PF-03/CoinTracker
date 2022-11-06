@@ -6,7 +6,7 @@
 }
 
 .CardText {
-    margin-top: 20px;
+    margin-top: 2rem;
     width: 100%;
 
 }
@@ -25,6 +25,7 @@
 
 
 .titulo {
+    margin-top: 1rem;
     margin-bottom: 0;
     font-size: 22px;
     text-align: center;
@@ -37,7 +38,7 @@
 }
 
 .img img {
-    width: 40%;
+    width: 50%;
 }
 
 .newsImg {
@@ -57,14 +58,10 @@
 
 .button {
     cursor: pointer;
-    border-radius: 100%!important;
+    border-radius: 100% !important;
     width: 2.4rem;
     height: 2.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
-
-

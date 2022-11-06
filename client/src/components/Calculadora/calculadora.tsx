@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getActivos} from "../../redux/actions/index";
 import css from '../Calculadora/calculadora.module.css';
 import numberFormat from '../../utils/numberFormat';
+import Bubble from "../styles/bubbles";
 
 
 
@@ -71,7 +72,8 @@ function Calculadora(){
    
     return(
         
-        <div>
+        <div className={css.divTotal}>
+          <Bubble color="blue-dark" size="large" bottom='70%' right='11%'/>
           <h1 className={css.h1Calc}>Calculator</h1>
             <div className={css.selectYcantidad}>
             <select id='select'onChange={()=>HandleInputs()} >
@@ -125,7 +127,8 @@ function Calculadora(){
          </tbody>
          </table>
          </div>
-         
+         <Bubble color="red" size="medium" bottom='-1%' right='-10%'/>
+         <Bubble color="blue-light" size="medium" bottom='-1%' right='70%'/>
         </div>
     )
 }

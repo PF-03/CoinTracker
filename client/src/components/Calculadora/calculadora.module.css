@@ -1,6 +1,7 @@
 .selectYcantidad{
     justify-content: center;
     display: flex;
+    
 }
 .containerTableCalc {
     display: flex;
@@ -12,13 +13,17 @@
     margin-bottom: 5rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    min-width: 1000px;
     
 }
 .containerTableCalc::-webkit-scrollbar {
     display: none;
-  }
+}
 
-
+.divTotal{
+    justify-content: center;
+    margin-left: 1%;
+}
 
 
 .tableCalc{
@@ -28,7 +33,8 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
-    border: 1px solid rgba(219, 219, 219, 0.12);
+    border-radius: 17px;
+
 }
 
 

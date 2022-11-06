@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.css";
 import card from "../styles/styles.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import iconHome from "../../assets/iconHome.png";
 import iconCal from "../../assets/iconCal.png";
 import iconLogOut from "../../assets/iconLogOut.png";
@@ -9,32 +9,36 @@ import iconPor from "../../assets/iconPortfolio.png";
 import iconSetting from "../../assets/iconSettings.png";
 import iconSwap from "../../assets/iconSwap.png";
 import iconUser from "../../assets/iconUser.png";
+import iconDonation from "../../assets/donateIcon1.png";
 import { useSelector } from "react-redux";
 
 // codigo guglielmo
 ////////////////////////////////////////////////////////
-import { setUser } from "../../redux/actions";
+import { setUser, getUserId } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
 //////////////////////////////////////////////////////////
 function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
-  console.log(user);
+
   //codigo guglielmo
   ////////////////////////////////////////////////////////////
-
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   const token = useSelector((store: any) => store.userToken);
-  console.log(token);
+  const nav = useNavigate();
+  const userr = useSelector((state: any) => state.userID);
 
-  const logout = () => {
+  const logout = async () => {
     axios
       .get(`http://localhost:3001/logout`, {
         withCredentials: true,
       })
       .then((res: any) => console.log(res.data));
-    dispatch(setUser({}));
+
+    dispatch({ type: "RESET" });
+    nav(PublicRouts.LANDING);
   };
 
   useEffect(() => {
@@ -67,46 +71,64 @@ function Sidebar() {
           alt="logo"
           className={style.logo}
         />
-        <Link className={style.title} to="/home">
+
+        <NavLink className={style.title} to={PrivateRoutes.HOME}>
           {" "}
           CoinTracker
-        </Link>
+        </NavLink>
       </div>
       <div className={style.options}>
-        <Link to="/home" className={style.data}>
-          <img className={style.icon} src={iconUser} alt="user" />
-          <span>{user.name || "Default"}</span>
-        </Link>
+        {Object.keys(user).length !== 0 && (
+          <Link to="/profile" className={style.data}>
+            <img
+              className={style.icon}
+              src={user.image ? user.image.imageURL : iconUser}
+              alt="user"
+            />
+            <span>
+              {user[0]?.username
+                ? user[0].username
+                : user.username || "Default"}
+            </span>
+          </Link>
+        )}
         <Link to="/home" className={style.data}>
           <img className={style.icon} src={iconHome} alt="home" />
           <span>Home</span>
         </Link>
-        <Link to="/porfolio" className={style.data}>
-          <img className={style.icon} src={iconPor} alt="home" />
+        <Link to={PrivateRoutes.PORTFOLIO} className={style.data}>
+          <img className={style.icon} src={iconPor} alt="portfolio" />
           <span>Portfolio Tracker</span>
         </Link>
-        <Link to="/news" className={style.data}>
-          <img className={style.icon} src={iconNew} alt="home" />
+        <Link to={PrivateRoutes.NEWS} className={style.data}>
+          <img className={style.icon} src={iconNew} alt="news" />
           <span>News</span>
         </Link>
-        <Link to="/swap" className={style.data}>
-          <img className={style.icon} src={iconSwap} alt="home" />
+        <Link to={PrivateRoutes.SWAP} className={style.data}>
+          <img className={style.icon} src={iconSwap} alt="swap" />
           <span>Swap</span>
         </Link>
-        <Link to="/calculator" className={style.data}>
-          <img className={style.icon} src={iconCal} alt="home" />
+        <Link to={PrivateRoutes.CALCULATOR} className={style.data}>
+          <img className={style.icon} src={iconCal} alt="calculator" />
           <span>Calculator</span>
+        </Link>
+        <Link to={PrivateRoutes.DONATE} className={style.data}>
+          <img className={style.icon} src={iconDonation} alt="calculator" />
+          <span>Donate</span>
         </Link>
       </div>
       <div className={style.footer}>
-        <Link to="" className={style.data}>
-          <img className={style.icon} src={iconSetting} alt="home" />
-          <span>Settings</span>
-        </Link>
-        <Link to="/" onClick={() => logout()} className={style.data}>
-          <img className={style.icon} src={iconLogOut} alt="home" />
-          <span>Logout</span>
-        </Link>
+        {Object.keys(user).length !== 0 ? (
+          <span onClick={() => logout()} className={style.data}>
+            <img className={style.icon} src={iconLogOut} alt="home" />
+            <span>Logout</span>
+          </span>
+        ) : (
+          <Link to="/login" className={style.data}>
+            <img className={style.icon} src={iconLogOut} alt="home" />
+            <span>Login</span>
+          </Link>
+        )}
       </div>
     </div>
   );

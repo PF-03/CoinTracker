@@ -1,9 +1,11 @@
-.contenedor{
+.contenedor {
     padding-left: 4rem;
     padding-top: 4rem;
     overflow: hidden;
+    width: 100%;
 }
-.box{
+
+.box {
     display: flex;
     flex-direction: column;
     color: rgb(255, 255, 255);
@@ -11,66 +13,74 @@
     font-size: 15px;
 }
 
- .coin{
+.coin {
     display: flex;
     flex-direction: column;
     width: 100%;
-    
-} 
-.box_one{
+
+}
+
+.box_one {
     display: flex;
     flex-direction: column;
     max-height: 300px;
     line-height: 20px;
 }
-.box_one .rank{
-    color:white;
+
+.box_one .rank {
+    color: white;
     font-weight: bold;
     text-decoration: underline;
 
 }
-.price{
+
+.price {
     display: flex;
     min-width: 150px;
     justify-content: space-between;
 }
 
-.name{
+.name {
     display: flex;
     padding-right: 10px;
     max-width: 30rem;
 }
-.image{
+
+.image {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: .5rem;
 }
-.image img{
+
+.image img {
     width: 56px;
     height: 56px;
 }
 
-.botones{
+.botones {
     display: flex;
     justify-content: space-around;
     width: 250px;
     color: rgb(0, 0, 0);
-  
- 
+
+
 }
-.conInfo{
+
+.conInfo {
     display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
-   
+
 }
-.botones div{
+
+.botones div {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 48px;
     height: 48px;
-    border-radius: 100%!important;
+    border-radius: 100% !important;
     color: white;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -80,13 +90,15 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     margin-bottom: 20px;
 }
-.lowhigh{
+
+.lowhigh {
     display: flex;
     justify-content: space-between;
     width: 20rem;
     font-size: 12px;
 }
-.info{
+
+.info {
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem;
@@ -99,21 +111,22 @@
 }
 
 
-.boxInfo div{
+.boxInfo div {
     display: flex;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     width: 25rem;
-    font-size: 15px;  
-    
-} 
-.boxInfo div .p{
+    font-size: 15px;
+
+}
+
+.boxInfo div .p {
     font-size: 18px;
 }
-.button{
+
+.button {
     display: flex;
     padding-top: 20px;
 
     align-items: center;
 }
-
