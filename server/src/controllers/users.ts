@@ -2,7 +2,6 @@ import { Response, Request } from 'express';
 const user = require('../models/User');
 import handleError from '../utils/handleError';
 import { NextFunction } from 'express';
-import activos from './../routes/middleware/activs';
 
 
 const getUsers: any = async (req: Request, res: Response) => {
@@ -10,7 +9,7 @@ const getUsers: any = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     if (!id) {
-      const userAll: Object = await user.find({});
+      let userAll: Object = await user.find({});
       return res.status(202).json(userAll);
     } else {
       const userId: Object = await user.find({ _id: id });
@@ -29,10 +28,10 @@ const getUsersAdmin: any = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     if (!id) {
-      const userAll: Object = await user.find({ type: ['admin'] });
-      return res.status(202).json(userAll);
+      let userAllAdmins: Object = await user.find({ type: 'admin' });
+      return res.status(202).json(userAllAdmins);
     } else {
-      const userId: Object = await user.find({ type: ['admin'], _id: id });
+      const userId: Object = await user.find({ type: 'admin', _id: id });
       if (Object.keys(userId).length > 0) {
         return res.status(202).json(userId);
       }
@@ -59,7 +58,16 @@ const postUsers: Function = async (req: Request, res: Response) => {
 const deleteUsers: any = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await user.updateOne({ _id: id }, { activos: false });
+    let userFound = {
+      activos: true,
+    }
+    userFound = await user.findById({ _id: id });
+    if (userFound.activos === true) {
+      var userAct = await user.findByIdAndUpdate(id, { activos: false }, { new: true })
+    } else {
+      var userAct = await user.findByIdAndUpdate(id, { activos: true }, { new: true })
+    }
+    console.log(userAct.activos)
     res.status(202).json('DELETE_EXIT');
   } catch (e) {
     handleError(res, 'ERROR_DELETE_USERS');
@@ -70,7 +78,7 @@ const putUsers: any = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const body = req.body;
-    const userId: Object = await user.find({ activos: true, _id: id });
+    const userId: Object = await user.find({ _id: id });
     if (Object.keys(userId).length > 0) {
       await user.updateOne({ _id: id }, body);
       return res.status(202).json('UPDATE_EXIT');

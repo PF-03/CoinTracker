@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmins } from "../../../redux/actions/index"
 import { DataGrid } from '@mui/x-data-grid';
@@ -14,10 +14,11 @@ export default function Admins() {
     dispatch(getAdmins());
   }, [dispatch, getAdmins])
 
-  const allAdmins = useSelector((state:any) => state.admins)
+  const allAdmins = useSelector((state: any) => state.admins)
 
+  console.log(allAdmins)
   const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    { field: '_id', headerName: 'Admin ID', width: 200 },
     // { field: 'profilePic', headerName: 'Profile Pic', width: 100, renderCell: (params)=>{
     //   return (
     //     <div className={st.doctorListUser}>
@@ -26,16 +27,30 @@ export default function Admins() {
     //     </div>
     //   )
     // }},
-    { field: 'idAdm', headerName: 'Admin ID', width: 150 },
-    { field: 'name', headerName: 'Name', width: 150 },
-    { field: 'email', headerName: 'Email', width: 180 },
+    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'googleId', headerName: 'Name', width: 150 },
+    { field: 'username', headerName: 'Email', width: 180 },
+    { field: 'password', headerName: 'Password', width: 150 },
+    { field: 'mail', headerName: 'mail', width: 150 },
+    { field: 'name', headerName: 'name', width: 150 },
+    { field: 'lastname', headerName: 'lastname', width: 150 },
+    { field: 'type', headerName: 'type', width: 150 },
+    { field: 'token', headerName: 'token', width: 150 },
+    { field: 'activos', headerName: 'activos', width: 150 },
   ];
 
   const adminRows = allAdmins.map((Adm, index) => ({
     id: index + 1,
-    idAdm: Adm.id,
+    _id: Adm._id,
+    googleId: Adm.googleId,
+    username: Adm.username,
+    password: Adm.password,
+    mail: Adm.mail,
     name: Adm.name,
-    email: Adm.email,
+    lastname: Adm.lastname,
+    type: Adm.type,
+    token: Adm.token,
+    activos: Adm.activos
   }));
 
 
@@ -47,7 +62,6 @@ export default function Admins() {
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
         disableSelectionOnClick
       />
 

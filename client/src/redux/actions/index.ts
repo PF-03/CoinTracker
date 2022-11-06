@@ -101,7 +101,7 @@ export function postMail(data:any){
 export function getAdmins(){ //Obtener los admins registrados
   return async function(dispatch)
   {
-      let json = await axios.get("/users/admins");
+      let json = await axios.get("http://localhost:3001/users/admins");
       return dispatch({
           type: "GET_ADMINS",
           payload: json.data

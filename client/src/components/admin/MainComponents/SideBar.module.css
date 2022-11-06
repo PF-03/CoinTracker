@@ -1,7 +1,7 @@
 .sidebar{
     flex: 1.4;
     height: 100%;
-    background-color: rgb(215, 252, 241);
+    background-color: rgba(29, 29, 29, 0.459);
     position: sticky;
     top: 50px;
     border-radius: 10px;
@@ -43,7 +43,7 @@
 }
 
 .sidebarListItem.active, .sidebarListItem:hover{
-    background-color: rgb(175, 245, 224);
+    background-color: rgb(253, 253, 253);
     color: #555;
 }
 

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../redux/actions/index";
 import st from './UserList.module.css';
 import { DataGrid } from '@mui/x-data-grid';
-import { DeleteForever } from '@mui/icons-material';
+import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ export default function UserList() {
 
   const handleDelete = (_id) => {
     dispatch(deleteUser(_id))
-    alert("User successfully deleted");
+    alert("User successfully updated");
     window.location.reload()
   }
 
@@ -49,7 +49,7 @@ export default function UserList() {
             <Link to={'/admin/user/' + params.row._id}>
               <button className={st.userListEdit}>Edit</button>
             </Link>
-            <DeleteForever className={st.userListDelete} onClick={() => handleDelete(params.row._id)} />
+            <BlockIcon className={st.userListDelete} onClick={() => handleDelete(params.row._id)} />
           </>
         )
       }
@@ -79,7 +79,6 @@ export default function UserList() {
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
         disableSelectionOnClick
       />
 

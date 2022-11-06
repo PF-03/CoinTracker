@@ -3,10 +3,10 @@
     width: 100%;
     height: 70px;
     position: sticky;
-    background: #D7FCF1;
-    background: -moz-linear-gradient(left, #D7FCF1 0%, #A0FCE4 50%, #7DF7FC 100%);
-    background: -webkit-linear-gradient(left, #D7FCF1 0%, #A0FCE4 50%, #7DF7FC 100%);
-    background: linear-gradient(to right, #D7FCF1 0%, #A0FCE4 50%, #7DF7FC 100%);
+    background-color: rgba(58, 58, 58, 0.459);
+    background: -moz-linear-gradient(left, #616161 0%, #747474 50%, #8a8a8a 100%);
+    background: -webkit-linear-gradient(left, #616161 0%, #747474 50%, #8a8a8a 100%);
+    background: linear-gradient(to right,left, #616161 0%, #747474 50%, #8a8a8a 100%);
     top: 0;
     z-index: 1000;
 }
@@ -35,6 +35,7 @@
     position: relative;
     cursor: pointer;
     margin-right: 10px;
+    color: white;
 }
 
 .topAvatar{
