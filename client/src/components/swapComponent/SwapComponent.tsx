@@ -1,3 +1,4 @@
+
 import Bubble from '../styles/bubbles';
 import axios from 'axios';
 import style from './SwapComponent.module.css';
@@ -6,10 +7,17 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Swap } from '../Swap/Swap';
 import { History } from '../History/History';
+import Sidebar from "../Sidebar/Sidebar";
+import swapIcon from "../../assets/swap.png";
+import downArrowIcon from "../../assets/down-arrow.png";
+
+
+
 
 export default function SwapComponent() {
   const { name } = useSelector((state: any) => state.user);
   const actives: any = useSelector<any>((state) => state.activos);
+  console.log(actives);
   const [coinOneState, setCoinOneState] = useState<any>({
     show: false,
     data: {},
@@ -19,8 +27,8 @@ export default function SwapComponent() {
     data: {},
   });
   const [coinCalcValues, setCoinCalcValues] = useState<any>({
-    coinOne: '',
-    coinTwo: '',
+    coinOne: "",
+    coinTwo: "",
   });
   const [changeView, setChangeView] = useState<any>(true);
 
@@ -39,7 +47,7 @@ export default function SwapComponent() {
     const coinTwoVsCoinOne =
       coinTwoState.data.current_price / coinOneState.data.current_price;
     setCoinCalcValues(() => {
-      if (e.target.name === 'coinOne') {
+      if (e.target.name === "coinOne") {
         const coinOneValue = e.target.value;
         const coinTwoValue = e.target.value * coinOneVsCoinTwo;
         return {
@@ -85,10 +93,10 @@ export default function SwapComponent() {
       setCoinTwoState({ ...coinTwoState, data: actives[1] });
     }
     if (coinCalcValues.coinOne === 0) {
-      return setCoinCalcValues({ ...coinCalcValues, coinOne: '' });
+      return setCoinCalcValues({ ...coinCalcValues, coinOne: "" });
     }
     if (coinCalcValues.coinTwo === 0) {
-      return setCoinCalcValues({ ...coinCalcValues, coinTwo: '' });
+      return setCoinCalcValues({ ...coinCalcValues, coinTwo: "" });
     }
 
     setCoinCalcValues(coinCalcValues);
@@ -96,6 +104,7 @@ export default function SwapComponent() {
 
   return (
     <div className={style.view}>
+
       <div>
         <SwapModal
           modalState={coinOneState}
@@ -108,24 +117,26 @@ export default function SwapComponent() {
           coin='Coin 2'
         />
       </div>
+
       <div className={style.swap}>
-        <div className={style['swap-container']}>
-          <div className={style['container-headers']}>
+        <div className={style["swap-container"]}>
+          <div className={style["container-headers"]}>
             <div
               onClick={() => setChangeView(!changeView)}
-              className={!changeView ? style['head1-active'] : style.head1}
+              className={!changeView ? style["head1-active"] : style.head1}
             >
               <h1>Swap</h1>
             </div>
             <div
               onClick={() => setChangeView(!changeView)}
-              className={changeView ? style['head2-active'] : style.head2}
+              className={changeView ? style["head2-active"] : style.head2}
             >
               <h1>History</h1>
             </div>
           </div>
 
           {changeView && (
+
             <Swap
               actives={actives}
               setCoinOneState={setCoinOneState}
@@ -137,11 +148,126 @@ export default function SwapComponent() {
               changeCoin={changeCoin}
               handleSwap={handleSwap}
             />
+
+            <div className={style["coins-container"]}>
+              <p>Swap tokens instantly. </p>
+              {actives && actives[0] ? (
+                <div
+                  onClick={() =>
+                    setCoinOneState({
+                      ...coinOneState,
+                      show: !coinOneState.show,
+                    })
+                  }
+                  className={style["token-title"]}
+                >
+                  <img
+                    src={coinOneState.data.image}
+                    alt={coinOneState.data.name}
+                    width="30px"
+                    height="30px"
+                  />
+                  <h3>
+                    {coinOneState.data.symbol
+                      ? coinOneState.data.symbol.toUpperCase()
+                      : coinOneState.data.symbol}
+                  </h3>
+                  <img
+                    src={downArrowIcon}
+                    alt="down arrow icon"
+                    width="15px"
+                    height="15px"
+                  />
+                </div>
+              ) : (
+                "loading"
+              )}
+
+              <input
+                onChange={handleChange}
+                name="coinOne"
+                type="number"
+                placeholder="0.0"
+                value={coinCalcValues.coinOne.toString()}
+              />
+
+              <img
+                onClick={changeCoin}
+                src={swapIcon}
+                alt="swap icon"
+                className={style.invert}
+              />
+
+              {actives && actives[1] ? (
+                <div
+                  onClick={() =>
+                    setCoinTwoState({
+                      ...coinTwoState,
+                      show: !coinTwoState.show,
+                    })
+                  }
+                  className={style["token-title"]}
+                >
+                  <img
+                    src={coinTwoState.data.image}
+                    alt={coinTwoState.data.name}
+                    width="30px"
+                    height="30px"
+                  />
+                  <h3>
+                    {coinTwoState.data.symbol
+                      ? coinTwoState.data.symbol.toUpperCase()
+                      : coinTwoState.data.symbol}
+                  </h3>
+                  <img
+                    src={downArrowIcon}
+                    alt="down arrow icon"
+                    width="15px"
+                    height="15px"
+                  />
+                </div>
+              ) : (
+                "loading"
+              )}
+
+              <input
+                onChange={handleChange}
+                name="coinTwo"
+                type="number"
+                placeholder="0.0"
+                value={coinCalcValues.coinTwo.toString()}
+              />
+              {(coinCalcValues.coinOne || coinCalcValues.coinTwo) && (
+                <p>
+                  Price{" "}
+                  {(
+                    coinTwoState.data.current_price /
+                    coinOneState.data.current_price
+                  ).toFixed(3)}{" "}
+                  {coinOneState.data.symbol.toUpperCase()} per{" "}
+                  {coinTwoState.data.symbol.toUpperCase()}{" "}
+                </p>
+              )}
+              <button>Swap</button>
+            </div>
+
           )}
 
           {!changeView && <History />}
         </div>
       </div>
+
+      <SwapModal
+        modalState={coinOneState}
+        setModalState={setCoinOneState}
+        coin="Coin 1"
+      />
+      <SwapModal
+        modalState={coinTwoState}
+        setModalState={setCoinTwoState}
+        coin="Coin 2"
+      />
+
     </div>
   );
 }

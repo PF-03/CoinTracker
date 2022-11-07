@@ -18,16 +18,18 @@ export default function Verifiqued() {
         await axios.get("http://localhost:3001/verifiqued/" + token);
         await dispatch(getUserId(user._id ? user._id : user[0]._id));
         Swal.fire({
+          icon: "success",
           title: "Your account was verified!",
-          imageUrl: "https://cdn-icons-png.flaticon.com/512/6364/6364343.png",
-          imageWidth: 400,
-          imageHeight: 200,
-          imageAlt: "verifiqued",
           confirmButtonText: "Let's go!",
         });
         navigate("/profile");
       } catch (e) {
-        console.log(e);
+        Swal.fire({
+          icon: "error",
+          title: "Oops, something went wrong",
+          text: `${e}`,
+          confirmButtonText: "Try again",
+        });
       }
     };
     funcion();
