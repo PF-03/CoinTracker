@@ -94,7 +94,6 @@ const putUsers: any = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { username, name, mail, lastname } = req.body;
     const userId: Object = await user.find({ activos: true, _id: id });
-    console.log(username, name, mail, lastname);
     if (Object.keys(userId).length > 0) {
       if (req.file) {
         const resultClou = await cloudinary.uploader.upload(req.file.path);

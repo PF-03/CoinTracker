@@ -6,14 +6,10 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Swap } from "../Swap/Swap";
 import { History } from "../History/History";
-import Sidebar from "../Sidebar/Sidebar";
-import swapIcon from "../../assets/swap.png";
-import downArrowIcon from "../../assets/down-arrow.png";
 
 export default function SwapComponent() {
   const { name } = useSelector((state: any) => state.user);
   const actives: any = useSelector<any>((state) => state.activos);
-  console.log(actives);
   const [coinOneState, setCoinOneState] = useState<any>({
     show: false,
     data: {},
@@ -112,7 +108,6 @@ export default function SwapComponent() {
           coin="Coin 2"
         />
       </div>
-
       <div className={style.swap}>
         <div className={style["swap-container"]}>
           <div className={style["container-headers"]}>
@@ -131,137 +126,22 @@ export default function SwapComponent() {
           </div>
 
           {changeView && (
-            <div>
-              <Swap
-                actives={actives}
-                setCoinOneState={setCoinOneState}
-                setCoinTwoState={setCoinTwoState}
-                coinOneState={coinOneState}
-                coinTwoState={coinTwoState}
-                handleChange={handleChange}
-                coinCalcValues={coinCalcValues}
-                changeCoin={changeCoin}
-                handleSwap={handleSwap}
-              />
-
-              <div className={style["coins-container"]}>
-                <p>Swap tokens instantly. </p>
-                {actives && actives[0] ? (
-                  <div
-                    onClick={() =>
-                      setCoinOneState({
-                        ...coinOneState,
-                        show: !coinOneState.show,
-                      })
-                    }
-                    className={style["token-title"]}
-                  >
-                    <img
-                      src={coinOneState.data.image}
-                      alt={coinOneState.data.name}
-                      width="30px"
-                      height="30px"
-                    />
-                    <h3>
-                      {coinOneState.data.symbol
-                        ? coinOneState.data.symbol.toUpperCase()
-                        : coinOneState.data.symbol}
-                    </h3>
-                    <img
-                      src={downArrowIcon}
-                      alt="down arrow icon"
-                      width="15px"
-                      height="15px"
-                    />
-                  </div>
-                ) : (
-                  "loading"
-                )}
-
-                <input
-                  onChange={handleChange}
-                  name="coinOne"
-                  type="number"
-                  placeholder="0.0"
-                  value={coinCalcValues.coinOne.toString()}
-                />
-
-                <img
-                  onClick={changeCoin}
-                  src={swapIcon}
-                  alt="swap icon"
-                  className={style.invert}
-                />
-
-                {actives && actives[1] ? (
-                  <div
-                    onClick={() =>
-                      setCoinTwoState({
-                        ...coinTwoState,
-                        show: !coinTwoState.show,
-                      })
-                    }
-                    className={style["token-title"]}
-                  >
-                    <img
-                      src={coinTwoState.data.image}
-                      alt={coinTwoState.data.name}
-                      width="30px"
-                      height="30px"
-                    />
-                    <h3>
-                      {coinTwoState.data.symbol
-                        ? coinTwoState.data.symbol.toUpperCase()
-                        : coinTwoState.data.symbol}
-                    </h3>
-                    <img
-                      src={downArrowIcon}
-                      alt="down arrow icon"
-                      width="15px"
-                      height="15px"
-                    />
-                  </div>
-                ) : (
-                  "loading"
-                )}
-
-                <input
-                  onChange={handleChange}
-                  name="coinTwo"
-                  type="number"
-                  placeholder="0.0"
-                  value={coinCalcValues.coinTwo.toString()}
-                />
-                {(coinCalcValues.coinOne || coinCalcValues.coinTwo) && (
-                  <p>
-                    Price{" "}
-                    {(
-                      coinTwoState.data.current_price /
-                      coinOneState.data.current_price
-                    ).toFixed(3)}{" "}
-                    {coinOneState.data.symbol.toUpperCase()} per{" "}
-                    {coinTwoState.data.symbol.toUpperCase()}{" "}
-                  </p>
-                )}
-                <button>Swap</button>
-              </div>
-            </div>
+            <Swap
+              actives={actives}
+              setCoinOneState={setCoinOneState}
+              setCoinTwoState={setCoinTwoState}
+              coinOneState={coinOneState}
+              coinTwoState={coinTwoState}
+              handleChange={handleChange}
+              coinCalcValues={coinCalcValues}
+              changeCoin={changeCoin}
+              handleSwap={handleSwap}
+            />
           )}
 
           {!changeView && <History />}
         </div>
       </div>
-
-      <SwapModal
-        modalState={coinOneState}
-        setModalState={setCoinOneState}
-        coin="Coin 1"
-      />
-      <SwapModal
-        modalState={coinTwoState}
-        setModalState={setCoinTwoState}
-        coin="Coin 2"
-      />
     </div>
   );
 }

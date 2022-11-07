@@ -45,6 +45,7 @@ function App() {
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
           <Route path="/transaccion" element={<Transaccion />} />
+          <Route path={PublicRouts.LOG} element={<Login />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
 
@@ -80,16 +81,12 @@ function App() {
               <Route path={PrivateRoutes.SWAP} element={<SwapComponent />} />
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />
-
-              <Route element={<AdminGuard />}>
-                {/* colocar aqui las pestañas para los admins. 
+            </Route>
+            <Route element={<AdminGuard />}>
+              {/* colocar aqui las pestañas para los admins. 
 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-                <Route
-                  path={PrivateAdminRoutes.ADMIN}
-                  element={<AdminView />}
-                />
-              </Route>
+              <Route path={PrivateAdminRoutes.ADMIN} element={<AdminView />} />
             </Route>
           </Route>
         </RoutesWithNotFound>
