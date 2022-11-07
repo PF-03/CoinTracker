@@ -42,7 +42,9 @@ export const SwapModal = ({ modalState, setModalState, coin }) => {
           >
             <div className={style.header}>
               <h4>Select a coin</h4>
-              <button onClick={handleClick}>X</button>
+              <button onClick={handleClick} className={style.close}>
+                X
+              </button>
             </div>
             <input
               onChange={handleChange}

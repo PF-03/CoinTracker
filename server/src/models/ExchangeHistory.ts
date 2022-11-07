@@ -1,39 +1,47 @@
 //MODELO PARA HISTORIAL DE INTERCAMBIOS
-import mongoose from "mongoose";
-const { model, Schema } = mongoose
+import mongoose from 'mongoose';
+const { model, Schema } = mongoose;
 
 //Mongo da una id predeterminadamente, no es necesario declarar
-const exchangeHistorySchema = new Schema({
+const exchangeHistorySchema = new Schema(
+  {
+    icon1: {
+      type: String,
+    },
+    icon2: {
+      type: String,
+    },
     crypto1: {
-        type: String,
+      type: String,
     },
     crypto2: {
-        type: String,
+      type: String,
     },
     quantity1: {
-        type: Number,
+      type: Number,
     },
     quantity2: {
-        type: Number,
+      type: Number,
     },
     price1: {
-        type: Number,
+      type: Number,
     },
     price2: {
-        type: Number,
+      type: Number,
     },
     date: {
-        type: Date
+      type: Date,
     },
     username: {
-        type: String,
+      type: String,
     },
-},
-    {
-        timestamps: false,
-        versionKey: false,
-    });
+  },
+  {
+    timestamps: false,
+    versionKey: false,
+  }
+);
 
-const ExchangeHistoryModel = model("ExchangeHistory", exchangeHistorySchema);
+const ExchangeHistoryModel = model('ExchangeHistory', exchangeHistorySchema);
 
 module.exports = ExchangeHistoryModel;

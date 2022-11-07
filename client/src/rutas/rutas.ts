@@ -1,11 +1,12 @@
 export const PublicRouts = {
-  LANDING: "/",
-  REGISTER: "/register",
-  LOGIN: "/login",
-  LOG: "/login/:id",
+  LANDING: '/',
+  REGISTER: '/register',
+  LOGIN: '/login',
+  LOG: '/login/:id',
 };
 
 export const PrivateRoutes = {
+
   HOME: "/home",
   PORTFOLIO: "/portfolio",
   NEWS: "/news",
@@ -21,5 +22,5 @@ export const PrivateRoutes = {
 };
 
 export const PrivateAdminRoutes = {
-  ADMIN: "/admin",
+  ADMIN: '/admin',
 };

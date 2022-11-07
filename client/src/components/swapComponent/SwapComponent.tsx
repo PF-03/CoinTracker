@@ -1,13 +1,21 @@
-import Bubble from "../styles/bubbles";
-import style from "./SwapComponent.module.css";
-import { SwapModal } from "../swapModal/SwapModal";
+
+import Bubble from '../styles/bubbles';
+import axios from 'axios';
+import style from './SwapComponent.module.css';
+import { SwapModal } from '../swapModal/SwapModal';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Swap } from '../Swap/Swap';
+import { History } from '../History/History';
 import Sidebar from "../Sidebar/Sidebar";
 import swapIcon from "../../assets/swap.png";
 import downArrowIcon from "../../assets/down-arrow.png";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+
+
+
 
 export default function SwapComponent() {
+  const { name } = useSelector((state: any) => state.user);
   const actives: any = useSelector<any>((state) => state.activos);
   console.log(actives);
   const [coinOneState, setCoinOneState] = useState<any>({
@@ -62,6 +70,21 @@ export default function SwapComponent() {
     });
   };
 
+  const handleSwap = () => {
+    axios.post('http://localhost:3001/exchange', {
+      icon1: coinOneState.data.image,
+      icon2: coinTwoState.data.image,
+      crypto1: coinOneState.data.symbol,
+      crypto2: coinTwoState.data.symbol,
+      quantity1: coinCalcValues.coinOne,
+      quantity2: coinCalcValues.coinTwo,
+      price1: coinOneState.data.current_price,
+      price2: coinTwoState.data.current_price,
+      date: new Date().toLocaleString(),
+      username: name || 'default',
+    });
+  };
+
   useEffect(() => {
     if (actives && actives[0] && !Object.keys(coinOneState.data).length) {
       setCoinOneState({ ...coinOneState, data: actives[0] });
@@ -81,7 +104,20 @@ export default function SwapComponent() {
 
   return (
     <div className={style.view}>
-      <div></div>
+
+      <div>
+        <SwapModal
+          modalState={coinOneState}
+          setModalState={setCoinOneState}
+          coin='Coin 1'
+        />
+        <SwapModal
+          modalState={coinTwoState}
+          setModalState={setCoinTwoState}
+          coin='Coin 2'
+        />
+      </div>
+
       <div className={style.swap}>
         <div className={style["swap-container"]}>
           <div className={style["container-headers"]}>
@@ -100,6 +136,19 @@ export default function SwapComponent() {
           </div>
 
           {changeView && (
+
+            <Swap
+              actives={actives}
+              setCoinOneState={setCoinOneState}
+              setCoinTwoState={setCoinTwoState}
+              coinOneState={coinOneState}
+              coinTwoState={coinTwoState}
+              handleChange={handleChange}
+              coinCalcValues={coinCalcValues}
+              changeCoin={changeCoin}
+              handleSwap={handleSwap}
+            />
+
             <div className={style["coins-container"]}>
               <p>Swap tokens instantly. </p>
               {actives && actives[0] ? (
@@ -201,9 +250,13 @@ export default function SwapComponent() {
               )}
               <button>Swap</button>
             </div>
+
           )}
+
+          {!changeView && <History />}
         </div>
       </div>
+
       <SwapModal
         modalState={coinOneState}
         setModalState={setCoinOneState}
@@ -214,6 +267,7 @@ export default function SwapComponent() {
         setModalState={setCoinTwoState}
         coin="Coin 2"
       />
+
     </div>
   );
 }

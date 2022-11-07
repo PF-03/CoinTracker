@@ -1,6 +1,9 @@
 import axios from 'axios';
 import activos from "../models/activos"
 import walletModel from "../models/Wallet";
+import activos from '../models/activos';
+import reminder from '../models/Reminder';
+import { priceAlert } from '../utils/handleMail';
 
 //import numberFormat from '../../../client/src/utils/numberFormat.js';
 
@@ -48,6 +51,34 @@ export const ActualizarApi = async (): Promise<any> => {
     };
 
     const currentActivos = await activos.find({});
+    const reminders = await reminder.find({});
+
+    currentActivos[0].activos.forEach((activo) => {
+      reminders.forEach(async (item: any) => {
+        const [token, price] = item.token_price?.split(' ');
+        if (
+          token === activo.symbol &&
+          price < activo.current_price &&
+          !item.fullfilled
+        ) {
+         
+          await priceAlert(
+            item.user_email,
+            `${token} alert`,
+            `<b>The token "${token}" just get to the price of ${price}<b/>`
+          );
+
+          const fullfilleditem = {
+            user: item.user,
+            token_price: item.token_price,
+            fullfilled: true,
+            reader: item.readed,
+            user_email: item.user_email,
+          };
+          await reminder.replaceOne({ _id: item._id }, fullfilleditem);
+        }
+      });
+    });
 
     await activos.replaceOne({ _id: currentActivos[0]._id }, create);
   } catch (e) {

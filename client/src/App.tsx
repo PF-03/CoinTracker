@@ -12,10 +12,14 @@ import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 
+import SwapComponent from './components/swapComponent/SwapComponent';
+
+
 import Portfolio from "./components/Portfolio/Portfolio"
 
 
 import Transaccion from "./components/transaccion/transaccion";
+
 
 
 import Loading from "./components/styles/loading";
@@ -28,10 +32,10 @@ const Home = lazy(() => import("./views/home/home"));
 // const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
 const FormRegister = lazy(() => import("./views/FormRegister/FormRegister"));
 const DetailsActivs = lazy(
-  () => import("./components/details-activs/detailsActivs")
+  () => import('./components/details-activs/detailsActivs')
 );
 const Activos = lazy(
-  () => import("./components/ver_mas_activos/ver_mas_activos")
+  () => import('./components/ver_mas_activos/ver_mas_activos')
 );
 
 function App() {
@@ -72,6 +76,8 @@ function App() {
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+
+              <Route path={PrivateRoutes.SWAP} element={<SwapComponent />} />
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 

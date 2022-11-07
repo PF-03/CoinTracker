@@ -35,39 +35,6 @@
   font-size: 20px;
 }
 
-.coins-container {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-}
-
-.coins-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.coins-container::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.589);
-  border-radius: 6px;
-}
-
-.coin {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  justify-items: start;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  padding: 10px 0;
-}
-
-.coin img {
-  justify-self: center;
-}
-
-.coin:hover {
-  background-color: rgba(73, 64, 64, 0.5);
-}
-
 .header {
   display: flex;
   padding: 20px;
@@ -80,6 +47,64 @@
 .header h4 {
   margin: 0;
   font-size: 25px;
+}
+
+.alerts-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  margin-top: 20px;
+}
+
+.alert-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alert-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.589);
+  border-radius: 6px;
+}
+
+.alert {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.alert:hover {
+  background-color: rgba(73, 64, 64, 0.5);
+}
+
+.delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(73, 64, 64, 0.5);
+  width: 20px;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 255, 255, 0.589);
+  cursor: pointer;
+}
+
+.read-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(73, 64, 64, 0.5);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.read-button:hover {
+  background-color: rgba(255, 255, 255, 0.589);
+  cursor: pointer;
 }
 
 .close {
