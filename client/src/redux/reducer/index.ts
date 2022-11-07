@@ -7,8 +7,14 @@ const initialState = {
   newsAll: [],
   allNews: [],
   detailsActivos: {},
+  historyDataActivo:{},
+  historyCoinsDataValue:[],
+  walletData:[],
+  main_chart_data:[],
   detailsNews: {},
   seeMore: false,
+  myAssets:[],
+  currentAssetView:"myAssets",
   cotizaciones:[],
 
 
@@ -94,6 +100,53 @@ function rootReducer(state = initialState, action: any) {
         seeMore: !state.seeMore,
       };
     }
+    case "GET_ACTIV_HISTORY_VALUE":{
+      let newHistoryData= state.historyCoinsDataValue.filter(el=>{
+        return el.coinId!=action.payload.coinId||el.belongsWallet!=action.payload.belongsWallet
+      }).concat(action.payload);
+      return {
+        ...state,
+        historyCoinsDataValue: newHistoryData,
+      }
+    }
+    case "SET_HISTORY_DATA_ACTIVO":{
+      var data =[]
+      if(action.payload.belongsWallet===false){
+        data = state.historyCoinsDataValue.filter(el=>{
+        return el.coinId==action.payload.coinId&&el.belongsWallet==action.payload.belongsWallet
+      })
+      if(data.length===0){
+        data=[{
+          labels:[],
+          datasets:[]
+        }]
+      }}else{
+        data=[state.main_chart_data]
+      }
+      return {
+        ...state,
+        historyDataActivo: data[0],
+      }
+    }
+    case "GET_WALLET_DATA":{
+      return{
+        ...state,
+        walletData:action.payload[0],
+        main_chart_data:action.payload[1],
+        historyDataActivo:action.payload[1]
+      }
+    }
+    case "SET_CURRENT_ASSET_VIEW":{
+      return {
+        ...state,
+        currentAssetView:action.payload,
+      }
+    }
+    case "SET_MY_ASSETS":{
+      return {
+        ...state,
+        myAssets:[...state.myAssets,action.payload]
+      }
 
     case 'GET_COTIZACIONES':
       return{
