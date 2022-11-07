@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { filterActivos, getActivos, getActivosMayoresA, getMenoresA, getActivHistoryPrice} from "../../controllers/actives"
+import { /* filterActivos, */ getActivos, getActivosMayoresA, getMenoresA, getActivHistoryPrice} from "../../controllers/actives"
 import {cambio, getDivisas} from '../../controllers/divisas';
 
 const activos = Router();

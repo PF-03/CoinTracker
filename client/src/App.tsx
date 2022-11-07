@@ -11,6 +11,7 @@ import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+import Portfolio from "./components/Portfolio/Portfolio"
 import Loading from "./components/styles/loading";
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
@@ -54,6 +55,7 @@ function App() {
                 path={PrivateRoutes.CALCULATOR}
                 element={<Calculadora />}
               />
+              <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio/>}/>
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
