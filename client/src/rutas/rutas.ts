@@ -22,5 +22,7 @@ export const PrivateRoutes = {
 };
 
 export const PrivateAdminRoutes = {
-  ADMIN: '/admin',
+
+  ADMIN: "/admin/*",
+
 };

@@ -13,6 +13,15 @@ const initialState = {
   main_chart_data:[],
   detailsNews: {},
   seeMore: false,
+  // user: {},
+  // userToken: '',
+  admins: [],
+  reviews: [],
+  users: [],
+  usersCopy: [],
+  userDetail: [],
+  userPut: '',
+
   myAssets:[],
   currentAssetView:"myAssets",
   cotizaciones:[],
@@ -103,6 +112,43 @@ function rootReducer(state = initialState, action: any) {
         seeMore: !state.seeMore,
       };
     }
+
+    case "GET_ADMINS": {
+      return {
+        ...state,
+        admins: action.payload
+      }
+    }
+    case "GET_REVIEWS":
+      return {
+        ...state,
+        reviews: action.payload
+      }
+
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+        usersCopy: action.payload
+      }
+
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        userDetail: action.payload
+      }
+
+    case "PUT_USER_PROFILE_ADMIN":
+      return {
+        ...state,
+        userPut: action.payload
+      }
+    case "DELETE_USER":
+      return {
+        ...state,
+        users: state.users.filter((pat) => pat._id !== action.payload),
+        usersCopy: state.usersCopy.filter((pat) => pat._id !== action.payload)
+
     case "GET_ACTIV_HISTORY_VALUE":{
       let newHistoryData= state.historyCoinsDataValue.filter(el=>{
         return el.coinId!=action.payload.coinId||el.belongsWallet!=action.payload.belongsWallet
@@ -149,6 +195,7 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         myAssets:[...state.myAssets,action.payload]
+
       }
     }
     case 'GET_COTIZACIONES':

@@ -176,6 +176,75 @@ export function setNotificationNumbers(numberOfNotifications) {
   };
 }
 
+export function getAdmins(){ //Obtener los admins registrados
+  return async function(dispatch)
+  {
+      let json = await axios.get("http://localhost:3001/users/admins");
+      return dispatch({
+          type: "GET_ADMINS",
+          payload: json.data
+      })
+  }
+};
+
+export function getReviews(){ //Obtener lo mensajes de feedback
+  return async function (dispatch)
+  {
+      let json = await axios.get("http://localhost:3001/review"); // http://localhost:3001/review
+      return dispatch({
+          type: "GET_REVIEWS",
+          payload: json.data
+      })
+  }
+};
+
+export function getUsers(){ //Obtener todos los patients
+  return async function (dispatch)
+  {
+      let json = await axios.get("http://localhost:3001/users");
+      return dispatch({
+          type: "GET_USERS",
+          payload: json.data
+      })
+  }
+};
+export function getUserProfile(id){ //Obtener el detalle de un patient
+  return async function (dispatch)
+  {
+      console.log(id)
+      let json = await axios.get(`http://localhost:3001/users/${id}`);
+      return dispatch({
+          type: "GET_USER_PROFILE",
+          payload: json.data
+      })
+  }
+};
+
+export function putProfileAdmin(id, dato){ //Actualizar user
+  dato={
+      ...dato,
+  }
+  return async function (dispatch)
+  {
+      let json = await axios.put(`http://localhost:3001/users/admin/`+ id, dato);
+      return dispatch({
+          type: "PUT_USER_PROFILE_ADMIN",
+          payload: json.data
+      })
+  }
+};
+
+export function deleteUser(id){ //Borrar user
+  return async function(dispatch)
+  {
+      const deleted = await axios.delete(`http://localhost:3001/users/${id}`)
+      return dispatch({
+          type: "DELETE_USER",
+          payload: deleted
+      })
+  }
+};
+
 export function getActivsHistoryValue(data:any){
   return function(dispatch:any){
     fetch(`http://localhost:3001/activos/historyValue` +
@@ -276,3 +345,4 @@ export function setMyAssets(data){
     payload:data
   }
 }
+

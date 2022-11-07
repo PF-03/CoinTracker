@@ -1,0 +1,81 @@
+.sidebar {
+    flex: 1.4;
+    height: 100%;
+    background-color: rgba(29, 29, 29, 0.459);
+    position: sticky;
+    top: 50px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 25px;
+    margin-bottom: 200px;
+    background: hsla(263, 54%, 53%, 1);
+
+    background: linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#7745C8", endColorstr="#3D47D9", GradientType=1);
+}
+
+.sidebarWrapper {
+    padding: 5px 10px;
+    margin: 0px 10px;
+    color: #555;
+}
+
+.sidebarMenu {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.sidebarTitle {
+    font-size: 14px;
+    color: white
+}
+
+aside {
+    width: 30%;
+    height: 100vh;
+    background-color: #333;
+    /* Esto lo mantendra en su sitio */
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebarList {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.link,
+.link.active,
+.link:hover {
+    text-decoration: none;
+    color: black;
+    text-align: left;
+}
+
+.sidebarListItem {
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: left;
+    border-radius: 10px;
+    color: black;
+}
+
+.sidebarListItem.active,
+.sidebarListItem:hover {
+    background-color: rgb(253, 253, 253);
+    color: black
+}
+
+.sidebarIcon {
+    align-items: center;
+    margin-right: 10px;
+    color: black;
+}

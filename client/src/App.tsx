@@ -9,6 +9,7 @@ import { Suspense, lazy } from "react";
 import Verifiqued from "./components/verifiqued/verifiqued";
 import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
+import AdminView from "./components/admin/AdminView"
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 
@@ -45,7 +46,8 @@ function App() {
         {/* al cargar un componente, crearlo aqui y */}
         <RoutesWithNotFound>
           <Route path="/" element={<LandingPage />} />
-          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
+
+          <Route path="/calculator" element={<Calculadora />} />
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
@@ -55,6 +57,14 @@ function App() {
           <Route path="/transaccion" element={<Transaccion />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
+
+          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
+
+          <Route path={PrivateRoutes.USER} element={<Profile />} />
+
+          <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+
+          <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
           <Route element={<SharedLayout />}>
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
@@ -74,6 +84,7 @@ function App() {
               />
               <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio/>}/>
 
+
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
@@ -83,18 +94,20 @@ function App() {
 
               <Route element={<AdminGuard />}>
                 {/* colocar aqui las pestañas para los admins. 
+
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-                <Route
-                  path={PrivateAdminRoutes.ADMIN}
-                  element={<h1>estamos en admin</h1>}
-                />
-              </Route>
+              <Route
+                path={PrivateAdminRoutes.ADMIN}
+                element={<AdminView />}
+              />
             </Route>
           </Route>
         </RoutesWithNotFound>
       </Suspense>
-    </div>
+
+    </div >
   );
 }
+
 
 export default App;
