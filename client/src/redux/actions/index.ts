@@ -111,6 +111,13 @@ export function setUser(user: any) {
   };
 }
 
+export function postWallet(body){
+  return async function(dispatch) {
+    const res=await axios.post("http://localhost:3001/wallet", body)
+    return res
+  }
+}
+
 export function postMail(data:any){
   return function(dispatch:any){
       return fetch("http://localhost:3001/mail/",
