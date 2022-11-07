@@ -12,7 +12,11 @@ import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 
+import Portfolio from "./components/Portfolio/Portfolio"
+
+
 import Transaccion from "./components/transaccion/transaccion";
+
 
 import Loading from "./components/styles/loading";
 
@@ -64,6 +68,7 @@ function App() {
                 path={PrivateRoutes.CALCULATOR}
                 element={<Calculadora />}
               />
+              <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio/>}/>
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />

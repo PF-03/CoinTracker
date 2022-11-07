@@ -1,9 +1,10 @@
 .mainContainer {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
 }
 .dataContainer {
+  width: 100%;
   padding: 15px;
   display: flex;
   flex-wrap: wrap;
@@ -43,8 +44,9 @@
   color: #00ce6a;
 }
 .portfolioContainer {
+  width: 107%;
   padding: 30px;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
 }

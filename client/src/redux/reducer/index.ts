@@ -147,7 +147,7 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         myAssets:[...state.myAssets,action.payload]
       }
-
+    }
     case 'GET_COTIZACIONES':
       return{
         ...state,
