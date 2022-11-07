@@ -165,6 +165,7 @@ export const getActivHistoryPrice=async(coinId:any,userId:any,vs_currency:any="u
     const data =await axios(`https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${days}&interval=daily`)
     .then((value:any)=>{
         var newArr:any={
+            coinId:coinId,
             labels:[],
             datasets:[],
             days:days+1,
@@ -181,6 +182,9 @@ export const getActivHistoryPrice=async(coinId:any,userId:any,vs_currency:any="u
                         var CurrentwalletDate= new Date(walletEl.date)
                         return (CurrentwalletDate.getTime()<(el[0]))
                     })
+                }
+                if(dayIndex===-1){
+                    dayIndex=0
                 }
                 newArr["labels"].push(new Date(el[0]).toLocaleDateString("default"));
                 newArr["datasets"].push(walletData[dayIndex]["quantity"]*el[1])

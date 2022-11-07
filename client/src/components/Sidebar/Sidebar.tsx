@@ -20,13 +20,11 @@ import axios from "axios";
 //////////////////////////////////////////////////////////
 function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
-  console.log(user);
   //codigo guglielmo
   ////////////////////////////////////////////////////////////
 
   const dispatch = useDispatch();
   const token = useSelector((store: any) => store.userToken);
-  console.log(token);
 
   const logout = () => {
     axios

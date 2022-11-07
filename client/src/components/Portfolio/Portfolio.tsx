@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {getActivsHistoryValue,setCurrentAssetView} from '../../redux/actions';
+import {getActivsHistoryValue,getWalletData,setCurrentAssetView,setHistoryDataActivo} from '../../redux/actions';
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
 import Sidebar from "../Sidebar/Sidebar";
@@ -14,24 +14,34 @@ const Portfolio = () => {
     coinAmount:"",
   });
   React.useEffect(() => {
-      dispatch(getActivsHistoryValue({coinId: "bitcoin",vs_currency: "usd",coinAmount:0 }));
+    async function getDataAndChart(){
+      await dispatch(getWalletData("Camilo"))
+    }
+    getDataAndChart()
   }, [dispatch])
   
   const ChartData = useSelector((state:any) => state.historyDataActivo);
   const curretPage= useSelector((state:any)=>state.currentAssetView)
-  const myAssets = useSelector((state: any) => state.myAssets);
+  const AllHistoryValueData= useSelector((state:any)=>state.historyCoinsDataValue)
 
   const HandleButtonClick=(e:any)=>{
     dispatch(setCurrentAssetView(e.target.name))
   }
+  const HandleMainChartClick = (e:any)=>{
+    dispatch(setHistoryDataActivo({belongsWallet:true}))
+  }
   const HandleTrClick=(id)=>{
-    if(curretPage==="myAssets"){
-      var data= myAssets.filter(el=>{
-        return(id===el.id)
-      })[0]
-      dispatch(getActivsHistoryValue({coinId: data.id,vs_currency: "usd",coinAmount:1}))
+      var AssetById= AllHistoryValueData.filter(el=>el.coinId===id)
+      if(AssetById.length===0){
+        async function getAndRender(){
+          await dispatch(getActivsHistoryValue({coinId:id,vs_currency:"usd"}))
+          setTimeout((e)=>{dispatch(setHistoryDataActivo({coinId:id,belongsWallet:false}))}, 1500)
+        }
+        getAndRender();
+      }else{
+        dispatch(setHistoryDataActivo({coinId:id,belongsWallet:false}))
+      }
       document.documentElement.scrollTop = 0;
-    }
   }
   return (
     <div className={styles.mainContainer}>
@@ -41,7 +51,9 @@ const Portfolio = () => {
       <div className={styles.portfolioContainer}>
         <h5>Total en USD$</h5>
         <div className={styles.dataContainer}>
-          <div className={styles.valueContainer}>
+          <div className={styles.valueContainer}
+          onClick={HandleMainChartClick}
+          >
             <h2>$0,00</h2>
             <h5>Texto</h5>
             <h5 className={styles.redH5}>$0,00</h5>
@@ -50,12 +62,12 @@ const Portfolio = () => {
           </div>
           <div className={styles.chartContainer}>
             <AreaChart
-              data={{
+              data={{ 
                 labels: ChartData["labels"]?ChartData["labels"]:[],
                 datasets: [
                   {
                     fill: true,
-                    label: state.coinId,
+                    label: ChartData["coinId"],
                     data: ChartData["datasets"]?ChartData["datasets"]:[],
                     borderColor: (ChartData["datasets"]===undefined||ChartData["datasets"][0]<ChartData["datasets"].slice(-1)[0])?"#00CE6A":"#FA2020",
                     backgroundColor: (ChartData["datasets"]===undefined||ChartData["datasets"][0]<ChartData["datasets"].slice(-1)[0])?"#00ce6a7b":"#c719197f",

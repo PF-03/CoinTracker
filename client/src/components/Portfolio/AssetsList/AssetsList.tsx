@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 const AssetsList = ({HandleTrClick}) => {
   const dispatch = useDispatch<any>();
   const allAssets = useSelector((state: any) => state.allactivos);
-  const myAssets = useSelector((state: any) => state.myAssets);
+  const myWallet = useSelector((state: any) => state.walletData);
   const curretPage = useSelector((state: any) => state.currentAssetView);
 
   const HandleButtonsClick=(e)=>{
@@ -29,7 +29,7 @@ const AssetsList = ({HandleTrClick}) => {
           </tr>
         </thead>
         <tbody>
-          {(curretPage == "myAssets" ? myAssets : allAssets).map((el) => {
+          {(curretPage == "myAssets" ? myWallet : allAssets).map((el) => {
             return (
               <tr
                 onClick={()=>HandleTrClick(el.id)}
