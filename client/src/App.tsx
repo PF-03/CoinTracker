@@ -11,6 +11,7 @@ import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 import Loading from "./components/styles/loading";
+import News from "./views/News/News";
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -53,6 +54,8 @@ function App() {
                 path={PrivateRoutes.CALCULATOR}
                 element={<Calculadora />}
               />
+
+              <Route path={PrivateRoutes.NEWS} element={<News />} />
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />

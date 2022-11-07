@@ -6,8 +6,22 @@ import Bubble from "../../components/styles/bubbles";
 import Button from "../../components/styles/button";
 import s from "./landingPage.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getActivos } from "../../redux/actions";
+import numberFormat from "../../utils/numberFormat.js";
+
 
 function LandignPage() {
+  const activos = useSelector((state: state) => state.activos.slice(0, 4));
+  const dispatch = useDispatch();
+  useEffect(() => {
+
+    dispatch(getActivos())
+
+  }, [])
+
+
   return (
     <>
       <LandingNavbar />
@@ -17,7 +31,7 @@ function LandignPage() {
         <h1>Create your crypto <br />Wallet.</h1>
         <p>And follow your coin changes, wherever you are. Join and be part of the future.</p>
         <div>
-          <Link  to='/login'>
+          <Link to='/login'>
             <Button gradient>Let's do it</Button>
           </Link>
         </div>
@@ -30,15 +44,48 @@ function LandignPage() {
           />
         </div>
       </main>
-      <div id='About' className={s.containerAbout}>
+      <h2 style={{ marginLeft: '4rem' }}>Track every movement.</h2>
+      <section className={`${s.container} ${s.tableContainer}`}>
+        <Bubble size="medium" right='3rem' top='-5rem' />
+        <table className={s.table}>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Price
+            </th>
+            <th>
+              Market Capitalization
+            </th>
+          </tr>
+          <tbody>
+            {activos.map(activo => (
+              <tr>
+                <td className={s.imgContainer}>
+                  <img src={activo.image} />
+                  {activo.name}
+                </td>
+                <td>
+                  {'USD ' + numberFormat(activo.current_price, 'standard', 'decimal')}
+                </td>
+                <td>
+                  {'USD ' + numberFormat(activo.market_cap, 'standard', 'decimal')}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+      <section id='About' className={s.containerAbout}>
         <h3>About Us <span className={s.gradientText}>(Our Team)</span></h3>
         <AboutUs />
-      </div>
-      <div id="ContactUs" className={s.container}>
+      </section>
+      <section id="ContactUs" className={s.container}>
         <Bubble size="small" color="blue-light" right='20%' />
         <ContactUs />
         <Bubble left='20%' bottom='-10vh' size="medium" />
-      </div>
+      </section>
 
       <footer className={s.container}>
         <h4>CoinTracker</h4>

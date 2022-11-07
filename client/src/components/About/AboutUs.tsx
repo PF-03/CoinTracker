@@ -123,7 +123,7 @@ const AboutUs = () => {
             <div className={styles.socialNet}>
               {el.SocialNetworks.map((sn: any) => {
                 return (
-                  <a key={sn.link} href={sn.link}>
+                  <a key={sn.link} href={sn.link} target='_blank'>
                     <img src={sn.logo} alt="Logo" />
                   </a>
                 );

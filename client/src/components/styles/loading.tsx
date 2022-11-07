@@ -6,7 +6,7 @@ const Load = styled.div`
   margin-top: 4rem;
   width: 30vw;
   height: 30vw;
-  animation: spinning 1.7s linear infinite;
+  animation: spinning .3s linear infinite;
   text-align: center;
   border-radius: 50%;
   filter: blur(4px);
@@ -15,7 +15,7 @@ const Load = styled.div`
   align-self: center;
 
   & div {
-    background-color: rgb(36, 36, 36);
+  background-color: #1E1E1E;
   width: 30vw;
   height: 30vw;
   border-radius: 50%;

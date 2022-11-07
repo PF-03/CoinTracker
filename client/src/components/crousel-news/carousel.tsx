@@ -13,7 +13,7 @@ import NewsCard from "../card/newsCard";
 
 export default function CarouselNews() {
   const dispatch: any = useDispatch();
-  const newss = useSelector((state: any) => state.newsAll);
+  const newss = useSelector((state: state) => state.newsAll);
   let key1: number = 9903;
   const newssSlice = newss?.slice(0, 10);
 
@@ -34,7 +34,7 @@ export default function CarouselNews() {
             scrollbar={{ draggable: true }}
           >
             {newssSlice.length > 0 &&
-              newssSlice !== "error" &&
+              newssSlice &&
               newssSlice.map((el: any) => (
                 <SwiperSlide key={key1++}>
                   <NewsCard
@@ -42,7 +42,8 @@ export default function CarouselNews() {
                     image={el.image}
                     name={el.name}
                     title={el.title}
-                  />{" "}
+                    url={el.url}
+                  />
                 </SwiperSlide>
               ))}
           </Swiper>

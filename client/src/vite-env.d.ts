@@ -4,6 +4,7 @@ type coinInfo = {
     name: string
     image: string
     current_price: number
+    market_cap?: string
 }
 
 type newsCard = {
@@ -11,4 +12,20 @@ type newsCard = {
     title: string
     name: string
     image: string
+    description?: string
+    url?: string
+}
+
+type state = {
+    activos: coinInfo[]
+    allactivos: []
+    newsAll: []
+    allNews: newsCard[]
+    detailsActivos: {}
+    detailsNews: newsCard
+    seeMore: boolean
+    cotizaciones: []
+    user: string
+    userID: string
+
 }
