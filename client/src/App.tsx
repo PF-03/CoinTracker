@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+
 import AuthGuard from "./guard/auth.guard";
 import { PrivateAdminRoutes, PrivateRoutes, PublicRouts } from "./rutas/rutas";
 import { AdminGuard } from "./guard/admin.guard";
