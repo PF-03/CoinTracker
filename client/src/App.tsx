@@ -9,22 +9,17 @@ import { Suspense, lazy } from "react";
 import Verifiqued from "./components/verifiqued/verifiqued";
 import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
-import AdminView from "./components/admin/AdminView"
+import AdminView from "./components/admin/AdminView";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
 
-import SwapComponent from './components/swapComponent/SwapComponent';
+import SwapComponent from "./components/swapComponent/SwapComponent";
 
-
-import Portfolio from "./components/Portfolio/Portfolio"
-
+import Portfolio from "./components/Portfolio/Portfolio";
 
 import Transaccion from "./components/transaccion/transaccion";
 
-
-
 import Loading from "./components/styles/loading";
-
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -33,10 +28,10 @@ const Home = lazy(() => import("./views/home/home"));
 // const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
 const FormRegister = lazy(() => import("./views/FormRegister/FormRegister"));
 const DetailsActivs = lazy(
-  () => import('./components/details-activs/detailsActivs')
+  () => import("./components/details-activs/detailsActivs")
 );
 const Activos = lazy(
-  () => import('./components/ver_mas_activos/ver_mas_activos')
+  () => import("./components/ver_mas_activos/ver_mas_activos")
 );
 
 function App() {
@@ -47,13 +42,8 @@ function App() {
         <RoutesWithNotFound>
           <Route path="/" element={<LandingPage />} />
 
-          <Route path="/calculator" element={<Calculadora />} />
-
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
-
-
-        
           <Route path="/transaccion" element={<Transaccion />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
@@ -82,8 +72,7 @@ function App() {
                 path={PrivateRoutes.CALCULATOR}
                 element={<Calculadora />}
               />
-              <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio/>}/>
-
+              <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio />} />
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
@@ -96,18 +85,17 @@ function App() {
                 {/* colocar aqui las pestañas para los admins. 
 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-              <Route
-                path={PrivateAdminRoutes.ADMIN}
-                element={<AdminView />}
-              />
+                <Route
+                  path={PrivateAdminRoutes.ADMIN}
+                  element={<AdminView />}
+                />
+              </Route>
             </Route>
           </Route>
         </RoutesWithNotFound>
       </Suspense>
-
-    </div >
+    </div>
   );
 }
-
 
 export default App;
