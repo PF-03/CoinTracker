@@ -1,0 +1,16 @@
+.container {
+    padding: 0 4rem;
+    padding-bottom: 4rem;
+}
+
+.title {
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+}
+
+.allNews {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+}

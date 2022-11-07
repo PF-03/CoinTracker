@@ -17,30 +17,65 @@
 }
 
 .container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  padding: 2rem;
-  padding-top: 4rem;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 2rem;
+    padding-top: 4rem;
+
+}
+
+.tableContainer {
+    height: 80vh;
+}
+
+.table {
+    width: 70%;
+    border-bottom: 2px solid rgba(63, 62, 62, 1);
+}
+
+.table td {
+    border-top: 2px solid rgba(63, 62, 62, 1);
+}
+
+.table th {
+    backdrop-filter: blur(8px);
+    background-color: rgba(63, 63, 63, 0.54);
+}
+
+.imgContainer {
+    display: flex;
+    align-items: center;
+}
+
+.imgContainer img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
 }
 
 .containerAbout {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  padding: 2rem;
-  padding-top: 4rem;
-  background: right fixed url("../../assets/backgroundLandingPage.jpg");
-  background-size: cover;
-  /* Background del contenedor principal, pendiente por cambiar segun sea el caso */
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 2rem;
+    padding-top: 4rem;
+    background: right fixed url('../../assets/backgroundLandingPage.jpg');
+    background-size: cover;
+    /* Background del contenedor principal, pendiente por cambiar segun sea el caso */
 }
 
+
 .gradientText {
-  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
-  padding: 0.5rem 1rem;
+    background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
+    padding: .5rem 1rem;
+
+
 }
 
 footer {

@@ -13,7 +13,7 @@ import numberFormat from "../../utils/numberFormat.js";
 function Activos() {
   const dispatch = useDispatch<any>();
   //const allactivos= useSelector((state)=>state.activos)
-  const allactivos: any = useSelector<any>((state) => state.activos);
+  const allactivos = useSelector((state: state) => state.activos);
 
   const [currentPage, setCurrentPage] = useState(1); //--> porque empieza en pag 1 siempre
   const [activosPorPage, setActivosPorPage] = useState(9);
@@ -24,12 +24,12 @@ function Activos() {
 
   useEffect(() => {
     dispatch(getActivos());
-    
+
   }, [dispatch]);
 
   const navigate = useNavigate();
   return (
-    <div style={{position: 'relative'}}>
+    <div style={{ position: 'relative' }}>
       <SearchBar />
       <Bubble size="small" left='-3rem' top='20%' />
       <div className={`${css.tableContainer} ${card.card}`}>
@@ -45,17 +45,17 @@ function Activos() {
 
             {currentActivos.length > 0 ? (
               currentActivos.map((e: any) => {
-                const market_cap_legible=(numberFormat(e.market_cap,'standard','decimal'))
-                const current_price_legible=(numberFormat(e.current_price,'standard','decimal'))
-                const input_select= document.getElementById('selectCotizacion') as HTMLInputElement|null;
+                const market_cap_legible = (numberFormat(e.market_cap, 'standard', 'decimal'))
+                const current_price_legible = (numberFormat(e.current_price, 'standard', 'decimal'))
+                const input_select = document.getElementById('selectCotizacion') as HTMLInputElement | null;
                 return (
-                  
+
                   <tr className={css.trespe} key={e.id}>
                     <td onClick={() => navigate(`/crypto/${e.id}`)}>
-                        <div className={css.name}>
-                          <img src={e.image} alt="" width="30px" height="30px" />
-                          <span>{e.name}</span>
-                        </div>
+                      <div className={css.name}>
+                        <img src={e.image} alt="" width="30px" height="30px" />
+                        <span>{e.name}</span>
+                      </div>
                     </td>
                     <td>{input_select?.value} {current_price_legible}</td>
                     <td>{input_select?.value} {market_cap_legible}</td>
@@ -68,7 +68,7 @@ function Activos() {
           </tbody>
         </table>
       </div>
-      <Bubble color="blue-light" size="large" bottom='-50%' right='-20%'/>
+      <Bubble color="blue-light" size="large" bottom='-50%' right='-20%' />
     </div>
   );
 }

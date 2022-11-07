@@ -20,6 +20,7 @@ import Portfolio from "./components/Portfolio/Portfolio";
 import Transaccion from "./components/transaccion/transaccion";
 
 import Loading from "./components/styles/loading";
+import News from "./views/News/News";
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -74,6 +75,8 @@ function App() {
                 element={<Calculadora />}
               />
               <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio />} />
+
+              <Route path={PrivateRoutes.NEWS} element={<News />} />
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
