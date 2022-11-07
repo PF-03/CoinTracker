@@ -46,10 +46,10 @@ function LandignPage() {
       </div>
 
       <div id="Reviews" className={s.container}>
-        <h3>Review</h3>
+        <h3>Feedback</h3>
         <div className={s.reviews}>
-        <Comments/>
-        <Review />
+          <Comments />
+          <Review />
         </div>
       </div>
 
