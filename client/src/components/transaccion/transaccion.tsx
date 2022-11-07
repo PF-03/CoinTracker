@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import diseño from "./transaccion.module.css";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_orange.css";
-import swap from "../assets/iconSwap.png";
+import swap from "../../assets/iconSwap.png";
 import Button from "../styles/button";
 import { postWallet } from "../../redux/actions";
 export default function Transaccion() {
