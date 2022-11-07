@@ -89,22 +89,24 @@ const putUsers: any = async (req: Request, res: Response) => {
 const putPassword:any=async(req:Request, res: Response)=>{
 try{
   const {id}=req.params
-  const {passwordActual, passwordNueva}=req.body 
+  const {passwordActual, passwordNueva}=req.body
+  console.log(passwordActual,passwordNueva) 
   const usuario= await user.find({_id:id})
   if(Object.keys(usuario).length > 0){
   const validate = await user.comparePassword(passwordActual, usuario[0].password);
+  console.log(validate)
   if(validate){
     await user.updateOne({_id:id},{
       password:await user.encryptPassword(passwordNueva),
     })
     return res.send("EXIT")
   }
-  handleError(res, "PASSWORD INVALID")
+  return res.status(400).send("PASSWORD INVALID")
 }  
-handleError(res, "MAIL INVALID")
+return res.status(400).send("MAIL INVALID")
 }
 catch(e){
-  handleError(res, "ERROR_UPDATE_PASSWORD")
+  return res.status(400).send("ERROR")
 }
 
 }
