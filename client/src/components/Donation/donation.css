@@ -1,11 +1,5 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 .donation-comp-container {
-    padding: 40px;
+    padding-left: 4rem;
 }
 
 .donation-amount-container {
@@ -14,11 +8,11 @@
     flex-direction: column;
 }
 
-.donation-amount-container > label {
+.donation-amount-container>label {
     font-size: 1.2rem;
 }
 
-.donation-amount-container > input {
+.donation-amount-container>input {
     font-size: 1.8rem;
     margin-top: 8px;
     display: inline-block;
@@ -31,7 +25,8 @@
     padding-left: 8px;
 }
 
-#donation-amount::-webkit-outer-spin-button, #donation-amount::-webkit-inner-spin-button {
+#donation-amount::-webkit-outer-spin-button,
+#donation-amount::-webkit-inner-spin-button {
     appearance: none;
 }
 
@@ -40,16 +35,19 @@
 }
 
 .card-info-form {
-    margin: 40px 20px;
+    margin-top: 2rem;
+    padding: 1.5rem 4rem;
+    padding-top: 3rem;
+    height: fit-content;
 }
 
-.card-info-form > label {
+.card-info-form>label {
     display: block;
     font-size: 0.6rem;
     font-weight: bold;
 }
 
-.card-info-form > .donate-card-element {
+.card-info-form>.donate-card-element {
     margin: 4px 0 16px 0;
     display: block;
     width: 300px;

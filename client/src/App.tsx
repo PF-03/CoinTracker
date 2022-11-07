@@ -10,8 +10,11 @@ import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+
 import Transaccion from "./components/transaccion/transaccion";
-import SwapComponent from "./components/swapComponent/SwapComponent";
+
+import Loading from "./components/styles/loading";
+
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -29,8 +32,7 @@ const Activos = lazy(
 function App() {
   return (
     <div className="App">
-      <Suspense fallback={<>Cargando...</>}>
-        {" "}
+      <Suspense fallback={<Loading />}>
         {/* al cargar un componente, crearlo aqui y */}
         <RoutesWithNotFound>
           <Route path="/" element={<LandingPage />} />
@@ -38,12 +40,17 @@ function App() {
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
-          <Route path={PublicRouts.LOG} element={<Login />} />
+
+
+        
+          <Route path="/transaccion" element={<Transaccion />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
 
-          <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
-          <Route path="/transaccion" element={<Transaccion />} />
+          <Route element={<SharedLayout />}>
+            <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
+          </Route>
+
           {/* agregar aqui las rutas privadas para usuarios */}
 
           <Route element={<AuthGuard />}>
