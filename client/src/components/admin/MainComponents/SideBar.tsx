@@ -15,7 +15,6 @@ import StorageIcon from '@mui/icons-material/Storage';
 export default function SideBar() {
   return (
     <div className={st.sidebar}>
-
       <div className={st.sidebarWrapper}>
         <div className={st.sidebarMenu}>
           <h3 className={st.sidebarTitle}>Admin Dashboard</h3>

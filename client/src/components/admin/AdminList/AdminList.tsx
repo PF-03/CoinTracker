@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmins } from "../../../redux/actions/index"
 import { DataGrid } from '@mui/x-data-grid';
+import { color } from '@mui/system';
 
 
 
@@ -27,15 +28,15 @@ export default function Admins() {
     //     </div>
     //   )
     // }},
-    { field: 'id', headerName: 'ID', width: 150 },
-    { field: 'googleId', headerName: 'Name', width: 150 },
-    { field: 'username', headerName: 'Email', width: 180 },
-    { field: 'password', headerName: 'Password', width: 150 },
+    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'googleId', headerName: 'Google ID', width: 100 },
+    { field: 'username', headerName: 'Username', width: 150 },
+    // { field: 'password', headerName: 'Password', width: 100 },
     { field: 'mail', headerName: 'mail', width: 150 },
-    { field: 'name', headerName: 'name', width: 150 },
-    { field: 'lastname', headerName: 'lastname', width: 150 },
+    { field: 'name', headerName: 'name', width: 100 },
+    { field: 'lastname', headerName: 'lastname', width: 100 },
     { field: 'type', headerName: 'type', width: 150 },
-    { field: 'token', headerName: 'token', width: 150 },
+    // { field: 'token', headerName: 'token', width: 50 },
     { field: 'activos', headerName: 'activos', width: 150 },
   ];
 
@@ -44,18 +45,18 @@ export default function Admins() {
     _id: Adm._id,
     googleId: Adm.googleId,
     username: Adm.username,
-    password: Adm.password,
+    // password: Adm.password,
     mail: Adm.mail,
     name: Adm.name,
     lastname: Adm.lastname,
     type: Adm.type,
-    token: Adm.token,
+    // token: Adm.token,
     activos: Adm.activos
   }));
 
 
   return (
-    <div style={{ flex: 7 }}>
+    <div style={{ flex: 10 }}>
 
       <DataGrid
         rows={adminRows}
@@ -63,6 +64,11 @@ export default function Admins() {
         pageSize={10}
         rowsPerPageOptions={[10]}
         disableSelectionOnClick
+        sx={{
+          boxShadow: 2,
+          border: 2,
+          color: 'white'
+        }}
       />
 
     </div>

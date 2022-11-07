@@ -51,9 +51,6 @@ export default function User() {
 
             <div className={st.userTitleContainer}>
                 <h1 className={st.userTitle}>Edit user</h1>
-                {/* <Link to='/admin/newuser'>
-                    <button className={st.useadAddButton}>Create</button>
-                </Link> */}
             </div>
 
             <div className={st.userContainer}>

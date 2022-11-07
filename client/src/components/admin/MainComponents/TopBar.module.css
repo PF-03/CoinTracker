@@ -1,44 +1,66 @@
-.topbar{
+.topbar {
     margin-top: 1px;
     width: 100%;
     height: 70px;
     position: sticky;
     background-color: rgba(58, 58, 58, 0.459);
-    background: -moz-linear-gradient(left, #616161 0%, #747474 50%, #8a8a8a 100%);
-    background: -webkit-linear-gradient(left, #616161 0%, #747474 50%, #8a8a8a 100%);
-    background: linear-gradient(to right,left, #616161 0%, #747474 50%, #8a8a8a 100%);
+    background: hsla(263, 54%, 53%, 1);
+
+    background: linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#7745C8", endColorstr="#3D47D9", GradientType=1);
     top: 0;
     z-index: 1000;
+
+    /* border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px; */
 }
 
-.topbarWrapper{
+.title * {
+    font-family: "Oswald";
+    font-size: 5.57vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+}
+
+.topbarWrapper {
     width: auto;
     padding: 0px 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between ;
+    justify-content: space-between;
 }
 
-.logo{
+.logo {
     cursor: pointer;
     width: 7rem;
     height: 4rem;
     margin-left: 1rem;
 }
 
-.topRight{
+.topRight {
     display: flex;
     align-items: center;
 }
 
-.topbarIconsContainer{
+.topbarIconsContainer {
     position: relative;
     cursor: pointer;
     margin-right: 10px;
     color: white;
 }
 
-.topAvatar{
+.topAvatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;

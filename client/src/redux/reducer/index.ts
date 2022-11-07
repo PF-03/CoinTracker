@@ -9,8 +9,8 @@ const initialState = {
   detailsActivos: {},
   detailsNews: {},
   seeMore: false,
-  user: {},
-  userToken: '',
+  // user: {},
+  // userToken: '',
   admins: [],
   reviews: [],
   users: [],
@@ -20,16 +20,16 @@ const initialState = {
   cotizaciones:[],
 
 
-  // user: localStorage.getItem(LS.UserKey)
-  //   ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
-  //   : {},
+  user: localStorage.getItem(LS.UserKey)
+    ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
+    : {},
 
-  // userID: localStorage.getItem(LS.UserIdKey)
-  // ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
-  // : {},
-  // userToken: localStorage.getItem(LS.TokenKey)
-  //   ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
-  //   : "",
+  userID: localStorage.getItem(LS.UserIdKey)
+  ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
+  : {},
+  userToken: localStorage.getItem(LS.TokenKey)
+    ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
+    : "",
 
 };
 

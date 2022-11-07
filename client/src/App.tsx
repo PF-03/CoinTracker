@@ -36,7 +36,9 @@ function App() {
 
           <Route path="/calculator" element={<Calculadora />} />
 
-          <Route path="/admin/*" element={<AdminView />} />
+          <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
+
+          <Route path={PublicRouts.LOGIN} element={<Login />} />
 
           <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
@@ -45,10 +47,6 @@ function App() {
           <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
           <Route path={PrivateRoutes.DONATE} element={<Donation />} />
-
-          <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
-
-          <Route path={PublicRouts.LOGIN} element={<Login />} />
 
           <Route element={<SharedLayout />}>
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
@@ -66,14 +64,14 @@ function App() {
                 element={<Calculadora />}
               />
 
-              <Route element={<AdminGuard />}>
-                {/* colocar aqui las pestañas para los admins. 
+            </Route>
+            <Route element={<AdminGuard />}>
+              {/* colocar aqui las pestañas para los admins. 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-                <Route
-                  path={PrivateAdminRoutes.ADMIN}
-                  element={<h1>estamos en admin</h1>}
-                />
-              </Route>
+              <Route
+                path={PrivateAdminRoutes.ADMIN}
+                element={<AdminView />}
+              />
             </Route>
           </Route>
         </RoutesWithNotFound>

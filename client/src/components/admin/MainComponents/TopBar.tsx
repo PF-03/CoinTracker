@@ -1,12 +1,16 @@
 import st from './TopBar.module.css'
 import { Link } from 'react-router-dom'
-
+import axios from 'axios'
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas"
 
 export default function TopBar() {
+    const dispatch: any = useDispatch();
+    const nav = useNavigate();
 
     // const handleLogOut = async (e) => {
     //     e.preventDefault()
@@ -18,12 +22,22 @@ export default function TopBar() {
     //         console.log(error)
     //     }
     // }
+    const logout = async () => {
+        axios.get(`http://localhost:3001/logout`, {
+            withCredentials: true,
+        })
+            .then((res: any) => console.log(res.data));
+
+        dispatch({ type: "RESET" });
+        nav(PublicRouts.LANDING);
+    };
 
     return (
 
         <nav className={st.topbar}>
             <div className={st.topbarWrapper}>
-                <div className={st.topLeft}>
+                <div className={st.title}>
+                    <a>CoinTracker - Admin </a>
                 </div>
                 <div className={st.topRight}>
                     {/* style={{ "text-decoration": "none", "color": "#141616" }} */}
@@ -40,7 +54,7 @@ export default function TopBar() {
 
                         <Dropdown.Menu>
                             {/* onClick={handleLogOut} */}
-                            <Dropdown.Item>Sign Out</Dropdown.Item>
+                            <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
                             <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>

@@ -24,7 +24,7 @@ export default function UserList() {
   }
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 100 },
+    { field: 'id', headerName: 'ID', width: 50 },
     // { field: 'pic', headerName: 'Pic', width: 100, renderCell: (params)=>{
     //   return (
     //     <div className={st.userListUser}>
@@ -37,11 +37,11 @@ export default function UserList() {
     { field: 'googleId', headerName: 'Google ID', width: 130 },
     { field: 'password', headerName: 'Password', width: 130 },
     { field: 'mail', headerName: 'Email', width: 150 },
-    { field: 'name', headerName: 'Name', type: 'date', width: 140 },
+    { field: 'name', headerName: 'Name', type: 'date', width: 120 },
     { field: 'lastname', headerName: 'Lastname', width: 120 },
-    { field: 'type', headerName: 'Type', width: 135 },
-    { field: 'token', headerName: 'Token',  width: 100 },
-    { field: 'activos', headerName: 'Activo', width: 120 },
+    { field: 'type', headerName: 'Type', width: 75 },
+    // { field: 'token', headerName: 'Token',  width: 100 },
+    { field: 'activos', headerName: 'Activo', width: 75 },
     {
       field: 'actions', headerName: 'Actions', width: 130, renderCell: (params) => {
         return (
@@ -66,7 +66,7 @@ export default function UserList() {
     name: pat.name,
     lastname: pat.lastname,
     type: pat.type,
-    token: pat.token,
+    // token: pat.token,
     activos: pat.activos
   }));
 
@@ -80,6 +80,11 @@ export default function UserList() {
         pageSize={10}
         rowsPerPageOptions={[10]}
         disableSelectionOnClick
+        sx={{
+          boxShadow: 2,
+          border: 2,
+          color: 'white'
+        }}
       />
 
     </div>
