@@ -85,3 +85,19 @@
 .loginText a:hover {
     color: #B090DF;
 }
+
+.password-label-eye {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.password-label-eye > img {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #EFEFEF;
+    border-radius: 12px;
+    padding: 2px;
+    cursor: pointer;
+}

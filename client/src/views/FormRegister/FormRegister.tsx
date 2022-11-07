@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import "./FormRegister.css";
-import Button from "../styles/button";
+import Button from "../../components/styles/button";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import eyeOpen from '../../assets/eye-opened.png'
+import eyeClosed from '../../assets/eye-closed.png'
 
 function FormRegister() {
   const [inputs, setInputs] = useState({
@@ -24,6 +26,8 @@ function FormRegister() {
       lastname: "",
     },
   });
+
+  const [eyeState, setEyeState] = useState(false);
 
   function validateForm(errors: Object) {
     let usernameInput = document.getElementById("username");
@@ -128,7 +132,6 @@ function FormRegister() {
           lastname: inputs.lastname,
         })
         .then((res) => {
-          console.log(res.data.token);
           dispatch(setUserToken(res.data.token));
         });
       Swal.fire({
@@ -149,6 +152,41 @@ function FormRegister() {
   const google = () => {
     window.open("http://localhost:3001/googleauth/google", "_self");
   };
+
+  function passwordEye(e) {
+    e.preventDefault()
+    const id = e.target.id;
+    let eye;
+    let passwordInput;
+    switch(id) {
+        case 'passwordEye':
+            eye = document.getElementById(id);
+            passwordInput = document.getElementById('password');
+            setEyeState(!eyeState);
+            if(eyeState) {
+                eye.src = eyeOpen;
+                passwordInput.setAttribute("type", "password");
+            } else {
+                eye.src = eyeClosed;
+                passwordInput.setAttribute("type", "text");
+            }
+            break;
+        case 'confirmPasswordEye':
+            eye = document.getElementById(id);
+            passwordInput = document.getElementById('passwordConfirm');
+            setEyeState(!eyeState);
+            if(eyeState) {
+                eye.src = eyeOpen;
+                passwordInput.setAttribute("type", "password");
+            } else {
+                eye.src = eyeClosed;
+                passwordInput.setAttribute("type", "text");
+            }
+            break;
+        default:
+            break;
+    }
+  }
 
   return (
     <div className="signUpContainer">
@@ -221,9 +259,12 @@ function FormRegister() {
           <p className="inputError">{inputs.errors.mail}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="password">
-          Password:{" "}
-        </label>
+        <div className="password-label-eye">
+            <label className="registerFormLabel" htmlFor="password">
+            Password:{" "}
+            </label>
+            <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon"/>
+        </div>
         <input
           required
           className="registerFormInput"
@@ -238,9 +279,12 @@ function FormRegister() {
           <p className="inputError">{inputs.errors.password}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="passwordConfirm">
-          Confirm password:{" "}
-        </label>
+        <div className="password-label-eye">
+            <label className="registerFormLabel" htmlFor="passwordConfirm">
+            Confirm password:{" "}
+            </label>
+            <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon"/>
+        </div>
         <input
           className="registerFormInput"
           type="password"

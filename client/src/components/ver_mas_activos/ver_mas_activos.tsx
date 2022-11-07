@@ -8,6 +8,7 @@ import card from '../styles/styles.module.css'
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import Bubble from "../styles/bubbles";
+import numberFormat from "../../utils/numberFormat.js";
 
 function Activos() {
   const dispatch = useDispatch<any>();
@@ -23,7 +24,9 @@ function Activos() {
 
   useEffect(() => {
     dispatch(getActivos());
+    
   }, [dispatch]);
+
   const navigate = useNavigate();
   return (
     <div style={{position: 'relative'}}>
@@ -42,16 +45,20 @@ function Activos() {
 
             {currentActivos.length > 0 ? (
               currentActivos.map((e: any) => {
+                const market_cap_legible=(numberFormat(e.market_cap,'standard','decimal'))
+                const current_price_legible=(numberFormat(e.current_price,'standard','decimal'))
+                const input_select= document.getElementById('selectCotizacion') as HTMLInputElement|null;
                 return (
-                  <tr className={css.trespe}>
+                  
+                  <tr className={css.trespe} key={e.id}>
                     <td onClick={() => navigate(`/crypto/${e.id}`)}>
                         <div className={css.name}>
                           <img src={e.image} alt="" width="30px" height="30px" />
                           <span>{e.name}</span>
                         </div>
                     </td>
-                    <td>${e.current_price}</td>
-                    <td>{e.market_cap} USD$</td>
+                    <td>{input_select?.value} {current_price_legible}</td>
+                    <td>{input_select?.value} {market_cap_legible}</td>
                   </tr>
                 );
               })

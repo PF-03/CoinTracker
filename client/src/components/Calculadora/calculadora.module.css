@@ -1,4 +1,54 @@
 .selectYcantidad{
     justify-content: center;
-   display: flex;
+    display: flex;
+    
 }
+.containerTableCalc {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 2;
+    max-height: 70vh;
+    overflow-y: scroll;
+    margin-bottom: 5rem;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    min-width: 1000px;
+    
+}
+.containerTableCalc::-webkit-scrollbar {
+    display: none;
+}
+
+.divTotal{
+    justify-content: center;
+    margin-left: 1%;
+}
+
+
+.tableCalc{
+    max-width: 50%;
+    min-width: 50%;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border-radius: 17px;
+
+}
+
+
+td,
+th {
+    padding: 1rem 2rem;
+}
+
+th {
+    text-align: start;
+}
+.h1Calc{
+    display: flex;
+    justify-content: center;
+    font-size:medium;
+}
+

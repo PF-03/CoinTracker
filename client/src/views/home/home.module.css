@@ -1,17 +1,15 @@
 .home {
   overflow: hidden;
   padding: 0 4rem;
+  width: 100%;
 }
 
 .title {
   margin-top: 4rem;
+  margin-bottom: 1rem;
 }
 
-.view {
-  display: flex;
-  justify-content: space-between;
-}
-.seeLess{
+.seeLess {
   display: flex;
   justify-content: end;
   padding-top: 10px;

@@ -14,8 +14,7 @@
     display: flex;
     justify-content: center;
     margin: 1rem 0;
-    gap: 2;
-
+    gap: 1rem;
 }
 
 .containerSearch {
@@ -96,4 +95,13 @@ th {
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
+}
+
+.selectDivisas {
+    padding: 0 1rem;
+    margin-left: 1rem;
+    height: 100%;
+    border-radius: 2rem;
+    border: none;
+
 }

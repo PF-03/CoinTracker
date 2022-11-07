@@ -5,6 +5,7 @@ import { latest } from 'immer/dist/internal';
 export function getActivos() {
   return async function (dispatch: any) {
     var json = await axios('http://localhost:3001/activos', {});
+    console.log(json.data)
     return dispatch({
       type: 'GET_ACTIVOS',
       payload: json.data,
@@ -12,7 +13,7 @@ export function getActivos() {
   };
 }
 
-export function getNameActivos(name: any, minimo: any, maximo: any) {
+export function getNameActivos(name: any, minimo: any, maximo: any, divisa:any) {
   return async function (dispatch: any) {
     try {
       var json = await axios(
@@ -21,7 +22,9 @@ export function getNameActivos(name: any, minimo: any, maximo: any) {
           '&minimo=' +
           minimo +
           '&maximo=' +
-          maximo
+          maximo +
+          '&divisas=' +
+          divisa
       );
       //console.log(json.data);
       return dispatch({
@@ -34,6 +37,21 @@ export function getNameActivos(name: any, minimo: any, maximo: any) {
   };
 }
 
+export function getCotizaciones(){
+  return  async function (dispatch:any){
+    try{
+      var json = await axios(
+        'http://localhost:3001/activos/cotizaciones'
+      );
+      return dispatch({
+        type: 'GET_COTIZACIONES',
+        payload: json.data
+      })
+    }catch(e){
+      console.log(e)
+    }
+  }
+}
 
 export function getNews() {
   return function (dispatch) {
@@ -46,6 +64,19 @@ export function getNews() {
         });
       });
   };
+}
+
+export function getUserId(id){
+  return function(dispatch){
+    fetch("http://localhost:3001/users/"+id)
+    .then((res) => res.json())
+    .then((res) => {
+      dispatch({
+        type: 'GET_USERID',
+        payload: res,
+      });
+    });
+};
 }
 
 export function getDetailsActivos(id: any) {
