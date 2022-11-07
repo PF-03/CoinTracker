@@ -16,7 +16,7 @@ function LandingNavbar() {
           </div>
           <ul className={style.navButtons}>
             <a href="#About">About Us</a>
-            <a href="/review">Feedback</a>
+            <a href="#Reviews">Feedback</a>
             <a href="#ContactUs">Contact Us</a>
           </ul>
         </div>
