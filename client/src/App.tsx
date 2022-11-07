@@ -11,8 +11,15 @@ import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+
 import Portfolio from "./components/Portfolio/Portfolio"
+
+
+import Transaccion from "./components/transaccion/transaccion";
+
+
 import Loading from "./components/styles/loading";
+
 
 const LandingPage = lazy(() => import("./views/landingPage/landingPage"));
 const Login = lazy(() => import("./views/login/Login"));
@@ -38,11 +45,17 @@ function App() {
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
+
+
+        
+          <Route path="/transaccion" element={<Transaccion />} />
+
           <Route path={PublicRouts.LOGIN} element={<Login />} />
 
           <Route element={<SharedLayout />}>
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
           </Route>
+
           {/* agregar aqui las rutas privadas para usuarios */}
 
           <Route element={<AuthGuard />}>

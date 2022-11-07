@@ -43,6 +43,9 @@
     line-height: 30px;
    
 }
+.pass{
+    cursor: pointer;
+}
 .verificacion{
     text-decoration: underline;
     cursor: pointer;
