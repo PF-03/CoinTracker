@@ -1,21 +1,19 @@
 import { Router } from 'express';
 import {
-    getExchangeHistory,
-    postExchangeHistory,
-    updateExchangeHistory,
-    deleteExchangeHistory
-} from '../../controllers/exchangeHistory'
+  getExchangeHistory,
+  postExchangeHistory,
+  updateExchangeHistory,
+  deleteExchangeHistory,
+} from '../../controllers/exchangeHistory';
 
 const exchange = Router();
 
+exchange.post('/getExchange', getExchangeHistory);
 
-exchange.get('/', getExchangeHistory)
+exchange.post('/', postExchangeHistory);
 
-exchange.post('/', postExchangeHistory)
+exchange.put('/', updateExchangeHistory);
 
-exchange.put('/', updateExchangeHistory)
-
-exchange.delete('/', deleteExchangeHistory)
-
+exchange.delete('/', deleteExchangeHistory);
 
 export default exchange;

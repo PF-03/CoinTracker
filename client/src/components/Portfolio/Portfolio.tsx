@@ -45,9 +45,6 @@ const Portfolio = () => {
   }
   return (
     <div className={styles.mainContainer}>
-      <div>
-        <Sidebar></Sidebar>
-      </div>
       <div className={styles.portfolioContainer}>
         <h5>Total en USD$</h5>
         <div className={styles.dataContainer}>

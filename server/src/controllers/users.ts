@@ -117,6 +117,7 @@ const putUsers: any = async (req: Request, res: Response) => {
   }
 };
 
+
 const updateUserAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id } = req.params
@@ -167,6 +168,30 @@ const putPassword: any = async (req: Request, res: Response) => {
   catch (e) {
     handleError(res, "ERROR_UPDATE_PASSWORD")
   }
+
+const putPassword:any=async(req:Request, res: Response)=>{
+try{
+  const {id}=req.params
+  const {passwordActual, passwordNueva}=req.body
+  console.log(passwordActual,passwordNueva) 
+  const usuario= await user.find({_id:id})
+  if(Object.keys(usuario).length > 0){
+  const validate = await user.comparePassword(passwordActual, usuario[0].password);
+  console.log(validate)
+  if(validate){
+    await user.updateOne({_id:id},{
+      password:await user.encryptPassword(passwordNueva),
+    })
+    return res.send("EXIT")
+  }
+  return res.status(400).send("PASSWORD INVALID")
+}  
+return res.status(400).send("MAIL INVALID")
+}
+catch(e){
+  return res.status(400).send("ERROR")
+}
+
 
 }
 export { getUsers, postUsers, deleteUsers, putUsers, putPassword, getUsersAdmin, updateUserAdmin };

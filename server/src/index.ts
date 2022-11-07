@@ -17,8 +17,10 @@ import { ActualizarApi } from './controllers/actives';
 const app: any = express();
 
 //Middlewares
-app.use(express.json({ limit: "50mb" }));
-app.use(express.urlencoded({ limit: "50mb", extended:true, parameterLimit:50000}));
+app.use(express.json({ limit: '50mb' }));
+app.use(
+  express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 })
+);
 
 app.use(morgan('dev'));
 app.use(
@@ -40,16 +42,14 @@ app.use(passport.session());
 
 //para que entienda los datos que le enviamos
 
-
-//multer 
- const storage=multer.diskStorage({
-  destination:path.join(__dirname, "public/img"),
-  filename:(req:any,file:any,cb:any)=>{
-    cb(null, new Date().getTime()+path.extname(file.originalname))
-  }
+//multer
+const storage = multer.diskStorage({
+  destination: path.join(__dirname, 'public/img'),
+  filename: (req: any, file: any, cb: any) => {
+    cb(null, new Date().getTime() + path.extname(file.originalname));
+  },
 });
-app.use(multer({storage}).single("image"))
- 
+app.use(multer({ storage }).single('image'));
 
 // add exchange history routes
 app.use('/', routers);
@@ -62,8 +62,10 @@ app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
   // console.error(error);
   return res.send(name + message);
 });
-function repetir(){
-  let identificadorIntervaloDeTiempo = setInterval(ActualizarApi, 90000);
+function repetir() {
+  let identificadorIntervaloDeTiempo = setInterval(() => {
+    ActualizarApi();
+  }, 90000);
 }
 
 const PORT = process.env.PORT || 3001;

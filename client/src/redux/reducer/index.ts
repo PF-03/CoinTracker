@@ -1,5 +1,5 @@
 //LS (Local Storage)
-import * as LS from "../../utils/LocalStorageData";
+import * as LS from '../../utils/LocalStorageData';
 
 const initialState = {
   activos: [],
@@ -25,6 +25,9 @@ const initialState = {
   myAssets:[],
   currentAssetView:"myAssets",
   cotizaciones:[],
+  userExchangeHistory: [],
+  userReminders: [],
+  notificationsNumber: 0,
 
 
   user: localStorage.getItem(LS.UserKey)
@@ -36,24 +39,24 @@ const initialState = {
   : {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
-    : "",
-
+    : '',
 };
 
 function rootReducer(state = initialState, action: any) {
   switch (action.type) {
-    case "SET_USER":
+    case 'SET_USER':
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
         user:action.payload,
       };
-    case "SET_USER_TOKEN":
+    case 'SET_USER_TOKEN':
       LS.persistLocalStore(LS.TokenKey, action.payload);
       return {
         ...state,
         userToken: action.payload,
       };
+
 
     case "GET_USERID":
       LS.persistLocalStore(LS.UserIdKey, action.payload);
@@ -61,23 +64,23 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         userID: action.payload,
       };
-    case "GET_ACTIVOS":
+    case 'GET_ACTIVOS':
       return {
         ...state,
         activos: action.payload,
         allactivos: action.payload,
       };
-    case "GET_NAME_ACTIVOS":
+    case 'GET_NAME_ACTIVOS':
       return {
         ...state,
         activos: action.payload,
       };
 
-    case "POST_MAIL":
+    case 'POST_MAIL':
       return {
         ...state,
       };
-    case "GET_DETAILS_ACTIVOS": {
+    case 'GET_DETAILS_ACTIVOS': {
       let filter = state.allactivos.filter(
         (el: any) => el.id.toString() === action.payload
       );
@@ -87,14 +90,14 @@ function rootReducer(state = initialState, action: any) {
         detailsActivos: filter[0],
       };
     }
-    case "GET_NEWS": {
+    case 'GET_NEWS': {
       const news: any = action.payload[0].new;
       return {
         ...state,
         newsAll: news,
       };
     }
-    case "GET_DETAILS_NEWS": {
+    case 'GET_DETAILS_NEWS': {
       let filterNews = state.allNews.filter(
         (el: any) => el.id === action.payload
       );
@@ -103,7 +106,7 @@ function rootReducer(state = initialState, action: any) {
         detailsNews: filterNews,
       };
     }
-    case "GET_SEEMORE": {
+    case 'GET_SEEMORE': {
       return {
         ...state,
         seeMore: !state.seeMore,
@@ -194,18 +197,37 @@ function rootReducer(state = initialState, action: any) {
         myAssets:[...state.myAssets,action.payload]
 
       }
-
+    }
     case 'GET_COTIZACIONES':
-      return{
+      return {
         ...state,
-        cotizaciones:action.payload
-      }
+        cotizaciones: action.payload,
+      };
 
-    case "RESET": {
+    case 'RESET': {
       localStorage.clear();
       state = initialState;
 
     }
+
+    case 'SET_EXCHANGE_HISTORY':
+      return {
+        ...state,
+        userExchangeHistory: action.payload,
+      };
+
+    case 'GET_REMINDERS':
+      return {
+        ...state,
+        userReminders: action.payload,
+      };
+
+    case 'SET_NOTIFICATIONS_NUMBER':
+      return {
+        ...state,
+        notificationsNumber: action.payload,
+      };
+
     default:
       return state;
   }
