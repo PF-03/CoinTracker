@@ -14,6 +14,27 @@ const walletSchema = new Schema({
     isDeleted: {
         type: Boolean,
         default: false
+    },
+    history:{
+        type:Array,
+        default:[
+            {
+                date:"2022-10-20",
+                quantity:0.0001,
+            },
+            {
+                date:"2022-10-24",
+                quantity:0.123,
+            },
+            {
+                date:"2022-10-23",
+                quantity:0.1,
+            },
+            {
+                date:"2022-10-26",
+                quantity:0.5,
+            },
+        ]
     }
 },
     {

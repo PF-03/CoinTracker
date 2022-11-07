@@ -7,17 +7,27 @@ const initialState = {
   newsAll: [],
   allNews: [],
   detailsActivos: {},
+  historyDataActivo:{},
+  historyCoinsDataValue:[],
+  walletData:[],
+  main_chart_data:[],
   detailsNews: {},
   seeMore: false,
-  cotizaciones: [],
+  myAssets:[],
+  currentAssetView:"myAssets",
+  cotizaciones:[],
   userExchangeHistory: [],
   userReminders: [],
   notificationsNumber: 0,
 
+
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
-  userID: {},
+
+  userID: localStorage.getItem(LS.UserIdKey)
+  ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
+  : {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : '',
@@ -29,7 +39,7 @@ function rootReducer(state = initialState, action: any) {
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
-        user: { ...action.payload },
+        user:action.payload,
       };
     case 'SET_USER_TOKEN':
       LS.persistLocalStore(LS.TokenKey, action.payload);
@@ -38,7 +48,9 @@ function rootReducer(state = initialState, action: any) {
         userToken: action.payload,
       };
 
-    case 'GET_USERID':
+
+    case "GET_USERID":
+      LS.persistLocalStore(LS.UserIdKey, action.payload);
       return {
         ...state,
         userID: action.payload,
@@ -91,6 +103,53 @@ function rootReducer(state = initialState, action: any) {
         seeMore: !state.seeMore,
       };
     }
+    case "GET_ACTIV_HISTORY_VALUE":{
+      let newHistoryData= state.historyCoinsDataValue.filter(el=>{
+        return el.coinId!=action.payload.coinId||el.belongsWallet!=action.payload.belongsWallet
+      }).concat(action.payload);
+      return {
+        ...state,
+        historyCoinsDataValue: newHistoryData,
+      }
+    }
+    case "SET_HISTORY_DATA_ACTIVO":{
+      var data =[]
+      if(action.payload.belongsWallet===false){
+        data = state.historyCoinsDataValue.filter(el=>{
+        return el.coinId==action.payload.coinId&&el.belongsWallet==action.payload.belongsWallet
+      })
+      if(data.length===0){
+        data=[{
+          labels:[],
+          datasets:[]
+        }]
+      }}else{
+        data=[state.main_chart_data]
+      }
+      return {
+        ...state,
+        historyDataActivo: data[0],
+      }
+    }
+    case "GET_WALLET_DATA":{
+      return{
+        ...state,
+        walletData:action.payload[0],
+        main_chart_data:action.payload[1],
+        historyDataActivo:action.payload[1]
+      }
+    }
+    case "SET_CURRENT_ASSET_VIEW":{
+      return {
+        ...state,
+        currentAssetView:action.payload,
+      }
+    }
+    case "SET_MY_ASSETS":{
+      return {
+        ...state,
+        myAssets:[...state.myAssets,action.payload]
+      }
 
     case 'GET_COTIZACIONES':
       return {
@@ -101,7 +160,7 @@ function rootReducer(state = initialState, action: any) {
     case 'RESET': {
       localStorage.clear();
       state = initialState;
-      return state;
+
     }
 
     case 'SET_EXCHANGE_HISTORY':

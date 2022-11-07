@@ -1,36 +1,29 @@
 import axios from "axios"
 import { Router, Request, Response } from "express"
+import handleError from "../../utils/handleError"
 const user=require("../../models/User")
 const verifiqued: any = Router()
 
 
-verifiqued.get("/:token",async(req:Request,res:Response)=>{
-    const { token }=req.params
-    console.log(token)
-    const local:any=await axios(`http://localhost:3001/localauth/profile?secret_token=${token}`)
-    .catch((e)=>{
-    })
-   
+verifiqued.get("/:id",async(req:Request,res:Response)=>{
+    const { id }=req.params
+    console.log(id)
+    
     try{
-        if(local !=="no soy local" && local){
-             await user.updateOne({_id:local.data.user._id},{
-                status:"VERIFICADO"
-            }) 
-            return res.json("VERIFICADO")
-        }
-        let userGoogle=await user.find({
-            googleId:token})
-            if(userGoogle){
-                await user.updateOne({googleId:userGoogle[0].googleId},{
+
+        let userVer=await user.find({_id:id})
+        console.log(userVer)
+            if(Object.keys(userVer).length>0){
+                await user.updateOne({_id:id},{
                     status:"VERIFICADO"
                 })
                 return res.json("VERIFICADO")
             }
-        res.status(403).send("no se encontro")
+            handleError(res,"ERROR_VERIQUED_USER")
     
     }
     catch(e){
-        console.log(e)
+        handleError(res,"ERROR_VERIQUED_USER")
 
     }
 
