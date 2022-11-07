@@ -6,6 +6,7 @@ import Bubble from "../../components/styles/bubbles";
 import Button from "../../components/styles/button";
 import s from "./landingPage.module.css";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer"
 
 function LandignPage() {
   return (
@@ -40,9 +41,7 @@ function LandignPage() {
         <Bubble left='20%' bottom='-10vh' size="medium" />
       </div>
 
-      <footer className={s.container}>
-        <h4>CoinTracker</h4>
-      </footer>
+      <Footer></Footer>
     </>
   );
 }
