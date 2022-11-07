@@ -6,10 +6,16 @@ import axios from "axios";
 import Bubble from "../styles/bubbles";
 import { getUserId, setUser } from "../../redux/actions";
 import ProfileIMG from "./ProfileIMG.png";
+import { OpenClose } from "../ProfilePassword/openClose";
+import { ProfilePassword } from "../ProfilePassword/profilePassword";
+import SharedLayout from "../../views/sharedLayout/SharedLayout";
+import SideBar from "../Sidebar/Sidebar";
 
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
   const userId = useSelector((state: any) => state.userID);
+  console.log(userId, "soy id");
+  console.log(userId);
   const dispatch: any = useDispatch();
   const [cargar, setCargar] = useState(false);
   const [state, setState] = useState({
@@ -18,11 +24,9 @@ export default function Profile() {
     name: userId[0] ? userId[0].name : user.name,
     lastname: userId[0] ? userId[0].lastname : user.lastname,
   });
-  console.log(user, "soy user");
-  console.log(userId, "soy userID");
-  const [fileInputState, setFileInputState] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
+  const [isOpen, open, close] = OpenClose();
   const handleImage = async (e) => {
     const image = e.target.files[0];
     setSelectedFile(image);
@@ -95,12 +99,17 @@ export default function Profile() {
   const cancelar = () => {
     setCargar(false);
   };
+
+  const openModal = () => {
+    open();
+  };
   return (
     <div className={profile.containerr}>
+      <SideBar />
       <Bubble size="medium" color="blue-dark" top="20%" left="30vh" />
       <Bubble color="purple" top="-40%" right="-20vh" />
       {cargar === false ? (
-        <div>
+        <div className={profile.box}>
           <div className={profile.formulario}>
             <div className={profile.datos}>
               <div className={profile.texto}>
@@ -208,7 +217,7 @@ export default function Profile() {
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={profile.box}>
           <div className={profile.formulario}>
             <div className={profile.datoss}>
               <div className={profile.texto}>
@@ -293,8 +302,17 @@ export default function Profile() {
                 <strong>✓</strong>
               </label>
               <label> Your account is verified. </label>
+              {user.googleId || userId[0]?.googleId ? (
+                <label></label>
+              ) : (
+                <label onClick={openModal} className={profile.pass}>
+                  {" "}
+                  Click to change password{" "}
+                </label>
+              )}
             </div>
           )}
+          <ProfilePassword isOpen={isOpen} close={close} />
           <div className={profile.but}>
             <Button type="submit" gradient>
               Guardar

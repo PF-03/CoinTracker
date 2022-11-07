@@ -1,22 +1,23 @@
 .main {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0 6rem;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 6rem;
 }
 
 .aboutUs {
-    height: 100vh;
+  height: 100vh;
 }
 
 .card {
-    position: absolute;
-    right: 15%;
+  position: absolute;
+  right: 15%;
 }
 
 .container {
+
     position: relative;
     display: flex;
     flex-direction: column;
@@ -24,6 +25,7 @@
     align-items: center;
     padding: 2rem;
     padding-top: 4rem;
+
 }
 
 .tableContainer {
@@ -56,6 +58,7 @@
 }
 
 .containerAbout {
+
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -72,9 +75,18 @@
     background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
     padding: .5rem 1rem;
 
+
 }
 
 footer {
-    font-family: 'Oswald';
-    border-top: 2px solid rgb(80, 80, 80);
+  font-family: "Oswald";
+  border-top: 2px solid rgb(80, 80, 80);
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  /* align-items: center; */
 }

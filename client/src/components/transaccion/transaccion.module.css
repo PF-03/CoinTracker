@@ -1,0 +1,43 @@
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+appearance: none;
+margin: 0;
+}
+
+.boxTexto{
+   margin-top: 40px;
+   font-size: 20px;
+}
+.input{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    border-color: transparent;
+    outline: none;
+}
+
+.info{
+    width: 280px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+    margin-top: 20px;
+
+}
+.info label{
+    height: 40px;
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+
+}
+.date{
+    width: 280px;
+    height: 40px;
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
+    border-bottom: 1px solid white;
+    outline: none;
+}

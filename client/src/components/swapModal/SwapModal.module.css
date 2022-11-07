@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .modal-container {
@@ -56,6 +57,7 @@
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  padding: 10px 0;
 }
 
 .coin img {
@@ -78,4 +80,10 @@
 .header h4 {
   margin: 0;
   font-size: 25px;
+}
+
+.close {
+  padding: 2px;
+  width: 20px;
+  cursor: pointer;
 }

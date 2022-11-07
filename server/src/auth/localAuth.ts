@@ -49,6 +49,11 @@ passport.use(
     },
     async (mail: any, password: any, done: any) => {
       try {
+        const dbUserBlocked = await user.findOne({ mail, activos: false})
+        if(dbUserBlocked){
+          return done(null,false,{message: 'User blocked'})
+        }
+
         const dbUser = await user.findOne({ mail });
         if (!dbUser) {
           return done(null, false, { message: 'user not found' });

@@ -7,22 +7,38 @@ const initialState = {
   newsAll: [],
   allNews: [],
   detailsActivos: {},
+  historyDataActivo: {},
+  historyCoinsDataValue: [],
+  walletData: [],
+  main_chart_data: [],
   detailsNews: {},
   seeMore: false,
-  cotizaciones:[],
+  // user: {},
+  // userToken: '',
+  admins: [],
+  reviews: [],
+  users: [],
+  usersCopy: [],
+  userDetail: [],
+  userPut: "",
 
+  myAssets: [],
+  currentAssetView: "myAssets",
+  cotizaciones: [],
+  userExchangeHistory: [],
+  userReminders: [],
+  notificationsNumber: 0,
 
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
 
   userID: localStorage.getItem(LS.UserIdKey)
-  ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
-  : {},
+    ? JSON.parse(localStorage.getItem(LS.UserIdKey) as string)
+    : {},
   userToken: localStorage.getItem(LS.TokenKey)
     ? JSON.parse(localStorage.getItem(LS.TokenKey) as string)
     : "",
-
 };
 
 function rootReducer(state = initialState, action: any) {
@@ -31,7 +47,7 @@ function rootReducer(state = initialState, action: any) {
       LS.persistLocalStore(LS.UserKey, action.payload);
       return {
         ...state,
-        user:action.payload,
+        user: action.payload,
       };
     case "SET_USER_TOKEN":
       LS.persistLocalStore(LS.TokenKey, action.payload);
@@ -95,17 +111,131 @@ function rootReducer(state = initialState, action: any) {
       };
     }
 
-    case 'GET_COTIZACIONES':
-      return{
+    case "GET_ADMINS": {
+      return {
         ...state,
-        cotizaciones:action.payload
+        admins: action.payload,
+      };
+    }
+    case "GET_REVIEWS":
+      return {
+        ...state,
+        reviews: action.payload,
+      };
+
+    case "GET_USERS":
+      return {
+        ...state,
+        users: action.payload,
+        usersCopy: action.payload,
+      };
+
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+
+    case "PUT_USER_PROFILE_ADMIN":
+      return {
+        ...state,
+        userPut: action.payload,
+      };
+    case "DELETE_USER":
+      return {
+        ...state,
+        users: state.users.filter((pat) => pat._id !== action.payload),
+        usersCopy: state.usersCopy.filter((pat) => pat._id !== action.payload),
+      };
+
+    case "GET_ACTIV_HISTORY_VALUE": {
+      let newHistoryData = state.historyCoinsDataValue
+        .filter((el) => {
+          return (
+            el.coinId != action.payload.coinId ||
+            el.belongsWallet != action.payload.belongsWallet
+          );
+        })
+        .concat(action.payload);
+      return {
+        ...state,
+        historyCoinsDataValue: newHistoryData,
+      };
+    }
+    case "SET_HISTORY_DATA_ACTIVO": {
+      var data = [];
+      if (action.payload.belongsWallet === false) {
+        data = state.historyCoinsDataValue.filter((el) => {
+          return (
+            el.coinId == action.payload.coinId &&
+            el.belongsWallet == action.payload.belongsWallet
+          );
+        });
+        if (data.length === 0) {
+          data = [
+            {
+              labels: [],
+              datasets: [],
+            },
+          ];
+        }
+      } else {
+        data = [state.main_chart_data];
       }
+      return {
+        ...state,
+        historyDataActivo: data[0],
+      };
+    }
+    case "GET_WALLET_DATA": {
+      return {
+        ...state,
+        walletData: action.payload[0],
+        main_chart_data: action.payload[1],
+        historyDataActivo: action.payload[1],
+      };
+    }
+    case "SET_CURRENT_ASSET_VIEW": {
+      return {
+        ...state,
+        currentAssetView: action.payload,
+      };
+    }
+    case "SET_MY_ASSETS": {
+      return {
+        ...state,
+        myAssets: [...state.myAssets, action.payload],
+      };
+    }
+    case "GET_COTIZACIONES":
+      return {
+        ...state,
+        cotizaciones: action.payload,
+      };
 
     case "RESET": {
       localStorage.clear();
       state = initialState;
-
     }
+
+    case "SET_EXCHANGE_HISTORY":
+      return {
+        ...state,
+        userExchangeHistory: action.payload,
+      };
+
+    case "GET_REMINDERS":
+      return {
+        ...state,
+        userReminders: action.payload,
+      };
+
+    case "SET_NOTIFICATIONS_NUMBER":
+      return {
+        ...state,
+        notificationsNumber: action.payload,
+      };
+
     default:
       return state;
   }

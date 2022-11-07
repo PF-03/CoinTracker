@@ -1,11 +1,13 @@
 .containerr {
-    width: 150%;
+    width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-  
-
+}
+.box{
+    width: 100%;
+    padding-left: 6rem;
 }
 
 .datos {
@@ -43,6 +45,9 @@
     line-height: 30px;
    
 }
+.pass{
+    cursor: pointer;
+}
 .verificacion{
     text-decoration: underline;
     cursor: pointer;
@@ -63,7 +68,7 @@
 .propiedadd {
     display: flex;
     align-items: center;
-    width: 250px;
+    min-width: 250px;
     height: 50px;
     font-size: 15px;
     background: rgba(219, 219, 219, 0.11);
@@ -72,6 +77,7 @@
     backdrop-filter: blur(5.5px);
     -webkit-backdrop-filter: blur(5.5px);
     border: 1px solid rgba(219, 219, 219, 0.12);
+    padding-left: 0.5rem;
     
 }
 
@@ -91,7 +97,7 @@
 
 .propiedad input {
     
-    width: 250px;
+    min-width: 250px;
     height: 50px;
     font-size: 15px;
     color: white;

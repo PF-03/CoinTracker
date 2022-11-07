@@ -8,7 +8,7 @@ const {
   deleteExchangeHistory,
 } = require('../controllers/exchangeHistory.ts');
 
-router.get('/', getExchangeHistory);
+router.post('/', getExchangeHistory);
 
 router.post('/', postExchangeHistory);
 

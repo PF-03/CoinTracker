@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+
 import AuthGuard from "./guard/auth.guard";
 import { PrivateAdminRoutes, PrivateRoutes, PublicRouts } from "./rutas/rutas";
 import { AdminGuard } from "./guard/admin.guard";
@@ -8,8 +9,16 @@ import { Suspense, lazy } from "react";
 import Verifiqued from "./components/verifiqued/verifiqued";
 import Profile from "./components/Profile/profile";
 import Calculadora from "./components/Calculadora/calculadora";
+import AdminView from "./components/admin/AdminView";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+
+import SwapComponent from "./components/swapComponent/SwapComponent";
+
+import Portfolio from "./components/Portfolio/Portfolio";
+
+import Transaccion from "./components/transaccion/transaccion";
+
 import Loading from "./components/styles/loading";
 import News from "./views/News/News";
 
@@ -33,15 +42,26 @@ function App() {
         {/* al cargar un componente, crearlo aqui y */}
         <RoutesWithNotFound>
           <Route path="/" element={<LandingPage />} />
-          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
+          <Route path="/transaccion" element={<Transaccion />} />
+          <Route path={PublicRouts.LOG} element={<Login />} />
+
           <Route path={PublicRouts.LOGIN} element={<Login />} />
+
+          <Route path={PrivateRoutes.REVIEW} element={<Review />} />
+
+          <Route path={PrivateRoutes.USER} element={<Profile />} />
+
+          <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+
+          <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
           <Route element={<SharedLayout />}>
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
           </Route>
+
           {/* agregar aqui las rutas privadas para usuarios */}
 
           <Route element={<AuthGuard />}>
@@ -54,22 +74,22 @@ function App() {
                 path={PrivateRoutes.CALCULATOR}
                 element={<Calculadora />}
               />
+              <Route path={PrivateRoutes.PORTFOLIO} element={<Portfolio />} />
 
               <Route path={PrivateRoutes.NEWS} element={<News />} />
 
               <Route path={PrivateRoutes.USER} element={<Profile />} />
               <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
 
-              <Route path={PrivateRoutes.DONATE} element={<Donation />} />
+              <Route path={PrivateRoutes.SWAP} element={<SwapComponent />} />
 
-              <Route element={<AdminGuard />}>
-                {/* colocar aqui las pestañas para los admins. 
+              <Route path={PrivateRoutes.DONATE} element={<Donation />} />
+            </Route>
+            <Route element={<AdminGuard />}>
+              {/* colocar aqui las pestañas para los admins. 
+
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
-                <Route
-                  path={PrivateAdminRoutes.ADMIN}
-                  element={<h1>estamos en admin</h1>}
-                />
-              </Route>
+              <Route path={PrivateAdminRoutes.ADMIN} element={<AdminView />} />
             </Route>
           </Route>
         </RoutesWithNotFound>
