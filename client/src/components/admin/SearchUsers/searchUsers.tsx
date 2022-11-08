@@ -26,7 +26,7 @@ export default function SearchBarUsers(){
             <select id='selectUsers' onChange={HandleInputChange}>
                 <option>All Users</option>
                 <option>Active</option>
-                <option>Bloqued</option>
+                <option>Blocked</option>
             </select>
         </div>
     )

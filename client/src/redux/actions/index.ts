@@ -187,7 +187,7 @@ export function searchUsers(allUsers,search, inputSelect){
   if(inputSelect == 'Active'){
     users= users.filter((e:any)=>e.activos===true)
   }
-  if(inputSelect=='Bloqued'){
+  if(inputSelect=='Blocked'){
     users= users.filter((e:any)=>e.activos===false)
   }
   if(inputSelect==='All Users'){
@@ -208,7 +208,7 @@ export function filterusers(usersCopy:any,input:any){
   if(input == 'Active'){
     users= usersCopy.filter((e:any)=>e.activos===true)
   }
-  if(input=='Bloqued'){
+  if(input=='Blocked'){
     users= usersCopy.filter((e:any)=>e.activos===false)
   }
   if(input==='All Users'){
