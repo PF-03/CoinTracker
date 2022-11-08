@@ -237,6 +237,17 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         notificationsNumber: action.payload,
       };
+    case "SEARCH_USERS":
+      return{
+        ...state,
+        usersCopy: action.payload
+      }
+    case "FILTER_USERS":
+      return{
+        ...state,
+        usersCopy: action.payload
+      }
+    
 
     case "SET_N_TRANSACCION":
       return {

@@ -6,7 +6,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
-
+import SearchBarUsers from '../SearchUsers/searchUsers';
+import {filterusers} from '../../../redux/actions/index';
 export default function UserList() {
 
   const dispatch: any = useDispatch();
@@ -16,12 +17,14 @@ export default function UserList() {
   }, [dispatch, getUsers])
 
   const allUsers = useSelector((state:any) => state.usersCopy);
+  const users = useSelector((state:any)=>state.users)
 
   const handleDelete = (_id) => {
     dispatch(deleteUser(_id))
     alert("User successfully updated");
     window.location.reload()
   }
+  
 
   const columns = [
     { field: 'id', headerName: 'ID', width: 50 },
@@ -72,8 +75,10 @@ export default function UserList() {
 
 
   return (
-    <div className={st.userList}>
 
+    <div className={st.userList}>
+      <SearchBarUsers/>
+     
       <DataGrid
         rows={userData}
         columns={columns}
