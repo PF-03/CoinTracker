@@ -17,6 +17,7 @@ const initialState = {
   // user: {},
   // userToken: '',
   admins: [],
+  adminsCopy:[],
   reviews: [],
   users: [],
   usersCopy: [],
@@ -116,6 +117,7 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         admins: action.payload,
+        adminsCopy: action.payload
       };
     }
     case "GET_REVIEWS":
@@ -242,12 +244,11 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         usersCopy: action.payload
       }
-    case "FILTER_USERS":
+    case "SEARCH_ADMINS":
       return{
         ...state,
-        usersCopy: action.payload
+        admins: action.payload
       }
-    
 
     case "SET_N_TRANSACCION":
       return {
