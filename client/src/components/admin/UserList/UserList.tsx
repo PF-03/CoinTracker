@@ -6,6 +6,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
+import SearchBarUsers from '../SearchUsers/searchUsers';
 
 export default function UserList() {
 
@@ -72,8 +73,9 @@ export default function UserList() {
 
 
   return (
-    <div className={st.userList}>
 
+    <div className={st.userList}>
+      <SearchBarUsers/>
       <DataGrid
         rows={userData}
         columns={columns}

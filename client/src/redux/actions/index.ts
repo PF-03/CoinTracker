@@ -179,6 +179,17 @@ export function getAdmins() {
     });
   };
 }
+export function searchUsers(allUsers,search){
+  let users= allUsers.filter((e:any)=>e.mail.includes(search))
+  console.log(users)
+  return function(dispatch){
+    return dispatch( {
+      type: "SEARCH_USERS",
+      payload: users
+    })
+  }
+  
+}
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
