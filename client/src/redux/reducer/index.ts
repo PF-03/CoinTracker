@@ -240,6 +240,12 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         usersCopy: action.payload
       }
+    case "FILTER_USERS":
+      return{
+        ...state,
+        usersCopy: action.payload
+      }
+    
 
     default:
       return state;

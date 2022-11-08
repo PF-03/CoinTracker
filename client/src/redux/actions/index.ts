@@ -179,8 +179,20 @@ export function getAdmins() {
     });
   };
 }
-export function searchUsers(allUsers,search){
-  let users= allUsers.filter((e:any)=>e.mail.includes(search))
+export function searchUsers(allUsers,search, inputSelect){
+  let users =allUsers;
+  if (search){
+    users= users.filter((e:any)=>e.mail.includes(search))
+  }
+  if(inputSelect == 'Active'){
+    users= users.filter((e:any)=>e.activos===true)
+  }
+  if(inputSelect=='Bloqued'){
+    users= users.filter((e:any)=>e.activos===false)
+  }
+  if(inputSelect==='All Users'){
+    users = users;
+  }
   console.log(users)
   return function(dispatch){
     return dispatch( {
@@ -190,6 +202,29 @@ export function searchUsers(allUsers,search){
   }
   
 }
+
+export function filterusers(usersCopy:any,input:any){
+  let users;
+  if(input == 'Active'){
+    users= usersCopy.filter((e:any)=>e.activos===true)
+  }
+  if(input=='Bloqued'){
+    users= usersCopy.filter((e:any)=>e.activos===false)
+  }
+  if(input==='All Users'){
+    users = usersCopy;
+  }
+  
+  //console.log(users)
+  return function(dispatch){
+    return dispatch({
+      type: "FILTER_USERS",
+      payload: users
+    })
+  }
+  
+}
+
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
