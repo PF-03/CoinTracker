@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getActivos } from "../../redux/actions/index";
 import css from "../SearchBar/SearchBar.module.css";
-import card from '../styles/styles.module.css'
+import card from "../styles/styles.module.css";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import Bubble from "../styles/bubbles";
@@ -14,7 +14,7 @@ function Activos() {
   const dispatch = useDispatch<any>();
   //const allactivos= useSelector((state)=>state.activos)
   const allactivos = useSelector((state: state) => state.activos);
-
+  console.log(allactivos);
   const [currentPage, setCurrentPage] = useState(1); //--> porque empieza en pag 1 siempre
   const [activosPorPage, setActivosPorPage] = useState(9);
   //const indexLastActivo = currentPage * activosPorPage;
@@ -24,32 +24,40 @@ function Activos() {
 
   useEffect(() => {
     dispatch(getActivos());
-
   }, [dispatch]);
 
   const navigate = useNavigate();
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <SearchBar />
-      <Bubble size="small" left='-3rem' top='20%' />
+      <Bubble size="small" left="-3rem" top="20%" />
       <div className={`${css.tableContainer} ${card.card}`}>
         <table>
           <tbody>
             <tr className={css.tHeaders}>
-              <th><div>
-                Name
-              </div></th>
+              <th>
+                <div>Name</div>
+              </th>
               <th>Price</th>
               <th>Market Capitalization</th>
             </tr>
 
             {currentActivos.length > 0 ? (
               currentActivos.map((e: any) => {
-                const market_cap_legible = (numberFormat(e.market_cap, 'standard', 'decimal'))
-                const current_price_legible = (numberFormat(e.current_price, 'standard', 'decimal'))
-                const input_select = document.getElementById('selectCotizacion') as HTMLInputElement | null;
+                const market_cap_legible = numberFormat(
+                  e.market_cap,
+                  "standard",
+                  "decimal"
+                );
+                const current_price_legible = numberFormat(
+                  e.current_price,
+                  "standard",
+                  "decimal"
+                );
+                const input_select = document.getElementById(
+                  "selectCotizacion"
+                ) as HTMLInputElement | null;
                 return (
-
                   <tr className={css.trespe} key={e.id}>
                     <td onClick={() => navigate(`/crypto/${e.id}`)}>
                       <div className={css.name}>
@@ -57,8 +65,12 @@ function Activos() {
                         <span>{e.name}</span>
                       </div>
                     </td>
-                    <td>{input_select?.value} {current_price_legible}</td>
-                    <td>{input_select?.value} {market_cap_legible}</td>
+                    <td>
+                      {input_select?.value} {current_price_legible}
+                    </td>
+                    <td>
+                      {input_select?.value} {market_cap_legible}
+                    </td>
                   </tr>
                 );
               })
@@ -68,7 +80,7 @@ function Activos() {
           </tbody>
         </table>
       </div>
-      <Bubble color="blue-light" size="large" bottom='-50%' right='-20%' />
+      <Bubble color="blue-light" size="large" bottom="-50%" right="-20%" />
     </div>
   );
 }

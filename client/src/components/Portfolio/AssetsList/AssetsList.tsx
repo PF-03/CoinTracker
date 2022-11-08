@@ -2,20 +2,52 @@ import React from "react";
 import styles from "./AssetsList.module.css";
 import { setMyAssets } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
-const AssetsList = ({HandleTrClick}) => {
+import numberFormat from "../../../utils/numberFormat.js";
+import Transaccion from "../../transaccion/transaccion";
+
+const AssetsList = ({ HandleTrClick, modal }) => {
   const dispatch = useDispatch<any>();
   const allAssets = useSelector((state: any) => state.allactivos);
   const myWallet = useSelector((state: any) => state.walletData);
   const curretPage = useSelector((state: any) => state.currentAssetView);
+  const array = [];
 
-  const HandleButtonsClick=(e)=>{
-    if(curretPage==="allAssets"){
-        var data = allAssets.filter(el=>{
-            if(el.name===e.target.name)return true
-        })[0]
-        dispatch(setMyAssets(data))
+  const filtro = myWallet.filter((el) =>
+    allAssets.filter((al) => {
+      if (el.name.toLowerCase() === al.name.toLowerCase()) {
+        let moneda = {
+          crypto: el.crypto,
+          id: el.id,
+          name: el.name,
+          quantity: el.quantity,
+          rank: el.rank,
+          _id: el._id,
+          current_price: al.current_price,
+          symbol: al.symbol,
+        };
+        array.push(moneda);
+        return moneda;
+      }
+    })
+  );
+  console.log(filtro);
+  const HandleButtonsClick = (e) => {
+    e.preventDefault();
+    if (curretPage === "allAssets") {
+      var data = allAssets.filter((el) => {
+        if (el.name === e.target.name) return true;
+      })[0];
+      let push = array.filter((el) => {
+        if (el.id === data.id) {
+          return el;
+        }
+      });
+      if (push.length !== 0) return;
+
+      return array.push(data);
     }
-  }
+  };
+
   return (
     <div className={styles.assetsTableContainer}>
       <table>
@@ -29,22 +61,51 @@ const AssetsList = ({HandleTrClick}) => {
           </tr>
         </thead>
         <tbody>
-          {(curretPage == "myAssets" ? myWallet : allAssets).map((el) => {
+          {(curretPage == "myAssets" ? array : allAssets).map((el) => {
             return (
               <tr
-                onClick={()=>HandleTrClick(el.id)}
                 key={el.rank}
                 className={`${styles.trespe} ${
                   curretPage == "myAssets" ? styles.trespeClick : ""
                 }`}
               >
-                <th>{el.name}</th>
-                <th>{el.current_price + " US$"}</th>
+                <th onClick={() => HandleTrClick(el.id)}>{el.name}</th>
+                <th>
+                  {numberFormat(el.current_price, "standard", "decimal") +
+                    " US$"}
+                </th>
                 <th className={styles.th24h}>5%</th>
-                <th>0.000 USD</th>
+                <th>
+                  {curretPage == "myAssets" ? (
+                    <div className={styles.usd}>
+                      <label>
+                        {numberFormat(
+                          (el.quantity ? el.quantity : 0) * el.current_price,
+                          "standard",
+                          "decimal"
+                        ) + " US$"}
+                      </label>
+                      <label className={styles.quantity}>
+                        {(el.quantity ? el.quantity : 0) +
+                          " " +
+                          el.symbol.toUpperCase()}
+                      </label>
+                    </div>
+                  ) : (
+                    "0.000 USD"
+                  )}
+                </th>
                 <th>
                   {" "}
-                  <button name={el.name}onClick={HandleButtonsClick}>{curretPage == "myAssets" ? "+" : "O"}</button>
+                  {curretPage == "myAssets" ? (
+                    <button name={el.name} onClick={() => modal(el.name)}>
+                      +
+                    </button>
+                  ) : (
+                    <button name={el.name} onClick={() => modal(el.name)}>
+                      O
+                    </button>
+                  )}
                 </th>
               </tr>
             );

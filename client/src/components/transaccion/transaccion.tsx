@@ -1,27 +1,40 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import diseño from "./transaccion.module.css";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_orange.css";
 import swap from "../../assets/iconSwap.png";
 import Button from "../styles/button";
-import { postWallet } from "../../redux/actions";
-export default function Transaccion() {
-  let name = "Bitcoin";
-  let user = "id";
-  let quantity = "1";
-  let precio = "21.334,28";
+import { postWallet, putWallet } from "../../redux/actions";
+export default function Transaccion({ isOpen, close }) {
+  const myWallet = useSelector((state: any) => state.walletData);
+  const allAssets = useSelector((state: any) => state.allactivos);
+  const modalName = useSelector((state: any) => state.nameTransaccion);
+  const user = useSelector((state: any) => state.user);
+
+  /*   useEffect(() => {}, []); */
+
+  const precioMoneda = allAssets.filter(
+    (el: any) => el.name.toLowerCase() === modalName.toLowerCase()
+  )[0];
+  const existeWallet = myWallet.filter(
+    (el: any) => el.name.toLowerCase() === modalName.toLowerCase()
+  );
+  console.log(existeWallet);
+  let precio = precioMoneda?.current_price;
+
   const dispatch: any = useDispatch();
   const [cambio, setCambio] = useState(false);
   const [wallet, setWallet] = useState({
-    date: new Date(),
+    date: new Date(Date.now()),
     quantity: "1",
-    precio: "21.334,28",
+    precio: precio,
     gastado: "",
   });
+
   let gastado2 = wallet.gastado
     ? parseFloat(wallet.gastado)
-    : parseFloat(wallet.precio);
+    : parseFloat(wallet.precio ? wallet.precio : precio);
 
   const cambioWallet = {
     date: wallet.date,
@@ -29,6 +42,8 @@ export default function Transaccion() {
     precio:
       cambio === false
         ? wallet.precio
+          ? wallet.precio
+          : precio
         : (
             gastado2 / parseFloat(wallet.quantity ? wallet.quantity : "1")
           ).toString(),
@@ -50,20 +65,54 @@ export default function Transaccion() {
     setCambio(!cambio);
   };
   const handleSubmit = async () => {
-    let body = {
-      crypto: name,
-      user: user,
-      quantity: quantity + parseFloat(wallet.quantity),
-      history: {
-        date: wallet.date,
-        quantity: wallet.quantity + quantity,
-      },
-    };
-    dispatch(postWallet(body));
+    if (existeWallet.length === 0) {
+      let body = {
+        crypto: modalName.toLowerCase(),
+        user: user._id ? user._id : user[0]._id,
+        quantity: parseFloat(wallet.quantity),
+        history: [
+          {
+            date: wallet.date,
+            quantity: parseFloat(wallet.quantity),
+          },
+        ],
+      };
+
+      await dispatch(postWallet(body));
+    } else {
+      let body = {
+        crypto: modalName.toLowerCase(),
+        user: user._id ? user._id : user[0]._id,
+        quantity:
+          parseFloat(wallet.quantity) +
+          parseFloat(
+            existeWallet.quantity
+              ? existeWallet.quantity
+              : existeWallet[0].quantity
+          ),
+        history: {
+          date: wallet.date,
+          quantity:
+            parseFloat(wallet.quantity) +
+            parseFloat(
+              existeWallet.quantity
+                ? existeWallet.quantity
+                : existeWallet[0].quantity
+            ),
+        },
+      };
+      await dispatch(
+        putWallet(
+          body,
+          existeWallet._id ? existeWallet._id : existeWallet[0]._id
+        )
+      );
+    }
+    close();
   };
 
   return (
-    <div>
+    <div className={`${diseño.contenedor} ${isOpen && diseño.open}`}>
       <div>
         <img src={swap} alt="cambiar" onClick={cambios} />
         <label></label>
@@ -94,7 +143,7 @@ export default function Transaccion() {
                 name="quantity"
                 onChange={handleOnChange}
               />
-              <label>BTC</label>
+              <label>{precioMoneda?.symbol.toUpperCase()}</label>
             </div>
           </div>
 
@@ -109,7 +158,7 @@ export default function Transaccion() {
                 type="number"
                 disabled={true}
               />
-              <label>BTC</label>
+              <label>USD</label>
             </div>
           </div>
 

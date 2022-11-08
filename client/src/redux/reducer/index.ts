@@ -13,6 +13,7 @@ const initialState = {
   main_chart_data: [],
   detailsNews: {},
   seeMore: false,
+  nameTransaccion: "",
   // user: {},
   // userToken: '',
   admins: [],
@@ -207,6 +208,7 @@ function rootReducer(state = initialState, action: any) {
         myAssets: [...state.myAssets, action.payload],
       };
     }
+
     case "GET_COTIZACIONES":
       return {
         ...state,
@@ -234,6 +236,12 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         notificationsNumber: action.payload,
+      };
+
+    case "SET_N_TRANSACCION":
+      return {
+        ...state,
+        nameTransaccion: action.payload,
       };
 
     default:

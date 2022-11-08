@@ -8,8 +8,6 @@ import { getUserId, setUser } from "../../redux/actions";
 import ProfileIMG from "./ProfileIMG.png";
 import { OpenClose } from "../ProfilePassword/openClose";
 import { ProfilePassword } from "../ProfilePassword/profilePassword";
-import SharedLayout from "../../views/sharedLayout/SharedLayout";
-import SideBar from "../Sidebar/Sidebar";
 
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
@@ -105,7 +103,6 @@ export default function Profile() {
   };
   return (
     <div className={profile.containerr}>
-      <SideBar />
       <Bubble size="medium" color="blue-dark" top="20%" left="30vh" />
       <Bubble color="purple" top="-40%" right="-20vh" />
       {cargar === false ? (
