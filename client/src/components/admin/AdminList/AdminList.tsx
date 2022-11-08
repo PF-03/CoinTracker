@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAdmins } from "../../../redux/actions/index"
 import { DataGrid } from '@mui/x-data-grid';
 import { color } from '@mui/system';
+import SearchBarAdmins from '../SearchAdmins/searchAdmins';
 
 
 
@@ -57,7 +58,7 @@ export default function Admins() {
 
   return (
     <div style={{ flex: 10 }}>
-
+      <SearchBarAdmins/>
       <DataGrid
         rows={adminRows}
         columns={columns}

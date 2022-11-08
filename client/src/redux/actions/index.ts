@@ -208,28 +208,30 @@ export function searchUsers(allUsers,search, inputSelect){
   }
   
 }
-
-export function filterusers(usersCopy:any,input:any){
-  let users;
-  if(input == 'Active'){
-    users= usersCopy.filter((e:any)=>e.activos===true)
+export function searchAdmins(allAdmins,search, inputSelect){
+  let admins =allAdmins;
+  if (search){
+    admins= admins.filter((e:any)=>e.name.includes(search))
   }
-  if(input=='Blocked'){
-    users= usersCopy.filter((e:any)=>e.activos===false)
+  if(inputSelect == 'Active'){
+    admins= admins.filter((e:any)=>e.activos===true)
   }
-  if(input==='All Users'){
-    users = usersCopy;
+  if(inputSelect=='Blocked'){
+    admins= admins.filter((e:any)=>e.activos===false)
   }
-  
-  //console.log(users)
+  if(inputSelect==='All Users'){
+    admins = admins;
+  }
+  console.log(admins)
   return function(dispatch){
-    return dispatch({
-      type: "FILTER_USERS",
-      payload: users
+    return dispatch( {
+      type: "SEARCH_ADMINS",
+      payload: admins
     })
   }
   
 }
+
 
 
 export function getReviews() {

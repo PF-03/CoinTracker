@@ -7,7 +7,7 @@ import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
 import SearchBarUsers from '../SearchUsers/searchUsers';
-import {filterusers} from '../../../redux/actions/index';
+
 export default function UserList() {
 
   const dispatch: any = useDispatch();
