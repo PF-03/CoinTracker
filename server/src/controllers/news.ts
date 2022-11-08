@@ -21,7 +21,7 @@ try{
                 description:e.description,
                 url:e.url,
                 author:e.author,
-                image:e.image ==="None"? "https://fotos.perfil.com/2021/10/07/trim/950/534/bitcoin-1241867.jpg":e.image,
+                image:e.image? e.image: "https://fotos.perfil.com/2021/10/07/trim/950/534/bitcoin-1241867.jpg",
                 published:e.published,
             }
         }) 
