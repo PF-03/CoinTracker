@@ -119,6 +119,12 @@ export function postWallet(body) {
     return res;
   };
 }
+export function putWallet(body, id) {
+  return async function (dispatch) {
+    const res = await axios.put("http://localhost:3001/wallet/" + id, body);
+    return res;
+  };
+}
 
 export function postMail(data: any) {
   return function (dispatch: any) {
@@ -315,6 +321,7 @@ export function getWalletData(UserId) {
         return [data, mainData];
       })
       .then((res) => {
+        console.log(res, "soy actions");
         dispatch({
           type: "GET_WALLET_DATA",
           payload: res,
@@ -337,6 +344,12 @@ export function setCurrentAssetView(name) {
 export function setMyAssets(data) {
   return {
     type: "SET_MY_ASSETS",
+    payload: data,
+  };
+}
+export function setNameTransaccion(data: String) {
+  return {
+    type: "SET_N_TRANSACCION",
     payload: data,
   };
 }

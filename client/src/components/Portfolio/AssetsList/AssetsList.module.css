@@ -14,6 +14,14 @@
 .assetsTableContainer::-webkit-scrollbar {
     width: 6px;
 }
+.usd{
+    display: flex;
+    flex-direction: column;
+}
+.quantity{
+    color: rgba(255, 255, 255, 0.233);
+    font-size: 14px;
+}
 .assetsTableContainer::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.589);
     border-radius: 6px;

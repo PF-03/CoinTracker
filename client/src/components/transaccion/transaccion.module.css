@@ -3,6 +3,25 @@
 appearance: none;
 margin: 0;
 }
+.contenedor{
+    position: fixed;
+ /*    z-index: 999;   */
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color:rgba(27, 26, 26, 0.75) ;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.contenedor.open{
+    display: flex;
+    font-size: 20px;
+} 
+
 
 .boxTexto{
    margin-top: 40px;

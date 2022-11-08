@@ -17,8 +17,6 @@ import SwapComponent from "./components/swapComponent/SwapComponent";
 
 import Portfolio from "./components/Portfolio/Portfolio";
 
-import Transaccion from "./components/transaccion/transaccion";
-
 import Loading from "./components/styles/loading";
 import News from "./views/News/News";
 
@@ -45,18 +43,13 @@ function App() {
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
-          <Route path="/transaccion" element={<Transaccion />} />
           <Route path={PublicRouts.LOG} element={<Login />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />
 
           <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
-          <Route path={PrivateRoutes.USER} element={<Profile />} />
-
           <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
-
-          <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
           <Route element={<SharedLayout />}>
             <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
