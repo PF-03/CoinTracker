@@ -2,6 +2,15 @@
     padding-left: 4rem;
 }
 
+.donation-comp-container > h3 {
+    margin-bottom: 20px;
+}
+
+.donation-comp-container > p {
+    margin-bottom: 28px;
+    font-size: 1.2rem;
+}
+
 .donation-amount-container {
     margin: 20px 0;
     display: flex;
@@ -140,3 +149,34 @@
     font-weight: bold;
     font-size: 1rem;
 }
+
+.donation-opt-details-tag {
+    margin: 12px;
+    /* border: 1px solid #7846C9; */
+}
+
+.donations-opt-summary-tag {
+    background-color: #7846C9;
+    width: 200px;
+    padding: 2px 4px;
+}
+
+
+/* bitpay code */
+.bitpay-donate { margin:20px 0;}
+.bitpay-donate fieldset {border:0;}
+.bitpay-donate .field-input { color: #666;background: #fff;border: 1px solid #eee;height: 30px; box-sizing: border-box;flex-grow: 1;}
+.bitpay-donate .field-input-wrapper { display: inline-flex;float: none;width: 80%; width: 200px;}
+.bitpay-donate input {padding:4px 10px; display: inline-block; width: 100px;}
+.bitpay-donate select {padding:3px 10px; display: inline-block; width: 50px;}
+.bitpay-donate .bitpay-donate-button {padding:12px 0;width: 160px;box-sizing: border-box;}
+.bitpay-donate ul, .bitpay-donate li {padding:0;margin:0;list-style:none;}
+.bitpay-donate li {padding:10px 0;}
+.bitpay-donate-field {clear:both;}
+.bitpay-donate-field label {float:left;width:100px;}
+.bitpay-donate-field div {float:left;}
+.bitpay-donate-field-email {width:80%;}
+.bitpay-donate-field-price {width:40%;}
+.bitpay-donate-field-currency {width:40%;}
+.bitpay-donate-button-wrapper {clear:both;margin:auto;text-align:left; margin: 20px 0 0 60px;}
+input.bitpay-donate-error {border:2px solid red;}
