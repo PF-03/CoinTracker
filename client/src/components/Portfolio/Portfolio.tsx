@@ -19,13 +19,13 @@ const Portfolio = () => {
   const user = useSelector((state: any) => state.user);
 
   const [state, setState] = React.useState({
-    coinId: "",
-    vs_currency: "",
-    coinAmount: "",
+    chartLoading:true,
   });
   React.useEffect(() => {
     async function getDataAndChart() {
+      setState({...state,chartLoading:true})
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+      setState({...state,chartLoading:false})
     }
     getDataAndChart();
   }, [dispatch]);
@@ -35,6 +35,15 @@ const Portfolio = () => {
   const AllHistoryValueData = useSelector(
     (state: any) => state.historyCoinsDataValue
   );
+  
+  function copiarAlPortapapeles(name_elemento) {
+    var aux = document.createElement("input");
+    aux.setAttribute("value", document.getElementById(name_elemento).innerHTML);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+  }
 
   const HandleButtonClick = (e: any) => {
     e.preventDefault();
@@ -47,11 +56,13 @@ const Portfolio = () => {
     var AssetById = AllHistoryValueData.filter((el) => el.coinId === id);
     if (AssetById.length === 0) {
       async function getAndRender() {
+        setState({...state,chartLoading:true})
         await dispatch(
           getActivsHistoryValue({ coinId: id, vs_currency: "usd" })
         );
         setTimeout((e) => {
           dispatch(setHistoryDataActivo({ coinId: id, belongsWallet: false }));
+          setState({...state,chartLoading:false})
         }, 1500);
       }
       getAndRender();
@@ -72,37 +83,46 @@ const Portfolio = () => {
         <h5>Total en USD$</h5>
         <div className={styles.dataContainer}>
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
-            <h2>$0,00</h2>
+            <div className={styles.main_value_container}>
+              <h2 id="main_value">$0,00</h2>
+              <button onClick={()=>copiarAlPortapapeles("main_value")}></button>
+            </div>
             <h5>Texto</h5>
             <h5 className={styles.redH5}>$0,00</h5>
             <h5>Texto</h5>
             <h5 className={styles.greenH5}>$0,00</h5>
           </div>
           <div className={styles.chartContainer}>
-            <AreaChart
-              data={{
-                labels: ChartData["labels"] ? ChartData["labels"] : [],
-                datasets: [
-                  {
-                    fill: true,
-                    label: ChartData["coinId"],
-                    data: ChartData["datasets"] ? ChartData["datasets"] : [],
-                    borderColor:
-                      ChartData["datasets"] === undefined ||
-                      ChartData["datasets"][0] <
-                        ChartData["datasets"].slice(-1)[0]
-                        ? "#00CE6A"
-                        : "#FA2020",
-                    backgroundColor:
-                      ChartData["datasets"] === undefined ||
-                      ChartData["datasets"][0] <
-                        ChartData["datasets"].slice(-1)[0]
-                        ? "#00ce6a7b"
-                        : "#c719197f",
-                  },
-                ],
-              }}
-            ></AreaChart>
+            {state.chartLoading?(
+            <div className={styles.lds_ring}><div></div><div></div><div></div></div>):
+            (
+              <AreaChart
+                data={{
+                  labels: ChartData["labels"] ? ChartData["labels"] : [],
+                  datasets: [
+                    {
+                      fill: true,
+                      label: ChartData["coinId"],
+                      data: ChartData["datasets"] ? ChartData["datasets"] : [],
+                      borderColor:
+                        ChartData["datasets"] === undefined ||
+                        ChartData["datasets"][0] <
+                          ChartData["datasets"].slice(-1)[0]
+                          ? "#00CE6A"
+                          : "#FA2020",
+                      backgroundColor:
+                        ChartData["datasets"] === undefined ||
+                        ChartData["datasets"][0] <
+                          ChartData["datasets"].slice(-1)[0]
+                          ? "#00ce6a7b"
+                          : "#c719197f",
+                    },
+                  ],
+                }}
+              ></AreaChart>
+            )
+          }
+          
           </div>
         </div>
         <div className={styles.assetsContainer}>

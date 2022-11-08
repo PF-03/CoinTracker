@@ -50,14 +50,13 @@ const AssetsList = ({ HandleTrClick, modal }) => {
 
   return (
     <div className={styles.assetsTableContainer}>
-      <table>
+      <table className={styles.table}>
         <thead className={styles.tHeaders}>
           <tr>
             <th>Name</th>
             <th>Price</th>
             <th>24h</th>
             <th>USD$</th>
-            <th className={styles.buttonTbHeader}></th>
           </tr>
         </thead>
         <tbody>
@@ -69,13 +68,15 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   curretPage == "myAssets" ? styles.trespeClick : ""
                 }`}
               >
-                <th onClick={() => HandleTrClick(el.id)}>{el.name}</th>
+                <th onClick={() => HandleTrClick(el.id)} className={styles.imageTh}>
+                  <img src={el.image} alt="" />
+                  {el.name}</th>
                 <th>
                   {numberFormat(el.current_price, "standard", "decimal") +
                     " US$"}
                 </th>
                 <th className={styles.th24h}>5%</th>
-                <th>
+                <th className={styles.buttonTh}>
                   {curretPage == "myAssets" ? (
                     <div className={styles.usd}>
                       <label>
@@ -94,9 +95,6 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   ) : (
                     "0.000 USD"
                   )}
-                </th>
-                <th>
-                  {" "}
                   {curretPage == "myAssets" ? (
                     <button name={el.name} onClick={() => modal(el.name)}>
                       +

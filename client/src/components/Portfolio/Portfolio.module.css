@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  justify-content: center;
 }
+
 .dataContainer {
   width: 100%;
   padding: 15px;
@@ -28,6 +30,9 @@
   min-width: 200px;
   margin-right: 30px;
 }
+.valueContainer:hover{
+  cursor: pointer;
+}
 .valueContainer h2 {
   margin: 5px;
 }
@@ -44,7 +49,7 @@
   color: #00ce6a;
 }
 .portfolioContainer {
-  width: 107%;
+  width: 100%;
   padding: 30px;
   /* width: 100%; */
   display: flex;
@@ -54,6 +59,7 @@
   margin: 10px;
 }
 .chartContainer {
+  position: relative;
   padding: 20px;
   width: 70%;
   background-color: #3f3e3e7d;
@@ -134,4 +140,65 @@
   .assetsNavbarContainer div button{
     padding: 10px 5px;
   }
+}
+
+.lds_ring {
+  position:absolute;
+  display: inline-block;
+  width: 80px;
+  left: 45%;
+  top: 30%;
+}
+.lds_ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  border: 8px solid #00ce6a;
+  border-radius: 50%;
+  animation: lds_ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #DBDBDB transparent transparent transparent;
+}
+.lds_ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds_ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds_ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds_ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.main_value_container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main_value_container button{
+  margin-left: 10px;
+  background-image: url(../../assets/copia.png);
+  background-color: transparent;
+  width: 45px;
+  height: 45px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border:none;
+  filter: invert();
+  border-radius: 10px;
+}
+.main_value_container button:hover{
+  cursor: pointer;
+  filter: none;
+  background-color: #bcafca;
 }
