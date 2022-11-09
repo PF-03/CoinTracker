@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
 import AuthGuard from "./guard/auth.guard";
 import { PrivateAdminRoutes, PrivateRoutes, PublicRouts } from "./rutas/rutas";
 import { AdminGuard } from "./guard/admin.guard";
@@ -12,6 +11,7 @@ import Calculadora from "./components/Calculadora/calculadora";
 import AdminView from "./components/admin/AdminView";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+import Chatbot from "./components/ChatBot/chatBots";
 
 import SwapComponent from "./components/swapComponent/SwapComponent";
 
@@ -27,11 +27,11 @@ const Review = lazy(() => import("./components/Review/Review"));
 const Home = lazy(() => import("./views/home/home"));
 // const Calculator = lazy(() => import("./components/Calculadora/calculadora"));
 const FormRegister = lazy(() => import("./views/FormRegister/FormRegister"));
-const DetailsActivs = lazy(
-  () => import("./components/details-activs/detailsActivs")
+const DetailsActivs = lazy(() =>
+  import("./components/details-activs/detailsActivs")
 );
-const Activos = lazy(
-  () => import("./components/ver_mas_activos/ver_mas_activos")
+const Activos = lazy(() =>
+  import("./components/ver_mas_activos/ver_mas_activos")
 );
 
 function App() {
@@ -53,6 +53,7 @@ function App() {
           <Route path={PrivateRoutes.USER} element={<Profile />} />
 
           <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+          <Route path="/chat" element={<Chatbot />} />
 
           <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 

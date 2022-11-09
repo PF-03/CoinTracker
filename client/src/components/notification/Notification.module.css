@@ -14,9 +14,14 @@
 }
 
 .create-alert {
+
   border-radius: 16px;
   background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
   border: 2px solid rgb(1 1 1 / 51%);
   padding: 10px;
   cursor: pointer;
+
+  width: fit-content;
+ 
+
 }
