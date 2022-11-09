@@ -11,26 +11,28 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const myWallet = useSelector((state: any) => state.walletData);
   const curretPage = useSelector((state: any) => state.currentAssetView);
   const array = [];
-
   const filtro = myWallet.filter((el) =>
     allAssets.filter((al) => {
-      if (el.name.toLowerCase() === al.name.toLowerCase()) {
+      if (el.id.toLowerCase() === al.id.toLowerCase()) {
         let moneda = {
           crypto: el.crypto,
           id: el.id,
-          name: el.name,
+          name: al.name,
           quantity: el.quantity,
           rank: el.rank,
           _id: el._id,
           current_price: al.current_price,
           symbol: al.symbol,
+          image: al.image,
         };
         array.push(moneda);
         return moneda;
       }
     })
   );
-  console.log(filtro);
+  console.log(myWallet);
+  console.log(allAssets);
+  console.log(array);
   const HandleButtonsClick = (e) => {
     e.preventDefault();
     if (curretPage === "allAssets") {
@@ -68,9 +70,13 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   curretPage == "myAssets" ? styles.trespeClick : ""
                 }`}
               >
-                <th onClick={() => HandleTrClick(el.id)} className={styles.imageTh}>
+                <th
+                  onClick={() => HandleTrClick(el.id)}
+                  className={styles.imageTh}
+                >
                   <img src={el.image} alt="" />
-                  {el.name}</th>
+                  {el.name}
+                </th>
                 <th>
                   {numberFormat(el.current_price, "standard", "decimal") +
                     " US$"}
@@ -96,11 +102,11 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     "0.000 USD"
                   )}
                   {curretPage == "myAssets" ? (
-                    <button name={el.name} onClick={() => modal(el.name)}>
+                    <button name={el.name} onClick={() => modal(el.id)}>
                       +
                     </button>
                   ) : (
-                    <button name={el.name} onClick={() => modal(el.name)}>
+                    <button name={el.name} onClick={() => modal(el.id)}>
                       O
                     </button>
                   )}

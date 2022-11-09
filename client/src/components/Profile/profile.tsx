@@ -200,7 +200,12 @@ export default function Profile() {
           )}
           <div className={profile.cargar}>
             <Button
-              gradient
+              gradient={
+                (userId[0]?.status ? userId[0].status : user.status) ===
+                "UNVERIFIED"
+                  ? false
+                  : true
+              }
               onClick={() => cargarImage()}
               disabled={
                 (userId[0]?.status ? userId[0].status : user.status) ===
