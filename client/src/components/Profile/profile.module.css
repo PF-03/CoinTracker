@@ -80,7 +80,11 @@
     padding-left: 0.5rem;
     
 }
+.icon{
+    width: 20px;
+    height: 20px;
 
+}
 
 .formulario {
     margin-top: 20px;
