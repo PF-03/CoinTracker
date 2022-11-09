@@ -1,12 +1,29 @@
 .notification-bell {
   display: flex;
-  width: 200px;
-  height: 50px;
+  height: 32px;
   position: absolute;
-  top: 20px;
-  right: 50px;
-  justify-content: space-around;
+  top: 4rem;
+  right: 4rem;
+  justify-content: space-between;
   cursor: pointer;
+  gap: 1rem;
+}
+
+.notification-icon {
+  backdrop-filter: blur(8px);
+  background-color: rgba(63, 63, 63, 0.54);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+}
+
+.notification-icon svg {
+  fill: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 
 .notification-counter {
@@ -14,9 +31,6 @@
 }
 
 .create-alert {
-  border-radius: 16px;
-  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
-  border: 2px solid rgb(1 1 1 / 51%);
-  padding: 10px;
-  cursor: pointer;
+  width: fit-content;
+
 }

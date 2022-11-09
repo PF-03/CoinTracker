@@ -63,17 +63,19 @@ function LandignPage() {
       <section className={`${s.container} ${s.tableContainer}`}>
         <Bubble size="medium" right='3rem' top='-5rem' />
         <table className={s.table}>
-          <tr>
-            <th>
-              Name
-            </th>
-            <th>
-              Price
-            </th>
-            <th>
-              Market Capitalization
-            </th>
-          </tr>
+          <thead>
+            <tr>
+              <th>
+                Name
+              </th>
+              <th>
+                Price
+              </th>
+              <th>
+                Market Capitalization
+              </th>
+            </tr>
+          </thead>
           <tbody>
             {activos.map(activo => (
               <tr>
@@ -92,7 +94,7 @@ function LandignPage() {
           </tbody>
         </table>
       </section>
-      
+
 
       <div id="About" className={s.containerAbout}>
         <h3>
@@ -101,7 +103,7 @@ function LandignPage() {
         <AboutUs />
       </div>
 
-      <div id="Reviews" className={s.container}>
+      <div id="Reviews" className={s.containerReviews}>
         <h3>Feedback</h3>
         <div className={s.reviews}>
           <Comments />
