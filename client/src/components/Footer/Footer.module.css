@@ -1,28 +1,31 @@
-.mainContainer{
+.mainContainer {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #3F3E3E;
+    background-color: rgba(25, 25, 25, 0.708);
     justify-content: center;
 }
-.mainContainer img{
-    width: 50px;
+
+.mainContainer img {
+    width: 48px;
     margin: 10px;
     border-radius: 100%;
 }
-.mainContainer button{
-    font-size: large;
+
+.mainContainer button {
     margin: 5px 5px;
     background-color: transparent;
     border: none;
     color: white;
 }
-.mainContainer button:hover{
+
+.mainContainer button:hover {
     cursor: pointer;
-    color:rgb(159, 179, 215);
+    color: rgb(159, 179, 215);
 }
-.mainContainer h6{
+
+.mainContainer h6 {
     font-size: small;
     margin: 20px;
 }
