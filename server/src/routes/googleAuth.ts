@@ -12,12 +12,12 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "http://localhost:5173/login",
+    failureRedirect: `${process.env.FRONT_DEPLOY_URL}/login`,
   }),
   function (req: any, res: any) {
     console.log(req);
-    res.redirect("http://localhost:5173/login/" + req.user.googleId);
-    // res.redirect("http://localhost:5173/home");
+    res.redirect(`${process.env.FRONT_DEPLOY_URL}/login/` + req.user.googleId);
+    // res.redirect("process.env.FRONT_DEPLOY_URL/home");
   }
 );
 
