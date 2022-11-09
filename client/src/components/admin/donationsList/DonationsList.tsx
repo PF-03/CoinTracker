@@ -27,10 +27,10 @@ export default function DonationsList() {
         //     </div>
         //   )
         // }},
-        { field: '_id', headerName: 'User ID', width: 130 },
-        { field: 'username', headerName: 'Username', width: 130 },
-        { field: 'mail', headerName: 'Email', width: 150 },
-        { field: 'amount', headerName: 'Amount', type: 'date', width: 120 }
+        { field: '_id', headerName: 'User ID', width: 250 },
+        { field: 'username', headerName: 'Username', width: 200 },
+        { field: 'mail', headerName: 'Email', width: 250 },
+        { field: 'amount', headerName: 'Amount', type: 'date', width: 200 }
     ];
 
     const userData = allDonations.map((pat, index) => ({

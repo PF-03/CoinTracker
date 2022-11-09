@@ -195,6 +195,7 @@ export function getUsers() {
   //Obtener todos los patients
   return async function (dispatch) {
     let json = await axios.get("http://localhost:3001/users");
+    console.log(json)
     return dispatch({
       type: "GET_USERS",
       payload: json.data,

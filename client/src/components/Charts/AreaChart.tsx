@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./AreaChart.module.css"
 import {
     Chart as ChartJS,
