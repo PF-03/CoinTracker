@@ -1,22 +1,18 @@
 .sidebar {
-    flex: 1.4;
-    height: 100%;
-    background-color: rgba(29, 29, 29, 0.459);
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    display: grid;
+    grid-template-rows: 12% 55% 20% 10%;
     position: sticky;
-    top: 50px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-top: 25px;
-    margin-bottom: 200px;
-    background: hsla(263, 54%, 53%, 1);
-
-    background: linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
-
-    background: -moz-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
-
-    background: -webkit-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
-
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#7745C8", endColorstr="#3D47D9", GradientType=1);
+    top: 95px;
+    height: 56vh;
+    width: 20vw;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border-radius: 17px;
+    color: white;
 }
 
 .sidebarWrapper {
@@ -28,6 +24,7 @@
 .sidebarMenu {
     margin-bottom: 10px;
     position: relative;
+    
 }
 
 .sidebarTitle {
@@ -49,13 +46,14 @@ aside {
     list-style: none;
     padding: 5px;
     margin: 0;
+    
 }
 
 .link,
 .link.active,
 .link:hover {
     text-decoration: none;
-    color: black;
+    color: white;
     text-align: left;
 }
 
@@ -65,17 +63,21 @@ aside {
     display: flex;
     align-items: left;
     border-radius: 10px;
-    color: black;
+    color:white;
 }
 
 .sidebarListItem.active,
 .sidebarListItem:hover {
-    background-color: rgb(253, 253, 253);
-    color: black
+    text-decoration: none;
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.4));
+  box-shadow: 0 4px 30px rgba(100, 100, 100, 0.3);
 }
 
 .sidebarIcon {
     align-items: center;
     margin-right: 10px;
-    color: black;
+    color: white;
+   
 }

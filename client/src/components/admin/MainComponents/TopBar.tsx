@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas"
+import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
+import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
 
 export default function TopBar() {
     const dispatch: any = useDispatch();
@@ -37,7 +38,10 @@ export default function TopBar() {
         <nav className={st.topbar}>
             <div className={st.topbarWrapper}>
                 <div className={st.title}>
-                    <a>CoinTracker - Admin </a>
+                    <div>
+                    <img src={iconCoinTracker} className={st.imgEth}/>
+                    <h1>CoinTracker - Admin </h1>
+                    </div>
                 </div>
                 <div className={st.topRight}>
                     {/* style={{ "text-decoration": "none", "color": "#141616" }} */}
