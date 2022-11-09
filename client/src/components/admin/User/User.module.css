@@ -30,6 +30,7 @@
     padding: 20px;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.8); 
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.8);
+    color: white;
 }
 
 .userUpdate{
@@ -75,14 +76,14 @@
 .userShowTitle{
     font-size: 18px;
     font-weight: 600;
-    color: #555;
+    color: white;
 }
 
-.userShowInfo{
+.userShowInfoTitle{
     display: flex;
     align-items: center;
     margin: 20px 0px;
-    color: #333
+    color: white;
 }
 
 .userShowIcon{

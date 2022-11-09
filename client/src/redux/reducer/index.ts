@@ -21,7 +21,7 @@ const initialState = {
   usersCopy: [],
   userDetail: [],
   userPut: "",
-
+  donations: [],
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -128,6 +128,12 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         users: action.payload,
         usersCopy: action.payload,
+      };
+
+    case "GET_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
       };
 
     case "GET_USER_PROFILE":

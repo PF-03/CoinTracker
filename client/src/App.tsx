@@ -81,7 +81,7 @@ function App() {
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
-              <Route element={<AdminGuard />}>
+            </Route>
                 {/* colocar aqui las pestañas para los admins. 
 
             Agregar las rutas en src/rutas/rutas.ts como lo estan las demas */}
@@ -90,8 +90,6 @@ function App() {
                   element={<AdminView />}
                 />
               </Route>
-            </Route>
-          </Route>
         </RoutesWithNotFound>
       </Suspense>
     </div>

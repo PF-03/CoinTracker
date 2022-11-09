@@ -201,6 +201,17 @@ export function getUsers() {
     });
   };
 }
+
+export function getDonations() {
+  //Obtener todos los patients
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/donate");
+    return dispatch({
+      type: "GET_DONATIONS",
+      payload: json.data,
+    });
+  };
+}
 export function getUserProfile(id) {
   //Obtener el detalle de un patient
   return async function (dispatch) {
