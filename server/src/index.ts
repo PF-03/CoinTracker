@@ -23,9 +23,11 @@ app.use(
 );
 
 app.use(morgan('dev'));
+
+const frontDeployUrl = process.env.FRONT_DEPLOY_URL
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', `${frontDeployUrl}`],
     credentials: true,
   })
 );
@@ -72,7 +74,7 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   // puerto 3001
   repetir();
-  console.log('Server listening on port 3001'); // eslint-disable-line no-console
+  console.log(`Server listening on port ${PORT}`); // eslint-disable-line no-console
 });
 
 //Conectamos a la base de datos

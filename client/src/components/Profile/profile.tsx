@@ -67,7 +67,7 @@ export default function Profile() {
   const uploadImage = async (formdata) => {
     try {
       await fetch(
-        `http://localhost:3001/users/${user._id ? user._id : user[0]._id}`,
+        `${import.meta.env.VITE_SERVER_API}/users/${user._id ? user._id : user[0]._id}`,
         {
           method: "PUT",
           body: formdata,
@@ -86,7 +86,7 @@ export default function Profile() {
   const verifiqued = async () => {
     try {
       await axios.post(
-        `http://localhost:3001/mail/verificar/${user._id}`,
+        `/mail/verificar/${user._id}`,
         body
       );
     } catch (e) {

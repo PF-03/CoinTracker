@@ -18,7 +18,7 @@ const Login: React.FC = (): JSX.Element => {
   useEffect(() => {
     const asyncUseEffect = async () => {
       const googleUser = await axios
-        .get(`http://localhost:3001/googleauth/getuser`, {
+        .get(`/googleauth/getuser`, {
           withCredentials: true,
         })
         .then((res: any) => res.data);
@@ -50,14 +50,14 @@ const Login: React.FC = (): JSX.Element => {
   };
 
   const google = () => {
-    window.open("http://localhost:3001/googleauth/google", "_self");
+    window.open(`${import.meta.env.VITE_SERVER_API}/googleauth/google`, "_self");
   };
 
   const local = async (e: any) => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:3001/localauth/login", values, {
+        .post("/localauth/login", values, {
           withCredentials: true,
         })
         .then((res: AxiosResponse) => {

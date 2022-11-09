@@ -124,7 +124,7 @@ function FormRegister() {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:3001/localauth/signup", {
+        .post("/localauth/signup", {
           username: inputs.username,
           password: inputs.password,
           mail: inputs.mail,
@@ -150,7 +150,7 @@ function FormRegister() {
     }
   }
   const google = () => {
-    window.open("http://localhost:3001/googleauth/google", "_self");
+    window.open(`${import.meta.env.VITE_SERVER_API}/googleauth/google`, "_self");
   };
 
   function passwordEye(e) {

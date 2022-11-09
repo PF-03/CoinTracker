@@ -90,7 +90,7 @@ function Review() {
     async function submitForm(e: any) {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/review', {
+            await axios.post('/review', {
                 user: inputs.username,
                 calification: inputs.calification,
                 comment: inputs.comment,

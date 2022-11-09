@@ -23,7 +23,7 @@ export default function TopBar() {
     //     }
     // }
     const logout = async () => {
-        axios.get(`http://localhost:3001/logout`, {
+        axios.get(`/logout`, {
             withCredentials: true,
         })
             .then((res: any) => console.log(res.data));
