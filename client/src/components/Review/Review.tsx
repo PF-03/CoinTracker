@@ -104,7 +104,7 @@ function Review() {
 
     return (
         <div className='reviewContainer'>
-            <h2>Help us to improve</h2>
+            <h4>Tell us how to improve</h4>
 
             <form onSubmit={submitForm} className='reviewForm'>
 
@@ -122,11 +122,11 @@ function Review() {
                 {!inputs.errors.username ? null : (
                     <p className='inputError'>{inputs.errors.username}</p>
                 )}
-                
+
                 <label className='reviewFormLabel' htmlFor='calification'>
                     Rate us:{' '}
                 </label>
-                <select name="calification" value={inputs.calification} id='calification'  className='reviewFormSelect'>
+                <select name="calification" value={inputs.calification} id='calification' className='reviewFormSelect'>
                     <option value={1}>1</option>
                     <option value={2}>2</option>
                     <option value={3}>3</option>

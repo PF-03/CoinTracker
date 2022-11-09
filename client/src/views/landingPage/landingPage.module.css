@@ -18,75 +18,84 @@
 
 .container {
 
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    padding: 2rem;
-    padding-top: 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 2rem;
+  padding-top: 4rem;
 
 }
 
 .tableContainer {
-    height: 80vh;
+  height: 80vh;
 }
 
 .table {
-    width: 70%;
-    border-bottom: 2px solid rgba(63, 62, 62, 1);
+  width: 70%;
+  border-bottom: 2px solid rgba(63, 62, 62, 1);
 }
 
 .table td {
-    border-top: 2px solid rgba(63, 62, 62, 1);
+  border-top: 2px solid rgba(63, 62, 62, 1);
+  backdrop-filter: blur(8px);
+  background-color: #1e1e1e44;
 }
 
-.table th {
-    backdrop-filter: blur(8px);
-    background-color: rgba(63, 63, 63, 0.54);
+.table thead {
+  backdrop-filter: blur(8px);
+  background-color: rgba(63, 63, 63, 0.54);
 }
 
 .imgContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .imgContainer img {
-    width: 24px;
-    height: 24px;
-    margin-right: 8px;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
 }
 
 .containerAbout {
 
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    padding: 2rem;
-    padding-top: 4rem;
-    background: right fixed url('../../assets/backgroundLandingPage.jpg');
-    background-size: cover;
-    /* Background del contenedor principal, pendiente por cambiar segun sea el caso */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 2rem;
+  padding-top: 4rem;
+  background: right fixed url('../../assets/backgroundLandingPage.jpg');
+  background-size: cover;
+  /* Background del contenedor principal, pendiente por cambiar segun sea el caso */
 }
 
 
 .gradientText {
-    background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
-    padding: .5rem 1rem;
+  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
+  padding: .5rem 1rem;
 
 
-}
-
-footer {
-  font-family: "Oswald";
-  border-top: 2px solid rgb(80, 80, 80);
 }
 
 .reviews {
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-around;
-  /* align-items: center; */
+  justify-content: space-between;
+}
+
+.containerReviews {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding: 2rem;
+  padding-top: 4rem;
+  background: fixed url('../../assets/reviewsBackground.jpg');
+  background-size: cover;
+  min-height: 110vh;
 }

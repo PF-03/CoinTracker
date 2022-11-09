@@ -9,8 +9,8 @@ type Prop = {
 
 const Card = styled.div<Prop>`
 border-radius: 1rem;
-width: 20rem;
-height: 350px;
+width: 280px;
+height: 300px;
 backdrop-filter: blur(8px);
 background-color: rgba(63, 63, 63, 0.54);
 position: relative;
@@ -23,9 +23,15 @@ position: relative;
         color: white;
 
         h5 {
+            font-size: 20px;
             margin: 0;
             margin-top: 2rem;
         }
+
+        p {
+            opacity: .5;
+        }
+
         p, h5 {
             overflow: hidden;
             text-overflow: ellipsis;
