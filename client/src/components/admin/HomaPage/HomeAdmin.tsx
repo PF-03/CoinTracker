@@ -1,6 +1,7 @@
 import st from './HomeAdmin.module.css';
 import FeaturedInfo from './FeaturedInfo';
 import Chart from './Chart';
+import DonationChart from '../DonationsList/DonationChart/DonationChart';
 import SmallWidget from './Widgets/SmallWidget';
 import LargeWidget from './Widgets/LargeWidget';
 import { userData } from '../../../DummyData';
@@ -11,11 +12,9 @@ export default function HomeAdmin() {
     <div className={st.HomeAdmin}>
 
       <FeaturedInfo />
-      <Chart title="User Analytics" data={userData} dataKey='Active users' grid />
-      <div className={st.homeWidgets}>
-        <SmallWidget />
-        <LargeWidget />
-      </div>
+      <Chart />
+      <DonationChart />
+
     </div>
   )
 }

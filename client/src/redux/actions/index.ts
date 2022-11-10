@@ -22,13 +22,13 @@ export function getNameActivos(
     try {
       var json = await axios(
         "http://localhost:3001/activos?name=" +
-          name +
-          "&minimo=" +
-          minimo +
-          "&maximo=" +
-          maximo +
-          "&divisas=" +
-          divisa
+        name +
+        "&minimo=" +
+        minimo +
+        "&maximo=" +
+        maximo +
+        "&divisas=" +
+        divisa
       );
       //console.log(json.data);
       return dispatch({
@@ -185,54 +185,62 @@ export function getAdmins() {
     });
   };
 }
-export function searchUsers(allUsers,search, inputSelect){
-  let users =allUsers;
-  if (search){
-    users= users.filter((e:any)=>e.mail.includes(search))
+export function searchUsers(allUsers, search, inputSelect) {
+  let users = allUsers;
+  if (search) {
+    users = users.filter((e: any) => e.mail.includes(search))
   }
-  if(inputSelect == 'Active'){
-    users= users.filter((e:any)=>e.activos===true)
+  if (inputSelect == 'Active') {
+    users = users.filter((e: any) => e.activos === true)
   }
-  if(inputSelect=='Blocked'){
-    users= users.filter((e:any)=>e.activos===false)
+  if (inputSelect == 'Blocked') {
+    users = users.filter((e: any) => e.activos === false)
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === 'All Users') {
     users = users;
   }
   console.log(users)
-  return function(dispatch){
-    return dispatch( {
+  return function (dispatch) {
+    return dispatch({
       type: "SEARCH_USERS",
       payload: users
     })
   }
-  
+
 }
-export function searchAdmins(allAdmins,search, inputSelect){
-  let admins =allAdmins;
-  if (search){
-    admins= admins.filter((e:any)=>e.name.includes(search))
+export function searchAdmins(allAdmins, search, inputSelect) {
+  let admins = allAdmins;
+  if (search) {
+    admins = admins.filter((e: any) => e.name.includes(search))
   }
-  if(inputSelect == 'Active'){
-    admins= admins.filter((e:any)=>e.activos===true)
+  if (inputSelect == 'Active') {
+    admins = admins.filter((e: any) => e.activos === true)
   }
-  if(inputSelect=='Blocked'){
-    admins= admins.filter((e:any)=>e.activos===false)
+  if (inputSelect == 'Blocked') {
+    admins = admins.filter((e: any) => e.activos === false)
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === 'All Users') {
     admins = admins;
   }
   console.log(admins)
-  return function(dispatch){
-    return dispatch( {
+  return function (dispatch) {
+    return dispatch({
       type: "SEARCH_ADMINS",
       payload: admins
     })
   }
-  
+
 }
 
-
+export function getDonations() {
+  return async function (dispatch) {
+    let json = await axios.get("http://localhost:3001/donate");
+    return dispatch({
+      type: "GET_DONATIONS",
+      payload: json.data,
+    });
+  };
+}
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
@@ -296,9 +304,9 @@ export function getActivsHistoryValue(data: any) {
   return function (dispatch: any) {
     fetch(
       `http://localhost:3001/activos/historyValue` +
-        `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
-        `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
-        `${data.userId ? `userId=$${data.userId}` : ""}`
+      `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
+      `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
+      `${data.userId ? `userId=$${data.userId}` : ""}`
     )
       .then((data) => data.json())
       .then((res) => {
