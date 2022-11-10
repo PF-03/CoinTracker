@@ -11,10 +11,13 @@ import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import Groups2Icon from '@mui/icons-material/Groups2';
 import StorageIcon from '@mui/icons-material/Storage';
-
+import Bubble from "../../styles/bubbles";
+ 
 export default function SideBar() {
   return (
+    
     <div className={st.sidebar}>
+      
       <div className={st.sidebarWrapper}>
         <div className={st.sidebarMenu}>
           <h3 className={st.sidebarTitle}>Admin Dashboard</h3>
@@ -35,7 +38,7 @@ export default function SideBar() {
             </li> */}
           </ul>
         </div>
-
+        <Bubble color="blue-dark" size="large" bottom='70%' right='11%'/>
         <div className={st.sidebarMenu}>
           <h3 className={st.sidebarTitle}>Notifications</h3>
           <ul className={st.sidebarList}>

@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { searchAdmins } from "../../../redux/actions"
+import css from '../../admin/SearchAdmins/searchAdmins.module.css';
 
 
 export default function SearchBarAdmins(){
@@ -20,10 +21,10 @@ export default function SearchBarAdmins(){
 
 
     return (
-        <div>
-            <input placeholder="Search admin..." id="busquedaAdm" onChange={HandleInputChange}></input>
-            <button>Search</button>
-            <select id='selectAdmins' onChange={HandleInputChange}>
+        <div className={css.containerSearchAdmins}>
+            <input placeholder="Search admin..." id="busquedaAdm" onChange={HandleInputChange} className={css.searchBarAdmins}></input>
+            <button className={css.searchButtonAdmins}>Search</button >
+            <select id='selectAdmins' onChange={HandleInputChange} className={css.selectAdmins}>
                 <option>All Admmins</option>
                 <option>Active</option>
                 <option>Blocked</option>

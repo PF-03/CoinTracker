@@ -15,7 +15,7 @@ export default function Verifiqued() {
   useEffect(() => {
     const funcion = async () => {
       try {
-        await axios.get("http://localhost:3001/verifiqued/" + token);
+        await axios.get("/verifiqued/" + token);
         await dispatch(getUserId(user._id ? user._id : user[0]._id));
         Swal.fire({
           icon: "success",

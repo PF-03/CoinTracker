@@ -3,8 +3,10 @@ import axios from "axios";
 import { latest } from "immer/dist/internal";
 
 export function getActivos() {
-  return async function(dispatch: any) {
-    var json = await axios("http://localhost:3001/activos", {});
+
+  return async function (dispatch: any) {
+    var json = await axios("/activos", {});
+
     return dispatch({
       type: "GET_ACTIVOS",
       payload: json.data,
@@ -22,7 +24,7 @@ export function getNameActivos(
     try {
       console.log(name, "soy name");
       var json = await axios(
-        "http://localhost:3001/activos?name=" +
+        "/activos?name=" +
           name +
           "&minimo=" +
           minimo +
@@ -45,7 +47,7 @@ export function getNameActivos(
 export function getCotizaciones() {
   return async function(dispatch: any) {
     try {
-      var json = await axios("http://localhost:3001/activos/cotizaciones");
+      var json = await axios("/activos/cotizaciones");
       return dispatch({
         type: "GET_COTIZACIONES",
         payload: json.data,
@@ -57,8 +59,9 @@ export function getCotizaciones() {
 }
 
 export function getNews() {
-  return function(dispatch) {
-    fetch("http://localhost:3001/news")
+
+  return function (dispatch) {
+    fetch(`${import.meta.env.VITE_SERVER_API}/news`)
       .then((res) => res.json())
       .then((res) => {
         dispatch({
@@ -70,8 +73,10 @@ export function getNews() {
 }
 
 export function getUserId(id) {
-  return function(dispatch) {
-    fetch("http://localhost:3001/users/" + id)
+
+  return function (dispatch) {
+    fetch(`${import.meta.env.VITE_SERVER_API}/users/${id}`)
+
       .then((res) => res.json())
       .then((res) => {
         dispatch({
@@ -115,21 +120,26 @@ export function setUser(user: any) {
 }
 
 export function postWallet(body) {
-  return async function(dispatch) {
-    const res = await axios.post("http://localhost:3001/wallet", body);
+
+  return async function (dispatch) {
+    const res = await axios.post("/wallet", body);
     return res;
   };
 }
 export function putWallet(body, id) {
-  return async function(dispatch) {
-    const res = await axios.put("http://localhost:3001/wallet/" + id, body);
+
+  return async function (dispatch) {
+    const res = await axios.put("/wallet/" + id, body);
+
     return res;
   };
 }
 
 export function postMail(data: any) {
-  return function(dispatch: any) {
-    return fetch("http://localhost:3001/mail/", {
+
+  return function (dispatch: any) {
+    return fetch(`${import.meta.env.VITE_SERVER_API}/mail/`, {
+
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -157,7 +167,7 @@ export function setExchangeHistory(history) {
 export function getReminders(username: any) {
   return async (dispatch: any) => {
     return await axios
-      .post("http://localhost:3001/reminder/getreminders", {
+      .post("/reminder/getreminders", {
         user: username,
       })
       .then((res) => {
@@ -178,8 +188,10 @@ export function setNotificationNumbers(numberOfNotifications) {
 
 export function getAdmins() {
   //Obtener los admins registrados
-  return async function(dispatch) {
-    let json = await axios.get("http://localhost:3001/users/admins");
+
+  return async function (dispatch) {
+    let json = await axios.get("/users/admins");
+
     return dispatch({
       type: "GET_ADMINS",
       payload: json.data,
@@ -233,8 +245,10 @@ export function searchAdmins(allAdmins, search, inputSelect) {
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
-  return async function(dispatch) {
-    let json = await axios.get("http://localhost:3001/review"); // http://localhost:3001/review
+
+  return async function (dispatch) {
+    let json = await axios.get("/review"); // /review
+
     return dispatch({
       type: "GET_REVIEWS",
       payload: json.data,
@@ -244,8 +258,10 @@ export function getReviews() {
 
 export function getUsers() {
   //Obtener todos los patients
-  return async function(dispatch) {
-    let json = await axios.get("http://localhost:3001/users");
+
+  return async function (dispatch) {
+    let json = await axios.get("/users");
+
     return dispatch({
       type: "GET_USERS",
       payload: json.data,
@@ -256,7 +272,7 @@ export function getUserProfile(id) {
   //Obtener el detalle de un patient
   return async function(dispatch) {
     console.log(id);
-    let json = await axios.get(`http://localhost:3001/users/${id}`);
+    let json = await axios.get(`/users/${id}`);
     return dispatch({
       type: "GET_USER_PROFILE",
       payload: json.data,
@@ -269,8 +285,10 @@ export function putProfileAdmin(id, dato) {
   dato = {
     ...dato,
   };
-  return async function(dispatch) {
-    let json = await axios.put(`http://localhost:3001/users/admin/` + id, dato);
+
+  return async function (dispatch) {
+    let json = await axios.put(`/users/admin/` + id, dato);
+
     return dispatch({
       type: "PUT_USER_PROFILE_ADMIN",
       payload: json.data,
@@ -280,8 +298,10 @@ export function putProfileAdmin(id, dato) {
 
 export function deleteUser(id) {
   //Borrar user
-  return async function(dispatch) {
-    const deleted = await axios.delete(`http://localhost:3001/users/${id}`);
+
+  return async function (dispatch) {
+    const deleted = await axios.delete(`/users/${id}`);
+
     return dispatch({
       type: "DELETE_USER",
       payload: deleted,
@@ -292,7 +312,7 @@ export function deleteUser(id) {
 export function getActivsHistoryValue(data: any) {
   return function(dispatch: any) {
     fetch(
-      `http://localhost:3001/activos/historyValue` +
+      `${import.meta.env.VITE_SERVER_API}/activos/historyValue` +
         `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
         `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
         `${data.userId ? `userId=$${data.userId}` : ""}`
@@ -313,8 +333,10 @@ export function setHistoryDataActivo(data) {
   };
 }
 export function getWalletData(UserId) {
-  return async function(dispatch: any) {
-    await fetch(`http://localhost:3001/wallet/${UserId}?showDeleted=false`)
+
+  return async function (dispatch: any) {
+    await fetch(`${import.meta.env.VITE_SERVER_API}/wallet/${UserId}?showDeleted=false`)
+
       .then((data) => data.json())
       .then((data) => {
         console.log(data);
@@ -333,7 +355,7 @@ export function getWalletData(UserId) {
         var historyData = [];
         const newArray = data.map(async (element, index) => {
           const data = await fetch(
-            `http://localhost:3001/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
+            `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
           );
           const parsedData = await data.json();
           historyData.push(parsedData);
