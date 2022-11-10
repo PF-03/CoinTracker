@@ -55,5 +55,35 @@ th {
 .h1Calc{
     display: flex;
     justify-content: center;
-    font-size:medium;
+    font-size:larger;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+.selectMonedas{
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    border-style: hidden;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+}
+.selectCantidad{
+    height: 30px;
+    color: white;
+    cursor: pointer;
+    border-top-right-radius: 16px;
+    border-style: hidden;
+    border-bottom-right-radius: 16px;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+}
+
+.optionSelectMon{
+    background-color:grey;
 }
