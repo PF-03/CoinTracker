@@ -6,7 +6,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas"
+import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
+import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
+import iconUser from '../../../assets/iconUser.png';
 
 export default function TopBar() {
     const dispatch: any = useDispatch();
@@ -23,7 +25,7 @@ export default function TopBar() {
     //     }
     // }
     const logout = async () => {
-        axios.get(`http://localhost:3001/logout`, {
+        axios.get(`/logout`, {
             withCredentials: true,
         })
             .then((res: any) => console.log(res.data));
@@ -37,10 +39,14 @@ export default function TopBar() {
         <nav className={st.topbar}>
             <div className={st.topbarWrapper}>
                 <div className={st.title}>
-                    <a>CoinTracker - Admin </a>
+                    <div>
+                    <img src={iconCoinTracker} className={st.imgEth}/>
+                    <h1>CoinTracker - Admin </h1>
+                    </div>
                 </div>
                 <div className={st.topRight}>
                     {/* style={{ "text-decoration": "none", "color": "#141616" }} */}
+                   
                     <Link to='/admin/helpusmail' >
                         <div className={st.topbarIconsContainer}>
                             <NotificationsNoneIcon />
@@ -49,9 +55,8 @@ export default function TopBar() {
 
                     <Dropdown>
                         <Dropdown.Toggle variant='#D7FCF1' id="dropdown-basic">
-                            <img src="https://w7.pngwing.com/pngs/429/434/png-transparent-computer-icons-icon-design-business-administration-admin-icon-hand-monochrome-silhouette-thumbnail.png" className={st.topAvatar} />
+                        <img src={iconUser}  alt="" width="30px" height="30px" /> 
                         </Dropdown.Toggle>
-
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
                             <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>

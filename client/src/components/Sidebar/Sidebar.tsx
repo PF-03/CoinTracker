@@ -33,7 +33,7 @@ function Sidebar() {
 
   const logout = async () => {
     axios
-      .get(`http://localhost:3001/logout`, {
+      .get(`/logout`, {
         withCredentials: true,
       })
       .then((res: any) => console.log(res.data));
@@ -47,13 +47,13 @@ function Sidebar() {
       if (token) {
         return await axios
           .get(
-            `http://localhost:3001/localauth/profile?secret_token=${await token}`,
+            `/localauth/profile?secret_token=${await token}`,
             { withCredentials: true }
           )
           .then((res: any) => dispatch(setUser(res.data.user)));
       }
       const googleUser = await axios
-        .get(`http://localhost:3001/googleauth/getuser`, {
+        .get(`/googleauth/getuser`, {
           withCredentials: true,
         })
         .then((res: any) => res.data);
@@ -83,7 +83,7 @@ function Sidebar() {
           <Link to="/profile" className={style.data}>
             <img
               className={style.icon}
-              src={user.image ? user.image.imageURL : iconUser}
+              src={userr[0]?.image.imageURL ? userr[0].image.imageURL : iconUser}
               alt="user"
             />
             <span>

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import estilos from "./chatSocket.module.css";
 import foro from "../../assets/foro.png";
-const socket = io("http://localhost:3001/"); //puente de conexion con el back
+const socket = io(`${import.meta.env.VITE_SERVER_API}`); //puente de conexion con el back
 
 export default function ChatSocket() {
   const user = useSelector((state: any) => state.user);

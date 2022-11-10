@@ -48,7 +48,7 @@ export const ProfilePassword = ({ isOpen, close }) => {
 
     await axios
       .put(
-        `http://localhost:3001/users/password/${
+        `/users/password/${
           user._id ? user._id : userId[0]._id
         }`,
         body

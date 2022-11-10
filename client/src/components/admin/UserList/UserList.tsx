@@ -8,6 +8,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import { Link } from 'react-router-dom';
 import SearchBarUsers from '../SearchUsers/searchUsers';
 
+
 export default function UserList() {
 
   const dispatch: any = useDispatch();
@@ -24,9 +25,9 @@ export default function UserList() {
     alert("User successfully updated");
     window.location.reload()
   }
-  
+   
 
-  const columns = [
+  const columns= [
     { field: 'id', headerName: 'ID', width: 50 },
     // { field: 'pic', headerName: 'Pic', width: 100, renderCell: (params)=>{
     //   return (
@@ -87,11 +88,13 @@ export default function UserList() {
         disableSelectionOnClick
         sx={{
           boxShadow: 2,
-          border: 2,
-          color: 'white'
+          color: 'white',
+          '& .MuiDataGrid-cell:hover': {
+            color: 'primary.main',
+          },
         }}
       />
-
+     
     </div>
   )
 };

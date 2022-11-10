@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getUserProfile } from '../../../redux/actions/index'
-import st from './user.module.css'
+import st from './User.module.css'
 import UserEdit from './UserEdit'
 import { PermIdentity, AlternateEmail, ManageAccounts } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

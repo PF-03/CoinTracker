@@ -54,15 +54,15 @@ function SearchBar() {
     return (
         <div>
             <div className={styles.containerSearch}>
-                <input
-                    className={styles.inputSearch}
-                    type="text"
-                    placeholder='Search active...'
-                    onChange={(e: any) => HandleInputChange(e)}
-                    id='button'
-                />
 
                 <div>
+                    <input
+                        className={styles.inputSearch}
+                        type="text"
+                        placeholder='Search active...'
+                        onChange={(e: any) => HandleInputChange(e)}
+                        id='button'
+                    />
                     <Button className={styles.buttonSearch} onClick={(e: any) => HandleSumbit(e)}>
                         Search
                     </Button>
@@ -83,27 +83,30 @@ function SearchBar() {
 
                     </select>
                 </div>
+                <details className={styles.details}>
+                    <summary>Filters</summary>
+                    <div className={styles.container}>
+                        <input
+                            className={styles.inputPrecios}
+                            type="number"
+                            placeholder="Since.."
+                            id='minimo'
+                        />
+                        <input
+                            className={styles.inputPrecios}
+                            type="number"
+                            placeholder="Untill..."
+                            id='maximo'
+                        />
+                    </div>
+                    <div className={styles.container}>
+                        <Button gradient className={styles.buttonFilter} type="submit" onClick={(e: any) => HandleSumbit(e)}>
+                            Filter By Price
+                        </Button>
+                    </div>
+                </details>
             </div>
 
-            <div className={styles.container}>
-                <input
-                    className={styles.inputPrecios}
-                    type="number"
-                    placeholder="Since.."
-                    id='minimo'
-                />
-                <input
-                    className={styles.inputPrecios}
-                    type="number"
-                    placeholder="Untill..."
-                    id='maximo'
-                />
-            </div>
-            <div className={styles.container}>
-                <Button gradient className={styles.buttonFilter} type="submit" onClick={(e: any) => HandleSumbit(e)}>
-                    Filter By Price
-                </Button>
-            </div>
         </div>
 
 
