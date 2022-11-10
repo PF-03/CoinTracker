@@ -16,7 +16,7 @@ router.get(
   }),
   function (req: any, res: any) {
     console.log(req);
-    res.redirect(`${process.env.FRONT_DEPLOY_URL}/login/` + req.user.googleId);
+    res.redirect(`${process.env.FRONT_DEPLOY_URL}/login/${req.user._id}/${req.user.googleId}/${req.user.username}/${req.user.mail}/${req.user.name}/${req.user.lastname}/${req.user.type[0]}/${req.user.image}/${req.user.activos}/${req.user.status}`);
     // res.redirect("process.env.FRONT_DEPLOY_URL/home");
   }
 );

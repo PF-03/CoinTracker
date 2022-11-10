@@ -13,22 +13,34 @@ import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, googleId, username, mail, name, lastname, type, image, activos, status } = useParams();
 
   useEffect(() => {
     const asyncUseEffect = async () => {
-      const googleUser = await axios
-        .get(`/googleauth/getuser`, {
-          withCredentials: true,
-        })
-        .then((res: any) => res.data);
-      if (googleUser) {
+    //   const googleUser = await axios
+    //     .get(`/googleauth/getuser`, {
+    //       withCredentials: true,
+    //     })
+    //     .then((res: any) => res.data);
+    const googleUser = {
+        _id: id,
+        googleId,
+        username,
+        mail,
+        name,
+        lastname,
+        type: [type],
+        image,
+        activos,
+        status
+    }
+    if (googleUser) {
         navigate(PrivateRoutes.HOME);
         return dispatch(setUser(googleUser));
-      }
+    }
     };
 
-    if (id) {
+    if (googleId) {
       asyncUseEffect();
     }
   });
