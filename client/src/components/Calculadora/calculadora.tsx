@@ -76,19 +76,19 @@ function Calculadora(){
           <Bubble color="blue-dark" size="large" bottom='70%' right='11%'/>
           <h1 className={css.h1Calc}>Calculator</h1>
             <div className={css.selectYcantidad}>
-            <select id='select'onChange={()=>HandleInputs()} >
+            <select id='select'onChange={()=>HandleInputs()} className={css.selectMonedas}>
               
           {
             currentActivos?
             currentActivos.map((e:any)=> {
                 return(
-                    <option value={e.name} key={e.id} >{e.name}</option>
+                    <option value={e.name} className={css.optionSelectMon} key={e.id} >{e.name}</option>
                 )
             }):
             console.log('currentActivos vacio')
           }
           </select>
-          <input type="number" id='kantidad' placeholder='1' onChange={()=>HandleInputs()}
+          <input type="number" id='kantidad' placeholder='1' onChange={()=>HandleInputs()} className={css.selectCantidad}
           min='0'/>
           </div>
           <div className={css.containerTableCalc}>     
