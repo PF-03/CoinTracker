@@ -24,6 +24,7 @@ export function getNameActivos(
     try {
       console.log(name, "soy name");
       var json = await axios(
+
         "/activos?name=" +
           name +
           "&minimo=" +
@@ -201,47 +202,62 @@ export function getAdmins() {
 export function searchUsers(allUsers, search, inputSelect) {
   let users = allUsers;
   if (search) {
-    users = users.filter((e: any) => e.mail.includes(search));
+
+    users = users.filter((e: any) => e.mail.includes(search))
   }
-  if (inputSelect == "Active") {
-    users = users.filter((e: any) => e.activos === true);
+  if (inputSelect == 'Active') {
+    users = users.filter((e: any) => e.activos === true)
   }
-  if (inputSelect == "Blocked") {
-    users = users.filter((e: any) => e.activos === false);
+  if (inputSelect == 'Blocked') {
+    users = users.filter((e: any) => e.activos === false)
   }
-  if (inputSelect === "All Users") {
+  if (inputSelect === 'All Users') {
     users = users;
   }
-  console.log(users);
-  return function(dispatch) {
+  console.log(users)
+  return function (dispatch) {
     return dispatch({
       type: "SEARCH_USERS",
-      payload: users,
-    });
-  };
+      payload: users
+    })
+  }
+
 }
 export function searchAdmins(allAdmins, search, inputSelect) {
   let admins = allAdmins;
   if (search) {
-    admins = admins.filter((e: any) => e.name.includes(search));
+
+    admins = admins.filter((e: any) => e.name.includes(search))
   }
-  if (inputSelect == "Active") {
-    admins = admins.filter((e: any) => e.activos === true);
+  if (inputSelect == 'Active') {
+    admins = admins.filter((e: any) => e.activos === true)
   }
-  if (inputSelect == "Blocked") {
-    admins = admins.filter((e: any) => e.activos === false);
+  if (inputSelect == 'Blocked') {
+    admins = admins.filter((e: any) => e.activos === false)
   }
-  if (inputSelect === "All Users") {
+  if (inputSelect === 'All Users') {
     admins = admins;
   }
-  console.log(admins);
-  return function(dispatch) {
+  console.log(admins)
+  return function (dispatch) {
     return dispatch({
       type: "SEARCH_ADMINS",
-      payload: admins,
+      payload: admins
+    })
+  }
+
+}
+
+export function getDonations() {
+  return async function (dispatch) {
+    let json = await axios.get("/donate");
+    return dispatch({
+      type: "GET_DONATIONS",
+      payload: json.data,
     });
   };
 }
+
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
@@ -312,10 +328,12 @@ export function deleteUser(id) {
 export function getActivsHistoryValue(data: any) {
   return function(dispatch: any) {
     fetch(
+
       `${import.meta.env.VITE_SERVER_API}/activos/historyValue` +
         `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
         `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
         `${data.userId ? `userId=$${data.userId}` : ""}`
+
     )
       .then((data) => data.json())
       .then((res) => {

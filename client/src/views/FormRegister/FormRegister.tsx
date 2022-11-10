@@ -125,11 +125,11 @@ function FormRegister() {
     try {
       await axios
         .post("/localauth/signup", {
-          username: inputs.username,
-          password: inputs.password,
-          mail: inputs.mail,
-          name: inputs.name,
-          lastname: inputs.lastname,
+          username: inputs.username.trim(),
+          password: inputs.password.trim(),
+          mail: inputs.mail.trim().toLowerCase(),
+          name: inputs.name.trim(),
+          lastname: inputs.lastname.trim(),
         })
         .then((res) => {
           dispatch(setUserToken(res.data.token));
