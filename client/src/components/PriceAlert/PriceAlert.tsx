@@ -50,7 +50,7 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
 
   const createAlert = () => {
     if (selectedCoin.name && price) {
-      axios.post('http://localhost:3001/reminder', {
+      axios.post('/reminder', {
         user: user.username,
         user_email: user.mail,
         token_price: `${selectedCoin.symbol} ${price}`,

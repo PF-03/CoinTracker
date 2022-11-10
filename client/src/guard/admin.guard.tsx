@@ -10,7 +10,7 @@ export const AdminGuard = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/validate/" + id)
+      .get("/validate/" + id)
       .then((json) => {
         return json.data;
       })

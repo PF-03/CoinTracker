@@ -1,7 +1,9 @@
 .home {
-  overflow: hidden;
+   overflow: hidden; 
   padding: 0 4rem;
   width: 100%;
+  z-index: 0;
+
 }
 
 .title {

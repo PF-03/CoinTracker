@@ -14,12 +14,12 @@ export const NotificationModal = ({
   const user: any = useSelector<any>((state) => state.user);
 
   const markReaded = (data: any) => {
-    axios.put('http://localhost:3001/reminder', { ...data, readed: true });
+    axios.put('/reminder', { ...data, readed: true });
     dispatch(getReminders(user.username));
   };
 
   const deleteRemainder = (id: any) => {
-    axios.delete('http://localhost:3001/reminder', { params: { id: id } });
+    axios.delete('/reminder', { params: { id: id } });
     dispatch(getReminders(user.username));
   };
 

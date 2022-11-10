@@ -59,7 +59,6 @@ function rootReducer(state = initialState, action: any) {
       };
 
     case "GET_USERID":
-      LS.persistLocalStore(LS.UserIdKey, action.payload);
       return {
         ...state,
         userID: action.payload,

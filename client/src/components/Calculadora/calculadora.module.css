@@ -1,4 +1,6 @@
+
 .selectYcantidad {
+
     justify-content: center;
     display: flex;
     gap: 1rem;
@@ -15,8 +17,9 @@
     max-height: 70vh;
     overflow-y: scroll;
     margin-bottom: 5rem;
-    -ms-overflow-style: none;
+    
     scrollbar-width: none;
+
     max-width: 50%;
     background: rgba(219, 219, 219, 0.11);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -24,21 +27,39 @@
     -webkit-backdrop-filter: blur(5.5px);
     border-radius: 1rem;
 
+
 }
 
 .containerTableCalc::-webkit-scrollbar {
     display: none;
 }
 
+
 .divTotal {
+
     justify-content: center;
     margin-left: 1%;
 }
+
 
 .containerTable {
     display: flex;
     justify-content: center;
     width: 100%;
+}
+.h1Calc{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+.tableCalc{
+    max-width: 25%;
+    min-width: 25%;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border-radius: 17px;
+
 }
 
 
@@ -51,6 +72,8 @@
     text-align: start;
 }
 
+
 .h1Calc {
     text-align: center;
 }
+

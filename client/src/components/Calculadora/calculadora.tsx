@@ -45,6 +45,7 @@ function Calculadora() {
                            
                             
                   `
+
         renderizado.appendChild(child)
       }) :
       console.log('error')
@@ -83,6 +84,7 @@ function Calculadora() {
               currentActivos.map((e: any) => {
                 return (
                   <option value={e.name} key={e.id} >{e.name}</option>
+
                 )
               }) :
               console.log('currentActivos vacio')
@@ -93,6 +95,7 @@ function Calculadora() {
       </div>
       <section className={css.containerTable}>
         <div className={css.containerTableCalc}>
+
           <table className={css.tableCalc}>
             <tbody id='renderizado'>
               {
