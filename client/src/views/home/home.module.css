@@ -9,8 +9,12 @@
   margin-bottom: 1rem;
 }
 
-.seeLess {
+.headerButton {
   display: flex;
-  justify-content: end;
-  padding-top: 10px;
+  align-items: end;
+  gap: 1rem;
+}
+
+.headerButton button {
+  margin-bottom: 1rem;
 }

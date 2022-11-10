@@ -35,6 +35,7 @@
 .table {
   width: 70%;
   border-bottom: 2px solid rgba(63, 62, 62, 1);
+  margin-bottom: 8rem;
 }
 
 .table td {

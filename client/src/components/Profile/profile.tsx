@@ -117,8 +117,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].name
                         : user.name
-                        ? user.name
-                        : "None"}{" "}
+                          ? user.name
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -129,8 +129,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].lastname
                         : user.lastname
-                        ? user.lastname
-                        : "None"}
+                          ? user.lastname
+                          : "None"}
                     </label>
                   </div>
                 </div>
@@ -141,8 +141,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].username
                         : user.username
-                        ? user.username
-                        : "None"}{" "}
+                          ? user.username
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -153,8 +153,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].mail
                         : user.mail
-                        ? user.mail
-                        : "None"}{" "}
+                          ? user.mail
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -167,8 +167,8 @@ export default function Profile() {
                       userId[0]?.image?.imageURL
                         ? userId[0]?.image?.imageURL
                         : user.image
-                        ? user.image.imageURL
-                        : ProfileIMG
+                          ? user.image.imageURL
+                          : ProfileIMG
                     }
                     alt="profile"
                   />
@@ -179,8 +179,8 @@ export default function Profile() {
           {(userId[0]?.status
             ? userId[0].status
             : user.status
-            ? user.status
-            : user[0].status) === "UNVERIFIED" ? (
+              ? user.status
+              : user[0].status) === "UNVERIFIED" ? (
             <div>
               <label className={profile.rojo}>
                 <strong>x</strong>
@@ -204,7 +204,7 @@ export default function Profile() {
               onClick={() => cargarImage()}
               disabled={
                 (userId[0]?.status ? userId[0].status : user.status) ===
-                "UNVERIFIED"
+                  "UNVERIFIED"
                   ? true
                   : false
               }
@@ -267,8 +267,8 @@ export default function Profile() {
                       previewSource
                         ? previewSource
                         : userId[0]?.image
-                        ? userId[0].image.imageURL
-                        : ProfileIMG
+                          ? userId[0].image.imageURL
+                          : ProfileIMG
                     }
                     alt="profile"
                   />
@@ -282,8 +282,8 @@ export default function Profile() {
           {(userId[0]?.status
             ? userId[0].status
             : user.status
-            ? user.status
-            : user[0].status) === "UNVERIFIED" ? (
+              ? user.status
+              : user[0].status) === "UNVERIFIED" ? (
             <div>
               <label className={profile.rojo}>
                 <strong>x</strong>
