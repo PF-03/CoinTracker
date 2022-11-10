@@ -12,9 +12,12 @@ import { ProfilePassword } from "../ProfilePassword/profilePassword";
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
   const userId = useSelector((state: any) => state.userID);
-  console.log(userId, "soy id");
-  console.log(userId);
+
   const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(getUserId(user._id));
+  }, []);
+  
   const [cargar, setCargar] = useState(false);
   const [state, setState] = useState({
     username: userId[0] ? userId[0].username : user.username,
