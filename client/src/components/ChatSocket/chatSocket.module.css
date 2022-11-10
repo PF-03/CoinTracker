@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    padding-bottom:100px ;
+    padding-bottom:130px ;
     min-height: 100vh;
     background-color:rgba(27, 26, 26, 0.75) ;
     max-height: 100%;
@@ -34,8 +34,8 @@
     margin-bottom:20px ;
     width: 55px;
     height: 55px;
-    margin-left: 94%;
-    margin-top: 580px;
+    margin-left: 95%;
+    margin-top: 530px;
     border-radius: 10px;
     background: rgba(219, 219, 219, 0.11);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -47,17 +47,35 @@
     z-index: 10;
 }
 .chat img{
+    position: fixed;
     width: 50px;
     height: 50px;
     
 
 }
+.foro{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    position: absolute;
+    border-radius: 30px;
+    width:500px ;
+    height: 30px;
+    background-color: #B588FF;
+
+}
+.foro p{
+    padding-top: 20px;
+    height: 30px;
+    font-size: 50px;
+    margin-left: 15px;
+  
+}
 .form{
     background: rgba(219, 219, 219, 0.11);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(219, 219, 219, 0.12);
-    height: 350px;
-    width: 300px;
+    height: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -66,9 +84,9 @@
      
 }
 .contenedor{
-    width: 300px;
+    width:500px ;
     word-wrap: break-word ;
-    height: 300px;
+    height: 400px;
     overflow-y: scroll;
     font-size: 12px; 
     display: flex;
@@ -88,7 +106,8 @@
 .form ul{
     display: flex;
     flex-direction: column;
-    padding: 0px 10px 0px 10px; 
+    padding: 0px 10px 0px 20px; 
+
 
 }
 .form ul .message{
@@ -107,13 +126,19 @@
 
 .form ul .message.me{
     background:linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
-    margin-left: 80px;
+    margin-left: 258px;
 
     color: wheat
 }
 .form ul li p{
     background-color: aqua;
     min-width: 200px;
+}
+.enviar{
+    height: 50px;
+ 
+  display: flex;
+    align-items: flex-end;
 }
 .enviar input{
    width: 80%;
@@ -126,7 +151,7 @@
    color: white;
 }
 input::placeholder { color: rgb(91, 91, 92); }
-.enviar button{
+.enviar .button{
     width: 20%;
     height: 50px;
     border: 1px solid black;
@@ -138,4 +163,9 @@ input::placeholder { color: rgb(91, 91, 92); }
 .from{
    font-size: 14px;
    
+}
+.enviar .button img{
+   width: 40px;
+   height: 15x;
+   border-bottom-right-radius: 30px;
 }
