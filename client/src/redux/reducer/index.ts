@@ -14,6 +14,7 @@ const initialState = {
   detailsNews: {},
   seeMore: false,
   nameTransaccion: "",
+  portfolioData:{currentValue:0,lastValue:0,},
   // user: {},
   // userToken: '',
   admins: [],
@@ -196,6 +197,7 @@ function rootReducer(state = initialState, action: any) {
         walletData: action.payload[0],
         main_chart_data: action.payload[1],
         historyDataActivo: action.payload[1],
+        portfolioData:action.payload[2]
       };
     }
     case "SET_CURRENT_ASSET_VIEW": {

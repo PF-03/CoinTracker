@@ -113,19 +113,25 @@ export const getActivHistoryPrice = async (
       };
       value.data["prices"].map((el: any) => {
         if (userId) {
-          var dayIndex = walletData /* .reverse() */
+          let reverseWallet1 = walletData.reverse()
+          var dayIndex = reverseWallet1
             .findIndex((walletEl: any) => {
               var CurrentwalletDate = new Date(walletEl.date);
               return (
-                CurrentwalletDate.getTime() > el[0] - 12 * 60 * 60 * 1000 &&
-                CurrentwalletDate.getTime() < el[0] + 12 * 60 * 60 * 1000
-              );
+                (CurrentwalletDate.getTime() >= el[0])&&
+                (CurrentwalletDate.getTime() < (el[0]+ (24 * 60 * 60 * 1000)) )
+                );
             });
+            walletData.reverse();
+            if(dayIndex>=0)dayIndex=((walletData.length-1)-dayIndex);
           if (dayIndex === -1) {
-            dayIndex = walletData.reverse().findIndex((walletEl: any) => {
+            let reverseWallet = walletData.reverse()
+            dayIndex = reverseWallet.findIndex((walletEl: any) => {
               var CurrentwalletDate = new Date(walletEl.date);
-              return CurrentwalletDate.getTime() < el[0];
+              return (CurrentwalletDate.getTime() <= (el[0]/* - (24 * 60 * 60 * 1000) */));
             });
+            walletData.reverse();
+            if(dayIndex>=0)dayIndex=((walletData.length-1)-dayIndex);
           }
           if (dayIndex === -1) {
             dayIndex = 0;

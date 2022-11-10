@@ -333,6 +333,10 @@ export function getWalletData(UserId) {
       })
       .then(async (data) => {
         var historyData = [];
+        var portfolioData={
+          current_USD_Amound:0,
+          lastValue:0,
+        }
         const newArray = data.map(async (element, index) => {
           const data = await fetch(
             `http://localhost:3001/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
@@ -362,11 +366,22 @@ export function getWalletData(UserId) {
             sum = sum + (dataset[i] === undefined ? 0 : dataset[i]);
             el.datasets.reverse();
           });
-          mainData.labels.unshift(historyData[MaxDay.index].labels[i]);
+          if(i===(MaxDay.max-1)){
+            mainData.labels.unshift(historyData[MaxDay.index].labels[i-1])
+          }else{
+            mainData.labels.unshift(historyData[MaxDay.index].labels[i])
+          };
           /* console.log(i,"sum: ",sum) */
           mainData.datasets.push(sum);
+          if(i===1){
+            portfolioData.lastValue=sum
+          }
+          if(i===0){
+            portfolioData.current_USD_Amound=sum
+          }
         }
-        return [data, mainData];
+        console.log("main data: ",mainData)
+        return [data, mainData,portfolioData];
       })
       .then((res) => {
         console.log(res, "soy actions");

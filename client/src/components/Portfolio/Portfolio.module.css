@@ -26,7 +26,7 @@
   padding: 15px;
   border-radius: 15px;
   align-items: flex-start;
-  width: 25%;
+  width: 30%;
   min-width: 200px;
   margin-right: 30px;
 }
@@ -34,9 +34,18 @@
   cursor: pointer;
 }
 .valueContainer h2 {
+  overflow: hidden;
+  width: 80%;
   margin: 5px;
+/*   text-overflow: ellipsis; */
 }
 .valueContainer h5 {
+  font-size: xx-large;
+  padding: 0px;
+  margin: 0px;
+}
+.valueContainer h6 {
+  font-size:large;
   padding: 0px;
   margin: 0px;
 }
@@ -61,7 +70,7 @@
 .chartContainer {
   position: relative;
   padding: 20px;
-  width: 70%;
+  width: 65%;
   background-color: #3f3e3e7d;
   border: 1px solid rgba(255, 255, 255, 0.269);
   border-radius: 10px;
@@ -180,11 +189,21 @@
 }
 
 .main_value_container{
+  border-radius: 10px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
+/* .main_value_container:hover{
+  flex-direction: row-reverse;
+  background-color: #834be4;
+  width: max-content;
+} */
 .main_value_container button{
+  /* position:absolute; */
+  right: 1px;
   margin-left: 10px;
   background-image: url(../../assets/copia.png);
   background-color: transparent;
@@ -196,9 +215,9 @@
   border:none;
   filter: invert();
   border-radius: 10px;
+  margin-right: 0px;
 }
 .main_value_container button:hover{
   cursor: pointer;
   filter: none;
-  background-color: #bcafca;
 }
