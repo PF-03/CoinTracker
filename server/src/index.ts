@@ -15,13 +15,15 @@ import path from "path";
 import { ActualizarApi } from "./controllers/actives";
 const app: any = express();
 
+const frontDeployUrl = process.env.FRONT_DEPLOY_URL
+
 //Conectamos socket
 import { Server as SocketServer } from "socket.io";
 let http = require("http");
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", `${frontDeployUrl}`],
     credentials: true,
   },
 });
@@ -36,7 +38,6 @@ app.use(
 
 app.use(morgan('dev'));
 
-const frontDeployUrl = process.env.FRONT_DEPLOY_URL
 app.use(
   cors({
     origin: ['http://localhost:5173', 'http://127.0.0.1:5173', `${frontDeployUrl}`],
