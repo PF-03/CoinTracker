@@ -62,12 +62,6 @@
     font-size: xx-large;
     border-radius: 10px;
 }
-.trespe button:hover{
-    background-color: #827095;
-}
-.trespe button:hover{
-    cursor: pointer;
-}
 
 .tHeaders {
     position: sticky;
@@ -85,6 +79,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.buttonTh button img:hover{
+    background-image: url(../../../assets/corazon2.png);
+    cursor: pointer;
 }
 table {
     width: 100%;

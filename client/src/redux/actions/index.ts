@@ -344,7 +344,13 @@ export function getWalletData(UserId) {
           const parsedData = await data.json();
           historyData.push(parsedData);
         });
-        await Promise.all(newArray);
+        try{
+          await Promise.all(newArray);
+        }
+        catch(err:any){
+          console.log(err.message);
+          return [data, mainData,portfolioData];
+        }
         var MaxDay = { max: 0, index: 0 };
         historyData.forEach((el, index) => {
           if (el.days > MaxDay.max) {
