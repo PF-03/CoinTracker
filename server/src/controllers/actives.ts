@@ -100,6 +100,7 @@ export const getActivHistoryPrice = async (
     var from: number = new Date(walletData[0].date).getTime();
     days = Math.ceil((to - from) / (1000 * 60 * 60 * 24));
   }
+  console.log(coinId);
   const data = await axios(
     `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=${vs_currency}&days=${days}&interval=daily`
   )

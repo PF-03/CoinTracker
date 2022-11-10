@@ -3,7 +3,7 @@ import axios from "axios";
 import { latest } from "immer/dist/internal";
 
 export function getActivos() {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     var json = await axios("http://localhost:3001/activos", {});
     return dispatch({
       type: "GET_ACTIVOS",
@@ -18,8 +18,9 @@ export function getNameActivos(
   maximo: any,
   divisa: any
 ) {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
+      console.log(name, "soy name");
       var json = await axios(
         "http://localhost:3001/activos?name=" +
           name +
@@ -42,7 +43,7 @@ export function getNameActivos(
 }
 
 export function getCotizaciones() {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
       var json = await axios("http://localhost:3001/activos/cotizaciones");
       return dispatch({
@@ -56,7 +57,7 @@ export function getCotizaciones() {
 }
 
 export function getNews() {
-  return function (dispatch) {
+  return function(dispatch) {
     fetch("http://localhost:3001/news")
       .then((res) => res.json())
       .then((res) => {
@@ -69,7 +70,7 @@ export function getNews() {
 }
 
 export function getUserId(id) {
-  return function (dispatch) {
+  return function(dispatch) {
     fetch("http://localhost:3001/users/" + id)
       .then((res) => res.json())
       .then((res) => {
@@ -114,20 +115,20 @@ export function setUser(user: any) {
 }
 
 export function postWallet(body) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const res = await axios.post("http://localhost:3001/wallet", body);
     return res;
   };
 }
 export function putWallet(body, id) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     const res = await axios.put("http://localhost:3001/wallet/" + id, body);
     return res;
   };
 }
 
 export function postMail(data: any) {
-  return function (dispatch: any) {
+  return function(dispatch: any) {
     return fetch("http://localhost:3001/mail/", {
       headers: {
         Accept: "application/json",
@@ -177,7 +178,7 @@ export function setNotificationNumbers(numberOfNotifications) {
 
 export function getAdmins() {
   //Obtener los admins registrados
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.get("http://localhost:3001/users/admins");
     return dispatch({
       type: "GET_ADMINS",
@@ -185,58 +186,54 @@ export function getAdmins() {
     });
   };
 }
-export function searchUsers(allUsers,search, inputSelect){
-  let users =allUsers;
-  if (search){
-    users= users.filter((e:any)=>e.mail.includes(search))
+export function searchUsers(allUsers, search, inputSelect) {
+  let users = allUsers;
+  if (search) {
+    users = users.filter((e: any) => e.mail.includes(search));
   }
-  if(inputSelect == 'Active'){
-    users= users.filter((e:any)=>e.activos===true)
+  if (inputSelect == "Active") {
+    users = users.filter((e: any) => e.activos === true);
   }
-  if(inputSelect=='Blocked'){
-    users= users.filter((e:any)=>e.activos===false)
+  if (inputSelect == "Blocked") {
+    users = users.filter((e: any) => e.activos === false);
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === "All Users") {
     users = users;
   }
-  console.log(users)
-  return function(dispatch){
-    return dispatch( {
+  console.log(users);
+  return function(dispatch) {
+    return dispatch({
       type: "SEARCH_USERS",
-      payload: users
-    })
-  }
-  
+      payload: users,
+    });
+  };
 }
-export function searchAdmins(allAdmins,search, inputSelect){
-  let admins =allAdmins;
-  if (search){
-    admins= admins.filter((e:any)=>e.name.includes(search))
+export function searchAdmins(allAdmins, search, inputSelect) {
+  let admins = allAdmins;
+  if (search) {
+    admins = admins.filter((e: any) => e.name.includes(search));
   }
-  if(inputSelect == 'Active'){
-    admins= admins.filter((e:any)=>e.activos===true)
+  if (inputSelect == "Active") {
+    admins = admins.filter((e: any) => e.activos === true);
   }
-  if(inputSelect=='Blocked'){
-    admins= admins.filter((e:any)=>e.activos===false)
+  if (inputSelect == "Blocked") {
+    admins = admins.filter((e: any) => e.activos === false);
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === "All Users") {
     admins = admins;
   }
-  console.log(admins)
-  return function(dispatch){
-    return dispatch( {
+  console.log(admins);
+  return function(dispatch) {
+    return dispatch({
       type: "SEARCH_ADMINS",
-      payload: admins
-    })
-  }
-  
+      payload: admins,
+    });
+  };
 }
-
-
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.get("http://localhost:3001/review"); // http://localhost:3001/review
     return dispatch({
       type: "GET_REVIEWS",
@@ -247,7 +244,7 @@ export function getReviews() {
 
 export function getUsers() {
   //Obtener todos los patients
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.get("http://localhost:3001/users");
     return dispatch({
       type: "GET_USERS",
@@ -257,7 +254,7 @@ export function getUsers() {
 }
 export function getUserProfile(id) {
   //Obtener el detalle de un patient
-  return async function (dispatch) {
+  return async function(dispatch) {
     console.log(id);
     let json = await axios.get(`http://localhost:3001/users/${id}`);
     return dispatch({
@@ -272,7 +269,7 @@ export function putProfileAdmin(id, dato) {
   dato = {
     ...dato,
   };
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.put(`http://localhost:3001/users/admin/` + id, dato);
     return dispatch({
       type: "PUT_USER_PROFILE_ADMIN",
@@ -283,7 +280,7 @@ export function putProfileAdmin(id, dato) {
 
 export function deleteUser(id) {
   //Borrar user
-  return async function (dispatch) {
+  return async function(dispatch) {
     const deleted = await axios.delete(`http://localhost:3001/users/${id}`);
     return dispatch({
       type: "DELETE_USER",
@@ -293,7 +290,7 @@ export function deleteUser(id) {
 }
 
 export function getActivsHistoryValue(data: any) {
-  return function (dispatch: any) {
+  return function(dispatch: any) {
     fetch(
       `http://localhost:3001/activos/historyValue` +
         `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
@@ -316,10 +313,11 @@ export function setHistoryDataActivo(data) {
   };
 }
 export function getWalletData(UserId) {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     await fetch(`http://localhost:3001/wallet/${UserId}?showDeleted=false`)
       .then((data) => data.json())
       .then((data) => {
+        console.log(data);
         return data.map((el) => {
           return {
             _id: el._id,
@@ -398,6 +396,13 @@ export function setMyAssets(data) {
 export function setNameTransaccion(data: String) {
   return {
     type: "SET_N_TRANSACCION",
+    payload: data,
+  };
+}
+
+export function alfabetico(data) {
+  return {
+    type: "ALFABETICO",
     payload: data,
   };
 }
