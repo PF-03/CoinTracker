@@ -79,9 +79,11 @@ function LandignPage() {
           <tbody>
             {activos.map(activo => (
               <tr>
-                <td className={s.imgContainer}>
-                  <img src={activo.image} />
-                  {activo.name}
+                <td>
+                  <div className={s.imgContainer}>
+                    <img src={activo.image} />
+                    {activo.name}
+                  </div>
                 </td>
                 <td>
                   {'USD ' + numberFormat(activo.current_price, 'standard', 'decimal')}

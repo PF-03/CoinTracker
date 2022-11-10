@@ -4,6 +4,7 @@ import { getActivos } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReminders } from '../../redux/actions';
 import axios from 'axios';
+import Button from '../styles/button';
 
 export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
   const dispatch = useDispatch<any>();
@@ -77,7 +78,7 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
             <div className={style.header}>
               <h4>Price Alerts</h4>
               <button onClick={handleClick} className={style.close}>
-                X
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" /></svg>
               </button>
             </div>
             <h4>Create New Alert</h4>
@@ -119,9 +120,9 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
               placeholder='Set Price'
               value={price}
             />
-            <button onClick={createAlert} className={style['create-alert']}>
+            <Button gradient onClick={createAlert} className={style['create-alert']}>
               Create
-            </button>
+            </Button>
             {searchValue && !!filteredActives().length && (
               <div className={style['coins-container']}>
                 {filteredActives().map((active) => {

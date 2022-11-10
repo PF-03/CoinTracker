@@ -1,33 +1,52 @@
-.selectYcantidad{
-   
+
+.selectYcantidad {
+
     justify-content: center;
     display: flex;
-    
+    gap: 1rem;
 }
+
+.selectYcantidad * {
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    border: none;
+}
+
 .containerTableCalc {
-    display: flex;
-    justify-content: center;
     margin: 1rem 0;
-    gap: 2;
     max-height: 70vh;
     overflow-y: scroll;
     margin-bottom: 5rem;
     
     scrollbar-width: none;
-    
-    display: flex;
-    
+
+    max-width: 50%;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border-radius: 1rem;
+
+
 }
+
 .containerTableCalc::-webkit-scrollbar {
     display: none;
 }
 
-.divTotal{
-    margin-top: 8rem;
+
+.divTotal {
+
     justify-content: center;
     margin-left: 1%;
 }
 
+
+.containerTable {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 .h1Calc{
     font-family:Arial, Helvetica, sans-serif;
     font-size: x-large;
@@ -44,46 +63,17 @@
 }
 
 
-td,
-th {
+.tableCalc td,
+.tableCalc th {
     padding: 1rem 2rem;
 }
 
-th {
+.tableCalc th {
     text-align: start;
 }
-.h1Calc{
-    display: flex;
-    justify-content: center;
-    font-size:larger;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: white;
-}
-.selectMonedas{
-    height: 30px;
-    color: white;
-    cursor: pointer;
-    border-style: hidden;
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
-    background: rgba(219, 219, 219, 0.11);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.5px);
-    -webkit-backdrop-filter: blur(5.5px);
-}
-.selectCantidad{
-    height: 30px;
-    color: white;
-    cursor: pointer;
-    border-top-right-radius: 16px;
-    border-style: hidden;
-    border-bottom-right-radius: 16px;
-    background: rgba(219, 219, 219, 0.11);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.5px);
-    -webkit-backdrop-filter: blur(5.5px);
+
+
+.h1Calc {
+    text-align: center;
 }
 
-.optionSelectMon{
-    background-color:grey;
-}
