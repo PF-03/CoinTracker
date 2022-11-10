@@ -7,17 +7,21 @@ import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
 import DonationChart from './DonationChart/DonationChart';
+import OrderDonations from './ordenamiento';
+
 
 export default function DonationsList() {
 
     const dispatch: any = useDispatch();
-
+    
     useEffect(() => {
         dispatch(getDonations());
     }, [dispatch, getDonations])
 
     const allDonations = useSelector((state: any) => state.donations);
-
+    
+   
+    
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },
         { field: '_id', headerName: 'User ID', width: 250 },
@@ -26,7 +30,11 @@ export default function DonationsList() {
         { field: 'amount', headerName: 'Amount', type: 'date', width: 200 }
     ];
 
-    const userData = allDonations.map((pat, index) => ({
+   
+   
+   
+   
+    let userData = allDonations.map((pat, index) => ({
         id: index + 1,
         _id: pat._id,
         username: pat.username,
@@ -34,10 +42,12 @@ export default function DonationsList() {
         amount: pat.amount,
     }));
 
-
+    
     return (
         <div className={st.userList}>
-
+          
+           <OrderDonations
+           />
             <DataGrid
                 rows={userData}
                 columns={columns}

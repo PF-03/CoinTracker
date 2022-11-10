@@ -18,7 +18,7 @@ export default function Admins() {
 
   const allAdmins = useSelector((state: any) => state.admins)
 
-  console.log(allAdmins)
+  //console.log(allAdmins)
   const columns = [
     { field: '_id', headerName: 'Admin ID', width: 200 },
     // { field: 'profilePic', headerName: 'Profile Pic', width: 100, renderCell: (params)=>{

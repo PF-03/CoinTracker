@@ -7,7 +7,7 @@ import AreaChart from '../../../Charts/AreaChart'
 export default function DonationChart() {
     const dispatch: any = useDispatch<any>();
 
-    dispatch(getDonations)
+    //dispatch(getDonations)
 
     React.useEffect(() => {
         dispatch(getDonations());
@@ -31,7 +31,7 @@ export default function DonationChart() {
     const data = dataChart();
     return (
         <div className={st.chart}>
-
+          
             <h3 className={st.chartTitle}>DONATIONS ANALYTICS</h3>
             <AreaChart
                 data={{
