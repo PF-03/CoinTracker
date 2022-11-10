@@ -24,7 +24,7 @@ export const History = () => {
   };
   useEffect(() => {
     axios
-      .post('http://localhost:3001/exchange/getExchange', {
+      .post('/exchange/getExchange', {
         username: name || 'default',
       })
       .then((res) => dispatch(setExchangeHistory(res.data)));
