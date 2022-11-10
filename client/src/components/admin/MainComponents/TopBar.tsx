@@ -58,7 +58,6 @@ export default function TopBar() {
                         <img src={iconUser}  alt="" width="30px" height="30px" /> 
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
-                            {/* onClick={handleLogOut} */}
                             <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
                             <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>
                         </Dropdown.Menu>

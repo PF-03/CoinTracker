@@ -17,13 +17,13 @@ const initialState = {
   // user: {},
   // userToken: '',
   admins: [],
-  adminsCopy:[],
+  adminsCopy: [],
   reviews: [],
   users: [],
   usersCopy: [],
   userDetail: [],
   userPut: "",
-
+  donations: [],
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -119,6 +119,13 @@ function rootReducer(state = initialState, action: any) {
         adminsCopy: action.payload
       };
     }
+
+    case "GET_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
+      };
+      
     case "GET_REVIEWS":
       return {
         ...state,
@@ -239,12 +246,12 @@ function rootReducer(state = initialState, action: any) {
         notificationsNumber: action.payload,
       };
     case "SEARCH_USERS":
-      return{
+      return {
         ...state,
         usersCopy: action.payload
       }
     case "SEARCH_ADMINS":
-      return{
+      return {
         ...state,
         admins: action.payload
       }
