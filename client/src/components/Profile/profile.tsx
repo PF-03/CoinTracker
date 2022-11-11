@@ -25,7 +25,6 @@ export default function Profile() {
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
   const [isOpen, open, close] = OpenClose();
-  const [abierto, closee] = OpenCloseAlert();
   const handleImage = async (e) => {
     const image = e.target.files[0];
     setSelectedFile(image);
