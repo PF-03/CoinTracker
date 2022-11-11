@@ -8,14 +8,12 @@ import { getUserId, setUser } from "../../redux/actions";
 import ProfileIMG from "./ProfileIMG.png";
 import { OpenClose } from "../ProfilePassword/openClose";
 import { ProfilePassword } from "../ProfilePassword/profilePassword";
-import x from "../../assets/x.png";
-import bien from "../../assets/bien.png";
-import ProfileAlerta from "../ProfileAlerta/profileAlerta";
-import { OpenCloseAlert } from "../ProfileAlerta/openClose";
-import Swal from "sweetalert2";
+
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
   const userId = useSelector((state: any) => state.userID);
+  console.log(userId, "soy id");
+  console.log(userId);
   const dispatch: any = useDispatch();
   const [cargar, setCargar] = useState(false);
   const [state, setState] = useState({
@@ -88,14 +86,9 @@ export default function Profile() {
 
   const verifiqued = async () => {
     try {
-      await axios
-        .post(`http://localhost:3001/mail/verificar/${user._id}`, body)
-        .then(() =>
-          Swal.fire({
-            icon: "success",
-            title: "Check out your mail",
-            confirmButtonText: "Ok!",
-          })
+      await axios.post(
+        `http://localhost:3001/mail/verificar/${user._id}`,
+        body
         );
     } catch (e) {
       console.log({ error: e });
@@ -113,13 +106,6 @@ export default function Profile() {
     <div className={profile.containerr}>
       <Bubble size="medium" color="blue-dark" top="20%" left="30vh" />
       <Bubble color="purple" top="-40%" right="-20vh" />
-      {(userId[0]?.status
-        ? userId[0].status
-        : user.status
-        ? user.status
-        : user[0].status) !== "VERIFICADO" && (
-        <ProfileAlerta abierto={abierto} close={closee} />
-      )}
       {cargar === false ? (
         <div className={profile.box}>
           <div className={profile.formulario}>
@@ -195,9 +181,11 @@ export default function Profile() {
             ? userId[0].status
             : user.status
             ? user.status
-            : user[0].status) !== "VERIFICADO" ? (
+            : user[0].status) === "UNVERIFIED" ? (
             <div>
-              <img src={x} alt="x" className={profile.icon} />
+              <label className={profile.rojo}>
+                <strong>x</strong>
+              </label>
               <label> Your account is not verified. </label>
               <label className={profile.verificacion} onClick={verifiqued}>
                 Click here for verifying
@@ -205,22 +193,19 @@ export default function Profile() {
             </div>
           ) : (
             <div>
-              <img src={bien} alt="bien" className={profile.icon} />
+              <label className={profile.verde}>
+                <strong>✓</strong>
+              </label>
               <label> Your account is verified. </label>
             </div>
           )}
           <div className={profile.cargar}>
             <Button
-              gradient={
-                (userId[0]?.status ? userId[0].status : user.status) !==
-                "VERIFICADO"
-                  ? false
-                  : true
-              }
+              gradient
               onClick={() => cargarImage()}
               disabled={
-                (userId[0]?.status ? userId[0].status : user.status) !==
-                "VERIFICADO"
+                (userId[0]?.status ? userId[0].status : user.status) ===
+                "UNVERIFIED"
                   ? true
                   : false
               }
@@ -299,7 +284,7 @@ export default function Profile() {
             ? userId[0].status
             : user.status
             ? user.status
-            : user[0].status) !== "VERIFICADO" ? (
+            : user[0].status) === "UNVERIFIED" ? (
             <div>
               <label className={profile.rojo}>
                 <strong>x</strong>
