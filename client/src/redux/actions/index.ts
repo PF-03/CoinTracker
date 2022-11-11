@@ -382,6 +382,7 @@ export function setHistoryDataActivo(data) {
     payload: data,
   };
 }
+
 export function getWalletData(UserId) {
 
   return async function (dispatch: any) {
@@ -401,27 +402,32 @@ export function getWalletData(UserId) {
           };
         });
       })
-      .then(async (data) => {
-        var historyData = [];
-
-        var portfolioData={
-          current_USD_Amound:0,
-          lastValue:0,
-        }
-        const newArray = data.map(async (element, index) => {
-          const data = await fetch(
-            `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
-          );
-          const parsedData = await data.json();
-          historyData.push(parsedData);
+      .then((res) => {
+        console.log(res, "soy actions");
+        dispatch({
+          type: "GET_WALLET_DATA",
+          payload: res,
         });
-        try{
-          await Promise.all(newArray);
-        }
-        catch(err:any){
-          console.log(err.message);
-          return [data, mainData,portfolioData];
-        }
+      });
+  };
+}
+export function getMainChartData(UserId,walletData) {
+  return async function (dispatch: any) {
+    var historyData = [];
+
+    var portfolioData={
+      current_USD_Amound:0,
+      lastValue:0,
+    }
+    const newArray = walletData.map(async (element, index) => {
+      const data = await fetch(
+        `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
+      );
+      const parsedData = await data.json();
+      historyData.push(parsedData);
+    });
+    await Promise.all(newArray)
+      .then(async (data:any) => {
         var MaxDay = { max: 0, index: 0 };
         historyData.forEach((el, index) => {
           if (el.days > MaxDay.max) {
@@ -458,22 +464,16 @@ export function getWalletData(UserId) {
           }
         }
         console.log("main data: ",mainData)
-        return [data, mainData,portfolioData];
+        return [mainData,portfolioData];
       })
       .then((res) => {
         console.log(res, "soy actions");
         dispatch({
-          type: "GET_WALLET_DATA",
+          type: "GET_MAIN_CHART_DATA",
           payload: res,
         });
       });
-  };
-}
-export function setMainChartData() {
-  return {
-    type: "SET_MAIN_CHART_DATA",
-    payload: "",
-  };
+    }
 }
 export function setCurrentAssetView(name) {
   return {

@@ -7,6 +7,7 @@ import {
   setHistoryDataActivo,
   setNameTransaccion,
   getNameActivos,
+  getMainChartData,
 } from "../../redux/actions";
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
@@ -14,6 +15,7 @@ import AssetsList from "./AssetsList/AssetsList";
 import Transaccion from "../transaccion/transaccion";
 import { OpenClose } from "../transaccion/openClose";
 import numberFormat from "../../utils/numberFormat";
+import {store} from "../../redux/store/store"
 const Portfolio = () => {
   const dispatch: any = useDispatch<any>();
   const [isOpen, open, close] = OpenClose();
@@ -26,6 +28,7 @@ const Portfolio = () => {
     async function getDataAndChart() {
       setState({ ...state, chartLoading: true });
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+      await dispatch(getMainChartData(user._id ? user._id : user[0]._id,store.getState().walletData))
       setState({ ...state, chartLoading: false });
     }
     getDataAndChart();
