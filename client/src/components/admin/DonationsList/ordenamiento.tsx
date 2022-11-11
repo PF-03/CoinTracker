@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { orderDonations, getDonations } from "../../../redux/actions";
+import { orderDonations} from "../../../redux/actions";
 
 export default function OrderDonations() {
 

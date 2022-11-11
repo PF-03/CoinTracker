@@ -249,19 +249,10 @@ export function searchAdmins(allAdmins, search, inputSelect) {
 
 }
 export function orderDonations(input, allDonations) {
-  let donations_ = allDonations;
-  if (input === 'Normal') {
-    return async function (dispatch) {
-      let json = await axios.get("/donate");
-
-      return dispatch({
-        type: "GET_DONATIONS",
-        payload: json.data,
-      });
-    }
-  }
+  
+  
   if (input === 'Mayor a Menor') {
-    donations_.sort(function (a, b) {
+    allDonations.sort(function (a, b) {
       if (a.amount < b.amount) {
         return 1;
       }
@@ -272,7 +263,7 @@ export function orderDonations(input, allDonations) {
     })
   }
   if (input === 'Menor a Mayor') {
-    donations_.sort(function (a, b) {
+    allDonations.sort(function (a, b) {
       if (a.amount < b.amount) {
         return -1;
       }
@@ -285,7 +276,7 @@ export function orderDonations(input, allDonations) {
   return async function (dispatch) {
     return dispatch({
       type: "ORDER_DONATIONS",
-      payload: donations_
+      payload: allDonations
     })
   }
 

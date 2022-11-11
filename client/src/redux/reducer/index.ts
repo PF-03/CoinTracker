@@ -271,9 +271,9 @@ function rootReducer(state = initialState, action: any) {
      
       return{
         ...state,
-        donations: action.payload
+        donations: [...action.payload]
         
-
+      }
     case "ALFABETICO":
       let orden;
       if (action.payload === "az") {
