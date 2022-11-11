@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./AssetsList.module.css";
-import { setMyAssets } from "../../../redux/actions";
+import { setMyAssets, alfabetico } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
 import hearth from "../../../assets/amor.png"
 import Transaccion from "../../transaccion/transaccion";
-
+import az from "../../../assets/az.png";
 const AssetsList = ({ HandleTrClick, modal }) => {
   const dispatch = useDispatch<any>();
-  const allAssets = useSelector((state: any) => state.allactivos);
+  let allAssets = useSelector((state: any) => state.activos);
   const myWallet = useSelector((state: any) => state.walletData);
   const curretPage = useSelector((state: any) => state.currentAssetView);
+  const [ordenar, setOrdenar] = useState("false");
   const array = [];
   const filtro = myWallet.filter((el) =>
-    allAssets.filter((al) => {
+
+    allAssets?.filter((al) => {
+
       if (el.id.toLowerCase() === al.id.toLowerCase()) {
         let moneda = {
           crypto: el.crypto,
@@ -31,6 +34,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       }
     })
   );
+
   const HandleButtonsClick = (e) => {
     e.preventDefault();
     if (curretPage === "allAssets") {
@@ -47,20 +51,36 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       return array.push(data);
     }
   };
-
+  useEffect(() => {}, [dispatch]);
+  /*  const ordenarAZ = async (e) => {
+    e.preventDefault();
+    await setOrdenar("az");
+    await dispatch(alfabetico(ordenar));
+  };
+ */
   return (
     <div className={styles.assetsTableContainer}>
       <table className={styles.table}>
         <thead className={styles.tHeaders}>
           <tr>
-            <th>Name</th>
+            <th className={styles.tit}>
+              {/* {(ordenar === "false" || ordenar === "az") && (
+                <img
+                  src={az}
+                  alt="az"
+                  className={styles.img}
+                  onClick={ordenarAZ}
+                />
+              )} */}
+              Name
+            </th>
             <th>Price</th>
             <th>24h</th>
             <th>USD$</th>
           </tr>
         </thead>
         <tbody>
-          {(curretPage == "myAssets" ? array : allAssets).map((el) => {
+          {(curretPage == "myAssets" ? array : allAssets)?.map((el) => {
             return (
               <tr
                 key={el.rank}
@@ -105,7 +125,9 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     </button>
                   ) : (
                     <button name={el.name} onClick={() => modal(el.id)}>
+
                       <img src={hearth} alt="corazon" />
+
                     </button>
                   )}
                 </th>

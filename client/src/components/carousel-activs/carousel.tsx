@@ -42,11 +42,9 @@ export default function Carousel() {
                     id={el.id}
                     name={el.name}
                     image={el.image}
-                    current_price={numberFormat(
-                      el.current_price,
-                      "standard",
-                      "decimal"
-                    )}
+
+                    current_price={numberFormat(el.current_price, 'standard', 'decimal')}
+
                   />
                 </SwiperSlide>
               ))}

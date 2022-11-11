@@ -6,6 +6,7 @@ import {
   setCurrentAssetView,
   setHistoryDataActivo,
   setNameTransaccion,
+  getNameActivos,
 } from "../../redux/actions";
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
@@ -43,6 +44,7 @@ const Portfolio = () => {
   const AllHistoryValueData = useSelector(
     (state: any) => state.historyCoinsDataValue
   );
+
   const percentage = () => {
     var amount_val =(PortfolioData.current_USD_Amound - PortfolioData.lastValue);
     var percentage_value = (amount_val /PortfolioData.lastValue) *100;
@@ -59,6 +61,7 @@ const Portfolio = () => {
     }
   };
   percentage();
+
   function copiarAlPortapapeles(name_elemento) {
     var aux = document.createElement("input");
     aux.setAttribute("value", document.getElementById(name_elemento).innerHTML);
@@ -100,6 +103,10 @@ const Portfolio = () => {
     await dispatch(setNameTransaccion(modalName));
     await open();
   };
+  const handleOnChange = async (e) => {
+    e.preventDefault();
+    dispatch(getNameActivos(e.target.value, "", "", ""));
+  };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.portfolioContainer}>
@@ -107,11 +114,10 @@ const Portfolio = () => {
         <div className={styles.dataContainer}>
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
             <div className={styles.main_value_container}>
-              <h2 id="Current_Value">
-                {numberFormat(PortfolioData.current_USD_Amound, "standard")}
-              </h2>
+
+              <h2 id="main_value">$0,00</h2>
               <button
-                onClick={() => copiarAlPortapapeles("Current_Value")}
+                onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
             </div>
             <h5>Texto</h5>
@@ -182,7 +188,7 @@ const Portfolio = () => {
                 All Assets
               </button>
             </div>
-            <input type="text" />
+            <input type="text" onChange={(e) => handleOnChange(e)} />
           </div>
           <AssetsList HandleTrClick={HandleTrClick} modal={modal}></AssetsList>
         </div>
