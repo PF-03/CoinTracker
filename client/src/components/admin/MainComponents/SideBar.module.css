@@ -5,7 +5,7 @@
     grid-template-rows: 12% 55% 20% 10%;
     position: sticky;
     top: 95px;
-    height: 56vh;
+    height: fit-content;
     width: 20vw;
     background: rgba(219, 219, 219, 0.11);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

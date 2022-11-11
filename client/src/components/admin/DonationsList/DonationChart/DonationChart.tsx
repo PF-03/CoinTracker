@@ -18,12 +18,14 @@ export default function DonationChart() {
         let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let totalDonation = 0;
-
+        let actualMonth = 0;
         allDonations.forEach((element) => {
             let month = element.date.split('-')[1]
-            totalDonation = totalDonation + element.amount
-            console.log(totalDonation)
-            dataSets[month - 1] = totalDonation
+            if(month === actualMonth)totalDonation = totalDonation + element.amount
+            else totalDonation = 0 + element.amount
+            // console.log(totalDonation)
+            dataSets[month - 1] = totalDonation 
+            actualMonth = month;
         });
         console.log(dataSets)
         return [labels, dataSets];
@@ -31,7 +33,7 @@ export default function DonationChart() {
     const data = dataChart();
     return (
         <div className={st.chart}>
-          
+
             <h3 className={st.chartTitle}>DONATIONS ANALYTICS</h3>
             <AreaChart
                 data={{
