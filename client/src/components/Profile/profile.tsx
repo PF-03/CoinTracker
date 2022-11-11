@@ -104,6 +104,7 @@ export default function Profile() {
           title: "Check out your mail",
           confirmButtonText: "Ok!",
         });
+
     } catch (e) {
       console.log({ error: e });
     }

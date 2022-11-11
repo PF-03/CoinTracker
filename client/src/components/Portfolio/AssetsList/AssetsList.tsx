@@ -3,6 +3,7 @@ import styles from "./AssetsList.module.css";
 import { setMyAssets, alfabetico } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
+import hearth from "../../../assets/amor.png"
 import Transaccion from "../../transaccion/transaccion";
 import az from "../../../assets/az.png";
 const AssetsList = ({ HandleTrClick, modal }) => {
@@ -13,7 +14,9 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const [ordenar, setOrdenar] = useState("false");
   const array = [];
   const filtro = myWallet.filter((el) =>
+
     allAssets?.filter((al) => {
+
       if (el.id.toLowerCase() === al.id.toLowerCase()) {
         let moneda = {
           crypto: el.crypto,
@@ -31,7 +34,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       }
     })
   );
-  console.log(allAssets);
+
   const HandleButtonsClick = (e) => {
     e.preventDefault();
     if (curretPage === "allAssets") {
@@ -122,7 +125,9 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     </button>
                   ) : (
                     <button name={el.name} onClick={() => modal(el.id)}>
-                      O
+
+                      <img src={hearth} alt="corazon" />
+
                     </button>
                   )}
                 </th>

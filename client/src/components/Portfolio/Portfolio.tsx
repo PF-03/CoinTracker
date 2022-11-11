@@ -10,10 +10,10 @@ import {
 } from "../../redux/actions";
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
-import Sidebar from "../Sidebar/Sidebar";
 import AssetsList from "./AssetsList/AssetsList";
 import Transaccion from "../transaccion/transaccion";
 import { OpenClose } from "../transaccion/openClose";
+import numberFormat from "../../utils/numberFormat";
 const Portfolio = () => {
   const dispatch: any = useDispatch<any>();
   const [isOpen, open, close] = OpenClose();
@@ -30,12 +30,37 @@ const Portfolio = () => {
     }
     getDataAndChart();
   }, [dispatch]);
-
+  var UpPorcent = {
+    amount:"0.00",
+    percentage:"0.0"
+  };
+  var DownPorcent ={
+    amount:"0.00",
+    percentage:"0.0"
+  }
   const ChartData = useSelector((state: any) => state.historyDataActivo);
   const curretPage = useSelector((state: any) => state.currentAssetView);
+  const PortfolioData = useSelector((state: any) => state.portfolioData);
   const AllHistoryValueData = useSelector(
     (state: any) => state.historyCoinsDataValue
   );
+
+  const percentage = () => {
+    var amount_val =(PortfolioData.current_USD_Amound - PortfolioData.lastValue);
+    var percentage_value = (amount_val /PortfolioData.lastValue) *100;
+    if (amount_val <= 0) {
+      UpPorcent.percentage = ""+numberFormat(-1*percentage_value,"compact") ;
+      UpPorcent.amount = ""+numberFormat(-1*amount_val,"compact") ;
+      DownPorcent.amount = "0.00";
+      DownPorcent.percentage = "0.0";
+    } else {
+      UpPorcent.percentage = "0.0";
+      UpPorcent.amount = "0.00";
+      DownPorcent.amount = ""+numberFormat(amount_val,'standard').split("$")[1];
+      DownPorcent.percentage = ""+numberFormat(percentage_value,"compact").split("$")[1];
+    }
+  };
+  percentage();
 
   function copiarAlPortapapeles(name_elemento) {
     var aux = document.createElement("input");
@@ -89,15 +114,18 @@ const Portfolio = () => {
         <div className={styles.dataContainer}>
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
             <div className={styles.main_value_container}>
+
               <h2 id="main_value">$0,00</h2>
               <button
                 onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
             </div>
             <h5>Texto</h5>
-            <h5 className={styles.redH5}>$0,00</h5>
+            <h5 className={styles.redH5}>${"" + UpPorcent.amount}</h5>
+            <h6 className={styles.redH5}>{"" + UpPorcent.percentage}%</h6>
             <h5>Texto</h5>
-            <h5 className={styles.greenH5}>$0,00</h5>
+            <h5 className={styles.greenH5}>${"" + DownPorcent.amount}</h5>
+            <h6 className={styles.greenH5}>{"" + DownPorcent.percentage}%</h6>
           </div>
           <div className={styles.chartContainer}>
             {state.chartLoading ? (

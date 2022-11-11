@@ -91,6 +91,10 @@
     justify-content: space-between;
     align-items: center;
 }
+.buttonTh button img:hover{
+    background-image: url(../../../assets/corazon2.png);
+    cursor: pointer;
+}
 table {
     width: 100%;
     height: 100%;
