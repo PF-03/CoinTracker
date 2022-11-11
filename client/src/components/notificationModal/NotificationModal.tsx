@@ -14,12 +14,12 @@ export const NotificationModal = ({
   const user: any = useSelector<any>((state) => state.user);
 
   const markReaded = (data: any) => {
-    axios.put('http://localhost:3001/reminder', { ...data, readed: true });
+    axios.put('/reminder', { ...data, readed: true });
     dispatch(getReminders(user.username));
   };
 
   const deleteRemainder = (id: any) => {
-    axios.delete('http://localhost:3001/reminder', { params: { id: id } });
+    axios.delete('/reminder', { params: { id: id } });
     dispatch(getReminders(user.username));
   };
 
@@ -42,7 +42,7 @@ export const NotificationModal = ({
             <div className={style.header}>
               <h4>Notifications</h4>
               <button onClick={handleClick} className={style.close}>
-                X
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" /></svg>
               </button>
             </div>
 

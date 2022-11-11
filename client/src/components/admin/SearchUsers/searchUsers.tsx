@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { searchUsers } from "../../../redux/actions"
+import css from '../SearchUsers/searchUsers.module.css';
+
 
 
 export default function SearchBarUsers(){
@@ -20,13 +22,15 @@ export default function SearchBarUsers(){
 
 
     return (
-        <div>
-            <input placeholder="Search user..." id="busqueda" onChange={HandleInputChange}></input>
-            <button>Search</button>
-            <select id='selectUsers' onChange={HandleInputChange}>
+        <div className={css.containerSearchUsers}>
+            <input placeholder="Search user..." id="busqueda" onChange={HandleInputChange} className={css.searchBarUsers}></input>
+            <button className={css.searchButtonUsers}>Search</button>
+            <select id='selectUsers' onChange={HandleInputChange} className={css.selectUsers}>
+         
                 <option>All Users</option>
                 <option>Active</option>
                 <option>Blocked</option>
+
             </select>
         </div>
     )

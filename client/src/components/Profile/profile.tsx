@@ -16,7 +16,14 @@ import Swal from "sweetalert2";
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
   const userId = useSelector((state: any) => state.userID);
+
+
+
   const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(getUserId(user._id));
+  }, []);
+  
   const [cargar, setCargar] = useState(false);
   const [state, setState] = useState({
     username: userId[0] ? userId[0].username : user.username,
@@ -70,9 +77,9 @@ export default function Profile() {
   const uploadImage = async (formdata) => {
     try {
       await fetch(
-        `${import.meta.env.VITE_SERVER_API}/users/${
-          user._id ? user._id : user[0]._id
-        }`,
+
+        `${import.meta.env.VITE_SERVER_API}/users/${user._id ? user._id : user[0]._id}`,
+
         {
           method: "PUT",
           body: formdata,
@@ -90,13 +97,13 @@ export default function Profile() {
 
   const verifiqued = async () => {
     try {
+
       await axios.post(`/mail/verificar/${user._id}`, body).then(() =>
         Swal.fire({
           icon: "success",
           title: "Check out your mail",
           confirmButtonText: "Ok!",
-        })
-      );
+        });
     } catch (e) {
       console.log({ error: e });
     }
@@ -132,8 +139,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].name
                         : user.name
-                        ? user.name
-                        : "None"}{" "}
+                          ? user.name
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -144,8 +151,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].lastname
                         : user.lastname
-                        ? user.lastname
-                        : "None"}
+                          ? user.lastname
+                          : "None"}
                     </label>
                   </div>
                 </div>
@@ -156,8 +163,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].username
                         : user.username
-                        ? user.username
-                        : "None"}{" "}
+                          ? user.username
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -168,8 +175,8 @@ export default function Profile() {
                       {userId[0]
                         ? userId[0].mail
                         : user.mail
-                        ? user.mail
-                        : "None"}{" "}
+                          ? user.mail
+                          : "None"}{" "}
                     </label>
                   </div>
                 </div>
@@ -182,8 +189,8 @@ export default function Profile() {
                       userId[0]?.image?.imageURL
                         ? userId[0]?.image?.imageURL
                         : user.image
-                        ? user.image.imageURL
-                        : ProfileIMG
+                          ? user.image.imageURL
+                          : ProfileIMG
                     }
                     alt="profile"
                   />
@@ -194,8 +201,10 @@ export default function Profile() {
           {(userId[0]?.status
             ? userId[0].status
             : user.status
+
             ? user.status
             : user[0].status) !== "VERIFICADO" ? (
+
             <div>
               <img src={x} alt="x" className={profile.icon} />
               <label> Your account is not verified. </label>
@@ -219,8 +228,10 @@ export default function Profile() {
               }
               onClick={() => cargarImage()}
               disabled={
+
                 (userId[0]?.status ? userId[0].status : user.status) !==
                 "VERIFICADO"
+
                   ? true
                   : false
               }
@@ -283,8 +294,8 @@ export default function Profile() {
                       previewSource
                         ? previewSource
                         : userId[0]?.image
-                        ? userId[0].image.imageURL
-                        : ProfileIMG
+                          ? userId[0].image.imageURL
+                          : ProfileIMG
                     }
                     alt="profile"
                   />
@@ -298,8 +309,10 @@ export default function Profile() {
           {(userId[0]?.status
             ? userId[0].status
             : user.status
+
             ? user.status
             : user[0].status) !== "VERIFICADO" ? (
+
             <div>
               <label className={profile.rojo}>
                 <strong>x</strong>

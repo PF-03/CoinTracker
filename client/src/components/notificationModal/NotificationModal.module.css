@@ -24,6 +24,7 @@
   -webkit-backdrop-filter: blur(5.5px);
   border: 1px solid rgba(219, 219, 219, 0);
 }
+
 .modal-container input {
   align-self: center;
   width: 80%;
@@ -108,7 +109,21 @@
 }
 
 .close {
-  padding: 2px;
-  width: 20px;
+  background: rgba(219, 219, 219, 0.11);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.5px);
+  position: relative;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
+  border: none;
+}
+
+.close svg {
+  fill: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }

@@ -61,7 +61,7 @@ function Donation() {
             const { id } = paymentMethod;
             const user = JSON.parse(localStorage.getItem('CoinTrackerUser'));
             const { username, mail } = user
-            const res: any = await axios.post('http://localhost:3001/donate', {
+            const res: any = await axios.post('/donate', {
                 amount: donationAmount,
                 paymentMethodId: id,
                 username,

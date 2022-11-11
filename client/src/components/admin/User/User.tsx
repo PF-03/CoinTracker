@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { getUserProfile } from '../../../redux/actions/index'
-import st from './user.module.css'
+import st from './User.module.css'
 import UserEdit from './UserEdit'
 import { PermIdentity, AlternateEmail, ManageAccounts } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -64,27 +64,27 @@ export default function User() {
 
                         <div className={st.userShowInfo}>
                             <PermIdentity className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>ID: {props.id}</span>
+                            <span className={st.userShowInfo}>ID: {props.id}</span>
                         </div>
                         <div className={st.userShowInfo}>
                             <AlternateEmail className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>Email: {props.mail}</span>
+                            <span className={st.userShowInfo}>Email: {props.mail}</span>
                         </div>
                         <div className={st.userShowInfo}>
                             <ManageAccounts className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>Role: {props.type}</span>
+                            <span className={st.userShowInfo}>Role: {props.type}</span>
                         </div>
                         <div className={st.userShowInfo}>
                             <AccountCircleIcon className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>Name: {props.name}</span>
+                            <span className={st.userShowInfo}>Name: {props.name}</span>
                         </div>
                         <div className={st.userShowInfo}>
                             <AccountCircleIcon className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>Lastname: {props.lastname}</span>
+                            <span className={st.userShowInfo}>Lastname: {props.lastname}</span>
                         </div>
                         <div className={st.userShowInfo}>
                             <SecurityIcon className={st.userShowIcon} />
-                            <span className={st.userShowInfoTitle}>Activo: {props.activos.toString()}</span>
+                            <span className={st.userShowInfo}>Activo: {props.activos.toString()}</span>
                         </div>
                     </div>
                 </div>

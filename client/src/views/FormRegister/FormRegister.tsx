@@ -124,12 +124,12 @@ function FormRegister() {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:3001/localauth/signup", {
-          username: inputs.username,
-          password: inputs.password,
-          mail: inputs.mail,
-          name: inputs.name,
-          lastname: inputs.lastname,
+        .post("/localauth/signup", {
+          username: inputs.username.trim(),
+          password: inputs.password.trim(),
+          mail: inputs.mail.trim().toLowerCase(),
+          name: inputs.name.trim(),
+          lastname: inputs.lastname.trim(),
         })
         .then((res) => {
           dispatch(setUserToken(res.data.token));
@@ -150,7 +150,7 @@ function FormRegister() {
     }
   }
   const google = () => {
-    window.open("http://localhost:3001/googleauth/google", "_self");
+    window.open(`${import.meta.env.VITE_SERVER_API}/googleauth/google`, "_self");
   };
 
   function passwordEye(e) {

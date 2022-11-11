@@ -8,6 +8,7 @@ import HelpUsMail from "./HelpUsMail/HelpUsMail";
 import Admins from './AdminList/AdminList';
 import UserList from "./UserList/UserList";
 import User from "./User/User";
+import DonationsList from "./DonationsList/DonationsList";
 // import Memberships from "./Memberships/Memberships"
 
 
@@ -29,6 +30,7 @@ export default function AdminView() {
           <Route path='/admins' element={<Admins />} />
           <Route path='/users' element={<UserList />} />
           <Route path='/user/:userId' element={<User />} />
+          <Route path='/donations' element={<DonationsList />} />
           {/* <Route path='/donations' element={<Memberships />} /> */}
           <Route path='*' element={<HomeAdmin />} />
         </Routes>
