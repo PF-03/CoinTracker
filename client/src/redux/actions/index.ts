@@ -25,13 +25,13 @@ export function getNameActivos(
       console.log(name, "soy name");
       var json = await axios(
         "/activos?name=" +
-          name +
-          "&minimo=" +
-          minimo +
-          "&maximo=" +
-          maximo +
-          "&divisas=" +
-          divisa
+        name +
+        "&minimo=" +
+        minimo +
+        "&maximo=" +
+        maximo +
+        "&divisas=" +
+        divisa
       );
       //console.log(json.data);
       return dispatch({
@@ -248,10 +248,53 @@ export function searchAdmins(allAdmins, search, inputSelect) {
   }
 
 }
+export function orderDonations(input, allDonations) {
+  let donations_ = allDonations;
+  if (input === 'Normal') {
+    return async function (dispatch) {
+      let json = await axios.get("/donate");
+
+      return dispatch({
+        type: "GET_DONATIONS",
+        payload: json.data,
+      });
+    }
+  }
+  if (input === 'Mayor a Menor') {
+    donations_.sort(function (a, b) {
+      if (a.amount < b.amount) {
+        return 1;
+      }
+      if (b.amount < a.amount) {
+        return -1;
+      }
+      return 0;
+    })
+  }
+  if (input === 'Menor a Mayor') {
+    donations_.sort(function (a, b) {
+      if (a.amount < b.amount) {
+        return -1;
+      }
+      if (b.amount < a.amount) {
+        return 1;
+      }
+      return 0;
+    })
+  }
+  return async function (dispatch) {
+    return dispatch({
+      type: "ORDER_DONATIONS",
+      payload: donations_
+    })
+  }
+
+}
 
 export function getDonations() {
   return async function (dispatch) {
     let json = await axios.get("/donate");
+
     return dispatch({
       type: "GET_DONATIONS",
       payload: json.data,
@@ -328,9 +371,9 @@ export function getActivsHistoryValue(data: any) {
   return function(dispatch: any) {
     fetch(
       `${import.meta.env.VITE_SERVER_API}/activos/historyValue` +
-        `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
-        `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
-        `${data.userId ? `userId=$${data.userId}` : ""}`
+      `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
+      `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
+      `${data.userId ? `userId=$${data.userId}` : ""}`
 
     )
       .then((data) => data.json())
