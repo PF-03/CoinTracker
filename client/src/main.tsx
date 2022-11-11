@@ -7,6 +7,12 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store/store';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios';
+// import dotenv from "dotenv";
+
+// dotenv.config();
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_API || "http://localhost:3001";
+
 
 const stripePromise = loadStripe('pk_test_51LznVeK4gA1AUGs8dv21pMP9DL4y3oGmsWXuyW3aSwS3pLCW9B2HcfQyeCHDxQAITsGyQxbh9azSH7H9ggf0oyWs00MslOpMxr');
 

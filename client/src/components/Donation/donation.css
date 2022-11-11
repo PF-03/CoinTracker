@@ -1,12 +1,12 @@
 .donation-comp-container {
-    padding-left: 4rem;
+    padding: 0 4rem;
 }
 
-.donation-comp-container > h3 {
+.donation-comp-container>h3 {
     margin-bottom: 20px;
 }
 
-.donation-comp-container > p {
+.donation-comp-container>p {
     margin-bottom: 28px;
     font-size: 1.2rem;
 }
@@ -155,28 +155,123 @@
     /* border: 1px solid #7846C9; */
 }
 
+.donation-opt-details-tag[open]>summary::after {
+    transform: rotate(90deg);
+}
+
 .donations-opt-summary-tag {
-    background-color: #7846C9;
-    width: 200px;
-    padding: 2px 4px;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    padding: .3rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.donations-opt-summary-tag::marker {
+    content: '';
+}
+
+.donations-opt-summary-tag::after {
+    content: url('../../assets/arrow.svg');
+    transition: transform .2s ease-out;
 }
 
 
 /* bitpay code */
-.bitpay-donate { margin:20px 0;}
-.bitpay-donate fieldset {border:0;}
-.bitpay-donate .field-input { color: #666;background: #fff;border: 1px solid #eee;height: 30px; box-sizing: border-box;flex-grow: 1;}
-.bitpay-donate .field-input-wrapper { display: inline-flex;float: none;width: 80%; width: 200px;}
-.bitpay-donate input {padding:4px 10px; display: inline-block; width: 100px;}
-.bitpay-donate select {padding:3px 10px; display: inline-block; width: 50px;}
-.bitpay-donate .bitpay-donate-button {padding:12px 0;width: 160px;box-sizing: border-box;}
-.bitpay-donate ul, .bitpay-donate li {padding:0;margin:0;list-style:none;}
-.bitpay-donate li {padding:10px 0;}
-.bitpay-donate-field {clear:both;}
-.bitpay-donate-field label {float:left;width:100px;}
-.bitpay-donate-field div {float:left;}
-.bitpay-donate-field-email {width:80%;}
-.bitpay-donate-field-price {width:40%;}
-.bitpay-donate-field-currency {width:40%;}
-.bitpay-donate-button-wrapper {clear:both;margin:auto;text-align:left; margin: 20px 0 0 60px;}
-input.bitpay-donate-error {border:2px solid red;}
+.bitpay-donate {
+    margin: 20px 0;
+}
+
+.bitpay-donate fieldset {
+    border: 0;
+}
+
+.bitpay-donate .field-input {
+    color: #666;
+    background: #fff;
+    border: 1px solid #eee;
+    height: 30px;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.bitpay-donate .field-input-wrapper {
+    display: inline-flex;
+    float: none;
+    width: 80%;
+    width: 200px;
+}
+
+.bitpay-donate input {
+    padding: 4px 10px;
+    display: inline-block;
+    width: 100px;
+}
+
+.bitpay-donate select {
+    padding: 3px 10px;
+    display: inline-block;
+    width: 50px;
+}
+
+.bitpay-donate .bitpay-donate-button {
+    padding: 12px 0;
+    width: 160px;
+    box-sizing: border-box;
+}
+
+.bitpay-donate ul,
+.bitpay-donate li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bitpay-donate li {
+    padding: 10px 0;
+}
+
+.bitpay-donate-field {
+    clear: both;
+}
+
+.bitpay-donate-field label {
+    float: left;
+    width: 100px;
+}
+
+.bitpay-donate-field div {
+    float: left;
+}
+
+.bitpay-donate-field-email {
+    width: 80%;
+}
+
+.bitpay-donate-field-price {
+    width: 40%;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+}
+
+.bitpay-donate-field-currency {
+    width: 40%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
+.bitpay-donate-button-wrapper {
+    clear: both;
+    margin: auto;
+    text-align: left;
+    margin: 20px 0 0 60px;
+}
+
+input.bitpay-donate-error {
+    border: 2px solid red;
+}

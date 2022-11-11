@@ -2,7 +2,7 @@ export const PublicRouts = {
   LANDING: '/',
   REGISTER: '/register',
   LOGIN: '/login',
-  LOG: '/login/:id',
+  LOG: '/login/:id/:googleId/:username/:mail/:name/:lastname/:type/:image/:activos/:status',
 };
 
 export const PrivateRoutes = {

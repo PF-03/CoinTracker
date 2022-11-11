@@ -15,13 +15,15 @@ import path from "path";
 import { ActualizarApi } from "./controllers/actives";
 const app: any = express();
 
+const frontDeployUrl = process.env.FRONT_DEPLOY_URL
+
 //Conectamos socket
 import { Server as SocketServer } from "socket.io";
 let http = require("http");
 const server = http.createServer(app);
 const io = new SocketServer(server, {
   cors: {
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", `${frontDeployUrl}`],
     credentials: true,
   },
 });
@@ -33,10 +35,12 @@ app.use(
   express.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 })
 );
 
-app.use(morgan("dev"));
+
+app.use(morgan('dev'));
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173', `${frontDeployUrl}`],
     credentials: true,
   })
 );
@@ -53,8 +57,8 @@ app.use(passport.session());
 
 //conectamos socket io para que escuche
 
-io.on("connection", (socket) => {
-  socket.on("message", (message) => {
+io.on("connection", (socket: any) => {
+  socket.on("message", (message: any) => {
     socket.emit("message", {
       body: message.body,
       from: message.from === "User" ? "me" : message.from,
@@ -64,7 +68,7 @@ io.on("connection", (socket) => {
       from: message.from,
     });
   });
-  socket.on("typing", (usuario) => {
+  socket.on("typing", (usuario: any) => {
     socket.broadcast.emit("typing", usuario + " is typing...");
   });
 });
@@ -101,7 +105,7 @@ const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   // puerto 3001
   repetir();
-  console.log("Server listening on port 3001"); // eslint-disable-line no-console
+  console.log(`Server listening on port ${PORT}`); // eslint-disable-line no-console
 });
 
 //Conectamos a la base de datos

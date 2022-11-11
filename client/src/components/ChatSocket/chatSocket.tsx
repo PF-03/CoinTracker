@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import estilos from "./chatSocket.module.css";
 import foro from "../../assets/foro.png";
+
 import send from "../../assets/send.png";
+
+
 const socket = io(`${import.meta.env.VITE_SERVER_API}`); //puente de conexion con el back
 
 export default function ChatSocket() {

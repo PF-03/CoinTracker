@@ -15,7 +15,7 @@ export const AuthGuard = () => {
     async function login() {
       if (!data.user.googleId && !data.userToken) {
         axios
-          .get(`http://localhost:3001/googleauth/getuser`, {
+          .get(`/googleauth/getuser`, {
             withCredentials: true,
           })
           .then((x) => {
