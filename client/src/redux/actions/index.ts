@@ -333,7 +333,7 @@ export function getWalletData(UserId) {
       })
       .then(async (data) => {
         var historyData = [];
-        const newArray = data.map(async (element, index) => {
+        const newArray = data.map(async (element) => {
           const data = await fetch(
             `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${
               element.crypto
