@@ -14,6 +14,7 @@ const initialState = {
   detailsNews: {},
   seeMore: false,
   nameTransaccion: "",
+  portfolioData:{currentValue:0,lastValue:0,},
   // user: {},
   // userToken: '',
   admins: [],
@@ -117,7 +118,7 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         admins: action.payload,
-        adminsCopy: action.payload
+        adminsCopy: action.payload,
       };
     }
 
@@ -205,6 +206,7 @@ function rootReducer(state = initialState, action: any) {
         walletData: action.payload[0],
         main_chart_data: action.payload[1],
         historyDataActivo: action.payload[1],
+        portfolioData:action.payload[2]
       };
     }
     case "SET_CURRENT_ASSET_VIEW": {
@@ -251,25 +253,44 @@ function rootReducer(state = initialState, action: any) {
     case "SEARCH_USERS":
       return {
         ...state,
-        usersCopy: action.payload
-      }
+        usersCopy: action.payload,
+      };
     case "SEARCH_ADMINS":
       return {
         ...state,
-        admins: action.payload
-      }
+        admins: action.payload,
+      };
 
     case "SET_N_TRANSACCION":
       return {
         ...state,
         nameTransaccion: action.payload,
       };
+
     case "ORDER_DONATIONS":
      
       return{
         ...state,
         donations: action.payload
         
+
+    case "ALFABETICO":
+      let orden;
+      if (action.payload === "az") {
+        orden = state.activos?.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+          }
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        console.log(orden, "soy orden");
+      }
+      return {
+        ...state,
+        activos: orden,
       };
 
     default:
