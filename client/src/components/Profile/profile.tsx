@@ -8,13 +8,20 @@ import { getUserId, setUser } from "../../redux/actions";
 import ProfileIMG from "./ProfileIMG.png";
 import { OpenClose } from "../ProfilePassword/openClose";
 import { ProfilePassword } from "../ProfilePassword/profilePassword";
-
+import x from "../../assets/x.png";
+import bien from "../../assets/bien.png";
+import ProfileAlerta from "../ProfileAlerta/profileAlerta";
+import { OpenCloseAlert } from "../ProfileAlerta/openClose";
+import Swal from "sweetalert2";
 export default function Profile() {
   const user = useSelector((state: any) => state.user);
   const userId = useSelector((state: any) => state.userID);
-  console.log(userId, "soy id");
-  console.log(userId);
+
   const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(getUserId(user._id));
+  }, []);
+
   const [cargar, setCargar] = useState(false);
   const [state, setState] = useState({
     username: userId[0] ? userId[0].username : user.username,
@@ -25,6 +32,7 @@ export default function Profile() {
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
   const [isOpen, open, close] = OpenClose();
+  const [abierto, closee] = OpenCloseAlert();
   const handleImage = async (e) => {
     const image = e.target.files[0];
     setSelectedFile(image);
@@ -67,7 +75,10 @@ export default function Profile() {
   const uploadImage = async (formdata) => {
     try {
       await fetch(
-        `${import.meta.env.VITE_SERVER_API}/users/${user._id ? user._id : user[0]._id}`,
+        `${import.meta.env.VITE_SERVER_API}/users/${
+          user._id ? user._id : user[0]._id
+        }`,
+
         {
           method: "PUT",
           body: formdata,
@@ -85,9 +96,12 @@ export default function Profile() {
 
   const verifiqued = async () => {
     try {
-      await axios.post(
-        `/mail/verificar/${user._id}`,
-        body
+      await axios.post(`/mail/verificar/${user._id}`, body).then(() =>
+        Swal.fire({
+          icon: "success",
+          title: "Check out your mail",
+          confirmButtonText: "Ok!",
+        })
       );
     } catch (e) {
       console.log({ error: e });
@@ -105,6 +119,13 @@ export default function Profile() {
     <div className={profile.containerr}>
       <Bubble size="medium" color="blue-dark" top="20%" left="30vh" />
       <Bubble color="purple" top="-40%" right="-20vh" />
+      {(userId[0]?.status
+        ? userId[0].status
+        : user.status
+        ? user.status
+        : user[0].status) !== "VERIFICADO" && (
+        <ProfileAlerta abierto={abierto} close={closee} />
+      )}
       {cargar === false ? (
         <div className={profile.box}>
           <div className={profile.formulario}>
@@ -180,11 +201,9 @@ export default function Profile() {
             ? userId[0].status
             : user.status
             ? user.status
-            : user[0].status) === "UNVERIFIED" ? (
+            : user[0].status) !== "VERIFICADO" ? (
             <div>
-              <label className={profile.rojo}>
-                <strong>x</strong>
-              </label>
+              <img src={x} alt="x" className={profile.icon} />
               <label> Your account is not verified. </label>
               <label className={profile.verificacion} onClick={verifiqued}>
                 Click here for verifying
@@ -192,19 +211,22 @@ export default function Profile() {
             </div>
           ) : (
             <div>
-              <label className={profile.verde}>
-                <strong>✓</strong>
-              </label>
+              <img src={bien} alt="bien" className={profile.icon} />
               <label> Your account is verified. </label>
             </div>
           )}
           <div className={profile.cargar}>
             <Button
-              gradient
+              gradient={
+                (userId[0]?.status ? userId[0].status : user.status) !==
+                "VERIFICADO"
+                  ? false
+                  : true
+              }
               onClick={() => cargarImage()}
               disabled={
-                (userId[0]?.status ? userId[0].status : user.status) ===
-                "UNVERIFIED"
+                (userId[0]?.status ? userId[0].status : user.status) !==
+                "VERIFICADO"
                   ? true
                   : false
               }
@@ -283,7 +305,7 @@ export default function Profile() {
             ? userId[0].status
             : user.status
             ? user.status
-            : user[0].status) === "UNVERIFIED" ? (
+            : user[0].status) !== "VERIFICADO" ? (
             <div>
               <label className={profile.rojo}>
                 <strong>x</strong>

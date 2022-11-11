@@ -5,6 +5,7 @@ import style from "./home.module.css";
 import VerMas from "../../components/ver_mas_activos/ver_mas_activos";
 import { seeMore } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Button from "../../components/styles/button";
 
 export default function Home() {
   /*   const [seeMore, setSeeMore] = useState(false); */
@@ -23,8 +24,11 @@ export default function Home() {
       <Bubble color="blue-dark" top="-40%" left="20vh" />
       <div className={style.home}>
         <div>
-          <h4 className={style.title}>Most Relevants Coins</h4>
-          <Carousel handleSeeMore={handleSeeMore} />
+          <div className={style.headerButton}>
+            <h4 className={style.title}>Most Relevants Coins</h4>
+            <Button onClick={handleSeeMore}>{h4 ? '- See less' : '+ See more'}</Button>
+          </div>
+          <Carousel />
           {h4 === false && <h4 className={style.title}>Most relevant News</h4>}
           {infoSeeMore === false ? <CarouselNews /> : <VerMas />}
         </div>

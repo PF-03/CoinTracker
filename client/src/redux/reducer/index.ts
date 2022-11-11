@@ -14,16 +14,17 @@ const initialState = {
   detailsNews: {},
   seeMore: false,
   nameTransaccion: "",
+  portfolioData:{currentValue:0,lastValue:0,},
   // user: {},
   // userToken: '',
   admins: [],
-  adminsCopy:[],
+  adminsCopy: [],
   reviews: [],
   users: [],
   usersCopy: [],
   userDetail: [],
   userPut: "",
-
+  donations: [],
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -59,7 +60,6 @@ function rootReducer(state = initialState, action: any) {
       };
 
     case "GET_USERID":
-      LS.persistLocalStore(LS.UserIdKey, action.payload);
       return {
         ...state,
         userID: action.payload,
@@ -117,9 +117,16 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         admins: action.payload,
-        adminsCopy: action.payload
+        adminsCopy: action.payload,
       };
     }
+
+    case "GET_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
+      };
+      
     case "GET_REVIEWS":
       return {
         ...state,
@@ -196,6 +203,7 @@ function rootReducer(state = initialState, action: any) {
         walletData: action.payload[0],
         main_chart_data: action.payload[1],
         historyDataActivo: action.payload[1],
+        portfolioData:action.payload[2]
       };
     }
     case "SET_CURRENT_ASSET_VIEW": {
@@ -240,20 +248,38 @@ function rootReducer(state = initialState, action: any) {
         notificationsNumber: action.payload,
       };
     case "SEARCH_USERS":
-      return{
+      return {
         ...state,
-        usersCopy: action.payload
-      }
+        usersCopy: action.payload,
+      };
     case "SEARCH_ADMINS":
-      return{
+      return {
         ...state,
-        admins: action.payload
-      }
+        admins: action.payload,
+      };
 
     case "SET_N_TRANSACCION":
       return {
         ...state,
         nameTransaccion: action.payload,
+      };
+    case "ALFABETICO":
+      let orden;
+      if (action.payload === "az") {
+        orden = state.activos?.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+          }
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        console.log(orden, "soy orden");
+      }
+      return {
+        ...state,
+        activos: orden,
       };
 
     default:

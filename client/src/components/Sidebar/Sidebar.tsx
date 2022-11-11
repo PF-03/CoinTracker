@@ -83,7 +83,7 @@ function Sidebar() {
           <Link to="/profile" className={style.data}>
             <img
               className={style.icon}
-              src={user.image ? user.image.imageURL : iconUser}
+              src={userr[0]?.image.imageURL ? userr[0].image.imageURL : iconUser}
               alt="user"
             />
             <span>

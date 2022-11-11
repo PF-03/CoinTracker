@@ -58,7 +58,11 @@ const Login: React.FC = (): JSX.Element => {
   const [eyeState, setEyeState] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [event.target.name]: event.target.value });
+    if(event.target.name === 'email') {
+        setValues({ ...values, [event.target.name]: event.target.value.trim().toLowerCase() });
+    } else {
+        setValues({ ...values, [event.target.name]: event.target.value });
+    }
   };
 
   const google = () => {

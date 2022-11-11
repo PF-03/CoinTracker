@@ -1,10 +1,11 @@
-import { Outlet } from 'react-router-dom';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import s from './sharedLayout.module.css';
-import { Notification } from '../../components/notification/Notification';
-import { NotificationModal } from '../../components/notificationModal/NotificationModal';
-import { PriceAlert } from '../../components/PriceAlert/PriceAlert';
-import { useState } from 'react';
+import { Outlet } from "react-router-dom";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import s from "./sharedLayout.module.css";
+import { Notification } from "../../components/notification/Notification";
+import { NotificationModal } from "../../components/notificationModal/NotificationModal";
+import { PriceAlert } from "../../components/PriceAlert/PriceAlert";
+import { useState } from "react";
+import ChatSocket from "../../components/ChatSocket/chatSocket";
 
 function SharedLayout() {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -33,6 +34,7 @@ function SharedLayout() {
       <div>
         <Sidebar />
       </div>
+      <ChatSocket />
       <div className={s.outlet}>
         <Outlet />
       </div>

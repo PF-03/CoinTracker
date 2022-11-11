@@ -4,7 +4,7 @@ import { getAdmins } from "../../../redux/actions/index"
 import { DataGrid } from '@mui/x-data-grid';
 import { color } from '@mui/system';
 import SearchBarAdmins from '../SearchAdmins/searchAdmins';
-
+import st from './AdminList.module.css';
 
 
 
@@ -57,7 +57,7 @@ export default function Admins() {
 
 
   return (
-    <div style={{ flex: 10 }}>
+    <div className={st.userList}>
       <SearchBarAdmins/>
       <DataGrid
         rows={adminRows}
