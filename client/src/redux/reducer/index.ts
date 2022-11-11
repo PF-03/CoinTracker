@@ -200,10 +200,18 @@ function rootReducer(state = initialState, action: any) {
     case "GET_WALLET_DATA": {
       return {
         ...state,
-        walletData: action.payload[0],
-        main_chart_data: action.payload[1],
+        walletData: action.payload,
+        /* main_chart_data: action.payload[1],
         historyDataActivo: action.payload[1],
-        portfolioData:action.payload[2]
+        portfolioData:action.payload[2] */
+      };
+    }
+    case "GET_MAIN_CHART_DATA": {
+      return {
+        ...state,
+        main_chart_data: action.payload[0],
+        historyDataActivo: action.payload[0],
+        portfolioData:action.payload[1]
       };
     }
     case "SET_CURRENT_ASSET_VIEW": {
