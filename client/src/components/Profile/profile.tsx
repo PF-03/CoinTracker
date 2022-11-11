@@ -88,15 +88,13 @@ export default function Profile() {
 
   const verifiqued = async () => {
     try {
-      await axios
-        .post(`http://localhost:3001/mail/verificar/${user._id}`, body)
-        .then(() =>
-          Swal.fire({
-            icon: "success",
-            title: "Check out your mail",
-            confirmButtonText: "Ok!",
-          })
-        );
+      await axios.post(`/mail/verificar/${user._id}`, body).then(() =>
+        Swal.fire({
+          icon: "success",
+          title: "Check out your mail",
+          confirmButtonText: "Ok!",
+        })
+      );
     } catch (e) {
       console.log({ error: e });
     }
