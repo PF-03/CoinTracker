@@ -3,21 +3,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDonations } from "../../../redux/actions/index";
 import st from './DonationsList.module.css';
 import { DataGrid } from '@mui/x-data-grid';
-import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
-import { Link } from 'react-router-dom';
 import DonationChart from './DonationChart/DonationChart';
+import OrderDonations from './ordenamiento';
+
 
 export default function DonationsList() {
 
     const dispatch: any = useDispatch();
 
+    const allDonations = useSelector((state: any) => state.donations);
+
+    
     useEffect(() => {
         dispatch(getDonations());
     }, [dispatch, getDonations])
-
-    const allDonations = useSelector((state: any) => state.donations);
-
+    
+    let userData = allDonations.map((pat, index) => ({
+        id: index + 1,
+        _id: pat._id,
+        username: pat.username,
+        mail: pat.mail,
+        amount: pat.amount,
+    }));
+    
     const columns = [
         { field: 'id', headerName: 'ID', width: 50 },
         { field: '_id', headerName: 'User ID', width: 250 },
@@ -26,22 +35,15 @@ export default function DonationsList() {
         { field: 'amount', headerName: 'Amount', type: 'date', width: 200 }
     ];
 
-    const userData = allDonations.map((pat, index) => ({
-        id: index + 1,
-        _id: pat._id,
-        username: pat.username,
-        mail: pat.mail,
-        amount: pat.amount,
-    }));
-
 
     return (
         <div className={st.userList}>
 
+            <OrderDonations />
             <DataGrid
                 rows={userData}
                 columns={columns}
-                pageSize={5}
+                pageSize={15}
                 rowsPerPageOptions={[5]}
                 disableSelectionOnClick
                 sx={{
@@ -50,7 +52,8 @@ export default function DonationsList() {
                     color: 'white'
                 }}
             />
-            <DonationChart/>
+
+            <DonationChart />
 
         </div>
     )

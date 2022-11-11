@@ -5,13 +5,13 @@ import DonationChart from '../DonationsList/DonationChart/DonationChart';
 import SmallWidget from './Widgets/SmallWidget';
 import LargeWidget from './Widgets/LargeWidget';
 import { userData } from '../../../DummyData';
-
+import AdminCarousel from './AdminCarousel';
 export default function HomeAdmin() {
   return (
 
     <div className={st.HomeAdmin}>
-
-      <FeaturedInfo />
+      <AdminCarousel />
+      {/* <FeaturedInfo /> */}
       <Chart />
       <DonationChart />
 

@@ -25,6 +25,7 @@ const initialState = {
   userDetail: [],
   userPut: "",
   donations: [],
+  
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -125,6 +126,8 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         donations: action.payload,
+        
+        
       };
       
     case "GET_REVIEWS":
@@ -263,6 +266,14 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         nameTransaccion: action.payload,
       };
+
+    case "ORDER_DONATIONS":
+     
+      return{
+        ...state,
+        donations: action.payload
+        
+
     case "ALFABETICO":
       let orden;
       if (action.payload === "az") {
