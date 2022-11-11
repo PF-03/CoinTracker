@@ -18,7 +18,7 @@ const postDonation = async (req: Request, res: Response, next: NextFunction) => 
         const donation = new DonationModel({
             username,
             mail,
-            amount: amount/100,
+            amount: amount / 100,
             date: new Date()
         })
         donation.save()
@@ -26,23 +26,42 @@ const postDonation = async (req: Request, res: Response, next: NextFunction) => 
         res.status(200).send({
             message: 'Succesful payment'
         })
-    } catch(error: any) {
+    } catch (error: any) {
         res.status(402).send({
             message: `${error.code} - ${error.decline_code}`
         })
     }
 }
 
-// necesita el username por body
-const getDonation = (req: Request, res: Response, next: NextFunction) => {
-    DonationModel.find({ username: req.body.username})
-    .then((result: Object[]) => {
-        res.send(result)
-    })
-    .catch((err: Error) => {
-        next(err)
-    })
+
+const getDonation: any = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        let allDonations: Object = await DonationModel.find({})
+        return res.status(202).json(allDonations)
+    }
+    catch (e) {
+        console.log(e)
+    }
 }
+
+
+// const getUsers: any = async (req: Request, res: Response) => {
+//     try {
+//       const { id } = req.params;
+//       if (!id) {
+//         let userAll: Object = await user.find({});
+//         return res.status(202).json(userAll);
+//       } else {
+//         const userId: Object = await user.find({ _id: id });
+//         if (Object.keys(userId).length > 0) {
+//           return res.status(202).json(userId);
+//         }
+//         handleError(res, "ERROR_GET_USERS_ID");
+//       }
+//     } catch (e) {
+//       handleError(res, "ERROR_GET_USERS");
+//     }
+//   };
 
 export {
     postDonation,

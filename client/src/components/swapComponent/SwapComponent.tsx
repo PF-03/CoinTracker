@@ -63,7 +63,7 @@ export default function SwapComponent() {
   };
 
   const handleSwap = () => {
-    axios.post("http://localhost:3001/exchange", {
+    axios.post("/exchange", {
       icon1: coinOneState.data.image,
       icon2: coinTwoState.data.image,
       crypto1: coinOneState.data.symbol,

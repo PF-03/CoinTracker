@@ -11,11 +11,8 @@ import style from "./carousel.module.css";
 import Card from "../card/card";
 import numberFormat from "../../utils/numberFormat.js";
 
-type PrivateProps = {
-  handleSeeMore: Function;
-};
 
-export default function Carousel({ handleSeeMore }: PrivateProps) {
+export default function Carousel() {
   const dispatch: any = useDispatch();
   const activos = useSelector((state: any) => state.allactivos);
   const see = useSelector((state: any) => state.seeMore);
@@ -54,9 +51,6 @@ export default function Carousel({ handleSeeMore }: PrivateProps) {
                 </SwiperSlide>
               ))}
             <SwiperSlide>
-              <div className={style.seeMore} onClick={() => handleSeeMore()}>
-                <h4>{see === false ? "Ver mas" : "Ver menos"}</h4>
-              </div>
             </SwiperSlide>
           </Swiper>
         </div>

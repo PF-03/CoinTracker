@@ -1,0 +1,33 @@
+.containerSearchAdmins{
+    margin-bottom: 20px;
+    margin-left: 30px;
+    display: flex;
+}
+.searchBarAdmins{
+    width: 200px;
+    height: 30px;
+    border-bottom-left-radius: 16px;
+    border-top-left-radius: 16px;
+    border-style: hidden;
+    background-color: #2b2a33;
+    padding-left: 20px;
+    
+}
+.searchButtonAdmins{
+    height: 30px;
+    width: 80px;
+    border-style: hidden;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: #3f3e3e;
+    margin-right: 20px;
+    padding: 5px;
+}
+.selectAdmins{
+    height: 30px;
+    border-style: hidden;
+    background-color: #3f3e3e;
+    border-radius: 16px;
+    padding: 5px;
+
+}

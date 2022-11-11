@@ -75,14 +75,14 @@
 .userShowTitle{
     font-size: 18px;
     font-weight: 600;
-    color: #555;
+    color: white
 }
 
 .userShowInfo{
     display: flex;
     align-items: center;
     margin: 20px 0px;
-    color: #333
+    color: white
 }
 
 .userShowIcon{
