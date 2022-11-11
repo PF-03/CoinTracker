@@ -49,14 +49,14 @@ const Portfolio = () => {
     var amount_val =(PortfolioData.current_USD_Amound - PortfolioData.lastValue);
     var percentage_value = (amount_val /PortfolioData.lastValue) *100;
     if (amount_val <= 0) {
-      UpPorcent.percentage = ""+numberFormat(-1*percentage_value,"compact") ;
+      UpPorcent.percentage = ""+numberFormat(-1*percentage_value,"compact").split("$")[1] ;
       UpPorcent.amount = ""+numberFormat(-1*amount_val,"compact") ;
       DownPorcent.amount = "0.00";
       DownPorcent.percentage = "0.0";
     } else {
       UpPorcent.percentage = "0.0";
       UpPorcent.amount = "0.00";
-      DownPorcent.amount = ""+numberFormat(amount_val,'standard').split("$")[1];
+      DownPorcent.amount = ""+numberFormat(amount_val,'standard').split("$")[1].split("$")[1];
       DownPorcent.percentage = ""+numberFormat(percentage_value,"compact").split("$")[1];
     }
   };
@@ -115,13 +115,13 @@ const Portfolio = () => {
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
             <div className={styles.main_value_container}>
 
-              <h2 id="main_value">$0,00</h2>
+              <h2 id="main_value">{numberFormat(PortfolioData.current_USD_Amound,"compact")}</h2>
               <button
                 onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
             </div>
             <h5>Texto</h5>
-            <h5 className={styles.redH5}>${"" + UpPorcent.amount}</h5>
+            <h5 className={styles.redH5}>{"" + UpPorcent.amount}</h5>
             <h6 className={styles.redH5}>{"" + UpPorcent.percentage}%</h6>
             <h5>Texto</h5>
             <h5 className={styles.greenH5}>${"" + DownPorcent.amount}</h5>
