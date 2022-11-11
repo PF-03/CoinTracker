@@ -272,7 +272,7 @@ function rootReducer(state = initialState, action: any) {
       return{
         ...state,
         donations: action.payload
-        
+    } 
 
     case "ALFABETICO":
       let orden;
