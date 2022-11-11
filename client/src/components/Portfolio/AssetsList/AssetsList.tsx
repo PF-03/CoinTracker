@@ -1,36 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./AssetsList.module.css";
-import { setMyAssets } from "../../../redux/actions";
+import { setMyAssets, alfabetico } from "../../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
 import Transaccion from "../../transaccion/transaccion";
-
+import az from "../../../assets/az.png";
 const AssetsList = ({ HandleTrClick, modal }) => {
   const dispatch = useDispatch<any>();
-  const allAssets = useSelector((state: any) => state.allactivos);
+  let allAssets = useSelector((state: any) => state.activos);
   const myWallet = useSelector((state: any) => state.walletData);
   const curretPage = useSelector((state: any) => state.currentAssetView);
+  const [ordenar, setOrdenar] = useState("false");
   const array = [];
-
   const filtro = myWallet.filter((el) =>
-    allAssets.filter((al) => {
-      if (el.name.toLowerCase() === al.name.toLowerCase()) {
+    allAssets?.filter((al) => {
+      if (el.id.toLowerCase() === al.id.toLowerCase()) {
         let moneda = {
           crypto: el.crypto,
           id: el.id,
-          name: el.name,
+          name: al.name,
           quantity: el.quantity,
           rank: el.rank,
           _id: el._id,
           current_price: al.current_price,
           symbol: al.symbol,
+          image: al.image,
         };
         array.push(moneda);
         return moneda;
       }
     })
   );
-  console.log(filtro);
+  console.log(allAssets);
   const HandleButtonsClick = (e) => {
     e.preventDefault();
     if (curretPage === "allAssets") {
@@ -47,20 +48,36 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       return array.push(data);
     }
   };
-
+  useEffect(() => {}, [dispatch]);
+  /*  const ordenarAZ = async (e) => {
+    e.preventDefault();
+    await setOrdenar("az");
+    await dispatch(alfabetico(ordenar));
+  };
+ */
   return (
     <div className={styles.assetsTableContainer}>
       <table className={styles.table}>
         <thead className={styles.tHeaders}>
           <tr>
-            <th>Name</th>
+            <th className={styles.tit}>
+              {/* {(ordenar === "false" || ordenar === "az") && (
+                <img
+                  src={az}
+                  alt="az"
+                  className={styles.img}
+                  onClick={ordenarAZ}
+                />
+              )} */}
+              Name
+            </th>
             <th>Price</th>
             <th>24h</th>
             <th>USD$</th>
           </tr>
         </thead>
         <tbody>
-          {(curretPage == "myAssets" ? array : allAssets).map((el) => {
+          {(curretPage == "myAssets" ? array : allAssets)?.map((el) => {
             return (
               <tr
                 key={el.rank}
@@ -68,9 +85,13 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   curretPage == "myAssets" ? styles.trespeClick : ""
                 }`}
               >
-                <th onClick={() => HandleTrClick(el.id)} className={styles.imageTh}>
+                <th
+                  onClick={() => HandleTrClick(el.id)}
+                  className={styles.imageTh}
+                >
                   <img src={el.image} alt="" />
-                  {el.name}</th>
+                  {el.name}
+                </th>
                 <th>
                   {numberFormat(el.current_price, "standard", "decimal") +
                     " US$"}
@@ -96,11 +117,11 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     "0.000 USD"
                   )}
                   {curretPage == "myAssets" ? (
-                    <button name={el.name} onClick={() => modal(el.name)}>
+                    <button name={el.name} onClick={() => modal(el.id)}>
                       +
                     </button>
                   ) : (
-                    <button name={el.name} onClick={() => modal(el.name)}>
+                    <button name={el.name} onClick={() => modal(el.id)}>
                       O
                     </button>
                   )}

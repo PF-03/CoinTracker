@@ -12,15 +12,13 @@ export default function Transaccion({ isOpen, close }) {
   const modalName = useSelector((state: any) => state.nameTransaccion);
   const user = useSelector((state: any) => state.user);
 
-  /*   useEffect(() => {}, []); */
-
   const precioMoneda = allAssets.filter(
-    (el: any) => el.name.toLowerCase() === modalName.toLowerCase()
+    (el: any) => el.id.toLowerCase() === modalName.toLowerCase()
   )[0];
   const existeWallet = myWallet.filter(
     (el: any) => el.name.toLowerCase() === modalName.toLowerCase()
   );
-  console.log(existeWallet);
+
   let precio = precioMoneda?.current_price;
 
   const dispatch: any = useDispatch();

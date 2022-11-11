@@ -6,6 +6,7 @@ import {
   setCurrentAssetView,
   setHistoryDataActivo,
   setNameTransaccion,
+  getNameActivos,
 } from "../../redux/actions";
 import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
@@ -19,13 +20,13 @@ const Portfolio = () => {
   const user = useSelector((state: any) => state.user);
 
   const [state, setState] = React.useState({
-    chartLoading:true,
+    chartLoading: true,
   });
   React.useEffect(() => {
     async function getDataAndChart() {
-      setState({...state,chartLoading:true})
+      setState({ ...state, chartLoading: true });
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
-      setState({...state,chartLoading:false})
+      setState({ ...state, chartLoading: false });
     }
     getDataAndChart();
   }, [dispatch]);
@@ -35,7 +36,7 @@ const Portfolio = () => {
   const AllHistoryValueData = useSelector(
     (state: any) => state.historyCoinsDataValue
   );
-  
+
   function copiarAlPortapapeles(name_elemento) {
     var aux = document.createElement("input");
     aux.setAttribute("value", document.getElementById(name_elemento).innerHTML);
@@ -56,13 +57,13 @@ const Portfolio = () => {
     var AssetById = AllHistoryValueData.filter((el) => el.coinId === id);
     if (AssetById.length === 0) {
       async function getAndRender() {
-        setState({...state,chartLoading:true})
+        setState({ ...state, chartLoading: true });
         await dispatch(
           getActivsHistoryValue({ coinId: id, vs_currency: "usd" })
         );
         setTimeout((e) => {
           dispatch(setHistoryDataActivo({ coinId: id, belongsWallet: false }));
-          setState({...state,chartLoading:false})
+          setState({ ...state, chartLoading: false });
         }, 1500);
       }
       getAndRender();
@@ -77,6 +78,10 @@ const Portfolio = () => {
     await dispatch(setNameTransaccion(modalName));
     await open();
   };
+  const handleOnChange = async (e) => {
+    e.preventDefault();
+    dispatch(getNameActivos(e.target.value, "", "", ""));
+  };
   return (
     <div className={styles.mainContainer}>
       <div className={styles.portfolioContainer}>
@@ -85,7 +90,9 @@ const Portfolio = () => {
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
             <div className={styles.main_value_container}>
               <h2 id="main_value">$0,00</h2>
-              <button onClick={()=>copiarAlPortapapeles("main_value")}></button>
+              <button
+                onClick={() => copiarAlPortapapeles("main_value")}
+              ></button>
             </div>
             <h5>Texto</h5>
             <h5 className={styles.redH5}>$0,00</h5>
@@ -93,9 +100,13 @@ const Portfolio = () => {
             <h5 className={styles.greenH5}>$0,00</h5>
           </div>
           <div className={styles.chartContainer}>
-            {state.chartLoading?(
-            <div className={styles.lds_ring}><div></div><div></div><div></div></div>):
-            (
+            {state.chartLoading ? (
+              <div className={styles.lds_ring}>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            ) : (
               <AreaChart
                 data={{
                   labels: ChartData["labels"] ? ChartData["labels"] : [],
@@ -120,9 +131,7 @@ const Portfolio = () => {
                   ],
                 }}
               ></AreaChart>
-            )
-          }
-          
+            )}
           </div>
         </div>
         <div className={styles.assetsContainer}>
@@ -151,7 +160,7 @@ const Portfolio = () => {
                 All Assets
               </button>
             </div>
-            <input type="text" />
+            <input type="text" onChange={(e) => handleOnChange(e)} />
           </div>
           <AssetsList HandleTrClick={HandleTrClick} modal={modal}></AssetsList>
         </div>

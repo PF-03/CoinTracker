@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 /*  import 'swiper/css/scrollbar';  */
 import style from "./carousel.module.css";
 import Card from "../card/card";
-import numberFormat from '../../utils/numberFormat.js';
+import numberFormat from "../../utils/numberFormat.js";
 
 
 export default function Carousel() {
@@ -17,7 +17,7 @@ export default function Carousel() {
   const activos = useSelector((state: any) => state.allactivos);
   const see = useSelector((state: any) => state.seeMore);
   const activosSlice = activos.slice(0, 6);
-
+  console.log(activos);
   useEffect(() => {
     dispatch(getActivos());
   }, [dispatch]);
@@ -42,7 +42,9 @@ export default function Carousel() {
                     id={el.id}
                     name={el.name}
                     image={el.image}
+
                     current_price={numberFormat(el.current_price, 'standard', 'decimal')}
+
                   />
                 </SwiperSlide>
               ))}
