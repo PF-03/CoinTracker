@@ -7,6 +7,7 @@ export const SwapModal = ({ modalState, setModalState, coin }) => {
   const dispatch = useDispatch<any>();
   const allActives: any = useSelector<any>((state) => state.activos);
   const [searchValue, setSearchValue] = useState('');
+  const walletData: any = useSelector<any>((state) => state.userWallet);
 
   useEffect(() => {
     if (!allActives.length) {
@@ -16,9 +17,17 @@ export const SwapModal = ({ modalState, setModalState, coin }) => {
 
   const filteredActives = () => {
     if (searchValue) {
+      if (modalState.data.user) {
+        return walletData.filter((active) =>
+          active.name.toLowerCase().includes(searchValue.toLowerCase())
+        );
+      }
       return allActives.filter((active) =>
         active.name.toLowerCase().includes(searchValue.toLowerCase())
       );
+    }
+    if (modalState.data.user) {
+      return walletData;
     }
     return allActives;
   };
@@ -62,7 +71,9 @@ export const SwapModal = ({ modalState, setModalState, coin }) => {
                     onClick={() => {
                       setModalState({
                         ...modalState,
-                        data: active,
+                        data: modalState.data.user
+                          ? { user: modalState.data.user, ...active }
+                          : active,
                         show: !modalState.show,
                       });
                       setSearchValue('');

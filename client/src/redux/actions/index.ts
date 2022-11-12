@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 /* import { json } from 'body-parser'; */
-import { latest } from "immer/dist/internal";
+// import { latest } from 'immer/dist/internal';
 
 export function getActivos() {
-  return async function (dispatch: any) {
-    var json = await axios("/activos", {});
+  return async function(dispatch: any) {
+    var json = await axios('/activos', {});
     return dispatch({
-      type: "GET_ACTIVOS",
+      type: 'GET_ACTIVOS',
       payload: json.data,
     });
   };
@@ -18,21 +18,21 @@ export function getNameActivos(
   maximo: any,
   divisa: any
 ) {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
       var json = await axios(
-        "/activos?name=" +
+        '/activos?name=' +
           name +
-          "&minimo=" +
+          '&minimo=' +
           minimo +
-          "&maximo=" +
+          '&maximo=' +
           maximo +
-          "&divisas=" +
+          '&divisas=' +
           divisa
       );
       //console.log(json.data);
       return dispatch({
-        type: "GET_NAME_ACTIVOS",
+        type: 'GET_NAME_ACTIVOS',
         payload: json.data,
       });
     } catch (e) {
@@ -42,11 +42,11 @@ export function getNameActivos(
 }
 
 export function getCotizaciones() {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
-      var json = await axios("/activos/cotizaciones");
+      var json = await axios('/activos/cotizaciones');
       return dispatch({
-        type: "GET_COTIZACIONES",
+        type: 'GET_COTIZACIONES',
         payload: json.data,
       });
     } catch (e) {
@@ -56,12 +56,12 @@ export function getCotizaciones() {
 }
 
 export function getNews() {
-  return function (dispatch) {
+  return function(dispatch) {
     fetch(`${import.meta.env.VITE_SERVER_API}/news`)
       .then((res) => res.json())
       .then((res) => {
         dispatch({
-          type: "GET_NEWS",
+          type: 'GET_NEWS',
           payload: res,
         });
       });
@@ -69,12 +69,12 @@ export function getNews() {
 }
 
 export function getUserId(id) {
-  return function (dispatch) {
+  return function(dispatch) {
     fetch(`${import.meta.env.VITE_SERVER_API}/users/${id}`)
       .then((res) => res.json())
       .then((res) => {
         dispatch({
-          type: "GET_USERID",
+          type: 'GET_USERID',
           payload: res,
         });
       });
@@ -83,63 +83,63 @@ export function getUserId(id) {
 
 export function getDetailsActivos(id: any) {
   return {
-    type: "GET_DETAILS_ACTIVOS",
+    type: 'GET_DETAILS_ACTIVOS',
     payload: id,
   };
 }
 export function getDetailsNews(id: string) {
   return {
-    type: "GET_DETAILS_NEWS",
+    type: 'GET_DETAILS_NEWS',
     payload: id,
   };
 }
 export function seeMore() {
   return {
-    type: "GET_SEEMORE",
+    type: 'GET_SEEMORE',
   };
 }
 
 export function setUserToken(token: any) {
   return {
-    type: "SET_USER_TOKEN",
+    type: 'SET_USER_TOKEN',
     payload: token,
   };
 }
 
 export function setUser(user: any) {
   return {
-    type: "SET_USER",
+    type: 'SET_USER',
     payload: user,
   };
 }
 
 export function postWallet(body) {
-  return async function (dispatch) {
-    const res = await axios.post("/wallet", body);
+  return async function(dispatch) {
+    const res = await axios.post('/wallet', body);
     return res;
   };
 }
 export function putWallet(body, id) {
-  return async function (dispatch) {
-    const res = await axios.put("/wallet/" + id, body);
+  return async function(dispatch) {
+    const res = await axios.put('/wallet/' + id, body);
     return res;
   };
 }
 
 export function postMail(data: any) {
-  return function (dispatch: any) {
+  return function(dispatch: any) {
     return fetch(`${import.meta.env.VITE_SERVER_API}/mail/`, {
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((res) => {
         dispatch({
-          type: "POST_MAIL",
+          type: 'POST_MAIL',
           payload: res,
         });
       });
@@ -148,7 +148,7 @@ export function postMail(data: any) {
 
 export function setExchangeHistory(history) {
   return {
-    type: "SET_EXCHANGE_HISTORY",
+    type: 'SET_EXCHANGE_HISTORY',
     payload: history,
   };
 }
@@ -156,12 +156,12 @@ export function setExchangeHistory(history) {
 export function getReminders(username: any) {
   return async (dispatch: any) => {
     return await axios
-      .post("/reminder/getreminders", {
+      .post('/reminder/getreminders', {
         user: username,
       })
       .then((res) => {
         dispatch({
-          type: "GET_REMINDERS",
+          type: 'GET_REMINDERS',
           payload: res.data,
         });
       });
@@ -170,76 +170,72 @@ export function getReminders(username: any) {
 
 export function setNotificationNumbers(numberOfNotifications) {
   return {
-    type: "SET_NOTIFICATIONS_NUMBER",
+    type: 'SET_NOTIFICATIONS_NUMBER',
     payload: numberOfNotifications,
   };
 }
 
 export function getAdmins() {
   //Obtener los admins registrados
-  return async function (dispatch) {
-    let json = await axios.get("/users/admins");
+  return async function(dispatch) {
+    let json = await axios.get('/users/admins');
     return dispatch({
-      type: "GET_ADMINS",
+      type: 'GET_ADMINS',
       payload: json.data,
     });
   };
 }
-export function searchUsers(allUsers,search, inputSelect){
-  let users =allUsers;
-  if (search){
-    users= users.filter((e:any)=>e.mail.includes(search))
+export function searchUsers(allUsers, search, inputSelect) {
+  let users = allUsers;
+  if (search) {
+    users = users.filter((e: any) => e.mail.includes(search));
   }
-  if(inputSelect == 'Active'){
-    users= users.filter((e:any)=>e.activos===true)
+  if (inputSelect == 'Active') {
+    users = users.filter((e: any) => e.activos === true);
   }
-  if(inputSelect=='Blocked'){
-    users= users.filter((e:any)=>e.activos===false)
+  if (inputSelect == 'Blocked') {
+    users = users.filter((e: any) => e.activos === false);
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === 'All Users') {
     users = users;
   }
-  console.log(users)
-  return function(dispatch){
-    return dispatch( {
-      type: "SEARCH_USERS",
-      payload: users
-    })
-  }
-  
+  console.log(users);
+  return function(dispatch) {
+    return dispatch({
+      type: 'SEARCH_USERS',
+      payload: users,
+    });
+  };
 }
-export function searchAdmins(allAdmins,search, inputSelect){
-  let admins =allAdmins;
-  if (search){
-    admins= admins.filter((e:any)=>e.name.includes(search))
+export function searchAdmins(allAdmins, search, inputSelect) {
+  let admins = allAdmins;
+  if (search) {
+    admins = admins.filter((e: any) => e.name.includes(search));
   }
-  if(inputSelect == 'Active'){
-    admins= admins.filter((e:any)=>e.activos===true)
+  if (inputSelect == 'Active') {
+    admins = admins.filter((e: any) => e.activos === true);
   }
-  if(inputSelect=='Blocked'){
-    admins= admins.filter((e:any)=>e.activos===false)
+  if (inputSelect == 'Blocked') {
+    admins = admins.filter((e: any) => e.activos === false);
   }
-  if(inputSelect==='All Users'){
+  if (inputSelect === 'All Users') {
     admins = admins;
   }
-  console.log(admins)
-  return function(dispatch){
-    return dispatch( {
-      type: "SEARCH_ADMINS",
-      payload: admins
-    })
-  }
-  
+  console.log(admins);
+  return function(dispatch) {
+    return dispatch({
+      type: 'SEARCH_ADMINS',
+      payload: admins,
+    });
+  };
 }
-
-
 
 export function getReviews() {
   //Obtener lo mensajes de feedback
-  return async function (dispatch) {
-    let json = await axios.get("/review"); // /review
+  return async function(dispatch) {
+    let json = await axios.get('/review'); // /review
     return dispatch({
-      type: "GET_REVIEWS",
+      type: 'GET_REVIEWS',
       payload: json.data,
     });
   };
@@ -247,21 +243,21 @@ export function getReviews() {
 
 export function getUsers() {
   //Obtener todos los patients
-  return async function (dispatch) {
-    let json = await axios.get("/users");
+  return async function(dispatch) {
+    let json = await axios.get('/users');
     return dispatch({
-      type: "GET_USERS",
+      type: 'GET_USERS',
       payload: json.data,
     });
   };
 }
 export function getUserProfile(id) {
   //Obtener el detalle de un patient
-  return async function (dispatch) {
+  return async function(dispatch) {
     console.log(id);
     let json = await axios.get(`/users/${id}`);
     return dispatch({
-      type: "GET_USER_PROFILE",
+      type: 'GET_USER_PROFILE',
       payload: json.data,
     });
   };
@@ -272,10 +268,10 @@ export function putProfileAdmin(id, dato) {
   dato = {
     ...dato,
   };
-  return async function (dispatch) {
+  return async function(dispatch) {
     let json = await axios.put(`/users/admin/` + id, dato);
     return dispatch({
-      type: "PUT_USER_PROFILE_ADMIN",
+      type: 'PUT_USER_PROFILE_ADMIN',
       payload: json.data,
     });
   };
@@ -283,27 +279,27 @@ export function putProfileAdmin(id, dato) {
 
 export function deleteUser(id) {
   //Borrar user
-  return async function (dispatch) {
+  return async function(dispatch) {
     const deleted = await axios.delete(`/users/${id}`);
     return dispatch({
-      type: "DELETE_USER",
+      type: 'DELETE_USER',
       payload: deleted,
     });
   };
 }
 
 export function getActivsHistoryValue(data: any) {
-  return function (dispatch: any) {
+  return function(dispatch: any) {
     fetch(
       `${import.meta.env.VITE_SERVER_API}/activos/historyValue` +
-        `?coinId=${data.coinId ? data.coinId : "bitcoin"}` +
-        `&vs_currency=${data.vs_currency ? data.vs_currency : "usd"}` +
-        `${data.userId ? `userId=$${data.userId}` : ""}`
+        `?coinId=${data.coinId ? data.coinId : 'bitcoin'}` +
+        `&vs_currency=${data.vs_currency ? data.vs_currency : 'usd'}` +
+        `${data.userId ? `userId=$${data.userId}` : ''}`
     )
       .then((data) => data.json())
       .then((res) => {
         dispatch({
-          type: "GET_ACTIV_HISTORY_VALUE",
+          type: 'GET_ACTIV_HISTORY_VALUE',
           payload: res,
         });
       });
@@ -311,13 +307,15 @@ export function getActivsHistoryValue(data: any) {
 }
 export function setHistoryDataActivo(data) {
   return {
-    type: "SET_HISTORY_DATA_ACTIVO",
+    type: 'SET_HISTORY_DATA_ACTIVO',
     payload: data,
   };
 }
 export function getWalletData(UserId) {
-  return async function (dispatch: any) {
-    await fetch(`${import.meta.env.VITE_SERVER_API}/wallet/${UserId}?showDeleted=false`)
+  return async function(dispatch: any) {
+    await fetch(
+      `${import.meta.env.VITE_SERVER_API}/wallet/${UserId}?showDeleted=false`
+    )
       .then((data) => data.json())
       .then((data) => {
         return data.map((el) => {
@@ -335,7 +333,9 @@ export function getWalletData(UserId) {
         var historyData = [];
         const newArray = data.map(async (element, index) => {
           const data = await fetch(
-            `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${element.crypto}&userId=${UserId}&vs_currency=usd`
+            `${import.meta.env.VITE_SERVER_API}/activos/historyValue?coinId=${
+              element.crypto
+            }&userId=${UserId}&vs_currency=usd`
           );
           const parsedData = await data.json();
           historyData.push(parsedData);
@@ -349,7 +349,7 @@ export function getWalletData(UserId) {
           }
         });
         var mainData = {
-          coinId: "All / USD",
+          coinId: 'All / USD',
           labels: [],
           datasets: [],
           days: MaxDay.max,
@@ -369,9 +369,9 @@ export function getWalletData(UserId) {
         return [data, mainData];
       })
       .then((res) => {
-        console.log(res, "soy actions");
+        console.log(res, 'soy actions');
         dispatch({
-          type: "GET_WALLET_DATA",
+          type: 'GET_WALLET_DATA',
           payload: res,
         });
       });
@@ -379,25 +379,63 @@ export function getWalletData(UserId) {
 }
 export function setMainChartData() {
   return {
-    type: "SET_MAIN_CHART_DATA",
-    payload: "",
+    type: 'SET_MAIN_CHART_DATA',
+    payload: '',
   };
 }
 export function setCurrentAssetView(name) {
   return {
-    type: "SET_CURRENT_ASSET_VIEW",
+    type: 'SET_CURRENT_ASSET_VIEW',
     payload: name,
   };
 }
 export function setMyAssets(data) {
   return {
-    type: "SET_MY_ASSETS",
+    type: 'SET_MY_ASSETS',
     payload: data,
   };
 }
 export function setNameTransaccion(data: String) {
   return {
-    type: "SET_N_TRANSACCION",
+    type: 'SET_N_TRANSACCION',
     payload: data,
+  };
+}
+
+export function getUserWallet(id) {
+  return async (dispatch) => {
+    const data = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/wallet/${id}?showDeleted=false`)
+      .then((res) => res.data);
+
+    const actives = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/activos`)
+      .then((res) => res.data);
+
+    const walletData = data.map((item) => {
+      if (item.quantity) {
+        return {
+          ...actives.find((active) => {
+            return active.name.toLowerCase() === item.crypto;
+          }),
+          quantity: item.quantity,
+          walletId: item._id,
+          history: item.history,
+          allActives: data,
+        };
+      }
+    });
+
+    for (let i = 0; i < walletData.length; i++) {
+      if (!walletData[i]) {
+        walletData.splice(i, 1);
+      }
+    }
+    walletData.dataLoaded = true;
+
+    return dispatch({
+      type: 'GET_USER_WALLET',
+      payload: walletData,
+    });
   };
 }
