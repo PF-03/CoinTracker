@@ -17,17 +17,16 @@ export default function UserList() {
     dispatch(getUsers());
   }, [dispatch, getUsers])
 
-  const allUsers = useSelector((state:any) => state.usersCopy);
-  const users = useSelector((state:any)=>state.users)
+  const allUsers = useSelector((state: any) => state.usersCopy);
 
   const handleDelete = (_id) => {
     dispatch(deleteUser(_id))
     alert("User successfully updated");
     window.location.reload()
   }
-   
 
-  const columns= [
+
+  const columns = [
     { field: 'id', headerName: 'ID', width: 50 },
     // { field: 'pic', headerName: 'Pic', width: 100, renderCell: (params)=>{
     //   return (
@@ -78,8 +77,7 @@ export default function UserList() {
   return (
 
     <div className={st.userList}>
-      <SearchBarUsers/>
-     
+      <SearchBarUsers />
       <DataGrid
         rows={userData}
         columns={columns}
@@ -94,7 +92,7 @@ export default function UserList() {
           },
         }}
       />
-     
+
     </div>
   )
 };

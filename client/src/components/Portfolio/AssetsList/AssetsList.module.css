@@ -11,6 +11,7 @@
     overflow-y: scroll;
 /*     margin-bottom: 5rem; */
 }
+
 .table{
     height: 100%;
 }
@@ -46,6 +47,7 @@
 .imageTh img{
     width: 50px;
     margin-right: 10px;
+ 
 }
 .imageTh{
     display: flex;
@@ -69,6 +71,7 @@
     cursor: pointer;
 }
 
+
 .tHeaders {
     position: sticky;
     top: 0;
@@ -80,11 +83,17 @@
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
+    width: 50px;
+  
 }
 .buttonTh{
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+.buttonTh button img:hover{
+    background-image: url(../../../assets/corazon2.png);
+    cursor: pointer;
 }
 table {
     width: 100%;
@@ -93,7 +102,18 @@ table {
 th {
     padding: 1rem 2rem;
 }
+.img{
+   margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 
+
+}
+.tit{
+    cursor: pointer;
+}
 th {
     text-align: start;
+  
 }

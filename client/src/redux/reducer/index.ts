@@ -10,10 +10,12 @@ const initialState = {
   historyDataActivo: {},
   historyCoinsDataValue: [],
   walletData: [],
+  favWallet: [],
   main_chart_data: [],
   detailsNews: {},
   seeMore: false,
-  nameTransaccion: '',
+  nameTransaccion: "",
+  portfolioData: { currentValue: 0, lastValue: 0 },
   // user: {},
   // userToken: '',
   admins: [],
@@ -22,8 +24,8 @@ const initialState = {
   users: [],
   usersCopy: [],
   userDetail: [],
-  userPut: '',
-
+  userPut: "",
+  donations: [],
   myAssets: [],
   currentAssetView: 'myAssets',
   cotizaciones: [],
@@ -125,7 +127,13 @@ function rootReducer(state = initialState, action: any) {
         adminsCopy: action.payload,
       };
     }
-    case 'GET_REVIEWS':
+    case "GET_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
+      };
+
+    case "GET_REVIEWS":
       return {
         ...state,
         reviews: action.payload,
@@ -198,9 +206,16 @@ function rootReducer(state = initialState, action: any) {
     case 'GET_WALLET_DATA': {
       return {
         ...state,
-        walletData: action.payload[0],
-        main_chart_data: action.payload[1],
-        historyDataActivo: action.payload[1],
+        walletData: action.payload,
+        favWallet: action.payload,
+      };
+    }
+    case "GET_MAIN_CHART_DATA": {
+      return {
+        ...state,
+        main_chart_data: action.payload[0],
+        historyDataActivo: action.payload[0],
+        portfolioData: action.payload[1],
       };
     }
     case 'SET_CURRENT_ASSET_VIEW': {
@@ -244,12 +259,13 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         notificationsNumber: action.payload,
       };
-    case 'SEARCH_USERS':
+
+    case "SEARCH_USERS":
       return {
         ...state,
         usersCopy: action.payload,
       };
-    case 'SEARCH_ADMINS':
+    case "SEARCH_ADMINS":
       return {
         ...state,
         admins: action.payload,
@@ -259,6 +275,72 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         nameTransaccion: action.payload,
+      };
+
+    case "ORDER_DONATIONS":
+      return {
+        ...state,
+        donations: action.payload,
+      };
+
+    case "ALFABETICO":
+      let ordenActivos;
+      let ordenWallet;
+      if (action.payload === true) {
+        ordenActivos = state.activos?.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+          }
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        ordenWallet = state.walletData?.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+          }
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        Promise.all(ordenActivos);
+        Promise.all(ordenWallet);
+      }
+      if (action.payload === false) {
+        ordenActivos = state.activos?.sort((a, b) => {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+          }
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        ordenWallet = state.walletData?.sort((a, b) => {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+          }
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        Promise.all(ordenActivos);
+        Promise.all(ordenWallet);
+      }
+
+      return {
+        ...state,
+        activos: [...ordenActivos],
+        walletData: [...ordenWallet],
+      };
+
+    case "FAVORITOS_WALLET":
+      return {
+        ...state,
+        favWallet: state.favWallet.concat(action.payload),
       };
 
     default:

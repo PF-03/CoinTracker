@@ -1,0 +1,39 @@
+.userList {
+    flex: 7;
+}
+
+.userListUser {
+    display: flex;
+    align-items: center;
+}
+
+.userListPic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.userListEdit {
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    background: hsla(263, 54%, 53%, 1);
+
+    background: linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(263, 54%, 53%, 1) 0%, hsla(236, 67%, 55%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#7745C8", endColorstr="#3D47D9", GradientType=1);
+    color: white;
+    cursor: pointer;
+}
+
+.userListDelete {
+    color: rgb(177, 32, 32);
+    cursor: pointer;
+}
