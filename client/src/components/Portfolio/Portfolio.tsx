@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getActivsHistoryValue,
@@ -15,10 +15,11 @@ import AssetsList from "./AssetsList/AssetsList";
 import Transaccion from "../transaccion/transaccion";
 import { OpenClose } from "../transaccion/openClose";
 import numberFormat from "../../utils/numberFormat";
-import {store} from "../../redux/store/store"
+import { store } from "../../redux/store/store";
 const Portfolio = () => {
   const dispatch: any = useDispatch<any>();
-  const [isOpen, open, close] = OpenClose();
+  let [isOpen, open, close] = OpenClose();
+
   const user = useSelector((state: any) => state.user);
 
   const [state, setState] = React.useState({
@@ -28,19 +29,24 @@ const Portfolio = () => {
     async function getDataAndChart() {
       setState({ ...state, chartLoading: true });
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
-      await dispatch(getMainChartData(user._id ? user._id : user[0]._id,store.getState().walletData))
+      await dispatch(
+        getMainChartData(
+          user._id ? user._id : user[0]._id,
+          store.getState().walletData
+        )
+      );
       setState({ ...state, chartLoading: false });
     }
     getDataAndChart();
   }, [dispatch]);
   var UpPorcent = {
-    amount:"0.00",
-    percentage:"0.0"
+    amount: "0.00",
+    percentage: "0.0",
   };
-  var DownPorcent ={
-    amount:"0.00",
-    percentage:"0.0"
-  }
+  var DownPorcent = {
+    amount: "0.00",
+    percentage: "0.0",
+  };
   const ChartData = useSelector((state: any) => state.historyDataActivo);
   const curretPage = useSelector((state: any) => state.currentAssetView);
   const PortfolioData = useSelector((state: any) => state.portfolioData);
@@ -49,18 +55,24 @@ const Portfolio = () => {
   );
 
   const percentage = () => {
-    var amount_val =(PortfolioData.current_USD_Amound - PortfolioData.lastValue);
-    var percentage_value = (amount_val /PortfolioData.lastValue) *100;
+    var amount_val = PortfolioData.current_USD_Amound - PortfolioData.lastValue;
+    var percentage_value = (amount_val / PortfolioData.lastValue) * 100;
     if (amount_val <= 0) {
-      UpPorcent.percentage = ""+numberFormat(-1*percentage_value,"compact").split("$")[1] ;
-      UpPorcent.amount = ""+numberFormat(-1*amount_val,"compact") ;
+      UpPorcent.percentage =
+        "" + numberFormat(-1 * percentage_value, "compact").split("$")[1];
+      UpPorcent.amount = "" + numberFormat(-1 * amount_val, "compact");
       DownPorcent.amount = "0.00";
       DownPorcent.percentage = "0.0";
     } else {
       UpPorcent.percentage = "0.0";
       UpPorcent.amount = "0.00";
-      DownPorcent.amount = ""+numberFormat(amount_val,'standard').split("$")[1].split("$")[1];
-      DownPorcent.percentage = ""+numberFormat(percentage_value,"compact").split("$")[1];
+      DownPorcent.amount =
+        "" +
+        numberFormat(amount_val, "standard")
+          .split("$")[1]
+          .split("$")[1];
+      DownPorcent.percentage =
+        "" + numberFormat(percentage_value, "compact").split("$")[1];
     }
   };
   percentage();
@@ -101,14 +113,22 @@ const Portfolio = () => {
     document.documentElement.scrollTop = 0;
   };
   let modalName: String;
-  const modal = async (e) => {
+
+  const modal = async (e, evento) => {
+    console.log(e, "soy e");
     modalName = await e;
     await dispatch(setNameTransaccion(modalName));
-    await open();
+    await open(evento);
   };
   const handleOnChange = async (e) => {
     e.preventDefault();
     dispatch(getNameActivos(e.target.value, "", "", ""));
+  };
+
+  const cerrar = async (e) => {
+    await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+    e.preventDefault();
+    await close();
   };
   return (
     <div className={styles.mainContainer}>
@@ -117,8 +137,9 @@ const Portfolio = () => {
         <div className={styles.dataContainer}>
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
             <div className={styles.main_value_container}>
-
-              <h2 id="main_value">{numberFormat(PortfolioData.current_USD_Amound,"compact")}</h2>
+              <h2 id="main_value">
+                {numberFormat(PortfolioData.current_USD_Amound, "compact")}
+              </h2>
               <button
                 onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
@@ -188,14 +209,14 @@ const Portfolio = () => {
                 onClick={(e) => HandleButtonClick(e)}
                 name="allAssets"
               >
-                All Assets
+                Add Assets
               </button>
             </div>
             <input type="text" onChange={(e) => handleOnChange(e)} />
           </div>
           <AssetsList HandleTrClick={HandleTrClick} modal={modal}></AssetsList>
         </div>
-        <Transaccion isOpen={isOpen} close={close} />
+        <Transaccion isOpen={isOpen} close={cerrar} />
       </div>
     </div>
   );
