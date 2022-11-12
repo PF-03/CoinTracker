@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./AssetsList.module.css";
-import { setMyAssets, alfabetico } from "../../../redux/actions";
+import { alfabetico, getWalletData } from "../../../redux/actions";
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
-import hearth from "../../../assets/amor.png"
-import Transaccion from "../../transaccion/transaccion";
+import hearth from "../../../assets/amor.png";
 import az from "../../../assets/az.png";
+
 const AssetsList = ({ HandleTrClick, modal }) => {
   const dispatch = useDispatch<any>();
   let allAssets = useSelector((state: any) => state.activos);
-  const myWallet = useSelector((state: any) => state.walletData);
+  let myWallet = useSelector((state: any) => state.walletData);
+  let fav = useSelector((state: any) => state.favWallet);
   const curretPage = useSelector((state: any) => state.currentAssetView);
-  const [ordenar, setOrdenar] = useState("false");
+  const [ordenar, setOrdenar] = useState(false);
+  const user = useSelector((state: any) => state.user);
+  const [mayor, setMayor] = useState(false);
   const array = [];
+
   const filtro = myWallet.filter((el) =>
-
     allAssets?.filter((al) => {
-
       if (el.id.toLowerCase() === al.id.toLowerCase()) {
         let moneda = {
           crypto: el.crypto,
@@ -28,12 +31,18 @@ const AssetsList = ({ HandleTrClick, modal }) => {
           current_price: al.current_price,
           symbol: al.symbol,
           image: al.image,
+          usd: numberFormat(
+            (el.quantity ? el.quantity : 0) * al.current_price,
+            "standard",
+            "decimal"
+          ),
         };
         array.push(moneda);
         return moneda;
       }
     })
   );
+  console.log(array);
 
   const HandleButtonsClick = (e) => {
     e.preventDefault();
@@ -51,27 +60,38 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       return array.push(data);
     }
   };
-  useEffect(() => {}, [dispatch]);
-  /*  const ordenarAZ = async (e) => {
+
+  const ordenarAZ = async (e) => {
     e.preventDefault();
-    await setOrdenar("az");
+    setOrdenar(!ordenar);
     await dispatch(alfabetico(ordenar));
   };
- */
+
+  const favorito = async (el, e) => {
+    e.preventDefault();
+    let comprobar = myWallet.filter(
+      (elemento) => elemento.crypto.toLowerCase() === el.id.toLowerCase()
+    );
+    let existeFavorito = fav.filter(
+      (ele) => ele.crypto.toLowerCase() === el.id.toLowerCase()
+    );
+    if (comprobar.length === 0 && existeFavorito.length === 0) {
+      let fav = {
+        crypto: el.id,
+        quantity: 0,
+        user: user?._id ? user._id : user[0]._id,
+        history: { date: new Date(Date.now()), quantity: 0 },
+      };
+      await axios.post("/wallet", fav);
+    }
+    await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+  };
   return (
     <div className={styles.assetsTableContainer}>
       <table className={styles.table}>
         <thead className={styles.tHeaders}>
           <tr>
-            <th className={styles.tit}>
-              {/* {(ordenar === "false" || ordenar === "az") && (
-                <img
-                  src={az}
-                  alt="az"
-                  className={styles.img}
-                  onClick={ordenarAZ}
-                />
-              )} */}
+            <th className={styles.tit} onClick={(e) => ordenarAZ(e)}>
               Name
             </th>
             <th>Price</th>
@@ -104,11 +124,8 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   {curretPage == "myAssets" ? (
                     <div className={styles.usd}>
                       <label>
-                        {numberFormat(
-                          (el.quantity ? el.quantity : 0) * el.current_price,
-                          "standard",
-                          "decimal"
-                        ) + " US$"}
+                        {`${el.usd} US$
+                      `}
                       </label>
                       <label className={styles.quantity}>
                         {(el.quantity ? el.quantity : 0) +
@@ -120,14 +137,15 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     "0.000 USD"
                   )}
                   {curretPage == "myAssets" ? (
-                    <button name={el.name} onClick={() => modal(el.id)}>
-                      +
-                    </button>
+                    <div>
+                      <button name={el.name} onClick={(e) => modal(el.id, e)}>
+                        +
+                      </button>
+                      <button name={el.name}>-</button>
+                    </div>
                   ) : (
-                    <button name={el.name} onClick={() => modal(el.id)}>
-
+                    <button name={el.name} onClick={(e) => favorito(el, e)}>
                       <img src={hearth} alt="corazon" />
-
                     </button>
                   )}
                 </th>
