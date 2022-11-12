@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import diseño from "./transaccion.module.css";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_orange.css";
 import swap from "../../assets/iconSwap.png";
 import Button from "../styles/button";
-import { postWallet, putWallet } from "../../redux/actions";
+import axios from "axios";
+import Swal from "sweetalert2";
 export default function Transaccion({ isOpen, close }) {
   const myWallet = useSelector((state: any) => state.walletData);
   const allAssets = useSelector((state: any) => state.allactivos);
@@ -62,7 +63,22 @@ export default function Transaccion({ isOpen, close }) {
     e.preventDefault();
     setCambio(!cambio);
   };
-  const handleSubmit = async () => {
+  let enviarr = async (body: any) => {
+    try {
+      await axios.post("/wallet", body).then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Transaction send ",
+          confirmButtonText: "Ok!",
+        });
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     if (existeWallet.length === 0) {
       let body = {
         crypto: modalName.toLowerCase(),
@@ -75,8 +91,8 @@ export default function Transaccion({ isOpen, close }) {
           },
         ],
       };
-
-      await dispatch(postWallet(body));
+      await enviarr(body);
+      await close(e);
     } else {
       let body = {
         crypto: modalName.toLowerCase(),
@@ -99,85 +115,103 @@ export default function Transaccion({ isOpen, close }) {
             ),
         },
       };
-      await dispatch(
-        putWallet(
-          body,
-          existeWallet._id ? existeWallet._id : existeWallet[0]._id
+      await axios
+        .put(
+          "/wallet/" +
+            (existeWallet[0]._id ? existeWallet[0]._id : existeWallet._id),
+          body
         )
-      );
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Transaction send ",
+            confirmButtonText: "Ok!",
+          });
+        });
+      await close(e);
     }
-    close();
   };
 
   return (
     <div className={`${diseño.contenedor} ${isOpen && diseño.open}`}>
-      <div>
-        <img src={swap} alt="cambiar" onClick={cambios} />
-        <label></label>
-        <form>
-          <div className={diseño.boxTexto}>
-            <p>{cambio === false ? "Precio por moneda" : "Total gastado"}</p>
-            <div className={diseño.info}>
-              <input
-                className={diseño.input}
-                placeholder={
-                  cambio === false ? cambioWallet.precio : cambioWallet.gastado
-                }
-                type="number"
-                name={cambio === false ? "precio" : "gastado"}
-                onChange={handleOnChange}
-              />
-              <label>USD</label>
-            </div>
+      <form className={diseño.formulario}>
+        <div className={diseño.divCambio}>
+          <img src={swap} alt="cambiar" onClick={cambios} />
+          <label className={diseño.cambia}>
+            Cambia a {cambio === false ? "Precio por moneda" : "Total gastado"}{" "}
+          </label>
+        </div>
+        <div className={diseño.boxTexto}>
+          <p>{cambio === false ? "Precio por moneda" : "Total gastado"}</p>
+          <div className={diseño.info}>
+            <input
+              className={diseño.input}
+              placeholder={
+                cambio === false ? cambioWallet.precio : cambioWallet.gastado
+              }
+              type="number"
+              name={cambio === false ? "precio" : "gastado"}
+              onChange={handleOnChange}
+            />
+            <label>USD</label>
           </div>
+        </div>
 
-          <div className={diseño.boxTexto}>
-            <p>Cantidad</p>
-            <div className={diseño.info}>
-              <input
-                className={diseño.input}
-                placeholder="1"
-                type="number"
-                name="quantity"
-                onChange={handleOnChange}
-              />
-              <label>{precioMoneda?.symbol.toUpperCase()}</label>
-            </div>
+        <div className={diseño.boxTexto}>
+          <p>Cantidad</p>
+          <div className={diseño.info}>
+            <input
+              className={diseño.input}
+              placeholder="1"
+              type="number"
+              name="quantity"
+              onChange={handleOnChange}
+            />
+            <label>{precioMoneda?.symbol.toUpperCase()}</label>
           </div>
+        </div>
 
-          <div className={diseño.boxTexto}>
-            <p>{cambio === false ? "Total gastado" : "Precio por moneda"}</p>
-            <div className={diseño.info}>
-              <input
-                className={diseño.input}
-                placeholder={
-                  cambio === false ? cambioWallet.gastado : cambioWallet.precio
-                }
-                type="number"
-                disabled={true}
-              />
-              <label>USD</label>
-            </div>
+        <div className={diseño.boxTexto}>
+          <p>{cambio === false ? "Total gastado" : "Precio por moneda"}</p>
+          <div className={diseño.infoInvalido}>
+            <input
+              className={diseño.input}
+              placeholder={
+                cambio === false ? cambioWallet.gastado : cambioWallet.precio
+              }
+              type="number"
+              disabled={true}
+            />
+            <label>USD</label>
           </div>
+        </div>
 
-          <div className={diseño.boxTexto}>
-            <p>Fecha</p>
-            <div className={diseño.info}>
-              <Flatpickr
-                className={diseño.date}
-                value={wallet.date}
-                onChange={([dates]) => {
-                  setWallet({ ...wallet, date: dates });
-                }}
-              />
-            </div>
+        <div className={diseño.boxTexto}>
+          <p>Fecha</p>
+          <div className={diseño.info}>
+            <Flatpickr
+              className={diseño.date}
+              value={wallet.date}
+              onChange={([dates]) => {
+                setWallet({ ...wallet, date: dates });
+              }}
+            />
           </div>
-          <Button gradient onClick={handleSubmit}>
+        </div>
+        <div>
+          <Button gradient onClick={(e) => handleSubmit(e)}>
             Guardar
           </Button>
-          <Button>Cancelar</Button>
-        </form>
-      </div>
+          <Button
+            onClick={async (e) => {
+              e.preventDefault();
+              await close(e);
+            }}
+          >
+            Cancelar
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }
