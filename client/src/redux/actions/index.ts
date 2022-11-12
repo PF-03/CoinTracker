@@ -248,10 +248,10 @@ export function searchAdmins(allAdmins, search, inputSelect) {
   }
 
 }
-export function orderDonations(input, allDonations, copy) {
+export function orderDonations(input, allDonations) {
   let donations=allDonations
   if(input==='Untidy'){
-    donations=[...copy];
+    donations=allDonations.sort(function(){return Math.random()-0.5})
   }
   if (input === 'Descendant') {
     donations.sort(function (a, b) {

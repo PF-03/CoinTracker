@@ -13,7 +13,7 @@ import css from '../DonationsList/DonationsList.module.css';
 export default function DonationsList() {
 
     const dispatch: any = useDispatch();
-
+    
     const allDonations = useSelector((state: any) => state.donations);
     
     
@@ -22,20 +22,14 @@ export default function DonationsList() {
         dispatch(getDonations());
         
     }, [dispatch])
-    const copy = useSelector((state:any)=> state.donationsCopy)
     
     
     
-    const columns = [
-        { field: 'id', headerName: 'ID', width: 50 },
-        { field: '_id', headerName: 'User ID', width: 250 },
-        { field: 'username', headerName: 'Username', width: 200 },
-        { field: 'mail', headerName: 'Email', width: 250 },
-        { field: 'amount', headerName: 'Amount', type: 'date', width: 200 }
-    ];
+    
+   
     function Handle() {
         const input = document.getElementById('selectDonations') as HTMLInputElement | null;
-        dispatch(orderDonations(input.value, allDonations, copy));
+        dispatch(orderDonations(input.value, allDonations));
         // this.forceUpdate();
         //console.log(allDonations)
     }

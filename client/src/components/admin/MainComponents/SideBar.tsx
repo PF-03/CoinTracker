@@ -24,11 +24,13 @@ export default function SideBar() {
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
               <Link to='/admin' className={st.link}>
-                <HomeIcon className={st.sidebarIcon} />
-                Home
+              <li >
+              <TimeLineIcon className={st.sidebarIcon} />
+              Analytics
+            </li>
               </Link>
             </li>
-          
+           
             {/* <li className={st.sidebarListItem}>
               <TrendingUpIcon className={st.sidebarIcon}/>
               Sales
