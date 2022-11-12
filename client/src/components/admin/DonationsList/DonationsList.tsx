@@ -17,19 +17,13 @@ export default function DonationsList() {
     const allDonations = useSelector((state: any) => state.donations);
     
     
-   
-    let userData = allDonations.map((pat, index) => ({
-        id: index + 1,
-        _id: pat._id,
-        username: pat.username,
-        mail: pat.mail,
-        amount: pat.amount,
-    }));
-    
+
     useEffect(() => {
         dispatch(getDonations());
         
     }, [dispatch])
+    const copy = useSelector((state:any)=> state.donationsCopy)
+    
     
     
     const columns = [
@@ -41,7 +35,7 @@ export default function DonationsList() {
     ];
     function Handle() {
         const input = document.getElementById('selectDonations') as HTMLInputElement | null;
-        dispatch(orderDonations(input.value, allDonations));
+        dispatch(orderDonations(input.value, allDonations, copy));
         // this.forceUpdate();
         //console.log(allDonations)
     }
@@ -50,20 +44,30 @@ export default function DonationsList() {
     return (
         <div className={st.userList}>
             <div >
-            <select id='selectDonations' onChange={Handle}>
-               
-                <option>Mayor a Menor</option>
-                <option>Menor a Mayor</option>
-            </select>
+                <span>
+                    <select id='selectDonations' onChange={Handle} className={css.selectDon}>
+                        <option>Untidy</option>
+                        <option>Descendant</option>
+                        <option>Ascendant</option>
+                    </select>
+            </span>
             </div>
+            <div className={css.containerDon}>
             <table className={css.tableDon}>
                 <tbody>
+            <tr>
+                <div>
+                    <td className={css.tdDon}>Username</td>
+                    <td className={css.tdDon}>Mail</td>
+                    <td className={css.tdDon}>Amount</td>
+                </div>
+            </tr>
            {
            
             allDonations?.map((e:any)=>{
                 console.log(allDonations)
                 return(
-                    <tr className={css.trDon}>
+                    <tr >
                     <Donation
                     id={e._id}
                     username={e.username}
@@ -75,6 +79,7 @@ export default function DonationsList() {
            }
            </tbody>
             </table>
+            </div>
             <DonationChart />
 
         </div>

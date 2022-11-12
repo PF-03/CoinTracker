@@ -28,10 +28,7 @@ export default function SideBar() {
                 Home
               </Link>
             </li>
-            <li className={st.sidebarListItem}>
-              <TimeLineIcon className={st.sidebarIcon} />
-              Analytics
-            </li>
+          
             {/* <li className={st.sidebarListItem}>
               <TrendingUpIcon className={st.sidebarIcon}/>
               Sales

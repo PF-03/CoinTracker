@@ -10,21 +10,17 @@ const Donation =({id, username, mail, amount})=>{
         
        <div key={id}>
      
-        <div >
-            <div className={css.tdDon} >
-                <span >
-                    <td >
-                    {username}
-                    </td>
-                    <td >
-                    {mail}
-                    </td>
-                    <td >
-                    {amount}
-                    </td>
-                </span>
-            </div>
-        </div>
+        
+            <td className={css.tdDon}>
+                {username}
+            </td>
+            <td className={css.tdDon}>
+                {mail}
+            </td>
+            <td className={css.tdDon}>
+                {amount}
+            </td>
+        
         
    
        </div>

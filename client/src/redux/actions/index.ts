@@ -248,11 +248,13 @@ export function searchAdmins(allAdmins, search, inputSelect) {
   }
 
 }
-export function orderDonations(input, allDonations) {
-  
-  
-  if (input === 'Mayor a Menor') {
-    allDonations.sort(function (a, b) {
+export function orderDonations(input, allDonations, copy) {
+  let donations=allDonations
+  if(input==='Untidy'){
+    donations=[...copy];
+  }
+  if (input === 'Descendant') {
+    donations.sort(function (a, b) {
       if (a.amount < b.amount) {
         return 1;
       }
@@ -262,8 +264,8 @@ export function orderDonations(input, allDonations) {
       return 0;
     })
   }
-  if (input === 'Menor a Mayor') {
-    allDonations.sort(function (a, b) {
+  if (input === 'Ascendant') {
+    donations.sort(function (a, b) {
       if (a.amount < b.amount) {
         return -1;
       }
@@ -276,7 +278,7 @@ export function orderDonations(input, allDonations) {
   return async function (dispatch) {
     return dispatch({
       type: "ORDER_DONATIONS",
-      payload: allDonations
+      payload: donations
     })
   }
 

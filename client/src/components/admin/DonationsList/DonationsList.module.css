@@ -37,15 +37,48 @@
     color: rgb(177, 32, 32);
     cursor: pointer;
 }
-.trDon{
-    height: 10px;
-    border: solid white;
-}
-.tdDon{
-    border-bottom: solid white;
+
+
+.containerDon {
+    margin: 1rem auto;
+    width: 700px;
+    height: 300px;
+    overflow: auto;
+    overflow-y: scroll;
+
 }
 
 .tableDon{
-    height: 400px;
-    border: solid white;
+    padding: 5px;
+    width: 100%;
+    border-collapse: collapse;
+    
+    text-align: center;
+    border-collapse: collapse;
+   
 }
+
+
+.tdDon {
+    
+    letter-spacing: 1px;
+    padding:5px;
+    word-break: break-word;
+    width: 400px;
+    border:solid 1px white;
+    margin: 0;
+    
+    
+    
+}
+.selectDon{
+    height: 30px;
+    border-style: hidden;
+    background-color: #3f3e3e;
+    border-radius: 16px;
+    padding: 5px;
+    margin-left: 30px;
+}
+
+
+

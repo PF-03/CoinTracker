@@ -25,7 +25,7 @@ const initialState = {
   userDetail: [],
   userPut: "",
   donations: [],
-  
+  donationsCopy:[],
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -126,7 +126,7 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         donations: action.payload,
-        
+        donationsCopy: action.payload,
         
       };
       
