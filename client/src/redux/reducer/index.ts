@@ -10,11 +10,12 @@ const initialState = {
   historyDataActivo: {},
   historyCoinsDataValue: [],
   walletData: [],
+  favWallet: [],
   main_chart_data: [],
   detailsNews: {},
   seeMore: false,
   nameTransaccion: "",
-  portfolioData:{currentValue:0,lastValue:0,},
+  portfolioData: { currentValue: 0, lastValue: 0 },
   // user: {},
   // userToken: '',
   admins: [],
@@ -25,7 +26,9 @@ const initialState = {
   userDetail: [],
   userPut: "",
   donations: [],
+
   donationsCopy:[],
+
   myAssets: [],
   currentAssetView: "myAssets",
   cotizaciones: [],
@@ -126,10 +129,12 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         donations: action.payload,
+
         donationsCopy: action.payload,
         
+
       };
-      
+
     case "GET_REVIEWS":
       return {
         ...state,
@@ -204,9 +209,7 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         walletData: action.payload,
-        /* main_chart_data: action.payload[1],
-        historyDataActivo: action.payload[1],
-        portfolioData:action.payload[2] */
+        favWallet: action.payload,
       };
     }
     case "GET_MAIN_CHART_DATA": {
@@ -214,7 +217,7 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         main_chart_data: action.payload[0],
         historyDataActivo: action.payload[0],
-        portfolioData:action.payload[1]
+        portfolioData: action.payload[1],
       };
     }
     case "SET_CURRENT_ASSET_VIEW": {
@@ -276,18 +279,20 @@ function rootReducer(state = initialState, action: any) {
       };
 
     case "ORDER_DONATIONS":
-     
-      return{
+      return {
         ...state,
+
 
         donations: [...action.payload]
         
       }
 
+
     case "ALFABETICO":
-      let orden;
-      if (action.payload === "az") {
-        orden = state.activos?.sort((a, b) => {
+      let ordenActivos;
+      let ordenWallet;
+      if (action.payload === true) {
+        ordenActivos = state.activos?.sort((a, b) => {
           if (a.name.toLowerCase() > b.name.toLowerCase()) {
             return 1;
           }
@@ -296,11 +301,51 @@ function rootReducer(state = initialState, action: any) {
           }
           return 0;
         });
-        console.log(orden, "soy orden");
+        ordenWallet = state.walletData?.sort((a, b) => {
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return 1;
+          }
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        Promise.all(ordenActivos);
+        Promise.all(ordenWallet);
       }
+      if (action.payload === false) {
+        ordenActivos = state.activos?.sort((a, b) => {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+          }
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        ordenWallet = state.walletData?.sort((a, b) => {
+          if (b.name.toLowerCase() > a.name.toLowerCase()) {
+            return 1;
+          }
+          if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            return -1;
+          }
+          return 0;
+        });
+        Promise.all(ordenActivos);
+        Promise.all(ordenWallet);
+      }
+
       return {
         ...state,
-        activos: orden,
+        activos: [...ordenActivos],
+        walletData: [...ordenWallet],
+      };
+
+    case "FAVORITOS_WALLET":
+      return {
+        ...state,
+        favWallet: state.favWallet.concat(action.payload),
       };
 
     default:
