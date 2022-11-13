@@ -1,22 +1,50 @@
+import React from 'react'
 import st from './Chart.module.css'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { getUsers } from '../../../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import AreaChart from '../../Charts/AreaChart';
 
-export default function Chart({ title, data, dataKey, grid }) {
+export default function Chart() {
+    const dispatch: any = useDispatch<any>();
 
+    dispatch(getUsers)
+
+    React.useEffect(() => {
+        dispatch(getUsers());
+    }, [dispatch, getUsers])
+
+    const allUsers = useSelector((state: any) => state.users);
+    const dataChart = () => {
+        let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        allUsers.forEach((element) => {
+            let month = element.createdAt.split('-')[1]
+            console.log(month, element.name)
+            dataSets[month - 1]++
+        });
+        console.log(dataSets)
+        return [labels, dataSets];
+    }
+    const data = dataChart();
     return (
-
         <div className={st.chart}>
 
-            <h3 className={st.chartTitle}>{title}</h3>
-            <ResponsiveContainer width="100%" aspect={4 / 1}>
-                <LineChart data={data}>
-                    <XAxis dataKey="name" stroke="#5550bd" />
-                    <YAxis />
-                    <Line type='monotone' dataKey={dataKey} stroke="#5550bd" />
-                    <Tooltip />
-                    {grid && <CartesianGrid stroke="#e0dfdf" strokeDasharray="5 5" />}
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
+            <h3 className={st.chartTitle}>USER ANALYTICS</h3>
+            <AreaChart
+                data={{
+                    labels: data[0] ? data[0] : [],
+                    datasets: [
+                        {
+                            fill: false,
+                            label: 'Users',
+                            data: data[1] ? data[1] : [],
+                            borderColor: 'violet',
+                            backgroundColor: 'black'
+                        },
+                    ],
+                }}
+            ></AreaChart>
+        </div >
     )
 }

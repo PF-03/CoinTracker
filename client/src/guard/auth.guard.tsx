@@ -25,6 +25,20 @@ export const AuthGuard = () => {
       }
     }
 
+    if (!data.user.type) {
+      // console.log("si entro a este condicional");
+      axios
+        .get("/validate/" + data.user._id)
+        .then((json) => {
+          return json.data;
+        })
+        .then((info) => {
+          // console.log(typeof info.value);
+          dispatch(setUser({ ...data.user, type: info.value }));
+        })
+        .catch();
+    }
+
     login();
   }, []);
 

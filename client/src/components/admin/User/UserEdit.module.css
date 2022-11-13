@@ -19,21 +19,28 @@
 }
 
 .userUpdateItem{
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
+    margin: 15px;
+    padding: 1rem;
+    background-color: #3F3E3E;
+    border-radius: 1rem;
+    border: none;
+    color: #EFEFEF;
+    height: 71px;
 }
 
 .userUpdateItem>label{
-    margin-bottom: 5px;
-    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 4px;
 }
 
 .userUpdateInput{
+    margin: 0;
+    padding: .7rem 2rem;
+    background-color: #3F3E3E;
+    border-radius: 2rem;
     border: none;
-    width: 250px;
-    height: 17px;
-    border-bottom: 1px solid grey;
+    color: #EFEFEF;
+    text-align: center;
 }
 
 .userUpdateRight{
@@ -43,18 +50,18 @@
     align-items: center;
 }
 
-.userUpdateUpload{
+/* .userUpdateUpload{
     display: flex;
     align-items: center;
-}
+} */
 
-.userUpdateImg{
+/* .userUpdateImg{
     width: 200px;
     height: 200px;
     border-radius: 20px;
     object-fit: cover;
     margin-right: 20px;
-}
+} */
 
 /* .userUpdateIcon{
     cursor: pointer;
