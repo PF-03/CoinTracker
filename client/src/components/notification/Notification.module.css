@@ -27,7 +27,21 @@
 }
 
 .notification-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  z-index: 100;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.notification-counter p {
+  font-size: 12px;
+  margin: 0;
 }
 
 .create-alert {
