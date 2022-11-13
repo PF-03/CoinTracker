@@ -15,7 +15,6 @@ export const AdminGuard = () => {
         return json.data;
       })
       .then((info) => {
-        console.log(typeof info.value);
         setVal(info.value);
       })
       .catch();
