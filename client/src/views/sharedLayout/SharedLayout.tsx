@@ -35,9 +35,11 @@ function SharedLayout() {
         <Sidebar />
       </div>
       <ChatSocket />
+
       <div className={s.outlet}>
         <Outlet />
       </div>
+
     </div>
   );
 }

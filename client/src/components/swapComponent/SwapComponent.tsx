@@ -96,6 +96,7 @@ export default function SwapComponent() {
 
   return (
     <div className={style.view}>
+      <Bubble color="blue-light" size="large" left='10vw' top='-30%' />
       <div>
         <SwapModal
           modalState={coinOneState}

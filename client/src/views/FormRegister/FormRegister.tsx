@@ -4,10 +4,11 @@ import "./FormRegister.css";
 import Button from "../../components/styles/button";
 import { useDispatch } from "react-redux";
 import { setUserToken } from "../../redux/actions/index";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import eyeOpen from '../../assets/eye-opened.png'
 import eyeClosed from '../../assets/eye-closed.png'
+import Bubble from "../../components/styles/bubbles";
 
 function FormRegister() {
   const [inputs, setInputs] = useState({
@@ -158,38 +159,41 @@ function FormRegister() {
     const id = e.target.id;
     let eye;
     let passwordInput;
-    switch(id) {
-        case 'passwordEye':
-            eye = document.getElementById(id);
-            passwordInput = document.getElementById('password');
-            setEyeState(!eyeState);
-            if(eyeState) {
-                eye.src = eyeOpen;
-                passwordInput.setAttribute("type", "password");
-            } else {
-                eye.src = eyeClosed;
-                passwordInput.setAttribute("type", "text");
-            }
-            break;
-        case 'confirmPasswordEye':
-            eye = document.getElementById(id);
-            passwordInput = document.getElementById('passwordConfirm');
-            setEyeState(!eyeState);
-            if(eyeState) {
-                eye.src = eyeOpen;
-                passwordInput.setAttribute("type", "password");
-            } else {
-                eye.src = eyeClosed;
-                passwordInput.setAttribute("type", "text");
-            }
-            break;
-        default:
-            break;
+    switch (id) {
+      case 'passwordEye':
+        eye = document.getElementById(id);
+        passwordInput = document.getElementById('password');
+        setEyeState(!eyeState);
+        if (eyeState) {
+          eye.src = eyeOpen;
+          passwordInput.setAttribute("type", "password");
+        } else {
+          eye.src = eyeClosed;
+          passwordInput.setAttribute("type", "text");
+        }
+        break;
+      case 'confirmPasswordEye':
+        eye = document.getElementById(id);
+        passwordInput = document.getElementById('passwordConfirm');
+        setEyeState(!eyeState);
+        if (eyeState) {
+          eye.src = eyeOpen;
+          passwordInput.setAttribute("type", "password");
+        } else {
+          eye.src = eyeClosed;
+          passwordInput.setAttribute("type", "text");
+        }
+        break;
+      default:
+        break;
     }
   }
 
   return (
     <div className="signUpContainer">
+      <Bubble right='-20%' top='-50%' />
+      <Bubble color="blue-light" size="small" left='5rem' top='3rem' />
+      <Bubble color="red" size="medium" bottom={'-2rem'} right='20vw' />
       <h2>Create your account:</h2>
 
       <button className="googleSignUp" onClick={google}>
@@ -260,10 +264,10 @@ function FormRegister() {
         )}
 
         <div className="password-label-eye">
-            <label className="registerFormLabel" htmlFor="password">
+          <label className="registerFormLabel" htmlFor="password">
             Password:{" "}
-            </label>
-            <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon"/>
+          </label>
+          <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon" />
         </div>
         <input
           required
@@ -280,10 +284,10 @@ function FormRegister() {
         )}
 
         <div className="password-label-eye">
-            <label className="registerFormLabel" htmlFor="passwordConfirm">
+          <label className="registerFormLabel" htmlFor="passwordConfirm">
             Confirm password:{" "}
-            </label>
-            <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon"/>
+          </label>
+          <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon" />
         </div>
         <input
           className="registerFormInput"
@@ -310,7 +314,7 @@ function FormRegister() {
       </form>
 
       <p className="loginText">
-        Already have an account? <a href="">Login</a>
+        Already have an account? <Link to='/login'>Login</Link>
       </p>
     </div>
   );
