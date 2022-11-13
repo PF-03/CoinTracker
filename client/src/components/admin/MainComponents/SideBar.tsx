@@ -22,15 +22,16 @@ export default function SideBar() {
           <h3 className={st.sidebarTitle}>Admin Dashboard</h3>
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
-              <Link to="/admin" className={st.link}>
-                <HomeIcon className={st.sidebarIcon} />
-                Home
-              </Link>
-            </li>
-            <li className={st.sidebarListItem}>
+
+              <Link to='/admin' className={st.link}>
+              <li >
+
               <TimeLineIcon className={st.sidebarIcon} />
               Analytics
             </li>
+              </Link>
+            </li>
+           
             {/* <li className={st.sidebarListItem}>
               <TrendingUpIcon className={st.sidebarIcon}/>
               Sales

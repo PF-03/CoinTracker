@@ -231,20 +231,16 @@ export function searchAdmins(allAdmins, search, inputSelect) {
     });
   };
 }
-export function orderDonations(input, allDonations) {
-  let donations_ = allDonations;
-  if (input === "Normal") {
-    return async function(dispatch) {
-      let json = await axios.get("/donate");
 
-      return dispatch({
-        type: "GET_DONATIONS",
-        payload: json.data,
-      });
-    };
+export function orderDonations(input, allDonations) {
+
+  let donations=allDonations
+  if(input==='Untidy'){
+    donations=allDonations.sort(function(){return Math.random()-0.5})
   }
-  if (input === "Mayor a Menor") {
-    donations_.sort(function(a, b) {
+  if (input === 'Descendant') {
+    donations.sort(function (a, b) {
+
       if (a.amount < b.amount) {
         return 1;
       }
@@ -254,8 +250,10 @@ export function orderDonations(input, allDonations) {
       return 0;
     });
   }
-  if (input === "Menor a Mayor") {
-    donations_.sort(function(a, b) {
+
+  if (input === 'Ascendant') {
+    donations.sort(function (a, b) {
+
       if (a.amount < b.amount) {
         return -1;
       }
@@ -268,9 +266,12 @@ export function orderDonations(input, allDonations) {
   return async function(dispatch) {
     return dispatch({
       type: "ORDER_DONATIONS",
-      payload: donations_,
-    });
-  };
+
+      payload: donations
+    })
+  }
+
+
 }
 
 export function getDonations() {
