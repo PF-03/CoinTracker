@@ -26,7 +26,7 @@ export default function Home() {
         <div>
           <div className={style.headerButton}>
             <h4 className={style.title}>Most Relevants Coins</h4>
-            <Button onClick={handleSeeMore}>{h4 ? '+ Ver más' : '- Ver menos'}</Button>
+            <Button onClick={handleSeeMore}>{h4 ? '- See less' : '+ See more'}</Button>
           </div>
           <Carousel />
           {h4 === false && <h4 className={style.title}>Most relevant News</h4>}

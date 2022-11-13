@@ -1,18 +1,20 @@
 .sidebar {
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  display: grid;
-  grid-template-rows: 12% 55% 20% 10%;
-  position: sticky;
-  top: 95px;
-  height: 76vh;
-  width: 20vw;
-  background: rgba(219, 219, 219, 0.11);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.5px);
-  -webkit-backdrop-filter: blur(5.5px);
-  border-radius: 17px;
-  color: white;
+
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    display: grid;
+    grid-template-rows: 12% 55% 20% 10%;
+    position: sticky;
+    top: 95px;
+    height: fit-content;
+    width: 20vw;
+    background: rgba(219, 219, 219, 0.11);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.5px);
+    -webkit-backdrop-filter: blur(5.5px);
+    border-radius: 17px;
+    color: white;
+
 }
 
 .sidebarWrapper {

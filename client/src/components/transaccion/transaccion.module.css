@@ -21,7 +21,27 @@ margin: 0;
     display: flex;
     font-size: 20px;
 } 
-
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 0px;
+    width: 400px;
+    height: 600px;
+    background-color: rgb(43, 46, 45);
+    border-radius: 30px;
+}
+.divCambio{
+    display:flex;
+    width: 280px;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+.cambia{
+    font-size: 15px;
+}
 
 .boxTexto{
    margin-top: 40px;
@@ -41,7 +61,24 @@ margin: 0;
     display: flex;
     justify-content: space-around;
     border-bottom: 1px solid white;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+}
+.infoInvalido{
+    width: 280px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+   
     margin-top: 20px;
+}
+.infoInvalido label{
+    height: 40px;
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+
 
 }
 .info label{
