@@ -39,8 +39,8 @@ export default function ChatSocket() {
       from: user.username
         ? user.username
         : user[0]?.username
-        ? user.username
-        : "User",
+          ? user.username
+          : "User",
       body: message,
     };
     socket.emit("message", envio);
@@ -52,8 +52,8 @@ export default function ChatSocket() {
     let usuario = user.username
       ? user.username
       : user[0]?.username
-      ? user.username
-      : "User";
+        ? user.username
+        : "User";
     socket.emit("typing", usuario);
   };
 
@@ -92,6 +92,7 @@ export default function ChatSocket() {
           </div>
           <div className={estilos.enviar}>
             <input
+              autoComplete="off"
               type="text"
               name="message"
               onChange={handleChange}

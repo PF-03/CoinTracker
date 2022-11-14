@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './FormRegister.css';
-import Button from '../../components/styles/button';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUserToken, getUsers } from '../../redux/actions/index';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import eyeOpen from '../../assets/eye-opened.png';
-import eyeClosed from '../../assets/eye-closed.png';
+import { useState , useEffect } from "react";
+import axios from "axios";
+import "./FormRegister.css";
+import Button from "../../components/styles/button";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserToken, getUsers } from "../../redux/actions/index";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
+import eyeOpen from '../../assets/eye-opened.png'
+import eyeClosed from '../../assets/eye-closed.png'
+import Bubble from "../../components/styles/bubbles";
+
 
 function FormRegister() {
   const dispatch = useDispatch<any>();
@@ -200,10 +202,10 @@ function FormRegister() {
         setEyeState(!eyeState);
         if (eyeState) {
           eye.src = eyeOpen;
-          passwordInput.setAttribute('type', 'password');
+          passwordInput.setAttribute("type", "password");
         } else {
           eye.src = eyeClosed;
-          passwordInput.setAttribute('type', 'text');
+          passwordInput.setAttribute("type", "text");
         }
         break;
       default:
@@ -212,7 +214,10 @@ function FormRegister() {
   }
 
   return (
-    <div className='signUpContainer'>
+    <div className="signUpContainer">
+      <Bubble right='-20%' top='-50%' />
+      <Bubble color="blue-light" size="small" left='5rem' top='3rem' />
+      <Bubble color="red" size="medium" bottom={'-2rem'} right='20vw' />
       <h2>Create your account:</h2>
 
       <button className='googleSignUp' onClick={google}>
@@ -282,16 +287,11 @@ function FormRegister() {
           <p className='inputError'>{inputs.errors.mail}</p>
         )}
 
-        <div className='password-label-eye'>
-          <label className='registerFormLabel' htmlFor='password'>
-            Password:{' '}
+        <div className="password-label-eye">
+          <label className="registerFormLabel" htmlFor="password">
+            Password:{" "}
           </label>
-          <img
-            onClick={passwordEye}
-            id='passwordEye'
-            src={eyeOpen}
-            alt='eye icon'
-          />
+          <img onClick={passwordEye} id="passwordEye" src={eyeOpen} alt="eye icon" />
         </div>
         <input
           required
@@ -307,16 +307,11 @@ function FormRegister() {
           <p className='inputError'>{inputs.errors.password}</p>
         )}
 
-        <div className='password-label-eye'>
-          <label className='registerFormLabel' htmlFor='passwordConfirm'>
-            Confirm password:{' '}
+        <div className="password-label-eye">
+          <label className="registerFormLabel" htmlFor="passwordConfirm">
+            Confirm password:{" "}
           </label>
-          <img
-            onClick={passwordEye}
-            id='confirmPasswordEye'
-            src={eyeOpen}
-            alt='eye icon'
-          />
+          <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon" />
         </div>
         <input
           className='registerFormInput'
@@ -342,8 +337,8 @@ function FormRegister() {
         </Button>
       </form>
 
-      <p className='loginText'>
-        Already have an account? <a href=''>Login</a>
+      <p className="loginText">
+        Already have an account? <Link to='/login'>Login</Link>
       </p>
     </div>
   );

@@ -159,6 +159,22 @@
     transform: rotate(90deg);
 }
 
+.donation-opt-details-tag[open] summary~* {
+    animation: moveIn .3s ease-in;
+}
+
+@keyframes moveIn {
+    from {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .donations-opt-summary-tag {
     background: rgba(219, 219, 219, 0.11);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

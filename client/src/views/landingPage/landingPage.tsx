@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getActivos } from "../../redux/actions";
+import { getActivos, getReviews } from "../../redux/actions";
 import numberFormat from "../../utils/numberFormat.js";
 
 import Footer from "../../components/Footer/Footer"
@@ -24,6 +24,7 @@ function LandignPage() {
   useEffect(() => {
 
     dispatch(getActivos())
+    dispatch(getReviews())
 
   }, [])
 

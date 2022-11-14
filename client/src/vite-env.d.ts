@@ -16,6 +16,12 @@ type newsCard = {
     url?: string
 }
 
+type review = {
+    user: string
+    calification: number
+    comment: string
+}
+
 type state = {
     activos: coinInfo[]
     allactivos: []
@@ -27,5 +33,5 @@ type state = {
     cotizaciones: []
     user: string
     userID: string
-
+    review: review[]
 }
