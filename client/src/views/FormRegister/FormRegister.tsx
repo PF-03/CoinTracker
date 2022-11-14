@@ -114,7 +114,7 @@ function FormRegister() {
         errors.mail = !emailPattern.test(value)
           ? 'Insert a valid email'
           : existentMail.length
-          ? 'There is email is already registered'
+          ? 'This email is already registered'
           : '';
         break;
       case 'password':
