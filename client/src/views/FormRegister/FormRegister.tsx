@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import eyeOpen from '../../assets/eye-opened.png'
 import eyeClosed from '../../assets/eye-closed.png'
 import Bubble from "../../components/styles/bubbles";
+import { PrivateRoutes } from "../../rutas/rutas";
 
 
 function FormRegister() {
@@ -145,7 +146,7 @@ function FormRegister() {
   async function submitForm(e: any) {
     e.preventDefault();
     try {
-      await axios
+        let res = await axios
         .post('/localauth/signup', {
           username: inputs.username.trim(),
           password: inputs.password.trim(),
@@ -153,15 +154,13 @@ function FormRegister() {
           name: inputs.name.trim(),
           lastname: inputs.lastname.trim(),
         })
-        .then((res) => {
-          dispatch(setUserToken(res.data.token));
+        dispatch(setUserToken(res.data.token));
+        Swal.fire({
+            icon: 'success',
+            title: 'Your account was created!',
+            confirmButtonText: "Let's go!",
         });
-      Swal.fire({
-        icon: 'success',
-        title: 'Your account was created!',
-        confirmButtonText: "Let's go!",
-      });
-      navigate('/home');
+        navigate(PrivateRoutes.HOME);
     } catch (error) {
       Swal.fire({
         icon: 'error',

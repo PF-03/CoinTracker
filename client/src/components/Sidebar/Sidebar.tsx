@@ -122,7 +122,7 @@ function Sidebar() {
           <img className={style.icon} src={iconDonation} alt="donate" />
           <span>Donate</span>
         </Link>
-        {user.type.includes("admin") ? (
+        {user?.type?.includes("admin") ? (
           <Link to={PrivateAdminRoutes.ADMIN} className={style.data}>
             <img className={style.icon} src={iconAdmin} alt="admin" />
             <span>as Admin</span>

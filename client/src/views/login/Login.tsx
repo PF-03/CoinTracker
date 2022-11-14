@@ -9,6 +9,7 @@ import googleButton from "../../assets/googleBtn.png";
 import eyeOpen from "../../assets/eye-opened.png";
 import eyeClosed from "../../assets/eye-closed.png";
 import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
+import Swal from 'sweetalert2'
 
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -72,17 +73,24 @@ const Login: React.FC = (): JSX.Element => {
   const local = async (e: any) => {
     e.preventDefault();
     try {
-      await axios
+        let res = await axios
         .post("/localauth/login", values, {
           withCredentials: true,
         })
-        .then((res: AxiosResponse) => {
-          dispatch(setUserToken(res.data.token));
+        dispatch(setUserToken(res.data.token));
+        Swal.fire({
+            icon: 'success',
+            title: 'Nice to have your back!',
+            confirmButtonText: "Let's go!",
         });
-      alert("succesful");
-      navigate("/home");
+        navigate(PrivateRoutes.HOME);
     } catch (e) {
-      alert("someting goes wrong");
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops, something went wrong',
+            text: `${e}`,
+            confirmButtonText: 'Try again',
+        });
     }
   };
 
