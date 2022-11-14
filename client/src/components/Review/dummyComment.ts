@@ -1,33 +1,33 @@
 const comments = [
     {
-        username: 'Ale',
+        username: 'JuanGomez',
         rate: 5,
-        message: 'A great app!'
+        message: 'Excelente aplicacion!'
     },
     {
-        username: 'Ale',
+        username: 'AndresMartinez',
         rate: 5,
-        message: 'A great app!'
+        message: 'Pude obtener ganancias con mis cryptos gracias a Cointracker, gracias!'
     },
     {
-        username: 'Ale',
+        username: 'FelipeTau',
         rate: 5,
-        message: 'A great app!'
+        message: 'Pude vender mis cryptos cuando mas beneficio esperaba gracias a esta app'
     },
     {
-        username: 'Ale',
-        rate: 5,
-        message: 'A great app!'
+        username: 'DianaGarcia',
+        rate: 4,
+        message: 'Buena aplicacion con excelentes funcionalidades'
     },
     {
-        username: 'Ale',
-        rate: 5,
-        message: 'A great app!'
+        username: 'MartinMoreno',
+        rate: 4,
+        message: 'Se puede seguir el precio de todas las monedas en tiempo real, me sirvio mucho'
     },
     {
-        username: 'Ale',
+        username: 'AlejandraJimenez',
         rate: 5,
-        message: 'A great app!'
+        message: 'Excelente servicio, gracias!'
     },
 ]
 
