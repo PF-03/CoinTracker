@@ -124,10 +124,7 @@ export default function SwapComponent() {
     const existentCriptoWallet = walletData[0].allActives.filter(
       (active) =>
         active.crypto ===
-        (isSwapped
-          ? coinOneState.data.name
-          : coinTwoState.data.name
-        ).toLowerCase()
+        (isSwapped ? coinOneState.data.id : coinTwoState.data.id).toLowerCase()
     );
 
     axios.post(
@@ -163,7 +160,7 @@ export default function SwapComponent() {
       isSwapped
         ? putWallet(
             {
-              crypto: coinTwoState.data.name.toLowerCase(),
+              crypto: coinTwoState.data.id.toLowerCase(),
               user: _id,
               quantity:
                 parseFloat(coinTwoState.data.quantity) -
@@ -173,7 +170,7 @@ export default function SwapComponent() {
           )
         : putWallet(
             {
-              crypto: coinOneState.data.name.toLowerCase(),
+              crypto: coinOneState.data.id.toLowerCase(),
               user: _id,
               quantity:
                 parseFloat(coinOneState.data.quantity) -
@@ -229,12 +226,12 @@ export default function SwapComponent() {
     dispatch(
       isSwapped
         ? postWallet({
-            crypto: coinOneState.data.name.toLowerCase(),
+            crypto: coinOneState.data.id.toLowerCase(),
             quantity: parseFloat(coinCalcValues.coinOne),
             user: _id,
           })
         : postWallet({
-            crypto: coinTwoState.data.name.toLowerCase(),
+            crypto: coinTwoState.data.id.toLowerCase(),
             quantity: parseFloat(coinCalcValues.coinTwo),
             user: _id,
           })
@@ -259,7 +256,7 @@ export default function SwapComponent() {
 
   return (
     <div className={style.view}>
-      <Bubble color="blue-light" size="large" left='10vw' top='-30%' />
+      <Bubble color='blue-light' size='large' left='10vw' top='-30%' />
       <div>
         <SwapModal
           modalState={coinOneState}

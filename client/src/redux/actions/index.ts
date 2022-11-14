@@ -487,13 +487,14 @@ export function getUserWallet(id) {
       .get(`${import.meta.env.VITE_SERVER_API}/activos`)
       .then((res) => res.data);
 
-    console.log({ data, actives });
-
     const walletData = data.map((item) => {
       if (item.quantity) {
         return {
           ...actives.find((active) => {
-            return active.id.toLowerCase() === item.crypto;
+            return (
+              active.id.toLowerCase() === item.crypto ||
+              active.name.toLowerCase() === item.crypto
+            );
           }),
           quantity: item.quantity,
           walletId: item._id,
@@ -509,6 +510,8 @@ export function getUserWallet(id) {
       }
     }
     walletData.dataLoaded = true;
+
+    console.log(walletData);
 
     return dispatch({
       type: 'GET_USER_WALLET',
