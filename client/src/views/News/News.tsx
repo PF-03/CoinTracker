@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CarouselNews from '../../components/crousel-news/carousel';
+import Bubble from '../../components/styles/bubbles';
 import s from './news.module.css'
 
 type Prop = {
@@ -72,6 +73,8 @@ function News() {
 
     return (
         <main className={s.container}>
+            <Bubble size='small' left={'17vw'} bottom='10vh' />
+            <Bubble color='red' right={0} size='medium' />
             <h4 className={s.title}>Most Relevant News</h4>
             <section>
                 <CarouselNews />
