@@ -138,10 +138,18 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   )}
                   {curretPage == "myAssets" ? (
                     <div>
-                      <button name={el.name} onClick={(e) => modal(el.id, e)}>
+                      <button
+                        name={el.name}
+                        onClick={(e) => modal(el.id, e, "mas")}
+                      >
                         +
                       </button>
-                      <button name={el.name}>-</button>
+                      <button
+                        name={el.name}
+                        onClick={(e) => modal(el.id, e, "menos")}
+                      >
+                        -
+                      </button>
                     </div>
                   ) : (
                     <button name={el.name} onClick={(e) => favorito(el, e)}>

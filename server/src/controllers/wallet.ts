@@ -29,14 +29,17 @@ const walletController = {
 
   deleteWallet: async (req: Request, res: Response) => {
     const { id } = req.params;
+
     let { quantity, history, crypto } = req.body;
+
     try {
       const walletData: any = (await walletModel.find({ _id: id }))[0];
-
+      console.log(walletData);
       history = {
         date: new Date(Date.now()),
         quantity: quantity,
       };
+
       await walletModel
         .findByIdAndUpdate(
           id,

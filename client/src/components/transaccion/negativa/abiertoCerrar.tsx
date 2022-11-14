@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const AbiertoCerrar: any = (estado = false) => {
+export const AbiertoCerrarNega: any = (estado = false) => {
   let [abierto, setAbierto] = useState(estado);
   const abrir = () => {
     setAbierto(true);

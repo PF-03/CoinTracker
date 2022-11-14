@@ -1,0 +1,115 @@
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+appearance: none;
+margin: 0;
+}
+.contenedor{
+    position: fixed;
+ /*    z-index: 999;   */
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100%;
+    background-color:rgba(27, 26, 26, 0.75) ;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.contenedor.open{
+    display: flex;
+    font-size: 20px;
+} 
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 0px;
+    width: 400px;
+    height: 600px;
+    background-color: rgb(43, 46, 45);
+    border-radius: 30px;
+}
+.divCambio{
+    display:flex;
+    width: 280px;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+.cambia{
+    font-size: 15px;
+}
+
+.boxTexto{
+   margin-top: 30px;
+   font-size: 20px;
+}
+.input{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    border-color: transparent;
+    outline: none;
+}
+
+.info{
+    width: 280px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+    margin-bottom: 4px;
+
+}
+.infoInvalido{
+    width: 280px;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+   
+    margin-top: 20px;
+}
+.infoInvalido label{
+    height: 40px;
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+
+
+}
+.info label{
+    height: 40px;
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+
+}
+.date{
+    width: 280px;
+    height: 40px;
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
+    border-bottom: 1px solid white;
+    outline: none;
+}
+.cantidad{
+    width: 280px;
+    height: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.cantidad label{
+    height: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);; 
+}
