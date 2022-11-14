@@ -1,15 +1,15 @@
-import style from './Login.module.css';
-import { useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { useDispatch } from 'react-redux';
-import { setUser, setUserToken } from '../../redux/actions';
-import { useNavigate, useParams } from 'react-router-dom';
-import Bubble from '../../components/styles/bubbles';
-import googleButton from '../../assets/googleBtn.png';
-import eyeOpen from '../../assets/eye-opened.png';
-import eyeClosed from '../../assets/eye-closed.png';
-import Swal from 'sweetalert2';
-import { PrivateRoutes, PublicRouts } from '../../rutas/rutas';
+import style from "./Login.module.css";
+import { useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { useDispatch } from "react-redux";
+import { setUser, setUserToken } from "../../redux/actions";
+import { useNavigate, useParams } from "react-router-dom";
+import Bubble from "../../components/styles/bubbles";
+import googleButton from "../../assets/googleBtn.png";
+import eyeOpen from "../../assets/eye-opened.png";
+import eyeClosed from "../../assets/eye-closed.png";
+import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
+import Swal from 'sweetalert2'
 
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -92,21 +92,24 @@ const Login: React.FC = (): JSX.Element => {
   const local = async (e: any) => {
     e.preventDefault();
     try {
-      const user = await axios
-        .post('/localauth/login', values, {
+        let res = await axios
+        .post("/localauth/login", values, {
           withCredentials: true,
         })
-        .then((res: AxiosResponse) => {
-          console.log(res);
-          dispatch(setUserToken(res.data.token));
+        dispatch(setUserToken(res.data.token));
+        Swal.fire({
+            icon: 'success',
+            title: 'Nice to have your back!',
+            confirmButtonText: "Let's go!",
         });
-      navigate('/home');
+        navigate(PrivateRoutes.HOME);
     } catch (e) {
-      Swal.fire(
-        'Something goes wrong',
-        `The username or the password is not correct.`,
-        'warning'
-      );
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops, something went wrong',
+            text: `${e}`,
+            confirmButtonText: 'Try again',
+        });
     }
   };
 

@@ -1,42 +1,55 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import axios from "axios";
 import "./FormRegister.css";
 import Button from "../../components/styles/button";
-import { useDispatch } from "react-redux";
-import { setUserToken } from "../../redux/actions/index";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserToken, getUsers } from "../../redux/actions/index";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import eyeOpen from '../../assets/eye-opened.png'
 import eyeClosed from '../../assets/eye-closed.png'
 import Bubble from "../../components/styles/bubbles";
+import { PrivateRoutes } from "../../rutas/rutas";
+
 
 function FormRegister() {
+  const dispatch = useDispatch<any>();
+  const [allUsers, setAllUsers] = useState([]);
+
   const [inputs, setInputs] = useState({
-    username: "",
-    password: "",
-    mail: "",
-    name: "",
-    lastname: "",
+    username: '',
+    password: '',
+    mail: '',
+    name: '',
+    lastname: '',
     disabled: true,
     errors: {
-      username: "",
-      password: "",
-      passwordConfirm: "",
-      mail: "",
-      name: "",
-      lastname: "",
+      username: '',
+      password: '',
+      passwordConfirm: '',
+      mail: '',
+      name: '',
+      lastname: '',
     },
   });
 
   const [eyeState, setEyeState] = useState(false);
 
+  useEffect(() => {
+    const asyncUseEffect = async () => {
+      const { payload } = await dispatch(getUsers());
+      setAllUsers(payload);
+    };
+    asyncUseEffect();
+  }, []);
+
   function validateForm(errors: Object) {
-    let usernameInput = document.getElementById("username");
-    let mailInput = document.getElementById("mail");
-    let passwordInput = document.getElementById("password");
-    let username = usernameInput.getAttribute("value");
-    let mail = mailInput.getAttribute("value");
-    let password = passwordInput.getAttribute("value");
+    let usernameInput = document.getElementById('username');
+    let mailInput = document.getElementById('mail');
+    let passwordInput = document.getElementById('password');
+    let username = usernameInput.getAttribute('value');
+    let mail = mailInput.getAttribute('value');
+    let password = passwordInput.getAttribute('value');
 
     if (!username || !mail || !password) {
       setInputs({
@@ -69,39 +82,49 @@ function FormRegister() {
 
   function handleChange(e: any) {
     type InputField =
-      | "name"
-      | "lastname"
-      | "username"
-      | "mail"
-      | "password"
-      | "passwordConfirm";
+      | 'name'
+      | 'lastname'
+      | 'username'
+      | 'mail'
+      | 'password'
+      | 'passwordConfirm';
 
     const { value } = e.target;
     const name: InputField = e.target.name;
     let errors = inputs.errors;
 
+    const existentMail = allUsers.filter((user) => user.mail === value);
+    const existentUserName = allUsers.filter((user) => user.username === value);
+
     switch (name) {
-      case "name":
+      case 'name':
         break;
-      case "lastname":
+      case 'lastname':
         break;
-      case "username":
-        errors.username = value.length < 5 ? "Usa minimo 5 letras" : "";
+      case 'username':
+        errors.username =
+          value.length < 5
+            ? 'Minimun 5 characters'
+            : existentUserName.length
+            ? 'This username is already taken.'
+            : '';
         break;
-      case "mail":
+      case 'mail':
         let emailPattern = /\S+@\S+\.\S+/; // Expresion Regular para validar Emails.
         errors.mail = !emailPattern.test(value)
-          ? "Inserta un email valido"
-          : "";
+          ? 'Insert a valid email'
+          : existentMail.length
+          ? 'This email is already registered'
+          : '';
         break;
-      case "password":
-        errors.password = value.length < 8 ? "Usa minimo 8 caracteres" : "";
+      case 'password':
+        errors.password = value.length < 8 ? 'Minimun 8 characters' : '';
         errors.passwordConfirm =
-          value === inputs.password ? "" : "Las contraseñas no son iguales";
+          value === inputs.password ? '' : `Password doesn't match`;
         break;
-      case "passwordConfirm":
+      case 'passwordConfirm':
         errors.passwordConfirm =
-          value === inputs.password ? "" : "Las contraseñas no son iguales";
+          value === inputs.password ? '' : `Password doesn't match`;
         break;
       default:
         break;
@@ -114,48 +137,48 @@ function FormRegister() {
       errors,
     });
 
-    if (name !== "name" && name !== "lastname") {
+    if (name !== 'name' && name !== 'lastname') {
       validateForm(inputs.errors);
     }
   }
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   async function submitForm(e: any) {
     e.preventDefault();
     try {
-      await axios
-        .post("/localauth/signup", {
+        let res = await axios
+        .post('/localauth/signup', {
           username: inputs.username.trim(),
           password: inputs.password.trim(),
           mail: inputs.mail.trim().toLowerCase(),
           name: inputs.name.trim(),
           lastname: inputs.lastname.trim(),
         })
-        .then((res) => {
-          dispatch(setUserToken(res.data.token));
+        dispatch(setUserToken(res.data.token));
+        Swal.fire({
+            icon: 'success',
+            title: 'Your account was created!',
+            confirmButtonText: "Let's go!",
         });
-      Swal.fire({
-        icon: 'success',
-        title: 'Your account was created!',
-        confirmButtonText: "Let's go!"
-      })
-      navigate("/home");
+        navigate(PrivateRoutes.HOME);
     } catch (error) {
       Swal.fire({
         icon: 'error',
         title: 'Oops, something went wrong',
         text: `${error}`,
-        confirmButtonText: 'Try again'
-      })
+        confirmButtonText: 'Try again',
+      });
     }
   }
   const google = () => {
-    window.open(`${import.meta.env.VITE_SERVER_API}/googleauth/google`, "_self");
+    window.open(
+      `${import.meta.env.VITE_SERVER_API}/googleauth/google`,
+      '_self'
+    );
   };
 
   function passwordEye(e) {
-    e.preventDefault()
+    e.preventDefault();
     const id = e.target.id;
     let eye;
     let passwordInput;
@@ -166,10 +189,10 @@ function FormRegister() {
         setEyeState(!eyeState);
         if (eyeState) {
           eye.src = eyeOpen;
-          passwordInput.setAttribute("type", "password");
+          passwordInput.setAttribute('type', 'password');
         } else {
           eye.src = eyeClosed;
-          passwordInput.setAttribute("type", "text");
+          passwordInput.setAttribute('type', 'text');
         }
         break;
       case 'confirmPasswordEye':
@@ -196,71 +219,71 @@ function FormRegister() {
       <Bubble color="red" size="medium" bottom={'-2rem'} right='20vw' />
       <h2>Create your account:</h2>
 
-      <button className="googleSignUp" onClick={google}>
+      <button className='googleSignUp' onClick={google}>
         Register with Google
       </button>
 
-      <p className="orText">Or</p>
+      <p className='orText'>Or</p>
 
-      <form onSubmit={submitForm} className="signUpForm">
-        <label className="registerFormLabel" htmlFor="name">
-          Name:{" "}
+      <form onSubmit={submitForm} className='signUpForm'>
+        <label className='registerFormLabel' htmlFor='name'>
+          Name:{' '}
         </label>
         <input
-          className="registerFormInput"
-          name="name"
-          id="name"
+          className='registerFormInput'
+          name='name'
+          id='name'
           onChange={handleChange}
-          placeholder="Juan"
+          placeholder='Juan'
         />
         {!inputs.errors.name ? null : (
-          <p className="inputError">{inputs.errors.name}</p>
+          <p className='inputError'>{inputs.errors.name}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="lastname">
-          Lastname:{" "}
+        <label className='registerFormLabel' htmlFor='lastname'>
+          Lastname:{' '}
         </label>
         <input
-          className="registerFormInput"
-          name="lastname"
-          id="lastname"
+          className='registerFormInput'
+          name='lastname'
+          id='lastname'
           onChange={handleChange}
-          placeholder="Perez"
+          placeholder='Perez'
         />
         {!inputs.errors.lastname ? null : (
-          <p className="inputError">{inputs.errors.lastname}</p>
+          <p className='inputError'>{inputs.errors.lastname}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="username">
+        <label className='registerFormLabel' htmlFor='username'>
           Username:
         </label>
         <input
           required
-          className="registerFormInput"
-          name="username"
-          id="username"
+          className='registerFormInput'
+          name='username'
+          id='username'
           onChange={handleChange}
-          placeholder="Perez"
+          placeholder='Perez'
           value={inputs.username}
         />
         {!inputs.errors.username ? null : (
-          <p className="inputError">{inputs.errors.username}</p>
+          <p className='inputError'>{inputs.errors.username}</p>
         )}
 
-        <label className="registerFormLabel" htmlFor="mail">
-          Email:{" "}
+        <label className='registerFormLabel' htmlFor='mail'>
+          Email:{' '}
         </label>
         <input
           required
-          className="registerFormInput"
-          name="mail"
-          id="mail"
+          className='registerFormInput'
+          name='mail'
+          id='mail'
           onChange={handleChange}
-          placeholder="juanito@gmail.com"
+          placeholder='juanito@gmail.com'
           value={inputs.mail}
         />
         {!inputs.errors.mail ? null : (
-          <p className="inputError">{inputs.errors.mail}</p>
+          <p className='inputError'>{inputs.errors.mail}</p>
         )}
 
         <div className="password-label-eye">
@@ -271,16 +294,16 @@ function FormRegister() {
         </div>
         <input
           required
-          className="registerFormInput"
-          type="password"
-          name="password"
-          id="password"
+          className='registerFormInput'
+          type='password'
+          name='password'
+          id='password'
           onChange={handleChange}
-          placeholder=""
+          placeholder=''
           value={inputs.password}
         />
         {!inputs.errors.password ? null : (
-          <p className="inputError">{inputs.errors.password}</p>
+          <p className='inputError'>{inputs.errors.password}</p>
         )}
 
         <div className="password-label-eye">
@@ -290,23 +313,23 @@ function FormRegister() {
           <img onClick={passwordEye} id="confirmPasswordEye" src={eyeOpen} alt="eye icon" />
         </div>
         <input
-          className="registerFormInput"
-          type="password"
-          name="passwordConfirm"
-          id="passwordConfirm"
+          className='registerFormInput'
+          type='password'
+          name='passwordConfirm'
+          id='passwordConfirm'
           onChange={handleChange}
-          placeholder=""
+          placeholder=''
         />
         {!inputs.errors.passwordConfirm ? null : (
-          <p className="inputError">{inputs.errors.passwordConfirm}</p>
+          <p className='inputError'>{inputs.errors.passwordConfirm}</p>
         )}
 
         {/* <input className='submit-btn' id='submit-btn' type="submit" value='Crear cuenta' disabled={inputs.disabled}/> */}
         <Button
           gradient={inputs.disabled ? false : true}
-          className="submit-btn"
-          id="submit-btn"
-          type="submit"
+          className='submit-btn'
+          id='submit-btn'
+          type='submit'
           disabled={inputs.disabled}
         >
           Create
