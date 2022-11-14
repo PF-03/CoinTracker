@@ -64,32 +64,33 @@ export const SwapModal = ({ modalState, setModalState, coin }) => {
 
             <div className={style['coins-container']}>
               {filteredActives().map((active) => {
-                return (
-                  <div
-                    key={active.name}
-                    className={style.coin}
-                    onClick={() => {
-                      setModalState({
-                        ...modalState,
-                        data: modalState.data.user
-                          ? { user: modalState.data.user, ...active }
-                          : active,
-                        show: !modalState.show,
-                      });
-                      setSearchValue('');
-                    }}
-                  >
-                    <img
-                      src={active.image}
-                      alt={active.name}
-                      width='30px'
-                      height='30px'
-                    />
-                    <p>{active.name}</p>
-                    <p>{active.symbol.toUpperCase()}</p>
-                    <p>{active.current_price}</p>
-                  </div>
-                );
+                if (active)
+                  return (
+                    <div
+                      key={active.name}
+                      className={style.coin}
+                      onClick={() => {
+                        setModalState({
+                          ...modalState,
+                          data: modalState.data.user
+                            ? { user: modalState.data.user, ...active }
+                            : active,
+                          show: !modalState.show,
+                        });
+                        setSearchValue('');
+                      }}
+                    >
+                      <img
+                        src={active.image}
+                        alt={active.name}
+                        width='30px'
+                        height='30px'
+                      />
+                      <p>{active.name}</p>
+                      <p>{active.symbol?.toUpperCase()}</p>
+                      <p>{active.current_price}</p>
+                    </div>
+                  );
               })}
             </div>
           </div>

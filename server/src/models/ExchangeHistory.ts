@@ -30,7 +30,7 @@ const exchangeHistorySchema = new Schema(
       type: Number,
     },
     date: {
-      type: Date,
+      type: String,
     },
     username: {
       type: String,
