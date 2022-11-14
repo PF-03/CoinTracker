@@ -13,12 +13,15 @@ import styles from "./Portfolio.module.css";
 import AreaChart from "../Charts/AreaChart";
 import AssetsList from "./AssetsList/AssetsList";
 import Transaccion from "../transaccion/transaccion";
+import TransaccionNegativa from "../transaccion/negativa/transaccionNegativa";
 import { OpenClose } from "../transaccion/openClose";
+import { AbiertoCerrarNega } from "../transaccion/negativa/abiertoCerrar";
 import numberFormat from "../../utils/numberFormat";
 import { store } from "../../redux/store/store";
 const Portfolio = () => {
   const dispatch: any = useDispatch<any>();
   let [isOpen, open, close] = OpenClose();
+  let [abierto, abrir, cerrado] = AbiertoCerrarNega();
 
   const user = useSelector((state: any) => state.user);
 
@@ -114,11 +117,20 @@ const Portfolio = () => {
   };
   let modalName: String;
 
-  const modal = async (e, evento) => {
+  const modal = async (e, evento, condicion) => {
     console.log(e, "soy e");
     modalName = await e;
+    console.log(condicion);
     await dispatch(setNameTransaccion(modalName));
-    await open(evento);
+    if (condicion === "mas") {
+      await open(evento);
+      return;
+    }
+
+    if (condicion === "menos") {
+      await abrir();
+      return;
+    }
   };
   const handleOnChange = async (e) => {
     e.preventDefault();
@@ -129,6 +141,12 @@ const Portfolio = () => {
     await dispatch(getWalletData(user._id ? user._id : user[0]._id));
     e.preventDefault();
     await close();
+  };
+
+  const cerrarDos = async (e) => {
+    await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+    e.preventDefault();
+    await cerrado();
   };
   return (
     <div className={styles.mainContainer}>
@@ -217,6 +235,7 @@ const Portfolio = () => {
           <AssetsList HandleTrClick={HandleTrClick} modal={modal}></AssetsList>
         </div>
         <Transaccion isOpen={isOpen} close={cerrar} />
+        <TransaccionNegativa open={abierto} close={cerrarDos} />
       </div>
     </div>
   );
