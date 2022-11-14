@@ -10,7 +10,6 @@ const reminderSchema = new Schema(
     },
     token_price: {
       type: String,
-      unique: true,
     },
     fullfilled: {
       type: Boolean,
