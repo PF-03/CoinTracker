@@ -27,7 +27,6 @@ import {
 //////////////////////////////////////////////////////////
 function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
-
   //codigo guglielmo
   ////////////////////////////////////////////////////////////
   const dispatch: any = useDispatch();
@@ -35,9 +34,6 @@ function Sidebar() {
 
   const nav = useNavigate();
   const userr = useSelector((state: any) => state.userID);
-
-  const data = useSelector((state: any) => state);
-  const [val, setVal] = useState();
 
   const logout = async () => {
     axios
@@ -57,8 +53,7 @@ function Sidebar() {
           .get(`/localauth/profile?secret_token=${await token}`, {
             withCredentials: true,
           })
-          .then((res: any) => dispatch(setUser(res.data.user)))
-          .then(() => llamada());
+          .then((res: any) => dispatch(setUser(res.data.user)));
       }
       const googleUser = await axios
         .get(`/googleauth/getuser`, {
@@ -67,24 +62,6 @@ function Sidebar() {
         .then((res: any) => res.data);
       if (googleUser) return dispatch(setUser(googleUser));
     };
-
-    // if (!data.user.type) {
-    // console.log("si entro a este condicional");
-    async function llamada() {
-      const metodo = await axios
-        .get("/validate/" + data.user._id)
-        .then((json) => {
-          return json.data;
-        })
-        .then((info) => {
-          // console.log(typeof info.value);
-          setVal(info);
-          return true;
-        })
-        .catch();
-      return metodo ? true : null;
-    }
-    // }
 
     asyncUseEffect();
   }, []);
@@ -145,14 +122,7 @@ function Sidebar() {
           <img className={style.icon} src={iconDonation} alt="donate" />
           <span>Donate</span>
         </Link>
-        {Array.isArray(user.type) ? (
-          user.type[0] === "admin" ? (
-            <Link to={PrivateAdminRoutes.ADMIN} className={style.data}>
-              <img className={style.icon} src={iconAdmin} alt="admin" />
-              <span>as Admin</span>
-            </Link>
-          ) : null
-        ) : user.type === true || val === true ? (
+        {user.type.includes("admin") ? (
           <Link to={PrivateAdminRoutes.ADMIN} className={style.data}>
             <img className={style.icon} src={iconAdmin} alt="admin" />
             <span>as Admin</span>
