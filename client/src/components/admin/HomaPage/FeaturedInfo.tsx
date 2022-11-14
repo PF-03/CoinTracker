@@ -1,42 +1,95 @@
 import st from './featuredInfo.module.css';
 import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getDonations } from "../../../redux/actions/index";
+// import  userData  from '../../../dummyData';
+
 
 export default function featuredInfo() {
+  const dispatch: any = useDispatch();
+
+  useEffect(() => {
+    dispatch(getDonations());
+  }, [dispatch, getDonations])
+
+  const date = new Date();
+  const actualYear = date.getFullYear();
+  const actualMonth = date.getMonth() + 1;
+  let totalDonation = 0;
+  let totalUsers = 0;
+  let dataMonthsDonations = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let dataMonthsUsers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let maxDonation = 0;
+  let maxDonator = 0;
+  let maxDonationDate = new Date();
+
+  console.log(actualYear)
+  console.log(actualMonth)
+  const allDonations = useSelector((state: any) => state.donations);
+  const allUsers = useSelector((state: any) => state.users);
+
+  allDonations.forEach((element) => {
+    let month = element.date.split('-')[1]
+    totalDonation = totalDonation + element.amount
+    if (element.amount > maxDonation) {
+      maxDonation = element.amount
+      maxDonator = element.username
+      maxDonationDate = element.date
+    }
+    // console.log(totalDonation)
+    dataMonthsDonations[month - 1] = totalDonation - dataMonthsDonations[month - 2]
+  });
+
+  let currentDate = new Date(maxDonationDate);
+
+  allUsers.forEach((element) => {
+    let month = element.createdAt.split('-')[1]
+    totalUsers = totalUsers + 1
+    dataMonthsUsers[month - 1]++
+  });
 
   return (
     <div className={st.featured}>
 
       <div className={st.featuredItem}>
-        <span className={st.featuredTitle}> Actual Month Revenue </span>
+        <span className={st.featuredTitle}> Actual Month Donations </span>
         <div className={st.featuredMoneyCont}>
-          <span className={st.featuredMoney}> USD 485 </span>
-          <span className={st.featuredMoneyRate}>
-            -45.0 <ArrowDownward className={st.featuredIcon_negative} />
-          </span>
+          <span className={st.featuredMoney}> USD {dataMonthsDonations[actualMonth - 1]} </span>
         </div>
-        <span className={st.featuredSub}>Compared to last month</span>
+        <span className={st.featuredSub}>Actual month</span>
       </div>
 
       <div className={st.featuredItem}>
-        <span className={st.featuredTitle}> Total Sales </span>
+        <span className={st.featuredTitle}> Total donations </span>
         <div className={st.featuredMoneyCont}>
-          <span className={st.featuredMoney}> USD 2.350 </span>
-          <span className={st.featuredMoneyRate}>
-            + 52.2 <ArrowUpward className={st.featuredIcon} />
-          </span>
+          <span className={st.featuredMoney}> USD {totalDonation} </span>
         </div>
-        <span className={st.featuredSub}>Compared to last month</span>
+        <span className={st.featuredSub}>Actual year</span>
       </div>
 
       <div className={st.featuredItem}>
-        <span className={st.featuredTitle}> Cost </span>
+        <span className={st.featuredTitle}> Month registered users </span>
         <div className={st.featuredMoneyCont}>
-          <span className={st.featuredMoney}> USD 175 </span>
-          <span className={st.featuredMoneyRate}>
-            -18.0 <ArrowDownward className={st.featuredIcon_negative} />
-          </span>
+          <span className={st.featuredMoney}> {dataMonthsUsers[actualMonth - 1]} users</span>
         </div>
-        <span className={st.featuredSub}>Compared to last month</span>
+        <span className={st.featuredSub}>Actual month</span>
+      </div>
+
+      <div className={st.featuredItem}>
+        <span className={st.featuredTitle}> Year total registered users </span>
+        <div className={st.featuredMoneyCont}>
+          <span className={st.featuredMoney}> {totalUsers} users</span>
+        </div>
+        <span className={st.featuredSub}>Actual year</span>
+      </div>
+
+      <div className={st.featuredItem}>
+        <span className={st.featuredTitle}> Top Donator </span>
+        <div className={st.featuredMoneyCont}>
+          <span className={st.featuredMoney}> {maxDonator} {maxDonation} USD </span>
+        </div>
+        <span className={st.featuredSub}>{currentDate.toDateString()}</span>
       </div>
 
     </div>

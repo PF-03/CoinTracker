@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getActivos } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReminders } from '../../redux/actions';
+import Swal from 'sweetalert2';
 import axios from 'axios';
 import Button from '../styles/button';
 
@@ -49,22 +50,38 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
   };
 
   const createAlert = () => {
-    if (selectedCoin.name && price) {
-      axios.post('/reminder', {
-        user: user.username,
-        user_email: user.mail,
-        token_price: `${selectedCoin.symbol} ${price}`,
-      });
-      setSelectedCoin({
-        name: '',
-        symbol: '',
-        image: '',
-      });
-      setPrice('');
-      dispatch(getReminders(user.username));
-    } else {
-      alert('You have to select a coin');
+    if (!selectedCoin.name) {
+      return Swal.fire(
+        'We need more info!',
+        `You have to select the token you want to be notified.`,
+        'info'
+      );
     }
+    if (!price) {
+      return Swal.fire(
+        'We need more info!',
+        `You have to set a price.`,
+        'info'
+      );
+    }
+
+    axios.post('/reminder', {
+      user: user.username,
+      user_email: user.mail,
+      token_price: `${selectedCoin.symbol} ${price}`,
+    });
+    setSelectedCoin({
+      name: '',
+      symbol: '',
+      image: '',
+    });
+    setPrice('');
+    Swal.fire(
+      'Success',
+      `You succesfuly create a price alert of ${selectedCoin.symbol} for when it gets to the price of ${price}`,
+      'success'
+    );
+    dispatch(getReminders(user.username));
   };
 
   return (
@@ -78,14 +95,16 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
             <div className={style.header}>
               <h4>Price Alerts</h4>
               <button onClick={handleClick} className={style.close}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path d="M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z" /></svg>
+                <svg xmlns='http://www.w3.org/2000/svg' height='24' width='24'>
+                  <path d='M6.4 19 5 17.6l5.6-5.6L5 6.4 6.4 5l5.6 5.6L17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6Z' />
+                </svg>
               </button>
             </div>
             <h4>Create New Alert</h4>
             {selectedCoin.name && (
               <div className={style.selectedCoin}>
                 <p>{selectedCoin.name}</p>
-                <p>{selectedCoin.symbol}</p>
+                <p>{selectedCoin.symbol.toUpperCase()}</p>
                 <img
                   src={selectedCoin.image}
                   alt={selectedCoin.name}
@@ -120,7 +139,11 @@ export const PriceAlert = ({ showPriceAlert, setShowPriceAlert }) => {
               placeholder='Set Price'
               value={price}
             />
-            <Button gradient onClick={createAlert} className={style['create-alert']}>
+            <Button
+              gradient
+              onClick={createAlert}
+              className={style['create-alert']}
+            >
               Create
             </Button>
             {searchValue && !!filteredActives().length && (

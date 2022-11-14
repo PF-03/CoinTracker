@@ -3,6 +3,10 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import estilos from "./chatSocket.module.css";
 import foro from "../../assets/foro.png";
+
+import send from "../../assets/send.png";
+
+
 const socket = io(`${import.meta.env.VITE_SERVER_API}`); //puente de conexion con el back
 
 export default function ChatSocket() {
@@ -58,6 +62,17 @@ export default function ChatSocket() {
       <div className={`${estilos.boxPrincipal} ${modal && estilos.open} `}>
         <form onSubmit={handleSubmit} className={estilos.form}>
           <div className={estilos.contenedor}>
+            <div className={estilos.foro}>
+              <p>
+                <strong>.</strong>
+              </p>{" "}
+              <p>
+                <strong>.</strong>
+              </p>{" "}
+              <p>
+                <strong>.</strong>
+              </p>
+            </div>
             <ul>
               {messages.map((el, index) => (
                 <div
@@ -84,7 +99,9 @@ export default function ChatSocket() {
               placeholder="Typing message..."
               value={message}
             />
-            <button>Send</button>
+            <button className={estilos.button}>
+              <img src={send} alt="send" />
+            </button>
           </div>
         </form>
       </div>

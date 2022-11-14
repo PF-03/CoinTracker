@@ -44,13 +44,27 @@
     backdrop-filter: blur(5.5px);
     height: 350px;
     width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 30px;
+}
 
+.foro {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    position: absolute;
+    border-radius: 30px;
+    width: 500px;
+    height: 30px;
+    background-color: #B588FF;
 
 }
+
+.foro p {
+    padding-top: 20px;
+    height: 30px;
+    font-size: 50px;
+    margin-left: 15px;
+
+}
+
 
 .contenedor {
     width: 300px;

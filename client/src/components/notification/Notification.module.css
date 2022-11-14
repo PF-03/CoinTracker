@@ -2,7 +2,7 @@
   display: flex;
   height: 32px;
   position: absolute;
-  top: 4rem;
+  top: 2.5rem;
   right: 4rem;
   justify-content: space-between;
   cursor: pointer;
@@ -27,11 +27,23 @@
 }
 
 .notification-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
+  z-index: 100;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+.notification-counter p {
+  font-size: 12px;
+  margin: 0;
 }
 
 .create-alert {
   width: fit-content;
- 
-
 }
