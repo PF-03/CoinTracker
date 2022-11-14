@@ -129,9 +129,7 @@
 }
 
 .create-alert {
-
   align-self: center;
-
 }
 
 .selectedCoin {
@@ -147,6 +145,10 @@
   justify-content: space-around;
   align-items: center;
   background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
+}
+
+.selectedCoin p {
+  margin: 0;
 }
 
 .unselect {

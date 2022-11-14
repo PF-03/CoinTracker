@@ -481,6 +481,45 @@ export function setNameTransaccion(data: String) {
     payload: data,
   };
 }
+export function getUserWallet(id) {
+  return async (dispatch) => {
+    const data = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/wallet/${id}?showDeleted=false`)
+      .then((res) => res.data);
+
+    const actives = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/activos`)
+      .then((res) => res.data);
+
+    const walletData = data.map((item) => {
+      if (item.quantity) {
+        return {
+          ...actives.find((active) => {
+            return active.name.toLowerCase() === item.crypto;
+          }),
+          quantity: item.quantity,
+          walletId: item._id,
+          history: item.history,
+          allActives: data,
+        };
+      }
+    });
+
+    for (let i = 0; i < walletData.length; i++) {
+      if (!walletData[i]) {
+        walletData.splice(i, 1);
+      }
+    }
+    walletData.dataLoaded = true;
+
+    return dispatch({
+      type: 'GET_USER_WALLET',
+      payload: walletData,
+    });
+  };
+}
+
+
 export function alfabetico(data) {
   return {
     type: "ALFABETICO",
@@ -494,6 +533,7 @@ export function favoritos(data) {
     payload: data,
   };
 }
+
 
 export function getUserWallet(id) {
   return async (dispatch) => {
@@ -530,3 +570,4 @@ export function getUserWallet(id) {
       type: 'GET_USER_WALLET',
       payload: walletData,
     });
+
