@@ -14,7 +14,7 @@ export default function SwapComponent() {
   const [processing, setProcessing] = useState(false);
   const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
   const dispatch = useDispatch<any>();
-  const { name, _id } = useSelector((state: any) => state.user);
+  const { mail, _id, name } = useSelector((state: any) => state.user);
   const actives: any = useSelector<any>((state) => state.activos);
   const walletData: any = useSelector<any>((state) => state.userWallet);
 
@@ -143,7 +143,7 @@ export default function SwapComponent() {
             price1: coinTwoState.data.current_price,
             price2: coinOneState.data.current_price,
             date: new Date().toLocaleString(),
-            username: name,
+            username: mail,
           }
         : {
             icon1: coinOneState.data.image,
@@ -155,7 +155,7 @@ export default function SwapComponent() {
             price1: coinOneState.data.current_price,
             price2: coinTwoState.data.current_price,
             date: new Date().toLocaleString(),
-            username: name,
+            username: mail,
           }
     );
 

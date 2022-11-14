@@ -6,7 +6,7 @@ import axios from 'axios';
 import Button from '../styles/button';
 
 export const History = ({ setChangeView, changeView }) => {
-  const { name } = useSelector((state: any) => state.user);
+  const { mail } = useSelector((state: any) => state.user);
   const exchangeHistory = useSelector(
     (state: any) => state.userExchangeHistory
   );
@@ -24,7 +24,7 @@ export const History = ({ setChangeView, changeView }) => {
   useEffect(() => {
     axios
       .post('/exchange/getExchange', {
-        username: name,
+        username: mail,
       })
       .then((res) => dispatch(setExchangeHistory(res.data)));
   }, []);
