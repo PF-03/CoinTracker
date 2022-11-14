@@ -116,7 +116,9 @@ export function setUser(user: any) {
 
 export function postWallet(body) {
   return async function(dispatch) {
+
     const res = await axios.post("/wallet", body);
+
     return res;
   };
 }
@@ -288,7 +290,6 @@ export function getReviews() {
   //Obtener lo mensajes de feedback
   return async function(dispatch) {
     let json = await axios.get("/review"); // /review
-
     return dispatch({
       type: 'GET_REVIEWS',
       payload: json.data,
@@ -298,7 +299,6 @@ export function getReviews() {
 
 export function getUsers() {
   //Obtener todos los patients
-
   return async function(dispatch) {
     let json = await axios.get("/users");
     return dispatch({
@@ -324,7 +324,6 @@ export function putProfileAdmin(id, dato) {
   dato = {
     ...dato,
   };
-
   return async function(dispatch) {
     let json = await axios.put(`/users/admin/` + id, dato);
     return dispatch({
@@ -336,7 +335,6 @@ export function putProfileAdmin(id, dato) {
 
 export function deleteUser(id) {
   //Borrar user
-
   return async function(dispatch) {
     const deleted = await axios.delete(`/users/${id}`);
     return dispatch({
@@ -464,6 +462,7 @@ export function getMainChartData(UserId, walletData) {
       });
   };
 }
+
 export function setCurrentAssetView(name) {
   return {
     type: 'SET_CURRENT_ASSET_VIEW',
@@ -479,6 +478,58 @@ export function setMyAssets(data) {
 export function setNameTransaccion(data: String) {
   return {
     type: 'SET_N_TRANSACCION',
+    payload: data,
+  };
+}
+export function getUserWallet(id) {
+  return async (dispatch) => {
+    const data = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/wallet/${id}?showDeleted=false`)
+      .then((res) => res.data);
+
+    const actives = await axios
+      .get(`${import.meta.env.VITE_SERVER_API}/activos`)
+      .then((res) => res.data);
+
+    const walletData = data.map((item) => {
+      if (item.quantity) {
+        return {
+          ...actives.find((active) => {
+            return active.name.toLowerCase() === item.crypto;
+          }),
+          quantity: item.quantity,
+          walletId: item._id,
+          history: item.history,
+          allActives: data,
+        };
+      }
+    });
+
+    for (let i = 0; i < walletData.length; i++) {
+      if (!walletData[i]) {
+        walletData.splice(i, 1);
+      }
+    }
+    walletData.dataLoaded = true;
+
+    return dispatch({
+      type: 'GET_USER_WALLET',
+      payload: walletData,
+    });
+  };
+}
+
+
+export function alfabetico(data) {
+  return {
+    type: "ALFABETICO",
+    payload: data,
+  };
+}
+
+export function favoritos(data) {
+  return {
+    type: "FAVORITOS_WALLET",
     payload: data,
   };
 }
@@ -519,20 +570,4 @@ export function getUserWallet(id) {
       type: 'GET_USER_WALLET',
       payload: walletData,
     });
-  };
-}
-
-export function alfabetico(data) {
-  return {
-    type: "ALFABETICO",
-    payload: data,
-  };
-}
-
-export function favoritos(data) {
-  return {
-    type: "FAVORITOS_WALLET",
-    payload: data,
-  };
-}
 

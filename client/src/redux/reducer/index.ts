@@ -260,6 +260,7 @@ function rootReducer(state = initialState, action: any) {
         ...state,
         notificationsNumber: action.payload,
       };
+
     case "SEARCH_USERS":
       return {
         ...state,
