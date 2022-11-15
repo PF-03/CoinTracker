@@ -3,7 +3,6 @@ import s from "../styles/styles.module.css";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import styled from "styled-components";
 import comments from "./dummyComment";
-import { useSelector } from "react-redux";
 
 const Card = styled.article`
   width: 300px;
@@ -45,12 +44,11 @@ const ReviewCard = ({ username, rate, message }) => (
 )
 
 const Comments = () => {
-  const reviews = useSelector((state: state) => state.review)
   return (
     <div>
       <h3 className={style.title}>See what people say about us.</h3>
       <div className={style.container}>
-        {reviews?.map((item: review) => <ReviewCard username={item.user} rate={item.calification} message={item.comment} />)}
+        {comments.map(item => <ReviewCard username={item.username} rate={item.rate} message={item.message} />)}
       </div>
     </div>
   );

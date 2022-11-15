@@ -20,7 +20,7 @@ import Comments from "../../components/Review/Comments";
 
 function LandignPage() {
   const activos = useSelector((state: state) => state.activos.slice(0, 4));
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   useEffect(() => {
 
     dispatch(getActivos())

@@ -1,4 +1,4 @@
-export {};
+export { };
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passport = require('passport');
 const user = require('../models/User');
@@ -16,8 +16,13 @@ passport.use(
       profile: any,
       cb: any
     ) {
-      const dbUser = await user.findOne({ googleId: profile.id });
+      const dbUserBlocked = await user.findOne({ googleId: profile.id, activos: false })
+      if (dbUserBlocked) {
+        console.log('User blocked')
+        return cb(null, false)
+      }
 
+      const dbUser = await user.findOne({ googleId: profile.id });
       if (dbUser) {
         return cb(null, dbUser);
       } else {

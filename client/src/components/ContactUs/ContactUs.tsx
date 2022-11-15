@@ -47,19 +47,19 @@ const ContactUs = () => {
             <Button type="submit" onClick={() => HandleSubmit}>
               Submit
             </Button>
-            <h6>Or</h6>
+            {/* <h6>Or</h6> */}
           </form>
-          <div className={styles.AditionalButtonsContainer}>
+          {/* <div className={styles.AditionalButtonsContainer}>
             <button className={styles.twitter}>
-              {/* <img src={Twitter} alt="" /> */}
+              <img src={Twitter} alt="" />
             </button>
             <button className={styles.github}>
-              {/*  <img src={GitHub} alt="" /> */}
+               <img src={GitHub} alt="" />
             </button>
             <button className={styles.linkedin}>
-              {/*  <img src={LinkedIn} alt="" /> */}
+               <img src={LinkedIn} alt="" />
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
   );
