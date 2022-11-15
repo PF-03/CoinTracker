@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.donationGratitudeMessage-container {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.donationMessage-inner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.donationMessage-inner-container>img {
+    border-radius: 50%;
+    width: 220px;
+    height: 380px;
+    margin-top: 20px;
+}
+
+.p-text {
+    margin-top: 8px;
+}

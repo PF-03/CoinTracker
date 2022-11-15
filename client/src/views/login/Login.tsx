@@ -102,6 +102,7 @@ const Login: React.FC = (): JSX.Element => {
             icon: 'success',
             title: 'Nice to have you back!',
             confirmButtonText: "Let's go!",
+            timer: 1500
         });
         navigate(PrivateRoutes.HOME);
     } catch (e) {
