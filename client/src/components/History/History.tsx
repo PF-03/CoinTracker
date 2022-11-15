@@ -12,15 +12,6 @@ export const History = ({ setChangeView, changeView }) => {
   );
   const dispatch = useDispatch();
 
-  const formatDate = (date) => {
-    const formatedDate = date.split('T');
-    return (
-      <>
-        <p>{formatedDate[0]}</p>
-        <p>{formatedDate[1].replace('.000Z', '')}</p>
-      </>
-    );
-  };
   useEffect(() => {
     axios
       .post('/exchange/getExchange', {
@@ -56,19 +47,15 @@ export const History = ({ setChangeView, changeView }) => {
                     <p>{item.crypto2.toUpperCase()}</p>
                   </div>
                 </div>
-
                 <div className={style['coin-quantities']}>
                   <p>{item.quantity1}</p>
                   <p>{item.quantity2}</p>
                 </div>
-
                 <div className={style['coin-prices']}>
                   <p>{item.price1} $</p>
                   <p>{item.price2} $</p>
                 </div>
-                <div className={style['exchange-date']}>
-                  {formatDate(item.date)}
-                </div>
+                <div className={style['exchange-date']}>{item.date}</div>
               </div>
             );
           })

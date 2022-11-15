@@ -85,6 +85,7 @@ function SearchBar() {
                 </div>
                 <details className={styles.details}>
                     <summary>Filters</summary>
+                    <div className={styles.containerFilters}>
                     <div className={styles.container}>
                         <input
                             className={styles.inputPrecios}
@@ -103,6 +104,7 @@ function SearchBar() {
                         <Button gradient className={styles.buttonFilter} type="submit" onClick={(e: any) => HandleSumbit(e)}>
                             Filter By Price
                         </Button>
+                    </div>
                     </div>
                 </details>
             </div>
