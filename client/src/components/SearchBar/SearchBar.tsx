@@ -107,13 +107,13 @@ function SearchBar() {
               <input
                 className={styles.inputPrecios}
                 type="number"
-                placeholder="Since.."
+                placeholder="From..."
                 id="minimo"
               />
               <input
                 className={styles.inputPrecios}
                 type="number"
-                placeholder="Untill..."
+                placeholder="To..."
                 id="maximo"
               />
             </div>
