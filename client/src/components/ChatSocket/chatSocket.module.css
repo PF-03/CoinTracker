@@ -2,7 +2,7 @@
     position: fixed;
     display: none;
     z-index: 10;
-    right: 6.2rem;
+    right: 4rem;
     bottom: 6rem;
 }
 
@@ -26,8 +26,8 @@
 
 .chat {
     position: fixed;
-    right: 4rem;
-    bottom: 4rem;
+    right: .7rem;
+    bottom: 5rem;
     cursor: pointer;
     z-index: 10;
 }
@@ -44,6 +44,7 @@
     backdrop-filter: blur(5.5px);
     height: 350px;
     width: 300px;
+    border-radius: 2rem;
 }
 
 .foro {
@@ -51,15 +52,14 @@
     flex-wrap: wrap-reverse;
     position: absolute;
     border-radius: 30px;
-    width: 500px;
+    width: 90%;
     height: 30px;
     background-color: #B588FF;
+    margin-top: 1rem;
 
 }
 
 .foro p {
-    padding-top: 20px;
-    height: 30px;
     font-size: 50px;
     margin-left: 15px;
 
@@ -91,8 +91,8 @@
 
 .form ul {
     display: flex;
+    gap: 1rem;
     flex-direction: column;
-    padding: 0px 10px 0px 10px;
 
 }
 
@@ -102,20 +102,19 @@
     color: black;
     min-height: 40px;
     width: 200px;
-    margin-top: 5px;
-    line-height: 0px;
-    padding-left: 4px;
+    margin-top: 1rem;
+    padding-left: 8px;
+    padding-top: .3rem;
 }
 
-.message p {
-    line-height: 10px;
+.message {
+    padding: .5rem .2rem;
 }
 
 .form ul .message.me {
     background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
     margin-left: 80px;
-
-    color: wheat
+    color: white;
 }
 
 .form ul li p {
@@ -135,7 +134,7 @@
 }
 
 input::placeholder {
-    color: rgb(140, 140, 140);
+    color: rgb(186, 186, 186);
 }
 
 .enviar button {
@@ -151,4 +150,13 @@ input::placeholder {
 .from {
     font-size: 14px;
 
+}
+
+.enviar .button img {
+    width: 24px;
+    height: 24px;
+}
+
+.enviar {
+    display: flex;
 }

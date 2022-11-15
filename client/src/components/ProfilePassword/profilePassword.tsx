@@ -36,35 +36,37 @@ export const ProfilePassword = ({ isOpen, close }) => {
     return;
   };
 
-  const closeModal = () => {
-    close();
+  const closeModal = (e) => {
+    e.preventDefault();
+    close(e);
   };
 
-  const closeSend = async () => {
+  const closeSend = async (e) => {
+    e.preventDefault();
     const body = {
       passwordActual: state.passwordActual,
       passwordNueva: state.passwordNueva,
     };
 
     await axios
-      .put(
-        `/users/password/${
-          user._id ? user._id : userId[0]._id
-        }`,
-        body
-      )
-      .then((e) =>
-        Swal.fire({
+      .put(`/users/password/${user._id ? user._id : userId[0]._id}`, body)
+      .then(async (e) => {
+        await setState({
+          passwordActual: "",
+          passwordNueva: "",
+          passwordRepeat: "",
+        });
+        await Swal.fire({
           icon: "success",
           title: "Your Password was changed!",
           confirmButtonText: "Ok!",
-        })
-      )
+        });
+      })
       .then((e) => close())
       .catch((e) => {
         Swal.fire({
           icon: "error",
-          title: "Oops, something went wrong",
+          title: "Oops, password current false",
           text: `${e}`,
           confirmButtonText: "Try again",
         });
@@ -125,7 +127,7 @@ export const ProfilePassword = ({ isOpen, close }) => {
     <div className={`${stilos.contenedor} ${isOpen && stilos.open}`}>
       <form className={stilos.formulario}>
         <div className={stilos.campos}>
-          <label>Password Actual</label>
+          <label>Current Password</label>
           <div className={stilos.pass}>
             <input
               className={stilos.input}
@@ -145,7 +147,7 @@ export const ProfilePassword = ({ isOpen, close }) => {
           </div>
         </div>
         <div className={stilos.campos}>
-          <label>Password Nueva</label>
+          <label>New Password</label>
           <div className={stilos.pass}>
             <input
               className={stilos.input}
@@ -192,13 +194,13 @@ export const ProfilePassword = ({ isOpen, close }) => {
             state.passwordNueva !== "" &&
             state.passwordRepeat !== "" &&
             error.err !== "false" && (
-              <Button gradient={true} onClick={closeSend}>
-                Guardar
+              <Button gradient={true} onClick={(e) => closeSend(e)}>
+                Save
               </Button>
             )}
 
-          <Button gradient onClick={closeModal}>
-            Cancelar
+          <Button gradient onClick={(e) => closeModal(e)}>
+            Cancel
           </Button>
         </div>
       </form>

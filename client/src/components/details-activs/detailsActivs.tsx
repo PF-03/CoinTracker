@@ -1,7 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getDetailsActivos, getActivos } from "../../redux/actions";
+import {
+  getDetailsActivos,
+  getActivos,
+  getWalletData,
+} from "../../redux/actions";
 import { GrFavorite } from "react-icons/gr";
 import { HiOutlineBellAlert } from "react-icons/hi2";
 import Sidebar from "../Sidebar/Sidebar";
@@ -10,7 +14,11 @@ import Button from "../styles/button";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Bubble from "../styles/bubbles";
-import numberFormat from '../../utils/numberFormat.js';
+import numberFormat from "../../utils/numberFormat.js";
+import alerta from "../../assets/iconNews.png";
+import amor from "../../assets/amor.png";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 type barraProps = {
   porcentaje: number;
@@ -43,6 +51,9 @@ export default function DetailsActivs() {
   const dispatch: any = useDispatch();
   const activos: any = useSelector((state: any) => state.allactivos);
   const details: any = useSelector((state: any) => state.detailsActivos);
+  let myWallet: any = useSelector((state: any) => state.walletData);
+  let fav = useSelector((state: any) => state.favWallet);
+  const user = useSelector((state: any) => state.user);
 
   useEffect(() => {
     async function asyn() {
@@ -54,6 +65,7 @@ export default function DetailsActivs() {
       }
     }
     asyn();
+    dispatch(getWalletData(user._id ? user._id : user[0]._id));
   }, [activos, nameActi]);
 
   let difPrecios = details?.high_24h - details?.low_24h;
@@ -61,7 +73,40 @@ export default function DetailsActivs() {
   let precio = details?.current_price - details?.low_24h;
 
   let porcentaje: number = Math.ceil((precio * 100) / difPrecios);
-  console.log(porcentaje);
+
+  const favorito = async (el, e) => {
+    e.preventDefault();
+    let comprobar = myWallet.filter(
+      (elemento) => elemento.crypto.toLowerCase() === el.id.toLowerCase()
+    );
+    let existeFavorito = fav.filter(
+      (ele) => ele.crypto.toLowerCase() === el.id.toLowerCase()
+    );
+    if (comprobar.length === 0 && existeFavorito.length === 0) {
+      let fav = {
+        crypto: el.id,
+        quantity: 0,
+        user: user?._id ? user._id : user[0]._id,
+        history: { date: new Date(Date.now()), quantity: 0 },
+      };
+      await axios.post("/wallet", fav).then(() =>
+        Swal.fire({
+          icon: "success",
+          title: "It has been added to your wallet",
+          confirmButtonText: "Ok!",
+          timer: 1500,
+        })
+      );
+      await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+    }
+    Swal.fire({
+      icon: "error",
+      title: "Already exists in your wallet",
+      confirmButtonText: "Ok!",
+      timer: 1500,
+    });
+    return;
+  };
 
   return (
     <>
@@ -84,10 +129,10 @@ export default function DetailsActivs() {
                 <div className={s.cBotones}>
                   <div className={s.botones}>
                     <div>
-                      <GrFavorite />
+                      <img src={alerta} alt="alerta" />
                     </div>
-                    <div>
-                      <HiOutlineBellAlert />
+                    <div onClick={(e) => favorito(details, e)}>
+                      <img src={amor} alt="fav" className={s.corazon} />
                     </div>
                   </div>
                 </div>
@@ -101,7 +146,7 @@ export default function DetailsActivs() {
               </div>
             </div>
             <div className={s.price}>
-              <h3>Price {numberFormat(details.current_price, 'standard')} </h3>
+              <h3>Price {numberFormat(details.current_price, "standard")} </h3>
             </div>
             <div className={s.conInfo}>
               <div className={s.info}>
@@ -111,7 +156,10 @@ export default function DetailsActivs() {
                       <strong>Capitalizacion del mercado</strong>
                     </p>
                     <p>
-                      {numberFormat(details.current_price * details.circulating_supply, 'standard')}
+                      {numberFormat(
+                        details.current_price * details.circulating_supply,
+                        "standard"
+                      )}
                     </p>
                   </div>
                   <div>
@@ -119,13 +167,18 @@ export default function DetailsActivs() {
                       {" "}
                       <strong>Volumen de comercio</strong>
                     </p>
-                    <p>{numberFormat(details.total_volume, 'standard')} </p>
+                    <p>{numberFormat(details.total_volume, "standard")} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Valoracion tras la dilucion total </strong>
                     </p>
-                    <p>{numberFormat(details.current_price * details.max_supply, 'standard')}</p>
+                    <p>
+                      {numberFormat(
+                        details.current_price * details.max_supply,
+                        "standard"
+                      )}
+                    </p>
                   </div>
                 </div>
 
@@ -134,19 +187,21 @@ export default function DetailsActivs() {
                     <p className={s.p}>
                       <strong>Cantidad circulante</strong>
                     </p>
-                    <p>{numberFormat(details.circulating_supply, 'standard')} </p>
+                    <p>
+                      {numberFormat(details.circulating_supply, "standard")}{" "}
+                    </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Cantidad total</strong>
                     </p>
-                    <p>{numberFormat(details.total_supply, 'standard')} </p>
+                    <p>{numberFormat(details.total_supply, "standard")} </p>
                   </div>
                   <div>
                     <p className={s.p}>
                       <strong>Catidad max.</strong>
                     </p>
-                    <p>{numberFormat(details.max_supply, 'standard')} </p>
+                    <p>{numberFormat(details.max_supply, "standard")} </p>
                   </div>
                 </div>
               </div>
