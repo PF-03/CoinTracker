@@ -18,3 +18,6 @@
   font-size: 50px !important;
   color: purple;
 }
+.siper:hover{
+  cursor: none;
+}
