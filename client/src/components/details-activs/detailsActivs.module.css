@@ -1,8 +1,10 @@
 .contenedor {
     padding-left: 4rem;
     padding-top: 4rem;
+    padding-bottom: 4rem;
     overflow: hidden;
     width: 100%;
+    height: 100%;
 }
 
 .box {
@@ -11,20 +13,24 @@
     color: rgb(255, 255, 255);
     overflow: hidden;
     font-size: 15px;
+    height: 100%;
+ 
 }
 
 .coin {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 40%;
 
 }
 
 .box_one {
     display: flex;
     flex-direction: column;
-    max-height: 300px;
-    line-height: 20px;
+    justify-content: center;
+     height: 70%;
+    line-height: 30px;
 }
 
 .box_one .rank {
@@ -44,6 +50,7 @@
     display: flex;
     padding-right: 10px;
     max-width: 30rem;
+    align-items: center;
 }
 
 .image {
@@ -62,8 +69,6 @@
     display: flex;
     justify-content: space-around;
     width: 250px;
-    color: rgb(0, 0, 0);
-
 
 }
 
@@ -71,7 +76,7 @@
     display: flex;
     padding-top: 20px;
     padding-bottom: 20px;
-
+    height: 250px;
 }
 
 .botones div {
@@ -89,6 +94,11 @@
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     margin-bottom: 20px;
+    cursor: pointer;
+}
+.botones div img{
+    width: 20px;
+    height: 20px;
 }
 
 .lowhigh {
@@ -101,6 +111,8 @@
 .info {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    line-height: 40px;
     padding: 1rem 2rem;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
@@ -108,6 +120,12 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    height: 200px;
+}
+
+.boxInfo{
+    margin-left: 10px;
+    max-width: 450px;
 }
 
 
@@ -115,18 +133,19 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 25rem;
+    max-width: 29rem;
     font-size: 15px;
 
 }
 
-.boxInfo div .p {
+.boxInfo .p {
     font-size: 18px;
+    width: 300px;
+    
 }
 
 .button {
     display: flex;
-    padding-top: 20px;
-
+    padding-top: 15px;
     align-items: center;
 }

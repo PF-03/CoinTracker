@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
 import hearth from "../../../assets/amor.png";
-import az from "../../../assets/az.png";
+import Swal from "sweetalert2";
 
 const AssetsList = ({ HandleTrClick, modal }) => {
   const dispatch = useDispatch<any>();
@@ -88,9 +88,24 @@ const AssetsList = ({ HandleTrClick, modal }) => {
         user: user?._id ? user._id : user[0]._id,
         history: { date: new Date(Date.now()), quantity: 0 },
       };
-      await axios.post("/wallet", fav);
+      await axios.post("/wallet", fav).then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "It has been added to your wallet",
+          confirmButtonText: "Ok!",
+          timer: 1500,
+        });
+      });
+      await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+      return;
     }
-    await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+    Swal.fire({
+      icon: "error",
+      title: "Already exists in your wallet",
+      confirmButtonText: "Ok!",
+      timer: 1500,
+    });
+    return;
   };
   return (
     <div className={styles.assetsTableContainer}>
