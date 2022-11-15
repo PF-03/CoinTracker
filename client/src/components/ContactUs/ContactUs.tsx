@@ -4,6 +4,7 @@ import Button from "../styles/button";
 import Telefono from "../../assets/telefono.png";
 import { useDispatch, useSelector } from "react-redux";
 import { postMail } from "../../redux/actions";
+import Swal from 'sweetalert2'
 const ContactUs = () => {
   const dispatch:any = useDispatch()
   const [state, setState] = React.useState({
@@ -19,7 +20,21 @@ const ContactUs = () => {
   };
   const HandleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postMail(state))
+    if(state.name==""||state.message==""||state.email==""){
+      Swal.fire(
+        'missing parameters',
+        '',
+        'error'
+      )
+    }else{
+      dispatch(postMail(state))
+      Swal.fire(
+        'Succesful Sent!',
+        'Thank you for your message',
+        'success'
+        )
+      setState({...state,name:"",email:"",message:""})
+    }
   };
   return (
       <div className={styles.mainContainer}>
@@ -32,17 +47,20 @@ const ContactUs = () => {
               type="text"
               name="name"
               placeholder="Your name..."
-            />
+              value={state.name}
+              />
             <input
               onChange={HandleChange}
               type="email"
               name="email"
               placeholder="Email..."
-            />
+              value={state.email}
+              />
             <textarea
               onChange={HandleChange}
               name="message"
               placeholder="Message..."
+              value={state.message}
             />
             <Button type="submit" onClick={() => HandleSubmit}>
               Submit

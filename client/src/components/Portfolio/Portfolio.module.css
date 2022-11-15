@@ -73,9 +73,11 @@
   width: 65%;
   background-color: #3f3e3e7d;
   border: 1px solid rgba(255, 255, 255, 0.269);
+  backdrop-filter: blur(8px);
   border-radius: 10px;
-  min-width: 500px;
-  min-height: 400px;
+  /*   min-width: 500px; */
+  min-height: 200px;
+  /* min-height: 460px; */
 }
 .assetsContainer {
   display: flex;
@@ -92,6 +94,7 @@
 .assetsNavbarContainer{
   display: flex; 
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 .UnselectedButton{
   backdrop-filter: blur(8px);
@@ -134,6 +137,7 @@
   background-repeat: no-repeat;
   padding-left: 10px;
   padding-right: 30px;
+  min-height: 44px;
 }
 
 
@@ -144,11 +148,26 @@
     margin-right: 0px;
     margin-bottom: 10px;
   }
+  .chartContainer{
+    overflow-x:auto;
+    width: 100%;
+   /*  height: 100px; */
+  }
   .assetsNavbarContainer input{
-    width: 200px;
+    width: 40%;
   }
   .assetsNavbarContainer div button{
     padding: 10px 5px;
+  }
+}
+@media (max-width: 587px) {
+  .assetsNavbarContainer input{
+    margin-top: 10px;
+    width: 100%;
+  }
+  .assetsNavbarContainer{
+    align-content: center;
+    justify-content: center;
   }
 }
 
@@ -221,4 +240,12 @@
 .main_value_container button:hover{
   cursor: pointer;
   filter: none;
+}
+
+.chartContainer::-webkit-scrollbar {
+  width: 6px;
+}
+.chartContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.589);
+  border-radius: 6px;
 }
