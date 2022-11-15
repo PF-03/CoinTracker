@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./AssetsList.module.css";
-import { alfabetico, getWalletData } from "../../../redux/actions";
+import { alfabetico, getWalletData, rank } from "../../../redux/actions";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import numberFormat from "../../../utils/numberFormat.js";
@@ -15,7 +15,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const curretPage = useSelector((state: any) => state.currentAssetView);
   const [ordenar, setOrdenar] = useState(false);
   const user = useSelector((state: any) => state.user);
-  const [mayor, setMayor] = useState(false);
+  const [rango, setRango] = useState(true);
   const array = [];
 
   const filtro = myWallet.filter((el) =>
@@ -64,9 +64,15 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const ordenarAZ = async (e) => {
     e.preventDefault();
     setOrdenar(!ordenar);
+    setRango(false);
     await dispatch(alfabetico(ordenar));
   };
-
+  const ordenarRank = async (e) => {
+    e.preventDefault();
+    setRango(true);
+    await dispatch(rank());
+  };
+  console.log(allAssets);
   const favorito = async (el, e) => {
     e.preventDefault();
     let comprobar = myWallet.filter(
@@ -91,8 +97,36 @@ const AssetsList = ({ HandleTrClick, modal }) => {
       <table className={styles.table}>
         <thead className={styles.tHeaders}>
           <tr>
-            <th className={styles.tit} onClick={(e) => ordenarAZ(e)}>
-              Name
+            <th className={styles.tit}>
+              Name{" "}
+              {curretPage === "myAssets" && array.length > 0 && (
+                <div className={styles.div}>
+                  {" "}
+                  <label className={styles.label} onClick={(e) => ordenarAZ(e)}>
+                    {!ordenar ? "AZ" : "ZA"}
+                  </label>{" "}
+                  <label
+                    className={rango ? styles.labelRan : styles.label}
+                    onClick={(e) => ordenarRank(e)}
+                  >
+                    RANK
+                  </label>
+                </div>
+              )}
+              {curretPage === "allAssets" && (
+                <div className={styles.div}>
+                  {" "}
+                  <label className={styles.label} onClick={(e) => ordenarAZ(e)}>
+                    {!ordenar ? "AZ" : "ZA"}
+                  </label>{" "}
+                  <label
+                    className={rango ? styles.labelRan : styles.label}
+                    onClick={(e) => ordenarRank(e)}
+                  >
+                    RANK
+                  </label>
+                </div>
+              )}
             </th>
             <th>Price</th>
             <th>24h</th>
@@ -137,7 +171,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                     "0.000 USD"
                   )}
                   {curretPage == "myAssets" ? (
-                    <div>
+                    <div className={styles.Botones}>
                       <button
                         name={el.name}
                         onClick={(e) => modal(el.id, e, "mas")}
@@ -154,6 +188,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   ) : (
                     <button name={el.name} onClick={(e) => favorito(el, e)}>
                       <img src={hearth} alt="corazon" />
+                      <label>+</label>
                     </button>
                   )}
                 </th>
