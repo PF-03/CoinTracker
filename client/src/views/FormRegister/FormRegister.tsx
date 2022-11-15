@@ -231,6 +231,7 @@ function FormRegister() {
           Name:{' '}
         </label>
         <input
+          required
           className='registerFormInput'
           name='name'
           id='name'
@@ -245,6 +246,7 @@ function FormRegister() {
           Lastname:{' '}
         </label>
         <input
+          required
           className='registerFormInput'
           name='lastname'
           id='lastname'
