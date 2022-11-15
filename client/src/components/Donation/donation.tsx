@@ -12,6 +12,7 @@ import creditCard from '../../assets/credit-card.png'
 import visaIcon from '../../assets/visa-icon.png'
 import mastercardIcon from '../../assets/mastercard-icon.png'
 import Bubble from '../styles/bubbles';
+import { PrivateRoutes } from "../../rutas/rutas";
 
 function Donation() {
     const stripe = useStripe();
@@ -73,9 +74,10 @@ function Donation() {
                 icon: 'success',
                 title: 'Thanks a lot!',
                 text: 'Your support help us grow.',
-                confirmButtonText: "Close"
+                timer: 1500
+                // confirmButtonText: "Close"
             })
-            navigate("/home");
+            navigate(PrivateRoutes.DONATE_SUCCESS);
         } catch (error) {
             Swal.fire({
                 icon: 'error',

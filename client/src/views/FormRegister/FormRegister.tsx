@@ -159,6 +159,7 @@ function FormRegister() {
             icon: 'success',
             title: 'Your account was created!',
             confirmButtonText: "Let's go!",
+            timer: 1500
         });
         navigate(PrivateRoutes.HOME);
     } catch (error) {
