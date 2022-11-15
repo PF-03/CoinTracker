@@ -62,17 +62,6 @@ export default function ChatSocket() {
       <div className={`${estilos.boxPrincipal} ${modal && estilos.open} `}>
         <form onSubmit={handleSubmit} className={estilos.form}>
           <div className={estilos.contenedor}>
-            <div className={estilos.foro}>
-              <p>
-                <strong>.</strong>
-              </p>{" "}
-              <p>
-                <strong>.</strong>
-              </p>{" "}
-              <p>
-                <strong>.</strong>
-              </p>
-            </div>
             <ul>
               {messages.map((el, index) => (
                 <div
