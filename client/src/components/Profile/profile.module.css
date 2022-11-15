@@ -70,9 +70,8 @@
 }
 
 .propiedadd {
-    display: flex;
-    align-items: center;
-    min-width: 250px;
+   
+    min-width: 300px;
     height: 3rem;
     font-size: 16px;
     background: rgba(219, 219, 219, 0.11);
@@ -83,6 +82,14 @@
     border: 1px solid rgba(219, 219, 219, 0.12);
     padding-left: 1rem;
 
+}
+.propiedadd label{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    max-width: 250px;
+    height: 50px;
+    font-size: 15px;
 }
 .icon{
     width: 20px;
@@ -104,7 +111,6 @@
 }
 
 .propiedad input {
-
     min-width: 250px;
     height: 50px;
     font-size: 15px;
@@ -137,16 +143,6 @@
     height: 480px;
 }
 
-/* .foto .div {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 20px;
-    width: 400px;
-    height: 80px;
-    font-size: 30px;
-    text-decoration: underline;
-} */
 
 .imagen {
     display: flex;
