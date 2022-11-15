@@ -10,6 +10,7 @@ import eyeOpen from "../../assets/eye-opened.png";
 import eyeClosed from "../../assets/eye-closed.png";
 import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
 import Swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 
 const Login: React.FC = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ const Login: React.FC = (): JSX.Element => {
         dispatch(setUserToken(res.data.token));
         Swal.fire({
             icon: 'success',
-            title: 'Nice to have your back!',
+            title: 'Nice to have you back!',
             confirmButtonText: "Let's go!",
         });
         navigate(PrivateRoutes.HOME);
@@ -157,13 +158,14 @@ const Login: React.FC = (): JSX.Element => {
           </div>
 
           <div className={style["options-container"]}>
-            <div className={style["options-remember"]}>
+            {/* <div className={style["options-remember"]}>
               <label className={style["options"]} htmlFor="remember">
                 Remember
               </label>
               <input id="remember" type="checkbox" />
             </div>
-            <p className={style["options"]}>forgot password?</p>
+            <p className={style["options"]}>forgot password?</p> */}
+            <Link to={PublicRouts.REGISTER}><p className={style["options"]}>Don't have an account?</p></Link>
           </div>
 
           <div className={style["button-container"]}>

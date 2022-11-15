@@ -7,7 +7,7 @@ import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
 import SearchBarUsers from '../SearchUsers/searchUsers';
-
+import Swal from 'sweetalert2';
 
 export default function UserList() {
 
@@ -21,8 +21,15 @@ export default function UserList() {
 
   const handleDelete = (_id) => {
     dispatch(deleteUser(_id))
-    alert("User successfully updated");
-    window.location.reload()
+    Swal.fire({
+      icon: 'success',
+      title: 'User sucessfully updated!',
+      confirmButtonText: "Close",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    })
   }
 
 
@@ -38,11 +45,10 @@ export default function UserList() {
     // }},
     { field: '_id', headerName: 'User ID', width: 130 },
     { field: 'googleId', headerName: 'Google ID', width: 130 },
-    { field: 'password', headerName: 'Password', width: 130 },
     { field: 'mail', headerName: 'Email', width: 150 },
     { field: 'name', headerName: 'Name', type: 'date', width: 120 },
     { field: 'lastname', headerName: 'Lastname', width: 120 },
-    { field: 'type', headerName: 'Type', width: 75 },
+    { field: 'type', headerName: 'Type', width: 120 },
     // { field: 'token', headerName: 'Token',  width: 100 },
     { field: 'activos', headerName: 'Activo', width: 75 },
     {
