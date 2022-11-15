@@ -7,19 +7,18 @@ import { Link } from "react-router-dom";
 const AboutUs = () => {
   return (
     <div className={styles.mainContainer}>
-        <div>
-            <Link to=""><img src={LinkedIn} alt="" /></Link>
-            <Link to=""><img src={GitHub} alt="" /></Link>
-            <Link to=""><img src={facebook} alt="" /></Link>
-        </div>
-        <div>
-            <button>Home</button>
-            <button>Services</button>
-            <button>About</button>
-            <button>Terms</button>
-            <button>Privacy Policy</button>
-        </div>
-        <h6>CoinTracker © 2022</h6>
+      <div>
+        <a href="#About" ><img src={LinkedIn} alt="" /></a>
+        <a href="#About" ><img src={GitHub} alt="" /></a>
+      </div>
+      <div>
+        <Link to="/home"><button>Home</button></Link>
+        <Link to="/home"><button>Services</button></Link>
+        <a href="#About" ><button>Developers</button></a>
+        {/* <button>Terms</button>
+        <button>Privacy Policy</button> */}
+      </div>
+      <h6>CoinTracker © 2022</h6>
     </div>
   );
 };

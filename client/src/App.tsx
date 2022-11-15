@@ -11,6 +11,7 @@ import Calculadora from "./components/Calculadora/calculadora";
 import AdminView from "./components/admin/AdminView";
 import SharedLayout from "./views/sharedLayout/SharedLayout";
 import Donation from "./components/Donation/donation";
+import DonationSuccess from "./components/DonationSuccess/DonationSuccess";
 import Chatbot from "./components/ChatBot/chatBots";
 import SwapComponent from "./components/swapComponent/SwapComponent";
 
@@ -77,6 +78,8 @@ function App() {
               <Route path={PrivateRoutes.SWAP} element={<SwapComponent />} />
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />
+
+              <Route path={PrivateRoutes.DONATE_SUCCESS} element={<DonationSuccess />} />
             </Route>
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 

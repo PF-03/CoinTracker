@@ -11,6 +11,8 @@ import cardBackImg from '../../assets/credit-card-back.png'
 import creditCard from '../../assets/credit-card.png'
 import visaIcon from '../../assets/visa-icon.png'
 import mastercardIcon from '../../assets/mastercard-icon.png'
+import Bubble from '../styles/bubbles';
+import { PrivateRoutes } from "../../rutas/rutas";
 
 function Donation() {
     const stripe = useStripe();
@@ -72,9 +74,10 @@ function Donation() {
                 icon: 'success',
                 title: 'Thanks a lot!',
                 text: 'Your support help us grow.',
-                confirmButtonText: "Close"
+                timer: 1500
+                // confirmButtonText: "Close"
             })
-            navigate("/home");
+            navigate(PrivateRoutes.DONATE_SUCCESS);
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -85,10 +88,12 @@ function Donation() {
         }
     }
 
-   
+
 
     return (
         <div className='donation-comp-container'>
+            <Bubble color='purple' size='medium' bottom={0} left='17vw' />
+            <Bubble color='blue-dark' size='small' right={0} top='10vh' />
             <h3>You're almost there.</h3>
             <p>How would you like to donate?</p>
             <details className='donation-opt-details-tag'>
@@ -137,19 +142,19 @@ function Donation() {
                 <form className="bitpay-donate" action="https://test.bitpay.com/checkout" method="post">
                     <input name="action" type="hidden" value="checkout" />
                     <fieldset>
-                    <ul>
-                        {/* <li className="bitpay-donate-field">
+                        <ul>
+                            {/* <li className="bitpay-donate-field">
                         <label>Email:</label>
                         <input className="bitpay-donate-field-email field-input" name="buyerEmail" type="email" placeholder="Email address (optional)" />
                         </li> */}
-                        <li className="bitpay-donate-field">
-                        <label>Amount:</label>
-                        <div className="field-input-wrapper">
-                            <input className="bitpay-donate-field-price field-input" name="price" type="number" placeholder="Amount" min="0.000006" step="0.000001"/>
-                            <select className="bitpay-donate-field-currency field-input" name="currency" value="">
-                            <option selected={true} value="USD">USD</option>
-                            <option value="BTC">BTC</option>
-                            {/* <option value="EUR">EUR</option>
+                            <li className="bitpay-donate-field">
+                                <label>Amount:</label>
+                                <div className="field-input-wrapper">
+                                    <input className="bitpay-donate-field-price field-input" name="price" type="number" placeholder="Amount" min="0.000006" step="0.000001" />
+                                    <select className="bitpay-donate-field-currency field-input" name="currency" value="">
+                                        <option selected={true} value="USD">USD</option>
+                                        <option value="BTC">BTC</option>
+                                        {/* <option value="EUR">EUR</option>
                             <option value="GBP">GBP</option>
                             <option value="AUD">AUD</option>
                             <option value="BGN">BGN</option>
@@ -182,14 +187,14 @@ function Donation() {
                             <option value="THB">THB</option>
                             <option value="TRY">TRY</option>
                             <option value="ZAR">ZAR</option> */}
-                            </select>
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                        <input type="hidden" name="data" value="WaVtoxHxEbAFHThmvIFjJUOejRHno6ZszfV3EjXV5MKfDwU9ontrToNAuZ8KosmCDlV9mcQjtwukgYeHybEjTNFn1tbZWfsxz0CDgOdZap7BSoMojZTt4Dh/GqRNCtj7+UEn4SFVpehrtkktrbh6fUVg7+qHDJnf/+qyPzSH9SkxGA6Vbo7MlXiWLlt2gNf6AJBANH87Gm5tJE/DfWkrkUfJVVnTAUhJ+9AkBPGmClnldUDqKF8SLAnVSrWiaVvkN2Z2RcY8x2uvzOzfKVJo/UwO/oQo8/SkPRwh+dfqAWw=" />
+                        <div className="bitpay-donate-button-wrapper">
+                            <input className="bitpay-donate-button" name="submit" src="https://test.bitpay.com/cdn/en_US/bp-btn-donate-currencies.svg" type="image" alt="BitPay, the easy way to pay with bitcoins." />
                         </div>
-                        </li>
-                    </ul>
-                    <input type="hidden" name="data" value="WaVtoxHxEbAFHThmvIFjJUOejRHno6ZszfV3EjXV5MKfDwU9ontrToNAuZ8KosmCDlV9mcQjtwukgYeHybEjTNFn1tbZWfsxz0CDgOdZap7BSoMojZTt4Dh/GqRNCtj7+UEn4SFVpehrtkktrbh6fUVg7+qHDJnf/+qyPzSH9SkxGA6Vbo7MlXiWLlt2gNf6AJBANH87Gm5tJE/DfWkrkUfJVVnTAUhJ+9AkBPGmClnldUDqKF8SLAnVSrWiaVvkN2Z2RcY8x2uvzOzfKVJo/UwO/oQo8/SkPRwh+dfqAWw=" /> 
-                    <div className="bitpay-donate-button-wrapper">
-                        <input className="bitpay-donate-button" name="submit" src="https://test.bitpay.com/cdn/en_US/bp-btn-donate-currencies.svg" type="image" alt="BitPay, the easy way to pay with bitcoins." />
-                    </div>
                     </fieldset>
                 </form>
             </details>

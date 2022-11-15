@@ -3,17 +3,15 @@ import alerta from "../../assets/alerta.png";
 import stilos from "./profileAlerta.module.css";
 import Button from "../styles/button";
 
-export default function ProfileAlerta({ abierto, close }) {
+export default function ProfileAlerta({ abierto, close, titulo, mensaje }) {
   return (
     <div className={`${stilos.contenedor} ${abierto && stilos.open}`}>
       <div className={stilos.box}>
         <div className={stilos.alert}>
           <img className={stilos.img} src={alerta} alt="alerta" />
-          <p>YOUR ACCOUNT IS NOT VERIFIED</p>
+          <p>{titulo}</p>
           <div className={stilos.text}>
-            <p>
-              In order to edit your profile, first you must to verify your mail
-            </p>
+            <p>{mensaje}</p>
           </div>
           <Button gradient onClick={() => close()}>
             X

@@ -1,10 +1,7 @@
 import st from './featuredInfo.module.css';
-import { ArrowDownward, ArrowUpward } from '@mui/icons-material'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getDonations } from "../../../redux/actions/index";
-// import  userData  from '../../../dummyData';
-
 
 export default function featuredInfo() {
   const dispatch: any = useDispatch();

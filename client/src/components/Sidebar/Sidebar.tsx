@@ -10,19 +10,23 @@ import iconSetting from "../../assets/iconSettings.png";
 import iconSwap from "../../assets/iconSwap.png";
 import iconUser from "../../assets/iconUser.png";
 import iconDonation from "../../assets/donateIcon1.png";
+import iconAdmin from "../../assets/admin-icono.png";
 import { useSelector } from "react-redux";
 
 // codigo guglielmo
 ////////////////////////////////////////////////////////
 import { setUser, getUserId } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
+import {
+  PrivateAdminRoutes,
+  PrivateRoutes,
+  PublicRouts,
+} from "../../rutas/rutas";
 //////////////////////////////////////////////////////////
 function Sidebar() {
   const user = useSelector((state: any) => state.user); // para el user del readux, cambiar en caso de ser necesario
-
   //codigo guglielmo
   ////////////////////////////////////////////////////////////
   const dispatch: any = useDispatch();
@@ -46,10 +50,9 @@ function Sidebar() {
     const asyncUseEffect = async () => {
       if (token) {
         return await axios
-          .get(
-            `/localauth/profile?secret_token=${await token}`,
-            { withCredentials: true }
-          )
+          .get(`/localauth/profile?secret_token=${await token}`, {
+            withCredentials: true,
+          })
           .then((res: any) => dispatch(setUser(res.data.user)));
       }
       const googleUser = await axios
@@ -83,7 +86,9 @@ function Sidebar() {
           <Link to="/profile" className={style.data}>
             <img
               className={style.icon}
-              src={userr[0]?.image.imageURL ? userr[0].image.imageURL : iconUser}
+              src={
+                userr[0]?.image.imageURL ? userr[0].image.imageURL : iconUser
+              }
               alt="user"
             />
             <span>
@@ -114,9 +119,15 @@ function Sidebar() {
           <span>Calculator</span>
         </Link>
         <Link to={PrivateRoutes.DONATE} className={style.data}>
-          <img className={style.icon} src={iconDonation} alt="calculator" />
+          <img className={style.icon} src={iconDonation} alt="donate" />
           <span>Donate</span>
         </Link>
+        {user?.type?.includes("admin") ? (
+          <Link to={PrivateAdminRoutes.ADMIN} className={style.data}>
+            <img className={style.icon} src={iconAdmin} alt="admin" />
+            <span>as Admin</span>
+          </Link>
+        ) : null}
       </div>
       <div className={style.footer}>
         {Object.keys(user).length !== 0 ? (

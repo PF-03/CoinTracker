@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getActivos } from "../../redux/actions";
+import { getActivos, getReviews } from "../../redux/actions";
 import numberFormat from "../../utils/numberFormat.js";
 
 import Footer from "../../components/Footer/Footer"
@@ -20,10 +20,11 @@ import Comments from "../../components/Review/Comments";
 
 function LandignPage() {
   const activos = useSelector((state: state) => state.activos.slice(0, 4));
-  const dispatch = useDispatch();
+  const dispatch: any = useDispatch();
   useEffect(() => {
 
     dispatch(getActivos())
+    dispatch(getReviews())
 
   }, [])
 

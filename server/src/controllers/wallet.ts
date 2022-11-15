@@ -29,13 +29,30 @@ const walletController = {
 
   deleteWallet: async (req: Request, res: Response) => {
     const { id } = req.params;
-    try {
-      const messageDelete = await walletModel.updateOne(
-        { _id: id },
-        { isDeleted: true }
-      );
 
-      res.send(messageDelete);
+    let { quantity, history, crypto } = req.body;
+
+    try {
+      const walletData: any = (await walletModel.find({ _id: id }))[0];
+      console.log(walletData);
+      history = {
+        date: new Date(Date.now()),
+        quantity: quantity,
+      };
+
+      await walletModel
+        .findByIdAndUpdate(
+          id,
+          {
+            crypto: crypto,
+            quantity: quantity,
+            history: [...walletData.history, history],
+          },
+          { new: true }
+        )
+        .then(() => {
+          res.status(200).send("Wallet Successfully Updated");
+        });
     } catch (e: any) {
       res.status(500).send({ msg: e.message });
     }
@@ -63,7 +80,7 @@ const walletController = {
         return res.status(404).send("falta el parametro crypto");
       if (body.quantity === undefined)
         return res.status(404).send("falta el parametro quantity");
-      console.log(body);
+
       const walletData: any = (await walletModel.find({ _id: id }))[0];
       (body.history = {
         date: new Date(Date.now()),
