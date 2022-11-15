@@ -124,7 +124,12 @@ export default function Profile() {
         : user.status
         ? user.status
         : user[0].status) !== "VERIFICADO" && (
-        <ProfileAlerta abierto={abierto} close={closee} />
+        <ProfileAlerta
+          abierto={abierto}
+          close={closee}
+          titulo="YOUR ACCOUNT IS NOT VERIFIED"
+          mensaje="In order to edit your profile, first you must to verify your mail"
+        />
       )}
       {cargar === false ? (
         <div className={profile.box}>
@@ -187,8 +192,6 @@ export default function Profile() {
                     src={
                       userId[0]?.image?.imageURL
                         ? userId[0]?.image?.imageURL
-                        : user.image
-                        ? user.image.imageURL
                         : ProfileIMG
                     }
                     alt="profile"

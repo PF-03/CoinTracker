@@ -19,19 +19,24 @@ import { AbiertoCerrarNega } from "../transaccion/negativa/abiertoCerrar";
 import numberFormat from "../../utils/numberFormat";
 import { store } from "../../redux/store/store";
 import Bubble from "../styles/bubbles";
+import ProfileAlerta from "../ProfileAlerta/profileAlerta";
+import { OpenCloseAlert } from "../ProfileAlerta/openClose";
+
 const Portfolio = () => {
   const dispatch: any = useDispatch<any>();
   let [isOpen, open, close] = OpenClose();
+  let [open2, close2] = OpenCloseAlert();
   let [abierto, abrir, cerrado] = AbiertoCerrarNega();
 
   const user = useSelector((state: any) => state.user);
+  let myWallet = useSelector((state: any) => state.walletData);
 
   const [state, setState] = React.useState({
     chartLoading: true,
   });
   React.useEffect(() => {
     async function getDataAndChart() {
-      setState({ ...state, chartLoading: true })
+      setState({ ...state, chartLoading: true });
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
       await dispatch(
         getMainChartData(
@@ -149,10 +154,22 @@ const Portfolio = () => {
     e.preventDefault();
     await cerrado();
   };
+  console.log(curretPage);
   return (
     <div className={styles.mainContainer}>
-      <Bubble color="blue-dark" right={'-10%'} top='-30%' />
+      <Bubble color="blue-dark" right={"-10%"} top="-30%" />
       <div className={styles.portfolioContainer}>
+        {myWallet.length === 0 && (
+          <ProfileAlerta
+            abierto={open2}
+            close={close2}
+            titulo="YOUR ACCOUNT HAS NO WALLET"
+            mensaje="
+          Create one by accessing ADD ASSETS
+          "
+          />
+        )}
+
         <h5>Total en USD$</h5>
         <div className={styles.dataContainer}>
           <div className={styles.valueContainer} onClick={HandleMainChartClick}>
@@ -189,13 +206,13 @@ const Portfolio = () => {
                       data: ChartData["datasets"] ? ChartData["datasets"] : [],
                       borderColor:
                         ChartData["datasets"] === undefined ||
-                          ChartData["datasets"][0] <
+                        ChartData["datasets"][0] <
                           ChartData["datasets"].slice(-1)[0]
                           ? "#00CE6A"
                           : "#FA2020",
                       backgroundColor:
                         ChartData["datasets"] === undefined ||
-                          ChartData["datasets"][0] <
+                        ChartData["datasets"][0] <
                           ChartData["datasets"].slice(-1)[0]
                           ? "#00ce6a7b"
                           : "#c719197f",
@@ -232,6 +249,7 @@ const Portfolio = () => {
                 Add Assets
               </button>
             </div>
+
             <input type="text" onChange={(e) => handleOnChange(e)} />
           </div>
           <AssetsList HandleTrClick={HandleTrClick} modal={modal}></AssetsList>

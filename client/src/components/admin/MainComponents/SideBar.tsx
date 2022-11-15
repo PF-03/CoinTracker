@@ -21,27 +21,28 @@ export default function SideBar() {
         <div className={st.sidebarMenu}>
           <h3 className={st.sidebarTitle}>Admin Dashboard</h3>
           <ul className={st.sidebarList}>
+
             <li className={st.sidebarListItem}>
-
               <Link to='/admin' className={st.link}>
-              <li >
-
-              <TimeLineIcon className={st.sidebarIcon} />
-              Analytics
-            </li>
+                <li >
+                  <TimeLineIcon className={st.sidebarIcon} />
+                  Analytics
+                </li>
               </Link>
             </li>
-           
+
+            <li className={st.sidebarListItem}>
+              <Link to={PrivateRoutes.HOME} className={st.link}>
+                <li >
+                  <PersonIcon className={st.sidebarIcon} />
+                  as User
+                </li>
+              </Link>
+            </li>
             {/* <li className={st.sidebarListItem}>
               <TrendingUpIcon className={st.sidebarIcon}/>
               Sales
             </li> */}
-            <li>
-              <Link to={PrivateRoutes.HOME} className={st.link}>
-                <PersonIcon className={st.sidebarIcon} />
-                as User
-              </Link>
-            </li>
           </ul>
         </div>
         <Bubble color="blue-dark" size="large" bottom="70%" right="11%" />
