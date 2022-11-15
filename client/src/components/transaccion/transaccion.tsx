@@ -22,7 +22,6 @@ export default function Transaccion({ isOpen, close }) {
 
   let precio = precioMoneda?.current_price;
 
-  const dispatch: any = useDispatch();
   const [cambio, setCambio] = useState(false);
   const [wallet, setWallet] = useState({
     date: new Date(Date.now()),
@@ -66,6 +65,12 @@ export default function Transaccion({ isOpen, close }) {
   let enviarr = async (body: any) => {
     try {
       await axios.post("/wallet", body).then(() => {
+        setWallet({
+          date: new Date(Date.now()),
+          quantity: "1",
+          precio: precio,
+          gastado: "",
+        });
         Swal.fire({
           icon: "success",
           title: "Transaction send ",
@@ -122,6 +127,12 @@ export default function Transaccion({ isOpen, close }) {
           body
         )
         .then(() => {
+          setWallet({
+            date: new Date(Date.now()),
+            quantity: "1",
+            precio: precio,
+            gastado: "",
+          });
           Swal.fire({
             icon: "success",
             title: "Transaction send ",
@@ -164,6 +175,7 @@ export default function Transaccion({ isOpen, close }) {
               className={diseño.input}
               placeholder="1"
               type="number"
+              value={wallet.quantity}
               name="quantity"
               onChange={handleOnChange}
             />

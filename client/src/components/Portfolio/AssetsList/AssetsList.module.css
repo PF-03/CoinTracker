@@ -49,6 +49,7 @@
     margin-right: 10px;
  
 }
+
 .imageTh{
     display: flex;
     align-items: center;
@@ -84,7 +85,8 @@
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     width: 50px;
-  
+
+ 
 }
 .buttonTh{
     display: flex;
@@ -101,6 +103,8 @@ table {
 }
 th {
     padding: 1rem 2rem;
+
+  
 }
 .img{
    margin-right: 10px;
@@ -110,10 +114,32 @@ th {
 
 
 }
-.tit{
-    cursor: pointer;
+th .div{
+    margin-left: 140px;
+    display:inline-block;
 }
+th .label{
+    display:inline-block;
+    text-align: center;
+    width: 40px;
+    cursor: pointer;
+    color:rgb(97, 89, 89);
+    font-size: 15px;    
+}
+th .labelRan{
+    color: rgb(170, 158, 179);
+}
+.label:hover{
+    color:  rgb(170, 158, 179);
+}
+
+
 th {
     text-align: start;
   
+}
+.Botones{
+    display: inline-flex;
+
+
 }
