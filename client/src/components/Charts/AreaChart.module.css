@@ -1,4 +1,5 @@
 .mainContainer{
     height: 100%;
     padding: 15px;
+    min-width: 400px;
 }
