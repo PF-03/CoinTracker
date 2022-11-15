@@ -180,7 +180,7 @@ const Login: React.FC = (): JSX.Element => {
           <div className={style["options-container"]}>
             {/* <div className={style["options-remember"]}>
             <p className={style["options"]}>forgot password?</p> */}
-            <Link to={PublicRouts.REGISTER}><p className={style["options"]}>Don't have an account?</p></Link
+            <Link to={PublicRouts.REGISTER}><p className={style["options"]}>Don't have an account?</p></Link>
           </div>
 
           <div className={style['button-container']}>
