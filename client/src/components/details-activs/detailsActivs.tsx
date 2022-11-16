@@ -98,6 +98,7 @@ export default function DetailsActivs() {
         })
       );
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+      return;
     }
     Swal.fire({
       icon: "error",

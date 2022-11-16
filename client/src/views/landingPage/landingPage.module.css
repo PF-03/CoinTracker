@@ -71,9 +71,9 @@
 }
 
 .gradientText {
-  border-radius: 15px;
-  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
-  padding: 0.5rem 1rem;
+  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
+  padding: .5rem 1rem;
+  border-radius: 1rem;
 }
 
 .reviews {

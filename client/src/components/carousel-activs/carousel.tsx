@@ -1,15 +1,15 @@
-import { Navigation, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { useEffect } from 'react';
-import { getActivos } from '../../redux/actions';
+import { Navigation, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useEffect } from "react";
+import { getActivos } from "../../redux/actions";
 // Import Swiper styles import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 /*  import 'swiper/css/scrollbar';  */
-import style from './carousel.module.css';
-import Card from '../card/card';
-import numberFormat from '../../utils/numberFormat.js';
+import style from "./carousel.module.css";
+import Card from "../card/card";
+import numberFormat from "../../utils/numberFormat.js";
 
 export default function Carousel() {
   const dispatch: any = useDispatch();
@@ -33,7 +33,7 @@ export default function Carousel() {
             scrollbar={{ draggable: true }}
           >
             {activosSlice.length > 0 &&
-              activosSlice !== 'error' &&
+              activosSlice !== "error" &&
               activosSlice?.map((el: coinInfo) => (
                 <SwiperSlide key={el.name}>
                   <Card
@@ -42,8 +42,8 @@ export default function Carousel() {
                     image={el.image}
                     current_price={numberFormat(
                       el.current_price,
-                      'standard',
-                      'decimal'
+                      "standard",
+                      "decimal"
                     )}
                   />
                 </SwiperSlide>
