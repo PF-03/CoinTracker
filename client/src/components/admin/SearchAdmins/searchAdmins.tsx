@@ -22,10 +22,10 @@ export default function SearchBarAdmins(){
 
     return (
         <div className={css.containerSearchAdmins}>
-            <input placeholder="Search admin..." id="busquedaAdm" onChange={HandleInputChange} className={css.searchBarAdmins}></input>
+            <input placeholder="Search admin by name..." id="busquedaAdm" onChange={HandleInputChange} className={css.searchBarAdmins}></input>
             <button className={css.searchButtonAdmins}>Search</button >
             <select id='selectAdmins' onChange={HandleInputChange} className={css.selectAdmins}>
-                <option>All Admmins</option>
+                <option>All Admins</option>
                 <option>Active</option>
                 <option>Blocked</option>
             </select>

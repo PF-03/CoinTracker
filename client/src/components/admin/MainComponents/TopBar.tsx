@@ -7,8 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
+
 import iconCoinTracker from '../../../assets/logo.png';
-import iconUser from '../../../assets/iconUser.png';
+import iconUser from '../../../assets/images.png'
+import iconLogOut from "../../../assets/iconLogOut.png";
+import Swal from 'sweetalert2';
+
 
 export default function TopBar() {
     const dispatch: any = useDispatch();
@@ -32,6 +36,11 @@ export default function TopBar() {
 
         dispatch({ type: "RESET" });
         nav(PublicRouts.LANDING);
+        Swal.fire({
+            icon: 'success',
+            title: 'Success logout',
+            confirmButtonText: "Close",
+        });
     };
 
     return (
@@ -53,19 +62,15 @@ export default function TopBar() {
                         </div>
                     </Link>
 
-                    <Dropdown>
-                        <Dropdown.Toggle id="dropdown-basic">
-                            <img src={iconUser} alt="" width="30px" height="30px" />
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
-                            <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <span onClick={() => logout()} className={st.data} >
+                        <img className={st.icon} src={iconLogOut} alt="home" />
+                    </span>
+
+                    <a target='_blank' href="http://www.gmail.com" className={st.link}></a>
 
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 };
 

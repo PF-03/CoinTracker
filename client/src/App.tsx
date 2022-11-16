@@ -43,6 +43,8 @@ function App() {
 
           <Route path={PublicRouts.REGISTER} element={<FormRegister />} />
 
+          <Route path={PublicRouts.BLOCKED} element={<Login />} />
+
           <Route path={PublicRouts.LOG} element={<Login />} />
 
           <Route path={PublicRouts.LOGIN} element={<Login />} />

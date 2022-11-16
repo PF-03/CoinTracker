@@ -15,8 +15,8 @@ export default function DonationChart() {
 
     const allDonations = useSelector((state: any) => state.donations);
     const dataChart = () => {
-        let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'];
+        let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         let totalDonation = 0;
         let actualMonth = 0;
         allDonations.forEach((element) => {

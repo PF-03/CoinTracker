@@ -50,11 +50,11 @@ export default function featuredInfo() {
     <div className={st.featured}>
 
       <div className={st.featuredItem}>
-        <span className={st.featuredTitle}> Actual Month Donations </span>
+        <span className={st.featuredTitle}> Current Month Donations </span>
         <div className={st.featuredMoneyCont}>
           <span className={st.featuredMoney}> USD {dataMonthsDonations[actualMonth - 1]} </span>
         </div>
-        <span className={st.featuredSub}>Actual month</span>
+        <span className={st.featuredSub}>Current month</span>
       </div>
 
       <div className={st.featuredItem}>
@@ -62,7 +62,7 @@ export default function featuredInfo() {
         <div className={st.featuredMoneyCont}>
           <span className={st.featuredMoney}> USD {totalDonation} </span>
         </div>
-        <span className={st.featuredSub}>Actual year</span>
+        <span className={st.featuredSub}>Current year</span>
       </div>
 
       <div className={st.featuredItem}>
@@ -70,7 +70,7 @@ export default function featuredInfo() {
         <div className={st.featuredMoneyCont}>
           <span className={st.featuredMoney}> {dataMonthsUsers[actualMonth - 1]} users</span>
         </div>
-        <span className={st.featuredSub}>Actual month</span>
+        <span className={st.featuredSub}>Current month</span>
       </div>
 
       <div className={st.featuredItem}>
@@ -78,7 +78,7 @@ export default function featuredInfo() {
         <div className={st.featuredMoneyCont}>
           <span className={st.featuredMoney}> {totalUsers} users</span>
         </div>
-        <span className={st.featuredSub}>Actual year</span>
+        <span className={st.featuredSub}>Current year</span>
       </div>
 
       <div className={st.featuredItem}>

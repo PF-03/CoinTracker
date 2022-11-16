@@ -19,7 +19,7 @@ passport.use(
       const dbUserBlocked = await user.findOne({ googleId: profile.id, activos: false })
       if (dbUserBlocked) {
         console.log('User blocked')
-        return cb(null, false)
+        return cb(null, dbUserBlocked)
       }
 
       const dbUser = await user.findOne({ googleId: profile.id });
