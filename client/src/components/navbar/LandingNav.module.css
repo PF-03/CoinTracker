@@ -1,4 +1,3 @@
-
 .background {
   position: fixed;
   z-index: 10;
@@ -72,4 +71,11 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+.logo {
+  width: 3rem;
+  height: 3rem;
+  margin-top: 8px;
+  margin-right: 8px;
 }

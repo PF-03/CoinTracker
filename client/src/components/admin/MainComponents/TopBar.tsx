@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
-import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
+import iconCoinTracker from '../../../assets/logo.png';
 import iconUser from '../../../assets/iconUser.png';
 
 export default function TopBar() {
