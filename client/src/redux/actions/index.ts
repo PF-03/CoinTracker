@@ -190,7 +190,7 @@ export function getAdmins() {
 export function searchUsers(allUsers, search, inputSelect) {
   let users = allUsers;
   if (search) {
-    users = users.filter((e: any) => e.mail.includes(search));
+    users = users.filter((e: any) => e.mail.includes(search.toLowerCase()));
   }
   if (inputSelect == "Active") {
     users = users.filter((e: any) => e.activos === true);
@@ -212,7 +212,7 @@ export function searchUsers(allUsers, search, inputSelect) {
 export function searchAdmins(allAdmins, search, inputSelect) {
   let admins = allAdmins;
   if (search) {
-    admins = admins.filter((e: any) => e.name.includes(search));
+    admins = admins.filter((e: any) => e.name.toLowerCase().includes(search.toLowerCase()));
   }
   if (inputSelect == "Active") {
     admins = admins.filter((e: any) => e.activos === true);
