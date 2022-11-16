@@ -194,7 +194,7 @@ const Portfolio = () => {
                 onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
             </div>
-            <h5>Less</h5>
+            <h5>Loss</h5>
             <h5 className={styles.redH5}>{"" + UpPorcent.amount}</h5>
             <h6 className={styles.redH5}>{"" + UpPorcent.percentage}%</h6>
             <h5>Profit</h5>
