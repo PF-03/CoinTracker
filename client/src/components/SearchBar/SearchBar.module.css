@@ -12,8 +12,6 @@
     border: none;
     width: 100px;
     border: solid 1px #8b8c89;
-
-
 }
 
 .container {
@@ -26,9 +24,11 @@
 
 .containerSearch {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     gap: 1rem;
     margin: 2rem 0;
+   
+   
 }
 
 .maincontainer:before {
@@ -127,18 +127,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 
 .details>summary::after {
     content: url('../../assets/chevron.svg');
     margin-top: .2rem;
     transition: transform .2s ease-out;
+   
 
 }
 
 .details[open]>summary::after {
     transform: rotate(90deg);
-
+    
 }
 
 .containerFilters {
@@ -148,8 +150,11 @@
     border-bottom-left-radius: 16px;
     padding-top: 2px;
     padding-bottom: 2px;
-    background: rgba(71, 71, 71, 0.556);
+    background: #333333;
     margin-top: 0.5rem;
-
+    position:absolute;
+    z-index:81;
+    padding-left: 1rem;
+    padding-right: 1rem;
 
 }
