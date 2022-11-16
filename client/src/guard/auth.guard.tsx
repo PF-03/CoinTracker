@@ -13,7 +13,7 @@ export const AuthGuard = () => {
 
   useEffect(() => {
     async function login() {
-      if (!data.user.googleId && !data.userToken) {
+      if (!data.user?.googleId && !data.userToken) {
         axios
           .get(`/googleauth/getuser`, {
             withCredentials: true,
@@ -28,7 +28,7 @@ export const AuthGuard = () => {
     login();
   }, []);
 
-  if (data.userToken) {
+  if (data?.userToken) {
     return data.userToken ? (
       <Outlet />
     ) : (
@@ -36,8 +36,8 @@ export const AuthGuard = () => {
     );
   } else {
     return (
-      (data.user.googleId && <Outlet />) ||
-      (!data.user.googleId && <Navigate replace to={PublicRouts.LOGIN} />)
+      (data.user?.googleId && <Outlet />) ||
+      (!data.user?.googleId && <Navigate replace to={PublicRouts.LOGIN} />)
     );
   }
 };
