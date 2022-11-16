@@ -48,7 +48,7 @@ export default function SideBar() {
           <h3 className={st.sidebarTitle}>Notifications</h3>
           <ul className={st.sidebarList}>
             <li className={st.sidebarListItem}>
-              <a href="http://www.gmail.com" className={st.link}>
+              <a target='_blank' href="http://www.gmail.com" className={st.link}>
                 <MailOutlineIcon className={st.sidebarIcon} />
                 Mail
               </a>

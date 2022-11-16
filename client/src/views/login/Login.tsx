@@ -26,11 +26,21 @@ const Login: React.FC = (): JSX.Element => {
     image,
     activos,
     status,
+    blocked,
   } = useParams();
 
   const [nameToShow, setNametoShow] = useState('');
 
   useEffect(() => {
+    if (activos == 'false') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops, something went wrong',
+        text: 'Your account is blocked, please contact us',
+        confirmButtonText: 'Try again',
+      });
+      return navigate(PublicRouts.LOGIN);
+    }
     const asyncUseEffect = async () => {
       //   const googleUser = await axios
       //     .get(`/googleauth/getuser`, {
@@ -48,13 +58,20 @@ const Login: React.FC = (): JSX.Element => {
         image,
         activos,
         status,
+        blocked,
       };
+
       if (googleUser) {
         navigate(PrivateRoutes.HOME);
+        Swal.fire({
+          icon: 'success',
+          title: 'Nice to have you back!',
+          confirmButtonText: "Let's go!",
+          timer: 1500
+        });
         return dispatch(setUser(googleUser));
       }
     };
-
     if (googleId) {
       asyncUseEffect();
     }
@@ -82,8 +99,30 @@ const Login: React.FC = (): JSX.Element => {
       setValues({ ...values, [event.target.name]: event.target.value });
     }
   };
-
-  const google = () => {
+  // async function Google(e: any) {
+  //   try {
+  //     const loginGoogle = await window.open(
+  //       `${import.meta.env.VITE_SERVER_API}/googleauth/google`,
+  //       '_self'
+  //     );
+  //     if (loginGoogle) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Nice to have you back!',
+  //         confirmButtonText: "Let's go!",
+  //         timer: 1500
+  //       });
+  //     }
+  //   } catch (e) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops, something went wrong',
+  //       text: `${e}`,
+  //       confirmButtonText: 'Try again',
+  //     });
+  //   }
+  // }
+  const google = async (e: any) => {
     window.open(
       `${import.meta.env.VITE_SERVER_API}/googleauth/google`,
       '_self'
@@ -93,25 +132,25 @@ const Login: React.FC = (): JSX.Element => {
   const local = async (e: any) => {
     e.preventDefault();
     try {
-        let res = await axios
+      let res = await axios
         .post("/localauth/login", values, {
           withCredentials: true,
         })
-        dispatch(setUserToken(res.data.token));
-        Swal.fire({
-            icon: 'success',
-            title: 'Nice to have you back!',
-            confirmButtonText: "Let's go!",
-            timer: 1500
-        });
-        navigate(PrivateRoutes.HOME);
+      dispatch(setUserToken(res.data.token));
+      Swal.fire({
+        icon: 'success',
+        title: 'Nice to have you back!',
+        confirmButtonText: "Let's go!",
+        timer: 1500
+      });
+      navigate(PrivateRoutes.HOME);
     } catch (e) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops, something went wrong',
-            text: `${e}`,
-            confirmButtonText: 'Try again',
-        });
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops, something went wrong',
+        text: 'Please try again or contact us',
+        confirmButtonText: 'Try again',
+      });
     }
   };
 

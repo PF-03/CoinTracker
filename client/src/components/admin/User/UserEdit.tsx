@@ -35,7 +35,6 @@ export default function UserEdit(props) {
         console.log(e.target.name)
         if (e.target.name == 'update') {
             dispatch(putProfileAdmin(props.id, input))
-            //window.location.reload(true)
             setNav(true)
         }
     };

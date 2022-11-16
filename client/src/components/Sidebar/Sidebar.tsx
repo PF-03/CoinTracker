@@ -13,7 +13,7 @@ import iconDonation from "../../assets/donateIcon1.png";
 import iconAdmin from "../../assets/admin-icono.png";
 import logo from "../../assets/logo.png"
 import { useSelector } from "react-redux";
-
+import Swal from "sweetalert2";
 // codigo guglielmo
 ////////////////////////////////////////////////////////
 import { setUser, getUserId } from "../../redux/actions";
@@ -45,6 +45,11 @@ function Sidebar() {
 
     dispatch({ type: "RESET" });
     nav(PublicRouts.LANDING);
+    Swal.fire({
+      icon: 'success',
+      title: 'Success logout',
+      confirmButtonText: "Close",
+    });
   };
 
   useEffect(() => {
@@ -61,7 +66,14 @@ function Sidebar() {
           withCredentials: true,
         })
         .then((res: any) => res.data);
-      if (googleUser) return dispatch(setUser(googleUser));
+      if (googleUser) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Nice to have you back!',
+          confirmButtonText: "Let's go!",
+        });
+        return dispatch(setUser(googleUser));
+      }
     };
 
     asyncUseEffect();
