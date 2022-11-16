@@ -8,7 +8,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
 
-import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
+import iconCoinTracker from '../../../assets/logo.png';
 import iconUser from '../../../assets/images.png'
 import iconLogOut from "../../../assets/iconLogOut.png";
 import Swal from 'sweetalert2';
@@ -62,15 +62,11 @@ export default function TopBar() {
                         </div>
                     </Link>
 
+                    <span onClick={() => logout()} className={st.data} >
+                        <img className={st.icon} src={iconLogOut} alt="home" />
+                    </span>
 
-                    <Link to='/' >
-                        <span onClick={() => logout()} className={st.data} >
-                            <img className={st.icon} src={iconLogOut} alt="home" />
-                        </span>
-                    </Link>
                     <a target='_blank' href="http://www.gmail.com" className={st.link}></a>
-
-
 
                 </div>
             </div>
