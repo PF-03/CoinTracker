@@ -87,6 +87,12 @@
 
  
 }
+.th24h{
+    color: #1df842;
+}
+.th24hn{
+    color: #ff3838;
+    }
 .buttonTh{
     display: flex;
     justify-content: space-between;

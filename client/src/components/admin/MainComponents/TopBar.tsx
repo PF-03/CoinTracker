@@ -40,13 +40,13 @@ export default function TopBar() {
             <div className={st.topbarWrapper}>
                 <div className={st.title}>
                     <div>
-                    <img src={iconCoinTracker} className={st.imgEth}/>
-                    <h1>CoinTracker - Admin </h1>
+                        <img src={iconCoinTracker} className={st.imgEth} />
+                        <h1>CoinTracker - Admin </h1>
                     </div>
                 </div>
                 <div className={st.topRight}>
                     {/* style={{ "text-decoration": "none", "color": "#141616" }} */}
-                   
+
                     <Link to='/admin/helpusmail' >
                         <div className={st.topbarIconsContainer}>
                             <NotificationsNoneIcon />
@@ -54,8 +54,8 @@ export default function TopBar() {
                     </Link>
 
                     <Dropdown>
-                        <Dropdown.Toggle variant='#D7FCF1' id="dropdown-basic">
-                        <img src={iconUser}  alt="" width="30px" height="30px" /> 
+                        <Dropdown.Toggle id="dropdown-basic">
+                            <img src={iconUser} alt="" width="30px" height="30px" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>

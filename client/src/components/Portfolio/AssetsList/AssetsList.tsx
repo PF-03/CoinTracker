@@ -17,6 +17,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const user = useSelector((state: any) => state.user);
   const [rango, setRango] = useState(true);
   const array = [];
+  console.log(allAssets, "ee");
 
   const filtro = myWallet.filter((el) =>
     allAssets?.filter((al) => {
@@ -31,6 +32,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
           current_price: al.current_price,
           symbol: al.symbol,
           image: al.image,
+          porcentaje: al.porcentaje,
           usd: numberFormat(
             (el.quantity ? el.quantity : 0) * al.current_price,
             "standard",
@@ -43,7 +45,6 @@ const AssetsList = ({ HandleTrClick, modal }) => {
     })
   );
   console.log(array);
-
   const HandleButtonsClick = (e) => {
     e.preventDefault();
     if (curretPage === "allAssets") {
@@ -72,7 +73,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
     setRango(true);
     await dispatch(rank());
   };
-  console.log(allAssets);
+
   const favorito = async (el, e) => {
     e.preventDefault();
     let comprobar = myWallet.filter(
@@ -168,7 +169,11 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                   {numberFormat(el.current_price, "standard", "decimal") +
                     " US$"}
                 </th>
-                <th className={styles.th24h}>5%</th>
+                <th
+                  className={el.porcentaje > 0 ? styles.th24h : styles.th24hn}
+                >
+                  {el.porcentaje}%
+                </th>
                 <th className={styles.buttonTh}>
                   {curretPage == "myAssets" ? (
                     <div className={styles.usd}>

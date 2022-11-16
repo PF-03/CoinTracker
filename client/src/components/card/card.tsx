@@ -10,11 +10,15 @@ export default function Card({ name, id, image, current_price }: coinInfo) {
     navigate(`/crypto/${id}`);
   };
   return (
-    <div className={`${s.card} ${style.card}`} key={id}>
+    <div
+      className={`${s.card} ${style.card}`}
+      key={id}
+
+    >
       <div className={style.img}>
         <img src={image} alt={name} />
       </div>
-      <h6 className={style.titulo} onClick={() => handleOnClick(id)}>
+      <h6 className={style.titulo}>
         {name}
       </h6>
 
