@@ -26,6 +26,7 @@ export default function AdminView() {
 
         <Routes>
           <Route path='/' element={<HomeAdmin />} />
+          <Route path='*' element={<HomeAdmin />} />
           <Route path='/helpusmail' element={<HelpUsMail />} />
           <Route path='/admins' element={<Admins />} />
           <Route path='/users' element={<UserList />} />
