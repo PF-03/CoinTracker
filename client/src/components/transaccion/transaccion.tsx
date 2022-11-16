@@ -26,7 +26,7 @@ export default function Transaccion({ isOpen, close }) {
   const [wallet, setWallet] = useState({
     date: new Date(Date.now()),
     quantity: "1",
-    precio: precio,
+    precio: "",
     gastado: "",
   });
 
@@ -68,7 +68,7 @@ export default function Transaccion({ isOpen, close }) {
         setWallet({
           date: new Date(Date.now()),
           quantity: "1",
-          precio: precio,
+          precio: "",
           gastado: "",
         });
         Swal.fire({
@@ -130,7 +130,7 @@ export default function Transaccion({ isOpen, close }) {
           setWallet({
             date: new Date(Date.now()),
             quantity: "1",
-            precio: precio,
+            precio: "",
             gastado: "",
           });
           Swal.fire({

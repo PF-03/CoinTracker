@@ -60,7 +60,6 @@ activos.get("/", async (req, res) => {
     activos_ = mayoresAminimo;
   }
   res.send(activos_);
-  //console.log(activos_)
 });
 activos.get("/cotizaciones", async (req, res) => {
   const cotizaciones = await getDivisas();
