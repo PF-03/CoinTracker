@@ -41,6 +41,16 @@ const Barra = styled.div<barraProps>`
     overflow: hidden;
     background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
     transition: color 0.1s, background-color 0.2s ease-in-out;
+      animation: slide 1s ease-in;
+
+  }
+  @keyframes slide {
+    from {
+      transform: translateX(-3rem);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 `;
 
