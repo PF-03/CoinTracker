@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getAdmins } from "../../../redux/actions/index"
 import { DataGrid } from '@mui/x-data-grid';
-import { color } from '@mui/system';
 import SearchBarAdmins from '../SearchAdmins/searchAdmins';
 import st from './AdminList.module.css';
+import s from '../../styles/styles.module.css'
+import Bubble from '../../styles/bubbles';
 
 
 
@@ -58,20 +59,22 @@ export default function Admins() {
 
   return (
     <div className={st.userList}>
-      <SearchBarAdmins/>
+      <SearchBarAdmins />
+      <Bubble size='small' color='red' top={'20%'} />
       <DataGrid
+        className={s.card}
         rows={adminRows}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         disableSelectionOnClick
+        scrollbarSize={4}
         sx={{
           boxShadow: 2,
-          border: 2,
           color: 'white'
         }}
       />
-
+      <Bubble size='medium' color='purple' bottom='20%' right='0' />
     </div>
   )
 }

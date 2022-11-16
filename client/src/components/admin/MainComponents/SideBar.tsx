@@ -22,23 +22,23 @@ export default function SideBar() {
           <h3 className={st.sidebarTitle}>Admin Dashboard</h3>
           <ul className={st.sidebarList}>
 
-            <li className={st.sidebarListItem}>
-              <Link to='/admin' className={st.link}>
+            <Link to='/admin' className={st.link}>
+              <li className={st.sidebarListItem}>
                 <li >
                   <TimeLineIcon className={st.sidebarIcon} />
                   Analytics
                 </li>
-              </Link>
-            </li>
+              </li>
+            </Link>
 
-            <li className={st.sidebarListItem}>
-              <Link to={PrivateRoutes.HOME} className={st.link}>
+            <Link to={PrivateRoutes.HOME} className={st.link}>
+              <li className={st.sidebarListItem}>
                 <li >
                   <PersonIcon className={st.sidebarIcon} />
                   as User
                 </li>
-              </Link>
-            </li>
+              </li>
+            </Link>
             {/* <li className={st.sidebarListItem}>
               <TrendingUpIcon className={st.sidebarIcon}/>
               Sales
