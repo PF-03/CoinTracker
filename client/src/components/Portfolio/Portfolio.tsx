@@ -65,10 +65,15 @@ const Portfolio = () => {
 
   const percentage = () => {
     var amount_val = PortfolioData.current_USD_Amound - PortfolioData.lastValue;
-    var percentage_value = (amount_val / PortfolioData.lastValue) * 100;
+    if (amount_val === 0) {
+      var percentage_value = 0.0;
+    } else if (amount_val !== 0) {
+      var percentage_value = (amount_val / PortfolioData.lastValue) * 100;
+    }
+
     if (amount_val <= 0) {
       UpPorcent.percentage =
-        "" + numberFormat(-1 * percentage_value, "compact").split("$")[1];
+        "" + numberFormat(percentage_value, "compact").split("$")[1];
       UpPorcent.amount = "" + numberFormat(-1 * amount_val, "compact");
       DownPorcent.amount = "0.00";
       DownPorcent.percentage = "0.0";
@@ -76,10 +81,7 @@ const Portfolio = () => {
       UpPorcent.percentage = "0.0";
       UpPorcent.amount = "0.00";
       DownPorcent.amount =
-        "" +
-        numberFormat(amount_val, "standard")
-          .split("$")[1]
-          .split("$")[1];
+        "" + numberFormat(amount_val, "standard").split("$")[1];
       DownPorcent.percentage =
         "" + numberFormat(percentage_value, "compact").split("$")[1];
     }
@@ -124,9 +126,7 @@ const Portfolio = () => {
   let modalName: String;
 
   const modal = async (e, evento, condicion) => {
-    console.log(e, "soy e");
     modalName = await e;
-    console.log(condicion);
     await dispatch(setNameTransaccion(modalName));
     if (condicion === "mas") {
       await open(evento);
@@ -146,15 +146,28 @@ const Portfolio = () => {
   const cerrar = async (e) => {
     await dispatch(getWalletData(user._id ? user._id : user[0]._id));
     e.preventDefault();
+    await dispatch(
+      getMainChartData(
+        user._id ? user._id : user[0]._id,
+        store.getState().walletData
+      )
+    );
     await close();
   };
 
   const cerrarDos = async (e) => {
     await dispatch(getWalletData(user._id ? user._id : user[0]._id));
     e.preventDefault();
+    await dispatch(
+      getMainChartData(
+        user._id ? user._id : user[0]._id,
+        store.getState().walletData
+      )
+    );
     await cerrado();
   };
-  console.log(curretPage);
+
+  console.log(UpPorcent.percentage);
   return (
     <div className={styles.mainContainer}>
       <Bubble color="blue-dark" right={"-10%"} top="-30%" />
@@ -181,10 +194,10 @@ const Portfolio = () => {
                 onClick={() => copiarAlPortapapeles("main_value")}
               ></button>
             </div>
-            <h5>Texto</h5>
+            <h5>Less</h5>
             <h5 className={styles.redH5}>{"" + UpPorcent.amount}</h5>
             <h6 className={styles.redH5}>{"" + UpPorcent.percentage}%</h6>
-            <h5>Texto</h5>
+            <h5>Profit</h5>
             <h5 className={styles.greenH5}>${"" + DownPorcent.amount}</h5>
             <h6 className={styles.greenH5}>{"" + DownPorcent.percentage}%</h6>
           </div>

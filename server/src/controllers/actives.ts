@@ -36,6 +36,7 @@ export const ActualizarApi = async (): Promise<any> => {
         total_supply: e.total_supply,
         max_supply: e.max_supply,
         circulating_supply: e.circulating_supply,
+        porcentaje: e.market_cap_change_percentage_24h,
       };
     });
     const date = new Date();
@@ -114,25 +115,27 @@ export const getActivHistoryPrice = async (
       };
       value.data["prices"].map((el: any) => {
         if (userId) {
-          let reverseWallet1 = walletData.reverse()
-          var dayIndex = reverseWallet1
-            .findIndex((walletEl: any) => {
-              var CurrentwalletDate = new Date(walletEl.date);
-              return (
-                (CurrentwalletDate.getTime() >= el[0])&&
-                (CurrentwalletDate.getTime() < (el[0]+ (24 * 60 * 60 * 1000)) )
-                );
-            });
-            walletData.reverse();
-            if(dayIndex>=0)dayIndex=((walletData.length-1)-dayIndex);
+          let reverseWallet1 = walletData.reverse();
+          var dayIndex = reverseWallet1.findIndex((walletEl: any) => {
+            var CurrentwalletDate = new Date(walletEl.date);
+            return (
+              CurrentwalletDate.getTime() >= el[0] &&
+              CurrentwalletDate.getTime() < el[0] + 24 * 60 * 60 * 1000
+            );
+          });
+          walletData.reverse();
+          if (dayIndex >= 0) dayIndex = walletData.length - 1 - dayIndex;
           if (dayIndex === -1) {
-            let reverseWallet = walletData.reverse()
+            let reverseWallet = walletData.reverse();
             dayIndex = reverseWallet.findIndex((walletEl: any) => {
               var CurrentwalletDate = new Date(walletEl.date);
-              return (CurrentwalletDate.getTime() <= (el[0]/* - (24 * 60 * 60 * 1000) */));
+              return (
+                CurrentwalletDate.getTime() <=
+                el[0] /* - (24 * 60 * 60 * 1000) */
+              );
             });
             walletData.reverse();
-            if(dayIndex>=0)dayIndex=((walletData.length-1)-dayIndex);
+            if (dayIndex >= 0) dayIndex = walletData.length - 1 - dayIndex;
           }
           if (dayIndex === -1) {
             dayIndex = 0;
