@@ -26,6 +26,7 @@ function LandingNavbar() {
         <div className={style.button}>
           {user ? (
             <Button
+              className={style.spaceButton}
               gradient
               onClick={() => {
                 navigate(PrivateRoutes.HOME);
@@ -36,6 +37,7 @@ function LandingNavbar() {
           ) : (
             <div>
               <Button
+                className={style.spaceButton}
                 onClick={() => {
                   navigate(PublicRouts.REGISTER);
                 }}
@@ -43,6 +45,7 @@ function LandingNavbar() {
                 Register
               </Button>
               <Button
+                className={style.spaceButton}
                 gradient
                 onClick={() => {
                   navigate(PublicRouts.LOGIN);

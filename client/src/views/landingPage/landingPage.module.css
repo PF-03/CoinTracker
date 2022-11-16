@@ -17,7 +17,6 @@
 }
 
 .container {
-
   position: relative;
   display: flex;
   flex-direction: column;
@@ -25,7 +24,6 @@
   align-items: center;
   padding: 2rem;
   padding-top: 4rem;
-
 }
 
 .tableContainer {
@@ -61,31 +59,31 @@
 }
 
 .containerAbout {
-
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   padding: 2rem;
   padding-top: 4rem;
-  background: right fixed url('../../assets/backgroundLandingPage.jpg');
+  background: right fixed url("../../assets/backgroundLandingPage.jpg");
   background-size: cover;
   /* Background del contenedor principal, pendiente por cambiar segun sea el caso */
 }
 
-
 .gradientText {
-  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
-  padding: .5rem 1rem;
-
-
+  border-radius: 15px;
+  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
+  padding: 0.5rem 1rem;
 }
 
 .reviews {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  align-items: center;
   justify-content: space-between;
+  margin-top: 2%;
+  margin-left: 6%;
+  margin-right: 8%;
 }
 
 .containerReviews {
@@ -96,7 +94,7 @@
   align-items: center;
   padding: 2rem;
   padding-top: 4rem;
-  background: fixed url('../../assets/reviewsBackground.jpg');
+  background: fixed url("../../assets/reviewsBackground.jpg");
   background-size: cover;
   min-height: 110vh;
 }
