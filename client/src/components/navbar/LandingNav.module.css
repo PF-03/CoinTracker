@@ -11,22 +11,21 @@
   justify-content: space-between;
 }
 
-.background div>div {
+.background div > div {
   padding: 0 2rem;
   display: flex;
 }
 
 .navButtons a:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0%;
   height: 4px;
-  background: linear-gradient(270deg, #7745C8 0%, #B588FF 100%);
-  ;
+  background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
   left: 0;
   bottom: -6px;
   border-radius: 2px;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .navButtons a:hover:after {
@@ -38,7 +37,6 @@
   justify-content: baseline;
   align-items: center;
   gap: 2rem;
-
 }
 
 .navButtons * {
@@ -73,9 +71,15 @@
   gap: 1rem;
 }
 
+
 .logo {
   width: 3rem;
   height: 3rem;
   margin-top: 8px;
   margin-right: 8px;
 }
+
+.spaceButton {
+  margin: 1.5%;
+}
+
