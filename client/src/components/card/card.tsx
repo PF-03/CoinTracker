@@ -9,8 +9,13 @@ export default function Card({ name, id, image, current_price }: coinInfo) {
   const handleOnClick = (id) => {
     navigate(`/crypto/${id}`);
   };
+  console.log(id, "soy id");
   return (
-    <div className={`${s.card} ${style.card}`} key={id}>
+    <div
+      className={`${s.card} ${style.card}`}
+      key={id}
+      onClick={() => handleOnClick(id)}
+    >
       <div className={style.img}>
         <img src={image} alt={name} />
       </div>
