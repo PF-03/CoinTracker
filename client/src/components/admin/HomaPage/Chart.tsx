@@ -15,8 +15,8 @@ export default function Chart() {
 
     const allUsers = useSelector((state: any) => state.users);
     const dataChart = () => {
-        let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'];
+        let dataSets = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         allUsers.forEach((element) => {
             let month = element.createdAt.split('-')[1]

@@ -23,7 +23,7 @@ export default function SearchBarUsers(){
 
     return (
         <div className={css.containerSearchUsers}>
-            <input placeholder="Search user..." id="busqueda" onChange={HandleInputChange} className={css.searchBarUsers}></input>
+            <input placeholder="Search user by name" id="busqueda" onChange={HandleInputChange} className={css.searchBarUsers}></input>
             <button className={css.searchButtonUsers}>Search</button>
             <select id='selectUsers' onChange={HandleInputChange} className={css.selectUsers}>
          

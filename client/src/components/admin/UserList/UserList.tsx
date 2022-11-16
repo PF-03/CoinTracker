@@ -45,10 +45,11 @@ export default function UserList() {
     // }},
     { field: '_id', headerName: 'User ID', width: 130 },
     { field: 'googleId', headerName: 'Google ID', width: 130 },
+    { field: 'username', headerName: 'Username', width: 150 },
     { field: 'mail', headerName: 'Email', width: 150 },
     { field: 'name', headerName: 'Name', type: 'date', width: 120 },
     { field: 'lastname', headerName: 'Lastname', width: 120 },
-    { field: 'type', headerName: 'Type', width: 120 },
+    { field: 'type', headerName: 'Type', width: 100 },
     // { field: 'token', headerName: 'Token',  width: 100 },
     { field: 'activos', headerName: 'Activo', width: 75 },
     {

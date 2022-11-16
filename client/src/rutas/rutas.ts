@@ -2,6 +2,7 @@ export const PublicRouts = {
   LANDING: '/',
   REGISTER: '/register',
   LOGIN: '/login',
+  BLOCKED: '/login/:blocked',
   LOG: '/login/:id/:googleId/:username/:mail/:name/:lastname/:type/:image/:activos/:status',
 };
 

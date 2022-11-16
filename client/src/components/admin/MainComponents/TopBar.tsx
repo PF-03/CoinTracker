@@ -8,7 +8,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
 import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
-import iconUser from '../../../assets/iconUser.png';
+import iconUser from '../../../assets/images.png'
+import iconLogOut from "../../../assets/iconLogOut.png";
+import Swal from 'sweetalert2';
 
 export default function TopBar() {
     const dispatch: any = useDispatch();
@@ -32,6 +34,11 @@ export default function TopBar() {
 
         dispatch({ type: "RESET" });
         nav(PublicRouts.LANDING);
+        Swal.fire({
+            icon: 'success',
+            title: 'Success logout',
+            confirmButtonText: "Close",
+        });
     };
 
     return (
@@ -40,32 +47,39 @@ export default function TopBar() {
             <div className={st.topbarWrapper}>
                 <div className={st.title}>
                     <div>
-                    <img src={iconCoinTracker} className={st.imgEth}/>
-                    <h1>CoinTracker - Admin </h1>
+                        <img src={iconCoinTracker} className={st.imgEth} />
+                        <h1>CoinTracker - Admin </h1>
                     </div>
                 </div>
                 <div className={st.topRight}>
                     {/* style={{ "text-decoration": "none", "color": "#141616" }} */}
-                   
+
                     <Link to='/admin/helpusmail' >
                         <div className={st.topbarIconsContainer}>
                             <NotificationsNoneIcon />
                         </div>
                     </Link>
 
-                    <Dropdown>
+                    <Link to='/' >
+                        <span onClick={() => logout()} className={st.data} >
+                            <img className={st.icon} src={iconLogOut} alt="home" />
+                        </span>
+                    </Link>
+                    <a target='_blank' href="http://www.gmail.com" className={st.link}></a>
+
+                    {/* <Dropdown>
                         <Dropdown.Toggle variant='#D7FCF1' id="dropdown-basic">
-                        <img src={iconUser}  alt="" width="30px" height="30px" /> 
+                            <img src={iconUser} alt="" width="30px" height="30px" />
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
                             <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>
                         </Dropdown.Menu>
-                    </Dropdown>
+                    </Dropdown> */}
 
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 };
 
