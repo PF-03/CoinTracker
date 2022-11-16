@@ -17,7 +17,6 @@ const AssetsList = ({ HandleTrClick, modal }) => {
   const user = useSelector((state: any) => state.user);
   const [rango, setRango] = useState(true);
   const array = [];
-  console.log(allAssets, "ee");
 
   const filtro = myWallet.filter((el) =>
     allAssets?.filter((al) => {
@@ -32,7 +31,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
           current_price: al.current_price,
           symbol: al.symbol,
           image: al.image,
-          porcentaje: al.porcentaje,
+          porcentaje: al.porcentaje ? al.porcentaje : 0,
           usd: numberFormat(
             (el.quantity ? el.quantity : 0) * al.current_price,
             "standard",
@@ -172,7 +171,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                 <th
                   className={el.porcentaje > 0 ? styles.th24h : styles.th24hn}
                 >
-                  {el.porcentaje.toFixed(2)}%
+                  {el.porcentaje?.toFixed(2)}%
                 </th>
                 <th className={styles.buttonTh}>
                   {curretPage == "myAssets" ? (
