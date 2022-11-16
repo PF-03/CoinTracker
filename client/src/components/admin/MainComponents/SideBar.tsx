@@ -33,10 +33,8 @@ export default function SideBar() {
 
             <li className={st.sidebarListItem}>
               <Link to={PrivateRoutes.HOME} className={st.link}>
-                <li >
-                  <PersonIcon className={st.sidebarIcon} />
-                  as User
-                </li>
+                <PersonIcon className={st.sidebarIcon} />
+                as User
               </Link>
             </li>
             {/* <li className={st.sidebarListItem}>

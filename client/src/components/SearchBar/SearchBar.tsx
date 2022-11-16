@@ -100,8 +100,10 @@ function SearchBar() {
             )}
           </select>
         </div>
+        
         <details className={styles.details}>
           <summary>Filters</summary>
+          
           <div className={styles.containerFilters}>
             <div className={styles.container}>
               <input
@@ -127,10 +129,12 @@ function SearchBar() {
                 Filter By Price
               </Button>
             </div>
-          </div>
+            </div>
+          
         </details>
+        </div>
       </div>
-    </div>
+    
   );
 }
 

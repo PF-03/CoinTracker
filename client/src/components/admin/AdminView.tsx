@@ -13,28 +13,28 @@ import DonationsList from "./DonationsList/DonationsList";
 
 
 export default function AdminView() {
-  
+
   // const [actualPage, setActualPage] = useState("home")
   // {actualPage === "home"? <HomeAdmin/> : actualPage === "userList"? <UserList/> : actualPage === "User"? <User /> : null}
 
   return (
-    
+
     <React.Fragment>
-      <TopBar/>
+      <TopBar />
       <div className={st.container}>
-        <SideBar/>
+        <SideBar />
 
         <Routes>
           <Route path='/' element={<HomeAdmin />} />
+          <Route path='*' element={<HomeAdmin />} />
           <Route path='/helpusmail' element={<HelpUsMail />} />
           <Route path='/admins' element={<Admins />} />
           <Route path='/users' element={<UserList />} />
           <Route path='/user/:userId' element={<User />} />
           <Route path='/donations' element={<DonationsList />} />
           {/* <Route path='/donations' element={<Memberships />} /> */}
-          <Route path='*' element={<HomeAdmin />} />
         </Routes>
-          
+
       </div>
     </React.Fragment>
   )

@@ -1,6 +1,6 @@
 import style from "./Sidebar.module.css";
 import card from "../styles/styles.module.css";
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import iconHome from "../../assets/iconHome.png";
 import iconCal from "../../assets/iconCal.png";
 import iconLogOut from "../../assets/iconLogOut.png";
@@ -11,6 +11,7 @@ import iconSwap from "../../assets/iconSwap.png";
 import iconUser from "../../assets/iconUser.png";
 import iconDonation from "../../assets/donateIcon1.png";
 import iconAdmin from "../../assets/admin-icono.png";
+import logo from "../../assets/logo.png"
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 // codigo guglielmo
@@ -83,7 +84,7 @@ function Sidebar() {
     <div className={`${style.sidebar} ${card.card}`}>
       <div className={style.head}>
         <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ethereum_logo_translucent.svg/640px-Ethereum_logo_translucent.svg.png"
+          src={logo}
           alt="logo"
           className={style.logo}
         />

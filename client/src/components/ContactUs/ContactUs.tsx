@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ContactUs.module.css";
 import Button from "../styles/button";
-import Telefono from "../../assets/telefono.png";
+import Telefono from "../../assets/contact-us.png";
 import { useDispatch, useSelector } from "react-redux";
 import { postMail } from "../../redux/actions";
 import Swal from 'sweetalert2'
@@ -38,7 +38,7 @@ const ContactUs = () => {
   };
   return (
       <div className={styles.mainContainer}>
-        <img src={Telefono} alt="" />
+        <img src={Telefono} alt=""  />
         <div className={styles.formContainer}>
           <h3>Contact us</h3>
           <form onSubmit={(e) => HandleSubmit(e)}>

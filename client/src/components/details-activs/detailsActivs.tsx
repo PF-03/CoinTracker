@@ -5,6 +5,8 @@ import {
   getDetailsActivos,
   getActivos,
   getWalletData,
+  handlePriceAlert,
+  selectionPriceAlert,
 } from "../../redux/actions";
 import { GrFavorite } from "react-icons/gr";
 import { HiOutlineBellAlert } from "react-icons/hi2";
@@ -41,6 +43,15 @@ const Barra = styled.div<barraProps>`
     overflow: hidden;
     background: linear-gradient(270deg, #7745c8 0%, #b588ff 100%);
     transition: color 0.1s, background-color 0.2s ease-in-out;
+    animation: slide 1s ease-in;
+  }
+  @keyframes slide {
+    from {
+      transform: translateX(-3rem);
+    }
+    to {
+      transform: translateX(0);
+    }
   }
 `;
 
@@ -98,6 +109,7 @@ export default function DetailsActivs() {
         })
       );
       await dispatch(getWalletData(user._id ? user._id : user[0]._id));
+      return;
     }
     Swal.fire({
       icon: "error",
@@ -108,6 +120,7 @@ export default function DetailsActivs() {
     return;
   };
 
+  console.log(details, "sppp");
   return (
     <>
       <Bubble size="medium" right="10%" bottom={0} />
@@ -128,7 +141,13 @@ export default function DetailsActivs() {
                 </div>
                 <div className={s.cBotones}>
                   <div className={s.botones}>
-                    <div>
+                    <div
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        await dispatch(selectionPriceAlert(details));
+                        await dispatch(handlePriceAlert());
+                      }}
+                    >
                       <img src={alerta} alt="alerta" />
                     </div>
                     <div onClick={(e) => favorito(details, e)}>
@@ -153,7 +172,7 @@ export default function DetailsActivs() {
                 <div className={s.boxInfo}>
                   <div>
                     <p className={s.p}>
-                      <strong>Capitalizacion del mercado</strong>
+                      <strong>Market capitalization</strong>
                     </p>
                     <p>
                       {numberFormat(
@@ -165,13 +184,13 @@ export default function DetailsActivs() {
                   <div>
                     <p className={s.p}>
                       {" "}
-                      <strong>Volumen de comercio</strong>
+                      <strong>Trade volume in 24h</strong>
                     </p>
                     <p>{numberFormat(details.total_volume, "standard")} </p>
                   </div>
                   <div>
                     <p className={s.p}>
-                      <strong>Valoracion tras la dilucion total </strong>
+                      <strong>Fully diluted market cap</strong>
                     </p>
                     <p>
                       {numberFormat(
@@ -185,7 +204,7 @@ export default function DetailsActivs() {
                 <div className={s.boxInfo}>
                   <div>
                     <p className={s.p}>
-                      <strong>Cantidad circulante</strong>
+                      <strong>Circulating quantity</strong>
                     </p>
                     <p>
                       {numberFormat(details.circulating_supply, "standard")}{" "}
@@ -193,13 +212,13 @@ export default function DetailsActivs() {
                   </div>
                   <div>
                     <p className={s.p}>
-                      <strong>Cantidad total</strong>
+                      <strong>Total quantity</strong>
                     </p>
                     <p>{numberFormat(details.total_supply, "standard")} </p>
                   </div>
                   <div>
                     <p className={s.p}>
-                      <strong>Catidad max.</strong>
+                      <strong>Maximum quantity</strong>
                     </p>
                     <p>{numberFormat(details.max_supply, "standard")} </p>
                   </div>

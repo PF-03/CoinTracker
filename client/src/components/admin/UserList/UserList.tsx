@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers, deleteUser } from "../../../redux/actions/index";
 import st from './UserList.module.css';
+import s from '../../styles/styles.module.css'
 import { DataGrid } from '@mui/x-data-grid';
 import BlockIcon from '@mui/icons-material/Block';
 // import  userData  from '../../../dummyData';
 import { Link } from 'react-router-dom';
 import SearchBarUsers from '../SearchUsers/searchUsers';
 import Swal from 'sweetalert2';
+import Bubble from '../../styles/bubbles';
 
 export default function UserList() {
 
@@ -85,14 +87,15 @@ export default function UserList() {
 
     <div className={st.userList}>
       <SearchBarUsers />
+      <Bubble right={0} top={0} color='purple' size='medium' />
       <DataGrid
+        className={s.card}
         rows={userData}
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
         disableSelectionOnClick
         sx={{
-          boxShadow: 2,
           color: 'white',
           '& .MuiDataGrid-cell:hover': {
             color: 'primary.main',

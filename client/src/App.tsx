@@ -52,11 +52,9 @@ function App() {
           <Route path={PrivateRoutes.REVIEW} element={<Review />} />
 
           <Route path={PrivateRoutes.VERIFIQUED} element={<Verifiqued />} />
+
           <Route path="/chat" element={<Chatbot />} />
 
-          <Route element={<SharedLayout />}>
-            <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
-          </Route>
 
           {/* agregar aqui las rutas privadas para usuarios */}
 
@@ -65,6 +63,8 @@ function App() {
               <Route path={PrivateRoutes.HOME} element={<Home />} />
 
               <Route path={PrivateRoutes.WALLET} element={<Activos />} />
+
+              <Route path={PrivateRoutes.CRYPTO} element={<DetailsActivs />} />
 
               <Route
                 path={PrivateRoutes.CALCULATOR}
@@ -81,7 +81,10 @@ function App() {
 
               <Route path={PrivateRoutes.DONATE} element={<Donation />} />
 
-              <Route path={PrivateRoutes.DONATE_SUCCESS} element={<DonationSuccess />} />
+              <Route
+                path={PrivateRoutes.DONATE_SUCCESS}
+                element={<DonationSuccess />}
+              />
             </Route>
             <Route element={<AdminGuard />}>
               {/* colocar aqui las pestañas para los admins. 

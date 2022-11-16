@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { PrivateRoutes, PublicRouts } from "../../../rutas/rutas";
+
 import iconCoinTracker from '../../../assets/ethereum-icon-purple.svg';
 import iconUser from '../../../assets/images.png'
 import iconLogOut from "../../../assets/iconLogOut.png";
 import Swal from 'sweetalert2';
+
 
 export default function TopBar() {
     const dispatch: any = useDispatch();
@@ -60,6 +62,7 @@ export default function TopBar() {
                         </div>
                     </Link>
 
+
                     <Link to='/' >
                         <span onClick={() => logout()} className={st.data} >
                             <img className={st.icon} src={iconLogOut} alt="home" />
@@ -67,15 +70,7 @@ export default function TopBar() {
                     </Link>
                     <a target='_blank' href="http://www.gmail.com" className={st.link}></a>
 
-                    {/* <Dropdown>
-                        <Dropdown.Toggle variant='#D7FCF1' id="dropdown-basic">
-                            <img src={iconUser} alt="" width="30px" height="30px" />
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
-                            <Dropdown.Item href="http://www.gmail.com">Gmail</Dropdown.Item>
-                        </Dropdown.Menu>
-                    </Dropdown> */}
+
 
                 </div>
             </div>

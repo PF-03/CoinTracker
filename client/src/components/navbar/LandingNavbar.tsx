@@ -4,6 +4,7 @@ import s from "../styles/styles.module.css";
 import { useNavigate } from "react-router-dom";
 import { PrivateRoutes, PublicRouts } from "../../rutas/rutas";
 import { UserKey } from "../../utils/LocalStorageData";
+import logo from '../../assets/logo.png'
 
 function LandingNavbar() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ function LandingNavbar() {
       <div className={s.card}>
         <div>
           <div className={style.title}>
+            <img src={logo} alt='logo' className={style.logo} />
             <a href="#home">CoinTracker</a>
           </div>
           <ul className={style.navButtons}>
@@ -26,6 +28,7 @@ function LandingNavbar() {
         <div className={style.button}>
           {user ? (
             <Button
+              className={style.spaceButton}
               gradient
               onClick={() => {
                 navigate(PrivateRoutes.HOME);
@@ -36,6 +39,7 @@ function LandingNavbar() {
           ) : (
             <div>
               <Button
+                className={style.spaceButton}
                 onClick={() => {
                   navigate(PublicRouts.REGISTER);
                 }}
@@ -43,6 +47,7 @@ function LandingNavbar() {
                 Register
               </Button>
               <Button
+                className={style.spaceButton}
                 gradient
                 onClick={() => {
                   navigate(PublicRouts.LOGIN);
