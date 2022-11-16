@@ -538,3 +538,16 @@ export function rank() {
     type: "RANK",
   };
 }
+
+export function handlePriceAlert() {
+  return {
+    type: "handlePriceAlert",
+  };
+}
+
+export function selectionPriceAlert(data) {
+  return {
+    type: "selectionPriceAlert",
+    payload: data,
+  };
+}

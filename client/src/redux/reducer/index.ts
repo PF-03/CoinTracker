@@ -34,7 +34,8 @@ const initialState = {
   userReminders: [],
   userWallet: [],
   notificationsNumber: 0,
-
+  handlePriceAlert: false,
+  coinPriceAlert: {},
   user: localStorage.getItem(LS.UserKey)
     ? JSON.parse(localStorage.getItem(LS.UserKey) as string)
     : {},
@@ -354,6 +355,18 @@ function rootReducer(state = initialState, action: any) {
       return {
         ...state,
         favWallet: state.favWallet.concat(action.payload),
+      };
+    case "handlePriceAlert":
+      return {
+        ...state,
+        handlePriceAlert: !state.handlePriceAlert,
+      };
+
+    case "selectionPriceAlert":
+      console.log(action.payload);
+      return {
+        ...state,
+        coinPriceAlert: action.payload,
       };
 
     default:

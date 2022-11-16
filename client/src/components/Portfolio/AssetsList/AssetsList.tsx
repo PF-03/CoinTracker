@@ -172,7 +172,7 @@ const AssetsList = ({ HandleTrClick, modal }) => {
                 <th
                   className={el.porcentaje > 0 ? styles.th24h : styles.th24hn}
                 >
-                  {el.porcentaje}%
+                  {el.porcentaje.toFixed(2)}%
                 </th>
                 <th className={styles.buttonTh}>
                   {curretPage == "myAssets" ? (
