@@ -58,8 +58,8 @@ function Activos() {
                   "selectCotizacion"
                 ) as HTMLInputElement | null;
                 return (
-                  <tr className={css.trespe} key={e.id}>
-                    <td onClick={() => navigate(`/crypto/${e.id}`)}>
+                  <tr className={css.trespe} key={e.id} onClick={() => navigate(`/crypto/${e.id}`)}>
+                    <td>
                       <div className={css.name}>
                         <img src={e.image} alt="" width="30px" height="30px" />
                         <span>{e.name}</span>
