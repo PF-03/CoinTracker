@@ -38,6 +38,7 @@
     margin: 3px;
     border: none;
     background-color: #EBEEF1;
+    color: #000000;
 }
 
 .formContainer form textarea {
