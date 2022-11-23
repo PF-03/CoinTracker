@@ -113,6 +113,3 @@ dbConn();
 function _(err: any): void {
   throw new Error("Function not implemented.");
 }
-
-// Export server to deploy as serveless function on vercel
-module.exports = server;
