@@ -30,23 +30,23 @@ export default function User() {
 
   user
     ? (props = {
-        id: user._id,
-        googleId: user.googleId,
-        username: user.username,
-        password: user.password,
-        mail: user.mail,
-        name: user.name,
-        lastname: user.lastname,
-        type: user.type,
-        token: user.token,
-        activos: user.activos,
-      })
+      id: user._id,
+      googleId: user.googleId,
+      username: user.username,
+      password: user.password,
+      mail: user.mail,
+      name: user.name,
+      lastname: user.lastname,
+      type: user.type,
+      token: user.token,
+      activos: user.activos,
+    })
     : console.log("Algo esta pasando");
 
   return (
     <div className={st.user}>
       <div className={st.userTitleContainer}>
-        <h1 className={st.userTitle}>Edit user</h1>
+        <h3 className={st.userTitle}>Edit user</h3>
       </div>
 
       <div className={st.userContainer}>
